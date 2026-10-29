@@ -1,0 +1,12 @@
+{
+  "id": "zerbitzuak",
+  "nombre": "Zerbitzuak",
+  "tema": "Kodearen uhartea",
+  "descripcion": "Zerbitzuen uharteko eskualdeak zeharkatu behar dituzue Zabor-eskualdera iritsi arte.",
+  "mapa": {
+    "archivo": "img/mapa/zerbitzuak.jpg",
+    "ancho": 1376,
+    "alto": 768,
+    "dibujar_camino": false
+  }
+}

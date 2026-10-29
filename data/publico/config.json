@@ -1,0 +1,84 @@
+{
+  "titulo": "Bigarren mailako abentura",
+  "idioma": "eu",
+  "ranking_publico": false,
+  "aventuras": [
+    {
+      "id": "zerbitzuak",
+      "nombre": "Zerbitzuak",
+      "color_acento": "#2a9d8f",
+      "activa": true
+    },
+    {
+      "id": "sareak",
+      "nombre": "Sareak",
+      "color_acento": "#e9c46a",
+      "activa": true
+    }
+  ],
+  "niveles": [
+    {
+      "puntos": 0,
+      "titulo": "Ikastuna"
+    },
+    {
+      "puntos": 30,
+      "titulo": "Laguntzailea"
+    },
+    {
+      "puntos": 70,
+      "titulo": "Artisaua"
+    },
+    {
+      "puntos": 120,
+      "titulo": "Aditua"
+    },
+    {
+      "puntos": 180,
+      "titulo": "Maisua"
+    },
+    {
+      "puntos": 250,
+      "titulo": "Jakintsua"
+    }
+  ],
+  "marcos": [
+    {
+      "id": "harria",
+      "nombre": "Harria"
+    },
+    {
+      "id": "marmola",
+      "nombre": "Marmol berdea"
+    },
+    {
+      "id": "egurra",
+      "nombre": "Egurra"
+    },
+    {
+      "id": "obsidiana",
+      "nombre": "Obsidiana"
+    },
+    {
+      "id": "turkesa",
+      "nombre": "Turkesa"
+    },
+    {
+      "id": "hezurra",
+      "nombre": "Hezurra"
+    }
+  ],
+  "tipos_casilla": {
+    "inicio": "Hasiera",
+    "normal": "Arrunta",
+    "hito": "Mugarria",
+    "evento": "Gertaera",
+    "recompensa": "Saria",
+    "penalizacion": "Zigorra",
+    "descanso": "Atsedena",
+    "jefe": "Nagusia",
+    "secreta": "Ezkutukoa",
+    "bifurcacion": "Bidegurutzea",
+    "meta": "Helmuga"
+  }
+}

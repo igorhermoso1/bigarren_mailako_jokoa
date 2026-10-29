@@ -1,0 +1,58 @@
+{
+  "entregas": [
+    {
+      "id": "z-e1",
+      "nombre": "Web zerbitzaria",
+      "fecha_limite": "2026-10-01",
+      "puntos_max": 10
+    },
+    {
+      "id": "z-e2",
+      "nombre": "DNS zerbitzaria",
+      "fecha_limite": "2026-10-22",
+      "puntos_max": 10
+    },
+    {
+      "id": "z-e3",
+      "nombre": "DHCP zerbitzaria",
+      "fecha_limite": "2026-11-12",
+      "puntos_max": 10
+    },
+    {
+      "id": "z-e4",
+      "nombre": "Posta zerbitzaria",
+      "fecha_limite": "2026-12-03",
+      "puntos_max": 10
+    },
+    {
+      "id": "z-e5",
+      "nombre": "FTP zerbitzaria",
+      "fecha_limite": "2026-12-24",
+      "puntos_max": 10
+    },
+    {
+      "id": "z-e6",
+      "nombre": "Proxy eta suebakia",
+      "fecha_limite": "2027-01-14",
+      "puntos_max": 10
+    },
+    {
+      "id": "z-e7",
+      "nombre": "Datu-baseak",
+      "fecha_limite": "2027-02-04",
+      "puntos_max": 10
+    },
+    {
+      "id": "z-e8",
+      "nombre": "Edukiontziak",
+      "fecha_limite": "2027-02-25",
+      "puntos_max": 10
+    },
+    {
+      "id": "z-e9",
+      "nombre": "Proiektu finala",
+      "fecha_limite": "2027-03-18",
+      "puntos_max": 10
+    }
+  ]
+}

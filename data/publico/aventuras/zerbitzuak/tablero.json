@@ -1,0 +1,236 @@
+{
+  "casillas": [
+    {
+      "id": "z01",
+      "nombre": "Script-aren Liburutegia",
+      "x": 15.8,
+      "y": 49.2,
+      "tipo": "inicio",
+      "siguientes": [
+        "z02"
+      ],
+      "descripcion": "Hemen hasten da abentura: liburu zaharren artean."
+    },
+    {
+      "id": "z02",
+      "nombre": "Basoen Erresuma",
+      "x": 21.5,
+      "y": 42.4,
+      "tipo": "normal",
+      "siguientes": [
+        "z03"
+      ]
+    },
+    {
+      "id": "z03",
+      "nombre": "Elfoen Hondakinak",
+      "x": 28.8,
+      "y": 46.6,
+      "tipo": "hito",
+      "siguientes": [
+        "z04"
+      ],
+      "efecto_al_llegar": {
+        "hito": "h-z-elfoak"
+      }
+    },
+    {
+      "id": "z04",
+      "nombre": "Aldagaien Ibarra",
+      "x": 27.4,
+      "y": 56.6,
+      "tipo": "normal",
+      "siguientes": [
+        "z05"
+      ]
+    },
+    {
+      "id": "z05",
+      "nombre": "Padura Eremua",
+      "x": 24.9,
+      "y": 70.3,
+      "tipo": "descanso",
+      "siguientes": [
+        "z06"
+      ]
+    },
+    {
+      "id": "z06",
+      "nombre": "Bug Zingira",
+      "x": 30,
+      "y": 79.4,
+      "tipo": "penalizacion",
+      "siguientes": [
+        "z07"
+      ],
+      "efecto_al_llegar": {
+        "estado": "e-bug"
+      }
+    },
+    {
+      "id": "z07",
+      "nombre": "Log-aren Padura",
+      "x": 34.2,
+      "y": 67.7,
+      "tipo": "evento",
+      "siguientes": [
+        "z08"
+      ]
+    },
+    {
+      "id": "z08",
+      "nombre": "Nekropoli Loretsua",
+      "x": 39.6,
+      "y": 70.1,
+      "tipo": "normal",
+      "siguientes": [
+        "z09"
+      ]
+    },
+    {
+      "id": "z09",
+      "nombre": "Hiri Grisaren atea",
+      "x": 49.9,
+      "y": 63.4,
+      "tipo": "normal",
+      "siguientes": [
+        "z10"
+      ]
+    },
+    {
+      "id": "z10",
+      "nombre": "Hiri Grisa",
+      "x": 45.2,
+      "y": 56,
+      "tipo": "hito",
+      "siguientes": [
+        "z11"
+      ],
+      "efecto_al_llegar": {
+        "hito": "h-z-hiria"
+      }
+    },
+    {
+      "id": "z11",
+      "nombre": "Aldagaien Harana",
+      "x": 41.8,
+      "y": 48.4,
+      "tipo": "bifurcacion",
+      "siguientes": [
+        "z12a",
+        "z12b"
+      ]
+    },
+    {
+      "id": "z12a",
+      "nombre": "Izoztutako Eremua",
+      "x": 34.3,
+      "y": 23.4,
+      "tipo": "normal",
+      "siguientes": [
+        "z13a"
+      ]
+    },
+    {
+      "id": "z13a",
+      "nombre": "Refaktorizazio Glaziarra",
+      "x": 40.2,
+      "y": 24.5,
+      "tipo": "recompensa",
+      "siguientes": [
+        "z14"
+      ],
+      "efecto_al_llegar": {
+        "objeto": "o-edabea"
+      }
+    },
+    {
+      "id": "z12b",
+      "nombre": "Mendi-oinetako bidea",
+      "x": 52.5,
+      "y": 37.8,
+      "tipo": "normal",
+      "siguientes": [
+        "z14"
+      ]
+    },
+    {
+      "id": "z14",
+      "nombre": "Konpilatzailearen Forja",
+      "x": 57.3,
+      "y": 32.2,
+      "tipo": "jefe",
+      "siguientes": [
+        "z15"
+      ]
+    },
+    {
+      "id": "z15",
+      "nombre": "Forjaren irteera",
+      "x": 68.3,
+      "y": 34.9,
+      "tipo": "normal",
+      "siguientes": [
+        "z16"
+      ]
+    },
+    {
+      "id": "z16",
+      "nombre": "Kosta Etsi-etsia",
+      "x": 73.4,
+      "y": 48.6,
+      "tipo": "evento",
+      "siguientes": [
+        "z17"
+      ]
+    },
+    {
+      "id": "z17",
+      "nombre": "Baldintzen Labirintoa",
+      "x": 59.1,
+      "y": 50.5,
+      "tipo": "jefe",
+      "siguientes": [
+        "z18"
+      ]
+    },
+    {
+      "id": "z18",
+      "nombre": "Begizten Basamortua",
+      "x": 60.3,
+      "y": 55.7,
+      "tipo": "normal",
+      "siguientes": [
+        "z19"
+      ]
+    },
+    {
+      "id": "z19",
+      "nombre": "Basamortuaren bihotza",
+      "x": 64.9,
+      "y": 68.6,
+      "tipo": "descanso",
+      "siguientes": [
+        "z20"
+      ]
+    },
+    {
+      "id": "z20",
+      "nombre": "Commit-en Meategiak",
+      "x": 75.9,
+      "y": 66.8,
+      "tipo": "recompensa",
+      "siguientes": [
+        "z21"
+      ]
+    },
+    {
+      "id": "z21",
+      "nombre": "Zabor-eskualdea",
+      "x": 81,
+      "y": 58.9,
+      "tipo": "meta",
+      "siguientes": []
+    }
+  ]
+}

@@ -1,0 +1,350 @@
+[
+  {
+    "id": 1,
+    "fecha": "2026-09-16T10:00:00+02:00",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "comentario",
+    "datos": {
+      "texto": "Ontziak prest daude. Itsasora!"
+    },
+    "puntos": 0,
+    "visible_publico": true,
+    "referencia": null,
+    "hash_anterior": "",
+    "hash": "98c605625dca2ad81e1c55521bfe94b4e540a4a13d4983dc9189be8b7336aecb"
+  },
+  {
+    "id": 2,
+    "fecha": "2026-10-07T10:00:00+02:00",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": "g1",
+    "miembro": null,
+    "tipo": "avance",
+    "datos": {
+      "desde": "s01",
+      "hasta": "s02",
+      "motivo": "Kableatua onartua"
+    },
+    "puntos": 10,
+    "visible_publico": true,
+    "referencia": null,
+    "hash_anterior": "98c605625dca2ad81e1c55521bfe94b4e540a4a13d4983dc9189be8b7336aecb",
+    "hash": "e3aba573aa947330ff6446421afbcac36e8d5070217fb95590f70f0810dce637"
+  },
+  {
+    "id": 3,
+    "fecha": "2026-10-07T10:00:00+02:00",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": "g2",
+    "miembro": null,
+    "tipo": "avance",
+    "datos": {
+      "desde": "s01",
+      "hasta": "s02",
+      "motivo": "Kableatua onartua"
+    },
+    "puntos": 10,
+    "visible_publico": true,
+    "referencia": null,
+    "hash_anterior": "e3aba573aa947330ff6446421afbcac36e8d5070217fb95590f70f0810dce637",
+    "hash": "c01316e445e81cd5543a7ef12d49bfcc41194592becac0b719871636c3aca0d8"
+  },
+  {
+    "id": 4,
+    "fecha": "2026-10-07T10:00:00+02:00",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": "g3",
+    "miembro": null,
+    "tipo": "avance",
+    "datos": {
+      "desde": "s01",
+      "hasta": "s02",
+      "motivo": "Kableatua onartua"
+    },
+    "puntos": 10,
+    "visible_publico": true,
+    "referencia": null,
+    "hash_anterior": "c01316e445e81cd5543a7ef12d49bfcc41194592becac0b719871636c3aca0d8",
+    "hash": "ce79714aaa464247c3487d23fc1218fafd669c08fdf137b3eb838e66b92e7a5d"
+  },
+  {
+    "id": 5,
+    "fecha": "2026-10-07T10:00:00+02:00",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": "g4",
+    "miembro": null,
+    "tipo": "avance",
+    "datos": {
+      "desde": "s01",
+      "hasta": "s02",
+      "motivo": "Kableatua onartua"
+    },
+    "puntos": 10,
+    "visible_publico": true,
+    "referencia": null,
+    "hash_anterior": "ce79714aaa464247c3487d23fc1218fafd669c08fdf137b3eb838e66b92e7a5d",
+    "hash": "95a692cb1129e9d1f225294614bb0094aa8ac096b77ebbf3eae82b8f086911dc"
+  },
+  {
+    "id": 6,
+    "fecha": "2026-10-07T10:00:00+02:00",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": "g5",
+    "miembro": null,
+    "tipo": "avance",
+    "datos": {
+      "desde": "s01",
+      "hasta": "s02",
+      "motivo": "Kableatua onartua"
+    },
+    "puntos": 10,
+    "visible_publico": true,
+    "referencia": null,
+    "hash_anterior": "95a692cb1129e9d1f225294614bb0094aa8ac096b77ebbf3eae82b8f086911dc",
+    "hash": "f34ca3150597a1de578026fb9bf2e5247c28f55159f1fc482b8af9a7af3bef65"
+  },
+  {
+    "id": 7,
+    "fecha": "2026-10-07T10:00:00+02:00",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": "g6",
+    "miembro": null,
+    "tipo": "avance",
+    "datos": {
+      "desde": "s01",
+      "hasta": "s02",
+      "motivo": "Kableatua onartua"
+    },
+    "puntos": 10,
+    "visible_publico": true,
+    "referencia": null,
+    "hash_anterior": "f34ca3150597a1de578026fb9bf2e5247c28f55159f1fc482b8af9a7af3bef65",
+    "hash": "25b21e182736684d2d5f160bd68831479b92ce0e9d4c4c18c6cffec0b76277bb"
+  },
+  {
+    "id": 8,
+    "fecha": "2026-10-07T10:00:00+02:00",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": "g3",
+    "miembro": null,
+    "tipo": "bonus",
+    "datos": {
+      "motivo": "Kableatu txukunena"
+    },
+    "puntos": 3,
+    "visible_publico": true,
+    "referencia": null,
+    "hash_anterior": "25b21e182736684d2d5f160bd68831479b92ce0e9d4c4c18c6cffec0b76277bb",
+    "hash": "8c4cc9dbaaa3f052e1a4e954bce2bf4f8993b75ddf4340cbd2f45f0f674ba578"
+  },
+  {
+    "id": 9,
+    "fecha": "2026-10-07T10:00:00+02:00",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": "g6",
+    "miembro": null,
+    "tipo": "objeto_ganado",
+    "datos": {
+      "objeto": "o-kablea",
+      "motivo": "Kableatu txukunena"
+    },
+    "puntos": 0,
+    "visible_publico": true,
+    "referencia": null,
+    "hash_anterior": "8c4cc9dbaaa3f052e1a4e954bce2bf4f8993b75ddf4340cbd2f45f0f674ba578",
+    "hash": "0f0f405b0bf7ce1444d976f9e445e1db14c81bf07a6dc6ef5924fb4f2b36858a"
+  },
+  {
+    "id": 10,
+    "fecha": "2026-10-07T10:00:00+02:00",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": "g2",
+    "miembro": null,
+    "tipo": "estado_aplicado",
+    "datos": {
+      "estado": "e-korrontea",
+      "duracion_entregas": 2
+    },
+    "puntos": 2,
+    "visible_publico": true,
+    "referencia": null,
+    "hash_anterior": "0f0f405b0bf7ce1444d976f9e445e1db14c81bf07a6dc6ef5924fb4f2b36858a",
+    "hash": "19f4caff1def891a7b4478ec692503a2d30d7f64dabcca0a074a335cbf88364d"
+  },
+  {
+    "id": 11,
+    "fecha": "2026-10-07T10:00:00+02:00",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": "g5",
+    "miembro": null,
+    "tipo": "nota_grupo",
+    "datos": {
+      "entrega": "s-e1",
+      "nota": 9,
+      "comentario": "Kableatu bikaina."
+    },
+    "puntos": 0,
+    "visible_publico": true,
+    "referencia": null,
+    "hash_anterior": "19f4caff1def891a7b4478ec692503a2d30d7f64dabcca0a074a335cbf88364d",
+    "hash": "b9fb22cfa7c0ce3f84924e259a23c655e7ef8466dc501e24d43fad8ae1300515"
+  },
+  {
+    "id": 12,
+    "fecha": "2026-10-07T10:00:00+02:00",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "entrega_cerrada",
+    "datos": {
+      "entrega": "s-e1"
+    },
+    "puntos": 0,
+    "visible_publico": true,
+    "referencia": null,
+    "hash_anterior": "b9fb22cfa7c0ce3f84924e259a23c655e7ef8466dc501e24d43fad8ae1300515",
+    "hash": "10ea5ef3e4a7460af71907ef0fc18c6ed8135ef9975925f53b47550b17419f25"
+  },
+  {
+    "id": 13,
+    "fecha": "2026-10-28T10:00:00+02:00",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": "g3",
+    "miembro": null,
+    "tipo": "avance",
+    "datos": {
+      "desde": "s02",
+      "hasta": "s03",
+      "motivo": "IP helbideratzea onartua"
+    },
+    "puntos": 10,
+    "visible_publico": true,
+    "referencia": null,
+    "hash_anterior": "10ea5ef3e4a7460af71907ef0fc18c6ed8135ef9975925f53b47550b17419f25",
+    "hash": "9a7ce301fb9dab2e665a0b8f4557adb420fbafe5dced1ac98c441d12edffded9"
+  },
+  {
+    "id": 14,
+    "fecha": "2026-10-28T10:00:00+02:00",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": "g5",
+    "miembro": null,
+    "tipo": "avance",
+    "datos": {
+      "desde": "s02",
+      "hasta": "s03",
+      "motivo": "IP helbideratzea onartua"
+    },
+    "puntos": 10,
+    "visible_publico": true,
+    "referencia": null,
+    "hash_anterior": "9a7ce301fb9dab2e665a0b8f4557adb420fbafe5dced1ac98c441d12edffded9",
+    "hash": "3228c0a2357e0f34b18866eaedcd21930322918dd672445091de6f7487565ad4"
+  },
+  {
+    "id": 15,
+    "fecha": "2026-10-28T10:00:00+02:00",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": "g2",
+    "miembro": null,
+    "tipo": "avance",
+    "datos": {
+      "desde": "s02",
+      "hasta": "s03",
+      "motivo": "IP helbideratzea onartua"
+    },
+    "puntos": 10,
+    "visible_publico": true,
+    "referencia": null,
+    "hash_anterior": "3228c0a2357e0f34b18866eaedcd21930322918dd672445091de6f7487565ad4",
+    "hash": "57f6f230190418ab656c8ec45033d872eb1de1b2c56b9baa6eb462fc92f41939"
+  },
+  {
+    "id": 16,
+    "fecha": "2026-10-28T10:00:00+02:00",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": "g1",
+    "miembro": null,
+    "tipo": "penalizacion",
+    "datos": {
+      "motivo": "Entrega berandu"
+    },
+    "puntos": -2,
+    "visible_publico": true,
+    "referencia": null,
+    "hash_anterior": "57f6f230190418ab656c8ec45033d872eb1de1b2c56b9baa6eb462fc92f41939",
+    "hash": "3df9092a8c4db0073c3dcab0cfdbc45f2e679ef149e2e26480b9690587df0a7c"
+  },
+  {
+    "id": 17,
+    "fecha": "2026-10-28T10:00:00+02:00",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": "g4",
+    "miembro": null,
+    "tipo": "objeto_ganado",
+    "datos": {
+      "objeto": "o-mapa",
+      "motivo": "Topologia-diagrama bikaina"
+    },
+    "puntos": 0,
+    "visible_publico": true,
+    "referencia": null,
+    "hash_anterior": "3df9092a8c4db0073c3dcab0cfdbc45f2e679ef149e2e26480b9690587df0a7c",
+    "hash": "5c86eacf58df07c3ae26d2501b160c332aa09de65ff9818a99d4600f5192ab7d"
+  },
+  {
+    "id": 18,
+    "fecha": "2026-10-28T10:00:00+02:00",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": "g6",
+    "miembro": null,
+    "tipo": "nota_grupo",
+    "datos": {
+      "entrega": "s-e2",
+      "nota": 6.5,
+      "comentario": "Maskarak berrikusi behar dira."
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "5c86eacf58df07c3ae26d2501b160c332aa09de65ff9818a99d4600f5192ab7d",
+    "hash": "090111e61e773dd8c8325d4fa93414759c6b4247bd798d0b8a4dd5f5c49fa1af"
+  },
+  {
+    "id": 19,
+    "fecha": "2026-10-28T10:00:00+02:00",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "entrega_cerrada",
+    "datos": {
+      "entrega": "s-e2"
+    },
+    "puntos": 0,
+    "visible_publico": true,
+    "referencia": null,
+    "hash_anterior": "090111e61e773dd8c8325d4fa93414759c6b4247bd798d0b8a4dd5f5c49fa1af",
+    "hash": "1d48f1a7b9ede018cadbf17a79f2074564445b2e3ca98ae890422860cd9f40f1"
+  }
+]
