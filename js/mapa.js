@@ -66,7 +66,7 @@
     contenedor.innerHTML = '';
     const { mapa } = aventura;
     const lienzo = crear('div', 'lienzo');
-    lienzo.style.aspectRatio = `${mapa.ancho} / ${mapa.alto}`;
+    lienzo.style.setProperty('--aspecto', mapa.ancho / mapa.alto);
 
     const fondo = crear('img', 'fondo', { src: mapa.archivo, alt: aventura.tema || aventura.nombre });
     fondo.onerror = () => lienzo.prepend(Object.assign(crear('p', 'aviso-error'), { textContent: 'Ezin izan da maparen irudia kargatu.' }));
@@ -91,14 +91,18 @@
       lienzo.append(svg);
     }
 
-    for (const c of tablero.casillas) {
+    // Casillas: medallón con su número de orden; brillan las que algún grupo ya ha pisado.
+    const pisadas = new Set(Object.values(estado.grupos).flatMap(g => g.camino));
+    tablero.casillas.forEach((c, i) => {
       const tipo = config.tipos_casilla[c.tipo] || c.tipo;
-      const b = crear('button', 'casilla', { type: 'button', 'data-tipo': c.tipo, 'aria-label': `${c.nombre} (${tipo})`, title: c.nombre });
+      const b = crear('button', 'casilla', { type: 'button', 'data-tipo': c.tipo, 'data-nombre': c.nombre, 'aria-label': `${i + 1}. ${c.nombre} (${tipo})` });
+      b.textContent = c.tipo === 'meta' ? '⚑' : i + 1;
+      b.classList.toggle('pisada', pisadas.has(c.id));
       b.style.left = c.x + '%';
       b.style.top = c.y + '%';
-      b.onclick = () => al.casilla(c);
+      b.onclick = ev => { ev.stopPropagation(); al.casilla(c, b); };
       lienzo.append(b);
-    }
+    });
 
     // Fichas: se colocan donde las vio este navegador la última vez y caminan hasta su posición actual.
     const clave = 'posiciones-vistas:' + aventura.id;
@@ -113,11 +117,11 @@
       const e = estado.grupos[g.id];
       const ocupantes = porCasilla[e.posicion];
       const [dx, dy] = abanico(ocupantes.length, ocupantes.indexOf(g.id));
-      const b = crear('button', 'ficha-mapa', { type: 'button', 'data-grupo': g.id, 'aria-label': `${g.nombre}: ${casilla(e.posicion)?.nombre || e.posicion}` });
+      const b = crear('button', 'ficha-mapa', { type: 'button', 'data-grupo': g.id, 'data-nombre': g.nombre, 'aria-label': `${g.nombre}: ${casilla(e.posicion)?.nombre || e.posicion}` });
       b.style.setProperty('--dx', dx);
       b.style.setProperty('--dy', dy);
       b.append(crearFicha(g, config));
-      b.onclick = () => al.ficha(g.id);
+      b.onclick = ev => { ev.stopPropagation(); al.ficha(g.id, b); };
       lienzo.append(b);
 
       const colocar = id => { const c = casilla(id); if (c) { b.style.left = c.x + '%'; b.style.top = c.y + '%'; } };

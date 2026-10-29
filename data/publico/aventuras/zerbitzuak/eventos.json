@@ -44,13 +44,13 @@
     "datos": {
       "desde": "z01",
       "hasta": "z02",
-      "motivo": "Web zerbitzaria onartua"
+      "motivo": "Makina birtualen sorrera onartua"
     },
     "puntos": 10,
     "visible_publico": true,
     "referencia": null,
     "hash_anterior": "48b07012e7b81a08c56df82e1cc23c6b8729754f1fabfb18a62e118b320d0353",
-    "hash": "cfdb35b0a596f4a9125c9facf1cfae36d879719161f58982a21cb6529d9677c2"
+    "hash": "575ab7d865484e99d2cdbb8d7b2b4c0b4c48b9b377fe4870b5d50e363a75cfb9"
   },
   {
     "id": 4,
@@ -63,13 +63,13 @@
     "datos": {
       "desde": "z01",
       "hasta": "z02",
-      "motivo": "Web zerbitzaria onartua"
+      "motivo": "Makina birtualen sorrera onartua"
     },
     "puntos": 10,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "cfdb35b0a596f4a9125c9facf1cfae36d879719161f58982a21cb6529d9677c2",
-    "hash": "5e03bc871aa136999b9cd7bffecb5c6bdff5873de44ecfd7647b6607bcd98616"
+    "hash_anterior": "575ab7d865484e99d2cdbb8d7b2b4c0b4c48b9b377fe4870b5d50e363a75cfb9",
+    "hash": "d8233c450684002014ab6e0ad1cf5c0470f59ec02758327c85dfb3aa8f8c3eeb"
   },
   {
     "id": 5,
@@ -82,13 +82,13 @@
     "datos": {
       "desde": "z01",
       "hasta": "z02",
-      "motivo": "Web zerbitzaria onartua"
+      "motivo": "Makina birtualen sorrera onartua"
     },
     "puntos": 8,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "5e03bc871aa136999b9cd7bffecb5c6bdff5873de44ecfd7647b6607bcd98616",
-    "hash": "bfd29e03ca5a70d12b628089812010f36f6539b6b3b1944a8848b804d481565b"
+    "hash_anterior": "d8233c450684002014ab6e0ad1cf5c0470f59ec02758327c85dfb3aa8f8c3eeb",
+    "hash": "4903fcce356220402bf73d17c5d2ceb830614f55af0a97567e8d75337b376579"
   },
   {
     "id": 6,
@@ -101,13 +101,13 @@
     "datos": {
       "desde": "z01",
       "hasta": "z02",
-      "motivo": "Web zerbitzaria onartua"
+      "motivo": "Makina birtualen sorrera onartua"
     },
     "puntos": 10,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "bfd29e03ca5a70d12b628089812010f36f6539b6b3b1944a8848b804d481565b",
-    "hash": "43d7b31c219f97d644ffea0e463d66b44f24f53994cda04129b3c0e4eb7e0db8"
+    "hash_anterior": "4903fcce356220402bf73d17c5d2ceb830614f55af0a97567e8d75337b376579",
+    "hash": "30c5861b90d22e76064e9cd0e6ad91dfb51892df122e1f9d84ef6976f265d8ff"
   },
   {
     "id": 7,
@@ -120,13 +120,13 @@
     "datos": {
       "desde": "z01",
       "hasta": "z02",
-      "motivo": "Web zerbitzaria onartua"
+      "motivo": "Makina birtualen sorrera onartua"
     },
     "puntos": 6,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "43d7b31c219f97d644ffea0e463d66b44f24f53994cda04129b3c0e4eb7e0db8",
-    "hash": "be33e2b793ba3ee6fef364b471d1b0a33169e46214d8c5da5f3206be18dad3e2"
+    "hash_anterior": "30c5861b90d22e76064e9cd0e6ad91dfb51892df122e1f9d84ef6976f265d8ff",
+    "hash": "debf504a1f8e335b0e7b6bec381a71c53f3a3806d72f19cf4b65db2546c0603b"
   },
   {
     "id": 8,
@@ -142,8 +142,8 @@
     "puntos": 3,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "be33e2b793ba3ee6fef364b471d1b0a33169e46214d8c5da5f3206be18dad3e2",
-    "hash": "b10cceabedb8f9626721f546a3606f5c1dbb3438eff9896ed398816a6012d541"
+    "hash_anterior": "debf504a1f8e335b0e7b6bec381a71c53f3a3806d72f19cf4b65db2546c0603b",
+    "hash": "5388b2d21ad84ddb835e32632ddca9be27a3c14e78ebb3f7dbe8cf8f8370e36f"
   },
   {
     "id": 9,
@@ -159,8 +159,8 @@
     "puntos": -2,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "b10cceabedb8f9626721f546a3606f5c1dbb3438eff9896ed398816a6012d541",
-    "hash": "7809f35c5069c4790e3feda40731b1c04e1f853fa5abdd973eeb7fb1555b65c1"
+    "hash_anterior": "5388b2d21ad84ddb835e32632ddca9be27a3c14e78ebb3f7dbe8cf8f8370e36f",
+    "hash": "40528c46a4fced3ab6590384134c0b006541161f594832ed8764641d2cd00b1a"
   },
   {
     "id": 10,
@@ -177,8 +177,8 @@
     "puntos": -3,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "7809f35c5069c4790e3feda40731b1c04e1f853fa5abdd973eeb7fb1555b65c1",
-    "hash": "cb9cfd47acf25dad40c9f36c955ca26460212e36ef33c64211ee09f1a542b1be"
+    "hash_anterior": "40528c46a4fced3ab6590384134c0b006541161f594832ed8764641d2cd00b1a",
+    "hash": "8dd6d6e3ad6cafe4edf001c37143ebe72f20a16bf0ab3867685bf3b26f0b0f57"
   },
   {
     "id": 11,
@@ -195,8 +195,8 @@
     "puntos": 0,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "cb9cfd47acf25dad40c9f36c955ca26460212e36ef33c64211ee09f1a542b1be",
-    "hash": "bd3b382b3e59ac221a8bf5b6aee9f668f31e35b0088689182350c3eef41440b8"
+    "hash_anterior": "8dd6d6e3ad6cafe4edf001c37143ebe72f20a16bf0ab3867685bf3b26f0b0f57",
+    "hash": "54ef7d729271edad2dbda30bf8a339ba97f7f1ce63fb832295f592cd246e7b66"
   },
   {
     "id": 12,
@@ -214,8 +214,8 @@
     "puntos": 0,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "bd3b382b3e59ac221a8bf5b6aee9f668f31e35b0088689182350c3eef41440b8",
-    "hash": "01fd4537c6671aceb51741eea58913130df8025d98e21657c22696d8bbf4fdc9"
+    "hash_anterior": "54ef7d729271edad2dbda30bf8a339ba97f7f1ce63fb832295f592cd246e7b66",
+    "hash": "a45c0e2c50962d92597391ab1a9e6e74d01529b7796f4534d6ff6280ae5506a4"
   },
   {
     "id": 13,
@@ -231,8 +231,8 @@
     "puntos": 0,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "01fd4537c6671aceb51741eea58913130df8025d98e21657c22696d8bbf4fdc9",
-    "hash": "6370c21458d4cbd4353e852edfd4ad01806d0cfada5346ab3f5fe46ee7149705"
+    "hash_anterior": "a45c0e2c50962d92597391ab1a9e6e74d01529b7796f4534d6ff6280ae5506a4",
+    "hash": "019067df0e096956ec731096743ba253980e978688689525d45ff05a4b5c54c1"
   },
   {
     "id": 14,
@@ -245,13 +245,13 @@
     "datos": {
       "desde": "z02",
       "hasta": "z03",
-      "motivo": "DNS zerbitzaria onartua"
+      "motivo": "DNS onartua"
     },
     "puntos": 10,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "6370c21458d4cbd4353e852edfd4ad01806d0cfada5346ab3f5fe46ee7149705",
-    "hash": "4fb93f07c36119e14409fa2b3c62f1467b75201089bc41c57ab4f46fe11c6cdd"
+    "hash_anterior": "019067df0e096956ec731096743ba253980e978688689525d45ff05a4b5c54c1",
+    "hash": "4e95e903418491451eaf950bc56e7936f3720398742227897403ff0e4dc8accf"
   },
   {
     "id": 15,
@@ -267,8 +267,8 @@
     "puntos": 5,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "4fb93f07c36119e14409fa2b3c62f1467b75201089bc41c57ab4f46fe11c6cdd",
-    "hash": "bceb447abf9b5b5f5024939f60cd55403a62035e68d7ba4d4130a5b2bdad22f3"
+    "hash_anterior": "4e95e903418491451eaf950bc56e7936f3720398742227897403ff0e4dc8accf",
+    "hash": "7cba59d500c63fd7ab1830104d9658cf8cdad7e5841952d5df8eb7fe4d3ac8c0"
   },
   {
     "id": 16,
@@ -281,13 +281,13 @@
     "datos": {
       "desde": "z02",
       "hasta": "z03",
-      "motivo": "DNS zerbitzaria onartua"
+      "motivo": "DNS onartua"
     },
     "puntos": 10,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "bceb447abf9b5b5f5024939f60cd55403a62035e68d7ba4d4130a5b2bdad22f3",
-    "hash": "9141723efc2a2d04e45e8a165bc30c6549626c6d2928c102d8299ca4bb4efca1"
+    "hash_anterior": "7cba59d500c63fd7ab1830104d9658cf8cdad7e5841952d5df8eb7fe4d3ac8c0",
+    "hash": "6e1101a01a80fa3efa70e0d16a7a1a81f0028a5d660bdc1d613c95a378910833"
   },
   {
     "id": 17,
@@ -300,13 +300,13 @@
     "datos": {
       "desde": "z02",
       "hasta": "z04",
-      "motivo": "DNS zerbitzaria onartua"
+      "motivo": "DNS onartua"
     },
     "puntos": 10,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "9141723efc2a2d04e45e8a165bc30c6549626c6d2928c102d8299ca4bb4efca1",
-    "hash": "15cede0c3c1f202b54038ee4bec57e6d4bdc27b20394b722b9c001a98b0113c3"
+    "hash_anterior": "6e1101a01a80fa3efa70e0d16a7a1a81f0028a5d660bdc1d613c95a378910833",
+    "hash": "8c7a7cfc2caf21cccf10a0092303d41069fb7f1429f9fbe80d15903d4017d5f5"
   },
   {
     "id": 18,
@@ -322,8 +322,8 @@
     "puntos": 0,
     "visible_publico": true,
     "referencia": 17,
-    "hash_anterior": "15cede0c3c1f202b54038ee4bec57e6d4bdc27b20394b722b9c001a98b0113c3",
-    "hash": "f2656d4a8b1e8eecba45b3688478da5ca659df6fd907e23ba4735380cdc8a577"
+    "hash_anterior": "8c7a7cfc2caf21cccf10a0092303d41069fb7f1429f9fbe80d15903d4017d5f5",
+    "hash": "626701b71d5e1d98290c97167a13f14bf42bd1fb390e49c27f40c12ddb7fe61e"
   },
   {
     "id": 19,
@@ -336,13 +336,13 @@
     "datos": {
       "desde": "z02",
       "hasta": "z03",
-      "motivo": "DNS zerbitzaria onartua"
+      "motivo": "DNS onartua"
     },
     "puntos": 10,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "f2656d4a8b1e8eecba45b3688478da5ca659df6fd907e23ba4735380cdc8a577",
-    "hash": "f8e554d66c1df4afdbbff9da206e103f6f3c5aaf11f90eb008bb6fd1800f8dc1"
+    "hash_anterior": "626701b71d5e1d98290c97167a13f14bf42bd1fb390e49c27f40c12ddb7fe61e",
+    "hash": "b4aa078499a665ae40d2cfc71f8acd3bf9ee0644cdcacaada1e90d38d5dac790"
   },
   {
     "id": 20,
@@ -359,8 +359,8 @@
     "puntos": 0,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "f8e554d66c1df4afdbbff9da206e103f6f3c5aaf11f90eb008bb6fd1800f8dc1",
-    "hash": "0c4f7ff133b6f6a07ede559ad7836a2f3b2fa1fcacaf3e26d9da0024f90e22a8"
+    "hash_anterior": "b4aa078499a665ae40d2cfc71f8acd3bf9ee0644cdcacaada1e90d38d5dac790",
+    "hash": "3aaedb79fc203b3f53de1b5fcbec8f3df514b302e90e73509e41d992d5e75557"
   },
   {
     "id": 21,
@@ -378,7 +378,7 @@
     "puntos": 0,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "0c4f7ff133b6f6a07ede559ad7836a2f3b2fa1fcacaf3e26d9da0024f90e22a8",
-    "hash": "a4629f08b9a4ba87ec09154ef575eed4992eeb2695456d005baddf90fe02d6b2"
+    "hash_anterior": "3aaedb79fc203b3f53de1b5fcbec8f3df514b302e90e73509e41d992d5e75557",
+    "hash": "55b89f0398cd72be960cd3ec676cb83ef4947ccc22a943ff206d28e4b75d9dd8"
   }
 ]

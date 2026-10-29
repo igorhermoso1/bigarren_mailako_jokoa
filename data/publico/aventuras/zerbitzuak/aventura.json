@@ -2,7 +2,7 @@
   "id": "zerbitzuak",
   "nombre": "Zerbitzuak",
   "tema": "Kodearen uhartea",
-  "descripcion": "Zerbitzuen uharteko eskualdeak zeharkatu behar dituzue Zabor-eskualdera iritsi arte.",
+  "descripcion": "Hemezortzi zerbitzu, hemezortzi gune. Gainditu bakoitza hurrengo eskualdera igarotzeko.",
   "mapa": {
     "archivo": "img/mapa/zerbitzuak.jpg",
     "ancho": 1376,

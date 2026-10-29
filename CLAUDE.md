@@ -24,6 +24,7 @@ Stack: HTML + CSS + JS puro, sin frameworks, sin build y sin dependencias. Códi
 ## Mapas
 - `aventura.json → mapa`: `archivo` (cualquier imagen: jpg/webp/svg), `ancho`, `alto` y `dibujar_camino`.
 - Zerbitzuak usa una ilustración raster (`img/mapa/zerbitzuak.jpg`) que ya trae el camino punteado y sus rótulos, así que `dibujar_camino: false`. Sareak usa un SVG provisional y la web dibuja el camino entre casillas.
+- **Casilla = ejercicio**: cada casilla lleva `entrega` (id en `entregas.json`) y `lugar` (nombre del sitio en el mapa). Zerbitzuak: 18 temas en orden + `meta`. Los temas de Sareak están por decidir.
 - Casillas en **% del mapa** (`x`, `y` de 0 a 100). Las fichas se mueven de casilla en casilla; no hace falta `<path id="camino-principal">`.
 
 ## Datos
@@ -39,8 +40,13 @@ Stack: HTML + CSS + JS puro, sin frameworks, sin build y sin dependencias. Códi
 ## Código
 - `js/motor.js`: `calcularEstado()`, función pura (navegador y Node).
 - `js/mapa.js`: fondo, casillas y fichas. Las fichas animan desde la última posición vista en ese navegador (localStorage, solo comodidad).
-- `js/app.js`: carga, pestañas (`#id` en la URL), panel lateral, tarjetas y egunkaria.
-- `css/web.css`: hoja única, con modo oscuro por `prefers-color-scheme`.
+- `js/app.js`: carga, estandartes de aventura (`#id` en la URL), barra lateral (pestañas Taldeak / Egunkaria) y **ventanas emergentes con pestañas** junto a lo pulsado (en móvil, hoja inferior):
+  - grupo: Taldea (nivel, XP, inventario en huecos, estados, logros), una pestaña por miembro (alias, clase, cometido) e Historia;
+  - zona: Taldeak (cuándo, cómo y valoración de cada grupo en esa zona), Ariketa y Gertaerak.
+- Las notas individuales nunca salen en la web pública: la pestaña de miembro solo muestra datos públicos.
+- `css/web.css`: hoja única con tema RPG fijo (madera, oro y pergamino; sin modo claro/oscuro). Sin fuentes externas.
+- Iconos: `icono` de objeto/logro/hito = emoji o ruta de imagen; si falta, se usa el emoji por defecto del tipo. `config.clases` = clase RPG con su icono.
+- El profesor gestiona logros, objetos y estados desde el admin; los del catálogo actual son de ejemplo.
 - Ficha: `config.marcos[i]` = centro y diámetro del marco en el sprite (medidos sobre la transparencia).
 
 ## Tests

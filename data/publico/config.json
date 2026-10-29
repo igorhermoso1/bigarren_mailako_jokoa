@@ -91,6 +91,28 @@
       "d": 330
     }
   ],
+  "clases": [
+    {
+      "nombre": "Arkitektoa",
+      "icono": "🏛️"
+    },
+    {
+      "nombre": "Sendatzailea",
+      "icono": "✨"
+    },
+    {
+      "nombre": "Bardoa",
+      "icono": "📜"
+    },
+    {
+      "nombre": "Ezkutaria",
+      "icono": "🛡️"
+    },
+    {
+      "nombre": "Esploratzailea",
+      "icono": "🧭"
+    }
+  ],
   "tipos_casilla": {
     "inicio": "Hasiera",
     "normal": "Arrunta",

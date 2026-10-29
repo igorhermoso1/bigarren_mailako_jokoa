@@ -2,20 +2,23 @@
   "casillas": [
     {
       "id": "s01",
-      "nombre": "Kable-portua",
+      "nombre": "Kableatua",
+      "lugar": "",
       "tipo": "inicio",
+      "entrega": "s-e1",
       "x": 8,
       "y": 15,
       "siguientes": [
         "s02"
-      ],
-      "descripcion": "Ontziak kablez lotuta daude portuan. Hemen hasten da bidaia."
+      ]
     },
     {
       "id": "s02",
-      "nombre": "RJ45 kaia",
+      "nombre": "IP helbideratzea",
+      "lugar": "",
       "tipo": "normal",
-      "x": 29,
+      "entrega": "s-e2",
+      "x": 50,
       "y": 15,
       "siguientes": [
         "s03"
@@ -23,9 +26,11 @@
     },
     {
       "id": "s03",
-      "nombre": "Switch-plaza",
+      "nombre": "VLANak",
+      "lugar": "",
       "tipo": "normal",
-      "x": 50,
+      "entrega": "s-e3",
+      "x": 92,
       "y": 15,
       "siguientes": [
         "s04"
@@ -33,186 +38,82 @@
     },
     {
       "id": "s04",
-      "nombre": "VLAN bidegurutzea",
-      "tipo": "bifurcacion",
-      "x": 71,
-      "y": 15,
+      "nombre": "Azpisareak",
+      "lugar": "",
+      "tipo": "normal",
+      "entrega": "s-e4",
+      "x": 92,
+      "y": 37,
       "siguientes": [
-        "s05a",
-        "s05b"
+        "s05"
       ]
     },
     {
-      "id": "s05a",
-      "nombre": "VLAN 10 uhartea",
+      "id": "s05",
+      "nombre": "Bideratze estatikoa",
+      "lugar": "",
       "tipo": "normal",
-      "x": 92,
-      "y": 15,
-      "siguientes": [
-        "s06"
-      ]
-    },
-    {
-      "id": "s05b",
-      "nombre": "VLAN 20 uhartea",
-      "tipo": "normal",
-      "x": 92,
-      "y": 25,
+      "entrega": "s-e5",
+      "x": 50,
+      "y": 37,
       "siguientes": [
         "s06"
       ]
     },
     {
       "id": "s06",
-      "nombre": "IP itsasargia",
-      "tipo": "hito",
-      "x": 92,
+      "nombre": "NAT",
+      "lugar": "",
+      "tipo": "normal",
+      "entrega": "s-e6",
+      "x": 8,
       "y": 37,
       "siguientes": [
         "s07"
-      ],
-      "efecto_al_llegar": {
-        "hito": "h-s-itsasargia"
-      }
+      ]
     },
     {
       "id": "s07",
-      "nombre": "Azpisareen artxipelagoa",
+      "nombre": "OSPF",
+      "lugar": "",
       "tipo": "normal",
-      "x": 71,
-      "y": 37,
+      "entrega": "s-e7",
+      "x": 8,
+      "y": 59,
       "siguientes": [
         "s08"
       ]
     },
     {
       "id": "s08",
-      "nombre": "ARP lainoa",
-      "tipo": "penalizacion",
+      "nombre": "Wifi",
+      "lugar": "",
+      "tipo": "normal",
+      "entrega": "s-e8",
       "x": 50,
-      "y": 37,
+      "y": 59,
       "siguientes": [
         "s09"
-      ],
-      "efecto_al_llegar": {
-        "estado": "e-ekaitza"
-      }
+      ]
     },
     {
       "id": "s09",
-      "nombre": "Bideratzaileen itsasoa",
-      "tipo": "hito",
-      "x": 29,
-      "y": 37,
+      "nombre": "Proiektu finala",
+      "lugar": "",
+      "tipo": "normal",
+      "entrega": "s-e9",
+      "x": 92,
+      "y": 59,
       "siguientes": [
         "s10"
       ]
     },
     {
       "id": "s10",
-      "nombre": "NAT kostaldea",
-      "tipo": "normal",
-      "x": 8,
-      "y": 37,
-      "siguientes": [
-        "s11"
-      ]
-    },
-    {
-      "id": "s11",
-      "nombre": "Ostatu-portua",
-      "tipo": "descanso",
-      "x": 8,
-      "y": 59,
-      "siguientes": [
-        "s12"
-      ]
-    },
-    {
-      "id": "s12",
-      "nombre": "OSPF korronteak",
-      "tipo": "evento",
-      "x": 29,
-      "y": 59,
-      "siguientes": [
-        "s13"
-      ]
-    },
-    {
-      "id": "s13",
-      "nombre": "Wifi uharte flotagarriak",
-      "tipo": "normal",
-      "x": 50,
-      "y": 59,
-      "siguientes": [
-        "s14"
-      ]
-    },
-    {
-      "id": "s14",
-      "nombre": "ICMP oihartzuna",
-      "tipo": "evento",
-      "x": 71,
-      "y": 59,
-      "siguientes": [
-        "s15"
-      ]
-    },
-    {
-      "id": "s15",
-      "nombre": "Azpisare-labirintoa",
-      "tipo": "jefe",
-      "x": 92,
-      "y": 59,
-      "siguientes": [
-        "s16"
-      ]
-    },
-    {
-      "id": "s16",
-      "nombre": "IPv6 itsaso sakona",
-      "tipo": "normal",
-      "x": 92,
-      "y": 81,
-      "siguientes": [
-        "s17"
-      ]
-    },
-    {
-      "id": "s17",
-      "nombre": "Ping ekaitza",
-      "tipo": "penalizacion",
-      "x": 71,
-      "y": 81,
-      "siguientes": [
-        "s18"
-      ]
-    },
-    {
-      "id": "s18",
-      "nombre": "TCP/UDP itsasartea",
-      "tipo": "recompensa",
-      "x": 50,
-      "y": 81,
-      "siguientes": [
-        "s19"
-      ]
-    },
-    {
-      "id": "s19",
-      "nombre": "BGP ozeanoa",
-      "tipo": "jefe",
-      "x": 29,
-      "y": 81,
-      "siguientes": [
-        "s20"
-      ]
-    },
-    {
-      "id": "s20",
-      "nombre": "Internet uhartea",
+      "nombre": "Helmuga",
+      "lugar": "Internet uhartea",
       "tipo": "meta",
-      "x": 8,
+      "x": 50,
       "y": 81,
       "siguientes": []
     }

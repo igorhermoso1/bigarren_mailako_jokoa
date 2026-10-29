@@ -2,56 +2,110 @@
   "entregas": [
     {
       "id": "z-e1",
-      "nombre": "Web zerbitzaria",
-      "fecha_limite": "2026-10-01",
+      "nombre": "Makina birtualen sorrera",
+      "fecha_limite": null,
       "puntos_max": 10
     },
     {
       "id": "z-e2",
-      "nombre": "DNS zerbitzaria",
-      "fecha_limite": "2026-10-22",
+      "nombre": "DNS",
+      "fecha_limite": null,
       "puntos_max": 10
     },
     {
       "id": "z-e3",
-      "nombre": "DHCP zerbitzaria",
-      "fecha_limite": "2026-11-12",
+      "nombre": "DHCP",
+      "fecha_limite": null,
       "puntos_max": 10
     },
     {
       "id": "z-e4",
-      "nombre": "Posta zerbitzaria",
-      "fecha_limite": "2026-12-03",
+      "nombre": "SSH urruneko saioa",
+      "fecha_limite": null,
       "puntos_max": 10
     },
     {
       "id": "z-e5",
-      "nombre": "FTP zerbitzaria",
-      "fecha_limite": "2026-12-24",
+      "nombre": "SSH - OpenSSH",
+      "fecha_limite": null,
       "puntos_max": 10
     },
     {
       "id": "z-e6",
-      "nombre": "Proxy eta suebakia",
-      "fecha_limite": "2027-01-14",
+      "nombre": "SSH - Webmin - VNC",
+      "fecha_limite": null,
       "puntos_max": 10
     },
     {
       "id": "z-e7",
-      "nombre": "Datu-baseak",
-      "fecha_limite": "2027-02-04",
+      "nombre": "AnyDesk",
+      "fecha_limite": null,
       "puntos_max": 10
     },
     {
       "id": "z-e8",
-      "nombre": "Edukiontziak",
-      "fecha_limite": "2027-02-25",
+      "nombre": "Webmin eta Samba",
+      "fecha_limite": null,
       "puntos_max": 10
     },
     {
       "id": "z-e9",
-      "nombre": "Proiektu finala",
-      "fecha_limite": "2027-03-18",
+      "nombre": "Proxy-cache Squid",
+      "fecha_limite": null,
+      "puntos_max": 10
+    },
+    {
+      "id": "z-e10",
+      "nombre": "FTP",
+      "fecha_limite": null,
+      "puntos_max": 10
+    },
+    {
+      "id": "z-e11",
+      "nombre": "FTP sarbidea kontrolatzea",
+      "fecha_limite": null,
+      "puntos_max": 10
+    },
+    {
+      "id": "z-e12",
+      "nombre": "Posta sistema - Thunderbird",
+      "fecha_limite": null,
+      "puntos_max": 10
+    },
+    {
+      "id": "z-e13",
+      "nombre": "Web zerbitzaria - Apache HTTP",
+      "fecha_limite": null,
+      "puntos_max": 10
+    },
+    {
+      "id": "z-e14",
+      "nombre": "Moodle",
+      "fecha_limite": null,
+      "puntos_max": 10
+    },
+    {
+      "id": "z-e15",
+      "nombre": "WordPress",
+      "fecha_limite": null,
+      "puntos_max": 10
+    },
+    {
+      "id": "z-e16",
+      "nombre": "OpenLDAP",
+      "fecha_limite": null,
+      "puntos_max": 10
+    },
+    {
+      "id": "z-e17",
+      "nombre": "Segurtasun-kopiak",
+      "fecha_limite": null,
+      "puntos_max": 10
+    },
+    {
+      "id": "z-e18",
+      "nombre": "Babeskopiak - Déjà Dup",
+      "fecha_limite": null,
       "puntos_max": 10
     }
   ]

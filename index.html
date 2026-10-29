@@ -8,33 +8,29 @@
 </head>
 <body>
   <header class="cabecera">
-    <h1 id="titulo">Abentura-mapa</h1>
-    <nav id="pestanas" class="pestanas" aria-label="Abenturak"></nav>
+    <h1 id="titulo" class="titulo">Abentura-mapa</h1>
+    <nav id="pestanas" class="estandartes" aria-label="Abenturak"></nav>
   </header>
 
   <main id="contenido" class="contenido">
     <section class="zona-mapa" aria-label="Mapa">
-      <p id="descripcion" class="descripcion"></p>
-      <div id="mapa" class="mapa"></div>
+      <div id="mapa" class="marco-mapa"></div>
     </section>
 
-    <aside id="panel" class="panel" aria-live="polite">
-      <p>Sakatu talde bat edo lauki bat xehetasunak ikusteko.</p>
-    </aside>
-
-    <section class="taldeak" aria-labelledby="h-taldeak">
-      <h2 id="h-taldeak">Taldeak</h2>
-      <div id="tarjetas" class="tarjetas"></div>
-    </section>
-
-    <section class="egunkaria" aria-labelledby="h-egunkaria">
-      <h2 id="h-egunkaria">Abentura-egunkaria</h2>
-      <div class="filtros">
-        <label>Taldea <select id="filtro-grupo"></select></label>
-        <label>Mota <select id="filtro-tipo"></select></label>
+    <aside class="lateral pergamino">
+      <div class="lat-pestanas" role="tablist" aria-label="Alboko panela">
+        <button type="button" role="tab" id="tab-taldeak" aria-controls="lat-taldeak" aria-selected="true">Taldeak</button>
+        <button type="button" role="tab" id="tab-egunkaria" aria-controls="lat-egunkaria" aria-selected="false">Egunkaria</button>
       </div>
-      <ol id="lista-eventos" class="lista-eventos"></ol>
-    </section>
+      <div id="lat-taldeak" role="tabpanel" aria-labelledby="tab-taldeak" class="lat-cuerpo"></div>
+      <div id="lat-egunkaria" role="tabpanel" aria-labelledby="tab-egunkaria" class="lat-cuerpo" hidden>
+        <div class="filtros">
+          <label>Taldea <select id="filtro-grupo"></select></label>
+          <label>Mota <select id="filtro-tipo"></select></label>
+        </div>
+        <ol id="lista-eventos" class="cronica"></ol>
+      </div>
+    </aside>
   </main>
 
   <script src="js/motor.js"></script>

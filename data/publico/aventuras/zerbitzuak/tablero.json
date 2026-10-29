@@ -2,234 +2,227 @@
   "casillas": [
     {
       "id": "z01",
-      "nombre": "Script-aren Liburutegia",
+      "nombre": "Makina birtualen sorrera",
+      "lugar": "Script-aren Liburutegia",
+      "tipo": "inicio",
+      "entrega": "z-e1",
       "x": 15.8,
       "y": 49.2,
-      "tipo": "inicio",
       "siguientes": [
         "z02"
-      ],
-      "descripcion": "Hemen hasten da abentura: liburu zaharren artean."
+      ]
     },
     {
       "id": "z02",
-      "nombre": "Basoen Erresuma",
+      "nombre": "DNS",
+      "lugar": "Basoen Erresuma",
+      "tipo": "normal",
+      "entrega": "z-e2",
       "x": 21.5,
       "y": 42.4,
-      "tipo": "normal",
       "siguientes": [
         "z03"
       ]
     },
     {
       "id": "z03",
-      "nombre": "Elfoen Hondakinak",
+      "nombre": "DHCP",
+      "lugar": "Elfoen Hondakinak",
+      "tipo": "normal",
+      "entrega": "z-e3",
       "x": 28.8,
       "y": 46.6,
-      "tipo": "hito",
       "siguientes": [
         "z04"
-      ],
-      "efecto_al_llegar": {
-        "hito": "h-z-elfoak"
-      }
+      ]
     },
     {
       "id": "z04",
-      "nombre": "Aldagaien Ibarra",
+      "nombre": "SSH urruneko saioa",
+      "lugar": "Aldagaien Ibarra",
+      "tipo": "normal",
+      "entrega": "z-e4",
       "x": 27.4,
       "y": 56.6,
-      "tipo": "normal",
       "siguientes": [
         "z05"
       ]
     },
     {
       "id": "z05",
-      "nombre": "Padura Eremua",
+      "nombre": "SSH - OpenSSH",
+      "lugar": "Padura Eremua",
+      "tipo": "normal",
+      "entrega": "z-e5",
       "x": 24.9,
       "y": 70.3,
-      "tipo": "descanso",
       "siguientes": [
         "z06"
       ]
     },
     {
       "id": "z06",
-      "nombre": "Bug Zingira",
+      "nombre": "SSH - Webmin - VNC",
+      "lugar": "Bug Zingira",
+      "tipo": "normal",
+      "entrega": "z-e6",
       "x": 30,
       "y": 79.4,
-      "tipo": "penalizacion",
       "siguientes": [
         "z07"
-      ],
-      "efecto_al_llegar": {
-        "estado": "e-bug"
-      }
+      ]
     },
     {
       "id": "z07",
-      "nombre": "Log-aren Padura",
+      "nombre": "AnyDesk",
+      "lugar": "Log-aren Padura",
+      "tipo": "normal",
+      "entrega": "z-e7",
       "x": 34.2,
       "y": 67.7,
-      "tipo": "evento",
       "siguientes": [
         "z08"
       ]
     },
     {
       "id": "z08",
-      "nombre": "Nekropoli Loretsua",
+      "nombre": "Webmin eta Samba",
+      "lugar": "Nekropoli Loretsua",
+      "tipo": "normal",
+      "entrega": "z-e8",
       "x": 39.6,
       "y": 70.1,
-      "tipo": "normal",
       "siguientes": [
         "z09"
       ]
     },
     {
       "id": "z09",
-      "nombre": "Hiri Grisaren atea",
+      "nombre": "Proxy-cache Squid",
+      "lugar": "Hiri Grisaren atea",
+      "tipo": "normal",
+      "entrega": "z-e9",
       "x": 49.9,
       "y": 63.4,
-      "tipo": "normal",
       "siguientes": [
         "z10"
       ]
     },
     {
       "id": "z10",
-      "nombre": "Hiri Grisa",
+      "nombre": "FTP",
+      "lugar": "Hiri Grisa",
+      "tipo": "normal",
+      "entrega": "z-e10",
       "x": 45.2,
       "y": 56,
-      "tipo": "hito",
       "siguientes": [
         "z11"
-      ],
-      "efecto_al_llegar": {
-        "hito": "h-z-hiria"
-      }
+      ]
     },
     {
       "id": "z11",
-      "nombre": "Aldagaien Harana",
+      "nombre": "FTP sarbidea kontrolatzea",
+      "lugar": "Aldagaien Harana",
+      "tipo": "normal",
+      "entrega": "z-e11",
       "x": 41.8,
       "y": 48.4,
-      "tipo": "bifurcacion",
       "siguientes": [
-        "z12a",
-        "z12b"
+        "z12"
       ]
     },
     {
-      "id": "z12a",
-      "nombre": "Izoztutako Eremua",
-      "x": 34.3,
-      "y": 23.4,
+      "id": "z12",
+      "nombre": "Posta sistema - Thunderbird",
+      "lugar": "Mendi-oinetako bidea",
       "tipo": "normal",
-      "siguientes": [
-        "z13a"
-      ]
-    },
-    {
-      "id": "z13a",
-      "nombre": "Refaktorizazio Glaziarra",
-      "x": 40.2,
-      "y": 24.5,
-      "tipo": "recompensa",
-      "siguientes": [
-        "z14"
-      ],
-      "efecto_al_llegar": {
-        "objeto": "o-edabea"
-      }
-    },
-    {
-      "id": "z12b",
-      "nombre": "Mendi-oinetako bidea",
+      "entrega": "z-e12",
       "x": 52.5,
       "y": 37.8,
+      "siguientes": [
+        "z13"
+      ]
+    },
+    {
+      "id": "z13",
+      "nombre": "Web zerbitzaria - Apache HTTP",
+      "lugar": "Konpilatzailearen Forja",
       "tipo": "normal",
+      "entrega": "z-e13",
+      "x": 57.3,
+      "y": 32.2,
       "siguientes": [
         "z14"
       ]
     },
     {
       "id": "z14",
-      "nombre": "Konpilatzailearen Forja",
-      "x": 57.3,
-      "y": 32.2,
-      "tipo": "jefe",
+      "nombre": "Moodle",
+      "lugar": "Forjaren irteera",
+      "tipo": "normal",
+      "entrega": "z-e14",
+      "x": 68.3,
+      "y": 34.9,
       "siguientes": [
         "z15"
       ]
     },
     {
       "id": "z15",
-      "nombre": "Forjaren irteera",
-      "x": 68.3,
-      "y": 34.9,
+      "nombre": "WordPress",
+      "lugar": "Kosta Etsi-etsia",
       "tipo": "normal",
+      "entrega": "z-e15",
+      "x": 73.4,
+      "y": 48.6,
       "siguientes": [
         "z16"
       ]
     },
     {
       "id": "z16",
-      "nombre": "Kosta Etsi-etsia",
-      "x": 73.4,
-      "y": 48.6,
-      "tipo": "evento",
+      "nombre": "OpenLDAP",
+      "lugar": "Baldintzen Labirintoa",
+      "tipo": "normal",
+      "entrega": "z-e16",
+      "x": 59.1,
+      "y": 50.5,
       "siguientes": [
         "z17"
       ]
     },
     {
       "id": "z17",
-      "nombre": "Baldintzen Labirintoa",
-      "x": 59.1,
-      "y": 50.5,
-      "tipo": "jefe",
+      "nombre": "Segurtasun-kopiak",
+      "lugar": "Begizten Basamortua",
+      "tipo": "normal",
+      "entrega": "z-e17",
+      "x": 64.9,
+      "y": 68.6,
       "siguientes": [
         "z18"
       ]
     },
     {
       "id": "z18",
-      "nombre": "Begizten Basamortua",
-      "x": 60.3,
-      "y": 55.7,
+      "nombre": "Babeskopiak - Déjà Dup",
+      "lugar": "Commit-en Meategiak",
       "tipo": "normal",
+      "entrega": "z-e18",
+      "x": 75.9,
+      "y": 66.8,
       "siguientes": [
         "z19"
       ]
     },
     {
       "id": "z19",
-      "nombre": "Basamortuaren bihotza",
-      "x": 64.9,
-      "y": 68.6,
-      "tipo": "descanso",
-      "siguientes": [
-        "z20"
-      ]
-    },
-    {
-      "id": "z20",
-      "nombre": "Commit-en Meategiak",
-      "x": 75.9,
-      "y": 66.8,
-      "tipo": "recompensa",
-      "siguientes": [
-        "z21"
-      ]
-    },
-    {
-      "id": "z21",
-      "nombre": "Zabor-eskualdea",
+      "nombre": "Helmuga",
+      "lugar": "Zabor-eskualdea",
+      "tipo": "meta",
       "x": 81,
       "y": 58.9,
-      "tipo": "meta",
       "siguientes": []
     }
   ]
