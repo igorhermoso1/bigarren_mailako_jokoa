@@ -2,6 +2,11 @@
   "titulo": "Bigarren mailako abentura",
   "idioma": "eu",
   "ranking_publico": false,
+  "acciones_rapidas": [
+    { "etiqueta": "Garaiz", "tipo": "bonus", "puntos": 3, "motivo": "Entrega puntuala" },
+    { "etiqueta": "Bikaina", "tipo": "bonus", "puntos": 5, "motivo": "Lan bikaina" },
+    { "etiqueta": "Berandu", "tipo": "penalizacion", "puntos": -2, "motivo": "Entrega berandu" }
+  ],
   "aventuras": [
     {
       "id": "zerbitzuak",

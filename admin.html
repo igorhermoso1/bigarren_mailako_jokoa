@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="eu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- node admin.js sustituye este valor por el token de la sesión -->
+  <meta name="token" content="%%TOKEN%%">
+  <title>Irakaslearen panela</title>
+  <link rel="stylesheet" href="css/web.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin">
+  <header class="cabecera">
+    <h1 class="titulo">Irakaslearen panela</h1>
+    <nav id="pestanas" class="estandartes" aria-label="Abentura aktiboa"></nav>
+    <div class="cab-acciones">
+      <a class="boton-sec" href="index.html" target="_blank" rel="noopener">Web publikoa ↗</a>
+      <button type="button" id="verificar" class="boton-sec">🔍 Egiaztatu</button>
+    </div>
+  </header>
+
+  <p id="registrando" class="registrando" aria-live="polite"></p>
+
+  <main id="contenido" class="admin-cuerpo">
+    <section class="pergamino caja" aria-labelledby="h-control">
+      <h2 id="h-control">Taldeak</h2>
+      <div id="control" class="control"></div>
+    </section>
+
+    <section class="pergamino caja" aria-labelledby="h-form">
+      <h2 id="h-form">Gertaera berria</h2>
+      <form id="formulario" class="formulario" novalidate>
+        <label>Mota <select name="tipo" id="f-tipo"></select></label>
+        <fieldset id="f-ambito" class="ambito">
+          <legend>Non</legend>
+          <label><input type="radio" name="ambito" value="aventura" checked> <span id="f-ambito-nombre">Abentura honetan</span></label>
+          <label><input type="radio" name="ambito" value="global"> Bi abenturetan</label>
+        </fieldset>
+        <label data-campo="grupo">Taldea <select name="grupo" id="f-grupo"></select></label>
+        <label data-campo="miembro">Kidea <select name="miembro" id="f-miembro"></select></label>
+        <label data-campo="hasta">Helmuga <select name="hasta" id="f-hasta"></select></label>
+        <label data-campo="objeto">Objektua <select name="objeto" id="f-objeto"></select></label>
+        <label data-campo="estado">Egoera <select name="estado" id="f-estado"></select></label>
+        <label data-campo="duracion">Iraupena (entregak) <input type="number" name="duracion" id="f-duracion" min="1" max="50"></label>
+        <label data-campo="hito">Mugarria <select name="hito" id="f-hito"></select></label>
+        <label data-campo="logro">Lorpena <select name="logro" id="f-logro"></select></label>
+        <label data-campo="entrega">Entrega <select name="entrega" id="f-entrega"></select></label>
+        <label data-campo="nota">Nota (0-10) <input type="number" name="nota" id="f-nota" min="0" max="10" step="0.25"></label>
+        <div data-campo="criterios" id="f-criterios" class="criterios"></div>
+        <label data-campo="comentario">Iruzkina <textarea name="comentario" rows="2" maxlength="1000"></textarea></label>
+        <label data-campo="texto">Testua <textarea name="texto" rows="3" maxlength="1000"></textarea></label>
+        <label data-campo="motivo">Arrazoia <input type="text" name="motivo" maxlength="1000"></label>
+        <label data-campo="puntos">Puntuak <input type="number" name="puntos" id="f-puntos" step="1" value="0"></label>
+        <label data-campo="publico" class="check"><input type="checkbox" name="publico" checked> Publikoa (ikasleek ikusiko dute)</label>
+        <button type="submit" class="boton-pri" id="f-enviar">Erregistratu</button>
+      </form>
+    </section>
+
+    <section class="pergamino caja ancha" aria-labelledby="h-ultimos">
+      <h2 id="h-ultimos">Azken gertaerak</h2>
+      <ol id="ultimos" class="cronica"></ol>
+    </section>
+  </main>
+
+  <dialog id="dialogo" class="pergamino dialogo" aria-labelledby="d-titulo">
+    <form method="dialog">
+      <h2 id="d-titulo">Ziur zaude?</h2>
+      <div id="d-cuerpo"></div>
+      <div class="d-botones">
+        <button value="no" class="boton-sec">Utzi</button>
+        <button value="si" class="boton-pri" id="d-si">Erregistratu</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="aviso" class="aviso" role="status" aria-live="polite"></div>
+
+  <script src="js/motor.js"></script>
+  <script src="js/mapa.js"></script>
+  <script src="js/admin/panel.js"></script>
+</body>
+</html>

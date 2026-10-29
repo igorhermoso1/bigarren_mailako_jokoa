@@ -49,8 +49,18 @@ Stack: HTML + CSS + JS puro, sin frameworks, sin build y sin dependencias. Códi
 - El profesor gestiona logros, objetos y estados desde el admin; los del catálogo actual son de ejemplo.
 - Ficha: `config.marcos[i]` = centro y diámetro del marco en el sprite (medidos sobre la transparencia).
 
+## Admin (Fase 3)
+- `admin.js`: servidor en 127.0.0.1:${PUERTO||3000}. Comprueba `Host` y `Origin` y pide una cabecera `x-token` (token aleatorio en cada arranque, inyectado en `admin.html` en lugar de `%%TOKEN%%`). Sirve el repositorio salvo `.git` y `data/privado`.
+- API: `GET /api/datos`, `GET /api/verificar`, `POST /api/evento` (solo JSON). No hay borrado ni edición.
+- `validarEvento()` es la frontera de confianza: tipos permitidos, ids existentes y del ámbito correcto, límites numéricos y de texto, y solo campos conocidos. El servidor pone `id`, `fecha`, `desde` y los hashes.
+- `nota_miembro` y `nota_grupo` con `visible_publico: false` van siempre al registro privado.
+- Antes de añadir, se verifica la cadena del registro; si está dañada, no se escribe.
+- `js/admin/panel.js` + `css/admin.css`: tarjetas de grupo con acciones rápidas (`config.acciones_rapidas`), formulario genérico (campos según `CAMPOS`), confirmación con resumen y lista de los últimos eventos con «Baliogabetu».
+- Los mensajes de error del servidor están en castellano (los ve solo el profesor).
+- Los tests del admin trabajan sobre una copia temporal de `data/`.
+
 ## Tests
 `node --test` (carpeta `tests/`).
 
 ## Fases
-Fase 0 ✔ · Fase 1 ✔ (esqueleto y datos) · Fase 2 ✔ (motor + web pública) · siguiente: Fase 3 (admin.js + admin básico).
+Fase 0 ✔ · Fase 1 ✔ (esqueleto y datos) · Fase 2 ✔ (motor + web pública) · Fase 3 ✔ (admin.js + admin básico) · siguiente: Fase 4 (grupos, catálogo, fichas, valoraciones con historial).

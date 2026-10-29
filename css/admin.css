@@ -1,0 +1,78 @@
+/* Panel del profesor: reutiliza el tema de web.css y añade formularios, tarjetas y diálogos. */
+body.admin { overflow: auto; }
+.cab-acciones { display: flex; gap: .5rem; }
+
+/* Franja con la aventura activa: siempre visible para no registrar en la equivocada */
+.registrando {
+  position: sticky; top: 0; z-index: 5; margin: 0; padding: .45rem 1.25rem; text-align: center;
+  font: 700 1rem var(--titulo); letter-spacing: .06em; text-transform: uppercase; color: #fff;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--acento) 40%, #000), var(--acento), color-mix(in srgb, var(--acento) 40%, #000));
+  box-shadow: 0 3px 10px #0008; text-shadow: 0 1px 2px #000;
+}
+
+.admin-cuerpo { display: grid; gap: 1.25rem; padding: 1.25rem; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 1000px) { .admin-cuerpo { grid-template-columns: minmax(0, 1fr) 380px; } }
+.caja { padding: 1rem; }
+.caja > h2 { font-size: 1.2rem; margin-bottom: .75rem; }
+.ancha { grid-column: 1 / -1; }
+
+/* Botones */
+.boton-pri, .boton-sec, .boton-mal {
+  padding: .4rem .8rem; border-radius: 6px; cursor: pointer; font: 600 .85rem var(--titulo); letter-spacing: .03em; text-decoration: none;
+}
+.boton-pri { border: 1px solid var(--oro-osc); color: #fff; background: linear-gradient(var(--acento), color-mix(in srgb, var(--acento) 55%, #000)); text-shadow: 0 1px 1px #000; }
+.boton-sec { border: 1px solid var(--oro-osc); color: var(--tinta); background: linear-gradient(#fff9, #fff4); }
+.cabecera .boton-sec { color: var(--pergamino); background: #ffffff14; }
+.boton-mal { border: 1px solid var(--malo); color: var(--malo); background: #fff6; }
+.boton-pri:hover, .boton-sec:hover, .boton-mal:hover { filter: brightness(1.1); }
+.pequeno { padding: .15rem .5rem; font-size: .75rem; }
+
+/* Tarjetas de grupo del panel de control */
+.control { display: grid; gap: .75rem; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.tarjeta-grupo { --t: 64px; padding: .7rem; border-radius: 8px; border: 1px solid #8a642466; border-top: 5px solid var(--color); background: #fff6; display: grid; gap: .45rem; }
+.tg-cab { display: flex; gap: .6rem; align-items: center; }
+.tg-cab h3 { font-size: 1.05rem; }
+.tg-cab p { margin: 0; font-size: .82rem; }
+.tg-num b { font-size: 1rem; }
+.tg-ultimo { margin: 0; font-size: .78rem; color: var(--tinta-suave); }
+.tg-acciones { display: flex; flex-wrap: wrap; gap: .3rem; }
+
+/* Formulario */
+.formulario { display: grid; gap: .55rem; }
+.formulario label { display: grid; gap: .15rem; font-size: .8rem; font-weight: 600; color: var(--tinta-suave); }
+.formulario input, .formulario select, .formulario textarea {
+  font: 1rem system-ui, sans-serif; color: var(--tinta); padding: .4rem .5rem; border-radius: 5px;
+  border: 1px solid var(--oro-osc); background: #fffc;
+}
+.formulario select:disabled { opacity: .5; }
+.formulario .check { display: flex; align-items: center; gap: .4rem; }
+.formulario [hidden] { display: none; }
+.ambito { border: 1px solid #8a642466; border-radius: 6px; display: flex; gap: 1rem; padding: .3rem .6rem; font-size: .85rem; }
+.ambito label { display: flex; align-items: center; gap: .3rem; }
+.criterios { display: grid; grid-template-columns: 1fr 1fr; gap: .4rem; }
+.nota-priv { grid-column: 1 / -1; margin: 0; font-size: .78rem; color: var(--malo); }
+#f-enviar { padding: .6rem; font-size: 1rem; }
+
+/* Diálogo de confirmación */
+.dialogo { width: min(440px, 92vw); padding: 1.1rem; }
+.dialogo::backdrop { background: #000a; }
+.dialogo h2 { font-size: 1.25rem; margin-bottom: .6rem; }
+.dialogo label { display: grid; gap: .2rem; font-size: .85rem; font-weight: 600; }
+.dialogo input { font: 1rem system-ui; padding: .4rem; border-radius: 5px; border: 1px solid var(--oro-osc); }
+.resumen { display: grid; grid-template-columns: auto 1fr; gap: .2rem .75rem; margin: 0; }
+.resumen dt { color: var(--tinta-suave); font-size: .85rem; }
+.resumen dd { margin: 0; font-weight: 700; }
+.resumen dt:first-child, .resumen dt:first-child + dd { color: var(--acento); font-size: 1.05rem; filter: brightness(.7); }
+.resumen-ev { padding: .4rem .6rem; background: #fff6; border-radius: 6px; }
+.d-botones { display: flex; justify-content: flex-end; gap: .5rem; margin-top: 1rem; }
+
+/* Aviso flotante */
+.aviso {
+  position: fixed; right: 1rem; bottom: 1rem; z-index: 20; max-width: min(460px, 90vw); padding: .7rem 1rem; border-radius: 8px;
+  font-weight: 600; color: #fff; background: var(--bueno); box-shadow: 0 6px 20px #000a;
+  transform: translateY(150%); transition: transform .25s;
+}
+.aviso.error { background: var(--malo); }
+.aviso.visible { transform: none; }
+.cronica .boton-mal { align-self: center; }
+code { background: #0001; padding: 0 .3rem; border-radius: 3px; }

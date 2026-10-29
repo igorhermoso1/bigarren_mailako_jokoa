@@ -2,7 +2,7 @@
 
 Web que convierte la evaluación por grupos en dos aventuras sobre un mapa. Los alumnos solo miran la web pública (GitHub Pages); el profesor registra todo desde un panel local.
 
-> Estado: **Fase 2**. La web pública ya funciona con los datos de ejemplo. El panel admin llega en la Fase 3.
+> Estado: **Fase 3**. La web pública y el panel del profesor ya funcionan (avances, puntos, objetos, estados, notas, anulaciones). La gestión de grupos, catálogo y fichas llega en la Fase 4.
 
 ## Requisitos
 - [Node.js](https://nodejs.org) (versión 20 o superior). No hay que instalar nada más.
@@ -26,6 +26,27 @@ Todo lo que pasa (avanzar, ganar un objeto, una nota…) es un **evento** que se
 - **Corregir un error** = añadir un evento `anulacion` que apunta al evento erróneo. El original sigue en el historial, tachado.
 - Cada evento lleva un **hash** encadenado con el anterior. Si alguien edita un evento antiguo a mano, la verificación lo detecta.
 
+## Uso diario (panel del profesor)
+1. Abre una terminal en la carpeta del proyecto y arranca el panel:
+   ```bash
+   node admin.js
+   ```
+2. Abre <http://localhost:3000/admin.html>. La franja de colores de arriba indica **en qué aventura** vas a registrar.
+3. Registra lo que haya pasado:
+   - botones de cada grupo: **▶ Aurreratu** (pasa a la siguiente zona) y los bonus/penalizaciones rápidos (se configuran en `config.json → acciones_rapidas`);
+   - o el formulario **Gertaera berria** para cualquier otro tipo.
+
+   Antes de guardar siempre sale un resumen para confirmar.
+4. ¿Te has equivocado? En **Azken gertaerak**, pulsa **Baliogabetu** junto al evento. No se borra: queda tachado y deja de contar.
+5. Cuando termines, publica los cambios:
+   ```bash
+   git add data && git commit -m "Entrega 3" && git push
+   ```
+
+Las notas individuales de cada alumno y las notas de grupo marcadas como no públicas se guardan en `data/privado/`, que **no** se sube a GitHub.
+
+El panel solo atiende a tu propio equipo (127.0.0.1) y usa una clave que cambia cada vez que lo arrancas. Sin `node admin.js` no funciona, aunque `admin.html` esté publicado.
+
 ## Ver la web en tu equipo
 Abre una terminal en la carpeta del proyecto y ejecuta:
 ```bash
@@ -37,7 +58,11 @@ Después abre <http://localhost:8080>. Abrir `index.html` con doble clic no func
 ```bash
 node --test
 ```
-El test «los registros de datos del repositorio son íntegros» verifica las cadenas de hashes de todos los registros públicos.
+Para verificar solo las cadenas de hashes (también las privadas):
+```bash
+node admin.js --verificar
+```
+O pulsa **🔍 Egiaztatu** en el panel.
 
 ## Copias de seguridad
 - **GitHub** es la copia principal: cada `git push` guarda una versión completa.
