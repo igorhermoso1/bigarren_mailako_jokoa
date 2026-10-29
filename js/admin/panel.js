@@ -133,7 +133,7 @@
     for (const g of grupos()) {
       const e = estado.grupos[g.id];
       const c = buscar(casillas(), e.posicion);
-      const ultimo = evs.find(ev => ev.grupo === g.id && !ev.anulado && ev.tipo !== 'anulacion');
+      const ultimo = evs.find(ev => ev.grupo === g.id && !ev.anulado && !['anulacion', 'auditoria'].includes(ev.tipo));
       const estados = e.estados.map(s => buscar(datos.catalogo.estados, s.id)?.nombre || s.id);
       const art = document.createElement('article');
       art.className = 'tarjeta-grupo';
@@ -173,7 +173,7 @@
   }
 
   function pintarUltimos() {
-    const lista = eventosVisibles().slice(0, 25);
+    const lista = eventosVisibles().filter(e => e.tipo !== 'auditoria').slice(0, 25);
     $('ultimos').innerHTML = lista.map(ev => `<li class="${ev.anulado ? 'anulado' : ''}">
         <span class="cr-icono" aria-hidden="true">${ev.registro === 'privado' ? '🔒' : ev.registro === 'global' ? '🌍' : '•'}</span>
         <div class="cr-texto"><div class="cr-meta">#${ev.id} · ${esc(new Date(ev.fecha).toLocaleString())} · ${esc(TIPOS[ev.tipo] || ev.tipo)}${ev.anulado ? ' · baliogabetua' : ''}</div>
@@ -350,7 +350,41 @@
     rellenar({ grupo: grupo || undefined });
     pintarControl();
     pintarUltimos();
+    pintarKonparaketa();
+    for (const m of Admin.modulos) m.pintar();
   }
+
+  // ---------- Panel comparado: los grupos en todas las aventuras a la vez ----------
+  function pintarKonparaketa() {
+    const avs = datos.config.aventuras.filter(a => a.activa);
+    const estados = Object.fromEntries(avs.map(a => {
+      const d = datos.aventuras[a.id];
+      return [a.id, Motor.calcularEstado(a.id, d.eventos, datos.globales, datos.catalogo, d.tablero, datos.grupos, datos.config)];
+    }));
+    const celda = (a, g) => {
+      const e = estados[a.id].grupos[g.id];
+      const total = datos.aventuras[a.id].tablero.casillas.length;
+      const n = datos.aventuras[a.id].tablero.casillas.findIndex(c => c.id === e.posicion) + 1;
+      return `<td><div class="xp"><div class="xp-relleno" style="width:${100 * (n - 1) / (total - 1)}%"></div><span>${n} / ${total}</span></div>
+        <small>${e.puntos} pt · ${esc(e.nivel.titulo)}</small></td>`;
+    };
+    $('mod-konparaketa').innerHTML = `<table class="tabla"><thead><tr><th>Taldea</th>${avs.map(a =>
+      `<th style="color:${esc(a.color_acento)}">${esc(a.nombre)}</th>`).join('')}</tr></thead><tbody>${grupos().map(g =>
+      `<tr><th style="border-left:5px solid ${esc(g.color)}">${esc(g.nombre)}</th>${avs.map(a => celda(a, g)).join('')}</tr>`).join('')}</tbody></table>`;
+  }
+
+  // ---------- Navegación entre módulos ----------
+  function irA(modulo) {
+    document.querySelectorAll('[data-modulo]').forEach(m => { m.hidden = m.dataset.modulo !== modulo; });
+    document.querySelectorAll('[data-ir]').forEach(b => b.toggleAttribute('aria-current', b.dataset.ir === modulo));
+  }
+
+  // Lo que comparten los demás módulos del panel (entidades.js, valoraciones.js).
+  window.Admin = {
+    api, avisar, confirmar, esc, buscar, opciones, recargar, eventosVisibles, resumen, TIPOS, modulos: [],
+    get datos() { return datos; }, get avId() { return avId; }, get estado() { return estado; },
+    nombreAv: () => nombreAv(), nombreCasilla: id => nombreCasilla(id),
+  };
 
   async function iniciar() {
     if (TOKEN.startsWith('%%')) {
@@ -365,6 +399,7 @@
     form.elements.estado.onchange = proponerEstado;
     form.onsubmit = e => { e.preventDefault(); enviar(); };
     $('verificar').onclick = verificarCadenas;
+    document.querySelectorAll('[data-ir]').forEach(b => b.onclick = () => irA(b.dataset.ir));
     addEventListener('hashchange', () => recargar().catch(e => avisar('✖ ' + e.message, 'error')));
     try { await recargar(); } catch (e) {
       $('contenido').innerHTML = `<p class="aviso-error pergamino" role="alert">Ezin izan da zerbitzariarekin konektatu: ${esc(e.message)}</p>`;

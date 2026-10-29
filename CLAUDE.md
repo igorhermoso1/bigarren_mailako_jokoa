@@ -59,8 +59,19 @@ Stack: HTML + CSS + JS puro, sin frameworks, sin build y sin dependencias. Códi
 - Los mensajes de error del servidor están en castellano (los ve solo el profesor).
 - Los tests del admin trabajan sobre una copia temporal de `data/`.
 
+## Admin (Fase 4)
+- `POST /api/entidad` {coleccion, aventura?, grupo?, valor}: colecciones `grupos`, `miembros`, `objetos`, `estados`, `hitos`, `logros`, `entregas` (por aventura) y `criterios` (rúbrica privada). Sin `valor.id` crea, con id modifica solo los campos enviados. Cada colección tiene sus validadores en `ESQUEMAS` (admin.js).
+- Cada cambio genera un evento `auditoria` (`datos.antes`/`despues`, `visible_publico: false`) en el registro global, o en el privado para la rúbrica. Si cambia la ficha o la foto, `datos.cambio = 'ficha_modificada'`. Las auditorías no se anulan.
+- Archivar = `activo: false`. Un objeto, estado, hito, logro o criterio archivado ya no se puede otorgar.
+- `POST /api/imagen` {grupo, foto (WebP reducido a 512 px por el navegador), original}: crea `img/fichas/<g>-<fecha>.webp` (un archivo nuevo por versión; no se borra ninguno) y guarda el original en `data/privado/fotos_reales/`. Se comprueba la firma de cada imagen.
+- El encuadre (zoom/x/y) no recorta la foto: se aplica con CSS, así se puede reajustar sin volver a subirla.
+- Restaurar una ficha = volver a guardar `ficha` + `foto_grupo` de un `antes` de la auditoría.
+- Panel: módulos Kontrola, Balorazioak (historial de grupo y de miembro, medias, gráfica SVG, tendencia, corrección = nota nueva, lotes), Taldeak eta fitxak, Katalogoa, Entregak eta errubrika, Konparaketa.
+- `js/admin/panel.js` expone `window.Admin` (api, datos, avId, confirmar, avisar…). `entidades.js` y `valoraciones.js` se registran en `Admin.modulos`.
+- Pendiente (Fase 5): enlazar una entrega nueva a una casilla (`casilla.entrega`) con el editor del tablero.
+
 ## Tests
 `node --test` (carpeta `tests/`).
 
 ## Fases
-Fase 0 ✔ · Fase 1 ✔ (esqueleto y datos) · Fase 2 ✔ (motor + web pública) · Fase 3 ✔ (admin.js + admin básico) · siguiente: Fase 4 (grupos, catálogo, fichas, valoraciones con historial).
+Fase 0 ✔ · Fase 1 ✔ (esqueleto y datos) · Fase 2 ✔ (motor + web pública) · Fase 3 ✔ (admin.js + admin básico) · Fase 4 ✔ (gestión completa) · siguiente: Fase 5 (editor visual del tablero).

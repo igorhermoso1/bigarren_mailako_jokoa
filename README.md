@@ -2,7 +2,7 @@
 
 Web que convierte la evaluación por grupos en dos aventuras sobre un mapa. Los alumnos solo miran la web pública (GitHub Pages); el profesor registra todo desde un panel local.
 
-> Estado: **Fase 3**. La web pública y el panel del profesor ya funcionan (avances, puntos, objetos, estados, notas, anulaciones). La gestión de grupos, catálogo y fichas llega en la Fase 4.
+> Estado: **Fase 4**. Web pública y panel completo: grupos, fichas con foto, catálogo, entregas, rúbrica y valoraciones con historial. Falta el editor visual del tablero (Fase 5).
 
 ## Requisitos
 - [Node.js](https://nodejs.org) (versión 20 o superior). No hay que instalar nada más.
@@ -42,6 +42,20 @@ Todo lo que pasa (avanzar, ganar un objeto, una nota…) es un **evento** que se
    ```bash
    git add data && git commit -m "Entrega 3" && git push
    ```
+
+### Módulos del panel
+| Módulo | Para qué |
+|---|---|
+| ⚔️ Kontrola | Registrar lo que pasa en clase (avances, puntos, objetos, notas…) |
+| 📜 Balorazioak | Historial de notas del grupo y de cada miembro, medias, gráfica y tendencia. Valorar a los 5 miembros de una vez |
+| 🛡️ Taldeak eta fitxak | Grupos y miembros; subir la foto del grupo, encuadrarla, elegir el marco y restaurar versiones anteriores |
+| 💎 Katalogoa | Crear y editar objetos, estados, hitos y logros |
+| 📅 Entregak eta errubrika | Fechas y puntos de cada entrega y criterios de la rúbrica (privada) |
+| ⚖️ Konparaketa | Los 6 grupos en las dos aventuras a la vez |
+
+Para **corregir una nota**, pon una nueva para la misma entrega: la anterior queda marcada como «zuzendua». Para **quitar** algo (un objeto, un alumno…), usa **Artxibatu**: deja de usarse, pero no se borra.
+
+> ⚠️ Las fotos de grupo que subas se publican en la web al hacer `push`. El original queda solo en `data/privado/fotos_reales/`.
 
 Las notas individuales de cada alumno y las notas de grupo marcadas como no públicas se guardan en `data/privado/`, que **no** se sube a GitHub.
 

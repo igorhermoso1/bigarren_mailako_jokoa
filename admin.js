@@ -84,11 +84,11 @@ const TIPOS = ['avance', 'retroceso', 'objeto_ganado', 'objeto_usado', 'objeto_p
 const TIPOS_GLOBALES = ['bonus', 'penalizacion', 'comentario', 'anulacion'];
 const SIN_GRUPO = ['entrega_cerrada', 'comentario', 'anulacion'];
 
-function texto(v, nombre, obligatorio = false) {
+function texto(v, nombre, obligatorio = false, max = MAX_TEXTO) {
   if (v == null || v === '') { if (obligatorio) throw new Error(`Falta ${nombre}`); return undefined; }
   if (typeof v !== 'string') throw new Error(`${nombre} debe ser texto`);
   const t = v.trim();
-  if (t.length > MAX_TEXTO) throw new Error(`${nombre} es demasiado largo`);
+  if (t.length > max) throw new Error(`${nombre} es demasiado largo (máx. ${max})`);
   if (obligatorio && !t) throw new Error(`Falta ${nombre}`);
   return t || undefined;
 }
@@ -97,7 +97,8 @@ function numero(v, nombre, min, max) {
   if (typeof n !== 'number' || !Number.isFinite(n) || n < min || n > max) throw new Error(`${nombre} debe ser un número entre ${min} y ${max}`);
   return n;
 }
-const enAmbito = (item, aventura) => item && (item.ambito === 'todas' || item.ambito === aventura);
+// Un elemento archivado (activo: false) ya no se puede otorgar.
+const enAmbito = (item, aventura) => item && item.activo !== false && (item.ambito === 'todas' || item.ambito === aventura);
 const limpiar = obj => Object.fromEntries(Object.entries(obj).filter(([, v]) => v !== undefined));
 
 // Devuelve { registro, evento } listo para encadenar, o lanza un Error con el motivo.
@@ -182,7 +183,7 @@ function validarEvento(entrada, datos) {
       if (!rubrica) throw new Error('No hay rúbrica para esta aventura en data/privado/rubricas.json');
       const [min, max] = rubrica.escala;
       const criterios = {};
-      for (const c of rubrica.criterios) {
+      for (const c of rubrica.criterios.filter(x => x.activo !== false)) {
         if (d.criterios?.[c.id] != null && d.criterios[c.id] !== '') criterios[c.id] = numero(d.criterios[c.id], c.nombre, min, max);
       }
       if (!Object.keys(criterios).length) throw new Error('Pon al menos un criterio de la rúbrica');
@@ -201,6 +202,7 @@ function validarEvento(entrada, datos) {
       const objetivo = lista.find(e => e.id === referencia);
       if (!objetivo) throw new Error(`No existe el evento ${referencia} en ese registro`);
       if (objetivo.tipo === 'anulacion') throw new Error('Una anulación no se anula: registra de nuevo el evento correcto');
+      if (objetivo.tipo === 'auditoria') throw new Error('Los cambios de datos no se anulan: vuelve a editar el elemento');
       if (lista.some(e => e.tipo === 'anulacion' && e.referencia === referencia)) throw new Error(`El evento ${referencia} ya está anulado`);
       datosLimpios = { motivo: texto(d.motivo, 'Motivo', true) };
       if (registro === 'privado') visible = false;
@@ -232,6 +234,219 @@ function anadirEvento(raiz, entrada) {
   return { registro, evento: nuevo };
 }
 
+// ---------- Entidades editables (grupos, miembros, catálogo, entregas, rúbricas) ----------
+// Se guardan en su estado actual, pero cada cambio deja un evento "auditoria" con el antes y el después.
+// No se borra nada: "eliminar" es poner activo: false.
+const V = {
+  texto: (max, obligatorio = false) => (v, n) => texto(v, n, obligatorio, max),
+  bool: () => (v, n) => { if (typeof v !== 'boolean') throw new Error(`${n} debe ser sí/no`); return v; },
+  num: (min, max) => (v, n) => numero(v, n, min, max),
+  opcion: lista => (v, n, ctx) => {
+    const l = typeof lista === 'function' ? lista(ctx) : lista;
+    if (!l.includes(v)) throw new Error(`${n}: valor no permitido (${v})`);
+    return v;
+  },
+  color: () => (v, n) => { if (!/^#[0-9a-f]{6}$/i.test(v)) throw new Error(`${n} debe ser un color #rrggbb`); return v; },
+  fecha: () => (v, n) => {
+    if (v == null || v === '') return null;
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(v) || isNaN(new Date(v))) throw new Error(`${n} debe ser una fecha AAAA-MM-DD`);
+    return v;
+  },
+  // Emoji o ruta a una imagen del propio repositorio.
+  icono: () => (v, n) => {
+    const t = texto(v, n, false, 200);
+    if (t && /[/.]/.test(t) && !/^img\/[\w/-]+\.(svg|png|webp|jpe?g)$/i.test(t)) throw new Error(`${n}: usa un emoji o una ruta tipo img/objetos/espada.svg`);
+    return t ?? null;
+  },
+};
+const ambitos = ctx => ['todas', ...ctx.config.aventuras.map(a => a.id)];
+const TIPOS_OBJETO = ['arma', 'armadura', 'pocion', 'mapa', 'llave', 'reliquia'];
+
+function validarFicha(v, n, ctx) {
+  if (!v || typeof v !== 'object') throw new Error(`${n} no válida`);
+  const e = v.encuadre || {};
+  return {
+    marco: V.opcion(c => c.config.marcos.map(m => m.id))(v.marco, 'Marco', ctx),
+    encuadre: { zoom: numero(e.zoom ?? 1, 'Zoom', 0.5, 4), x: numero(e.x ?? 0, 'Posición X', -1, 1), y: numero(e.y ?? 0, 'Posición Y', -1, 1) },
+  };
+}
+function validarCometido(v, n, ctx) {
+  if (!v || typeof v !== 'object') throw new Error(`${n} no válido`);
+  const r = {};
+  for (const a of ctx.config.aventuras) { const t = texto(v[a.id], `${n} (${a.nombre})`, false, 80); if (t) r[a.id] = t; }
+  return r;
+}
+// Solo se acepta una foto ya subida por /api/imagen (sirve para restaurar versiones anteriores).
+function validarFotoGrupo(v, n, ctx) {
+  if (v == null) return null;
+  if (typeof v !== 'string' || !/^img\/fichas\/[\w-]+\.webp$/.test(v) || !fs.existsSync(path.join(ctx.raiz, v))) throw new Error(`${n} no existe`);
+  return v;
+}
+
+const pub = (raiz, ...p) => path.join(rutas(raiz).pub, ...p);
+const ESQUEMAS = {
+  grupos: {
+    archivo: raiz => pub(raiz, 'grupos.json'), lista: obj => obj.grupos, prefijo: () => 'g',
+    obligatorios: ['nombre', 'color'],
+    campos: { nombre: V.texto(60, true), lema: V.texto(120), color: V.color(), activo: V.bool(), ficha: validarFicha, foto_grupo: validarFotoGrupo },
+    nuevo: () => ({ foto_grupo: null, ficha: { marco: 'harria', encuadre: { zoom: 1, x: 0, y: 0 } }, activo: true, miembros: [] }),
+  },
+  miembros: {
+    archivo: raiz => pub(raiz, 'grupos.json'),
+    lista: (obj, entrada) => {
+      const g = obj.grupos.find(x => x.id === entrada.grupo);
+      if (!g) throw new Error('Grupo desconocido');
+      return g.miembros;
+    },
+    prefijo: entrada => `${entrada.grupo}-a`, obligatorios: ['alias'],
+    campos: { alias: V.texto(40, true), clase: V.texto(40), cometido: validarCometido, activo: V.bool() },
+    nuevo: () => ({ cometido: {}, activo: true }),
+  },
+  objetos: {
+    archivo: raiz => pub(raiz, 'catalogo.json'), lista: obj => obj.objetos, prefijo: () => 'o', obligatorios: ['nombre', 'rareza', 'tipo', 'ambito'],
+    campos: {
+      nombre: V.texto(60, true), icono: V.icono(), rareza: V.opcion(ctx => ctx.catalogo.rarezas.map(r => r.id)), tipo: V.opcion(TIPOS_OBJETO),
+      ambito: V.opcion(ambitos), descripcion: V.texto(300), consumible: V.bool(), activo: V.bool(),
+    },
+    nuevo: () => ({ icono: null, consumible: false, activo: true }),
+  },
+  estados: {
+    archivo: raiz => pub(raiz, 'catalogo.json'), lista: obj => obj.estados, prefijo: () => 'e', obligatorios: ['nombre', 'tipo', 'ambito'],
+    campos: {
+      nombre: V.texto(60, true), tipo: V.opcion(['upgrade', 'downgrade']), ambito: V.opcion(ambitos), descripcion: V.texto(300),
+      efecto: (v, n) => ({ puntos: numero(v?.puntos ?? 0, 'Puntos del efecto', -1000, 1000) }),
+      duracion_entregas: V.num(1, 50), activo: V.bool(),
+    },
+    nuevo: () => ({ efecto: { puntos: 0 }, duracion_entregas: 1, activo: true }),
+  },
+  hitos: {
+    archivo: raiz => pub(raiz, 'catalogo.json'), lista: obj => obj.hitos, prefijo: () => 'h', obligatorios: ['nombre', 'ambito'],
+    campos: { nombre: V.texto(60, true), icono: V.icono(), ambito: V.opcion(ambitos), descripcion: V.texto(300), activo: V.bool() },
+    nuevo: () => ({ activo: true }),
+  },
+  logros: {
+    archivo: raiz => pub(raiz, 'catalogo.json'), lista: obj => obj.logros, prefijo: () => 'l', obligatorios: ['nombre', 'ambito'],
+    campos: { nombre: V.texto(60, true), icono: V.icono(), ambito: V.opcion(ambitos), descripcion: V.texto(300), oculto: V.bool(), activo: V.bool() },
+    nuevo: () => ({ oculto: false, activo: true }),
+  },
+  entregas: {
+    archivo: (raiz, entrada) => pub(raiz, 'aventuras', entrada.aventura, 'entregas.json'), lista: obj => obj.entregas,
+    prefijo: entrada => `${entrada.aventura[0]}-e`, obligatorios: ['nombre'],
+    campos: { nombre: V.texto(80, true), fecha_limite: V.fecha(), puntos_max: V.num(0, 1000), descripcion: V.texto(500), activo: V.bool() },
+    nuevo: () => ({ fecha_limite: null, puntos_max: 10, activo: true }),
+  },
+  criterios: {
+    privado: true,
+    archivo: raiz => path.join(rutas(raiz).priv, 'rubricas.json'),
+    lista: (obj, entrada) => (obj[entrada.aventura] ||= { escala: [0, 10], criterios: [] }).criterios,
+    prefijo: () => 'c', obligatorios: ['nombre'],
+    campos: { nombre: V.texto(60, true), activo: V.bool() },
+    nuevo: () => ({ activo: true }),
+  },
+};
+
+// Identificador legible y único a partir del nombre: "Espada del Validador" → "o-espada-del-validador".
+function nuevoId(prefijo, nombre, existentes) {
+  if (prefijo.endsWith('-a') || prefijo.endsWith('-e')) { // miembros y entregas: numeración correlativa
+    let n = existentes.length + 1;
+    while (existentes.includes(prefijo + n)) n++;
+    return prefijo + n;
+  }
+  const base = `${prefijo}-${String(nombre).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 30) || 'nuevo'}`;
+  let id = base;
+  for (let i = 2; existentes.includes(id); i++) id = `${base}-${i}`;
+  return id;
+}
+
+// Añade un evento de auditoría al registro global (o al privado si el dato es privado).
+function auditar(raiz, registro, datosAuditoria) {
+  const archivo = archivoRegistro(raiz, registro);
+  const lista = leer(archivo, []);
+  const nuevo = encadenar(lista, {
+    aventura: datosAuditoria.aventura || null, grupo: null, miembro: null, tipo: 'auditoria', datos: datosAuditoria,
+    puntos: 0, visible_publico: false, referencia: null,
+  });
+  escribirAtomico(archivo, [...lista, nuevo]);
+  return nuevo;
+}
+
+function comprobarRegistro(raiz, registro) {
+  const errores = verificar(leer(archivoRegistro(raiz, registro), []));
+  if (errores.length) throw new Error(`El registro ${registro} está dañado; no se guarda nada: ${errores[0]}`);
+}
+
+// Crea (sin id) o modifica (con id) un elemento de una colección. Solo se tocan los campos enviados.
+function guardarEntidad(raiz, entrada) {
+  const esquema = ESQUEMAS[entrada?.coleccion];
+  if (!esquema) throw new Error(`Colección desconocida: ${entrada?.coleccion}`);
+  const datos = cargarDatos(raiz);
+  if (['entregas', 'criterios'].includes(entrada.coleccion) && !datos.aventuras[entrada.aventura]) throw new Error('Aventura desconocida');
+  const ctx = { ...datos, raiz };
+  const valor = entrada.valor || {};
+  const registro = esquema.privado ? 'privado' : 'global';
+  comprobarRegistro(raiz, registro);
+
+  const archivo = esquema.archivo(raiz, entrada);
+  const obj = leer(archivo, esquema.privado ? {} : undefined);
+  const lista = esquema.lista(obj, entrada);
+  let item = valor.id ? lista.find(x => x.id === valor.id) : null;
+  if (valor.id && !item) throw new Error(`No existe ${valor.id}`);
+  const antes = item ? JSON.parse(JSON.stringify(item)) : null;
+  if (!item) {
+    for (const k of esquema.obligatorios) if (valor[k] == null || valor[k] === '') throw new Error(`Falta ${k}`);
+    item = { id: nuevoId(esquema.prefijo(entrada), valor.nombre || valor.alias, lista.map(x => x.id)), ...esquema.nuevo() };
+    lista.push(item);
+  }
+  for (const [k, validar] of Object.entries(esquema.campos)) {
+    if (!(k in valor)) continue;
+    const v = validar(valor[k], k, ctx);
+    if (v === undefined) delete item[k]; else item[k] = v;
+  }
+  if (JSON.stringify(antes) === JSON.stringify(item)) return { item, sinCambios: true };
+
+  escribirAtomico(archivo, obj);
+  const tipoCambio = entrada.coleccion === 'grupos' && antes && (JSON.stringify(antes.ficha) !== JSON.stringify(item.ficha) || antes.foto_grupo !== item.foto_grupo)
+    ? 'ficha_modificada' : null;
+  const evento = auditar(raiz, registro, {
+    coleccion: entrada.coleccion, aventura: entrada.aventura, grupo: entrada.grupo, id: item.id, cambio: tipoCambio, antes, despues: item,
+  });
+  return { item, evento };
+}
+
+// ---------- Fotos de grupo ----------
+const LIMITE_IMAGEN = 15 * 1024 * 1024;
+const FIRMAS = { webp: b => b.toString('ascii', 0, 4) === 'RIFF' && b.toString('ascii', 8, 12) === 'WEBP', jpg: b => b[0] === 0xff && b[1] === 0xd8, png: b => b.toString('hex', 0, 4) === '89504e47' };
+function decodificarImagen(dataUrl, permitidos) {
+  const m = /^data:image\/(webp|jpeg|png);base64,([A-Za-z0-9+/=]+)$/.exec(dataUrl || '');
+  if (!m) throw new Error('Imagen no válida');
+  const ext = m[1] === 'jpeg' ? 'jpg' : m[1];
+  const buf = Buffer.from(m[2], 'base64');
+  if (!permitidos.includes(ext) || !FIRMAS[ext](buf)) throw new Error('El contenido no es una imagen del tipo indicado');
+  return { ext, buf };
+}
+
+// Guarda la foto reducida (pública, WebP) con un nombre nuevo por versión y el original en data/privado.
+// Las versiones anteriores no se borran: así se pueden restaurar desde el historial.
+function guardarFoto(raiz, entrada) {
+  const datos = cargarDatos(raiz);
+  const g = datos.grupos.grupos.find(x => x.id === entrada?.grupo);
+  if (!g) throw new Error('Grupo desconocido');
+  const reducida = decodificarImagen(entrada.foto, ['webp']);
+  if (reducida.buf.length > 2 * 1024 * 1024) throw new Error('La foto reducida pesa demasiado');
+  const sello = new Date().toISOString().replace(/[-:]/g, '').replace(/\..*/, '');
+  const relativa = `img/fichas/${g.id}-${sello}.webp`;
+  comprobarRegistro(raiz, 'global');
+  fs.mkdirSync(path.join(raiz, 'img', 'fichas'), { recursive: true });
+  fs.writeFileSync(path.join(raiz, relativa), reducida.buf);
+  if (entrada.original) {
+    const orig = decodificarImagen(entrada.original, ['webp', 'jpg', 'png']);
+    const dir = path.join(rutas(raiz).priv, 'fotos_reales');
+    fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(path.join(dir, `${g.id}-${sello}.${orig.ext}`), orig.buf);
+  }
+  return guardarEntidad(raiz, { coleccion: 'grupos', valor: { id: g.id, foto_grupo: relativa } });
+}
+
 // ---------- HTTP ----------
 const TIPOS_MIME = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8',
@@ -246,13 +461,13 @@ function enviar(res, estado, cuerpo, tipo = 'application/json; charset=utf-8') {
   res.end(typeof cuerpo === 'string' || Buffer.isBuffer(cuerpo) ? cuerpo : JSON.stringify(cuerpo));
 }
 
-function leerCuerpo(req) {
+function leerCuerpo(req, limite = LIMITE_CUERPO) {
   return new Promise((ok, mal) => {
     let tam = 0;
     const trozos = [];
     req.on('data', t => {
       tam += t.length;
-      if (tam > LIMITE_CUERPO) { mal(new Error('Petición demasiado grande')); req.destroy(); } else trozos.push(t);
+      if (tam > limite) { mal(new Error('Petición demasiado grande')); req.destroy(); } else trozos.push(t);
     });
     req.on('end', () => { try { ok(JSON.parse(Buffer.concat(trozos).toString('utf8'))); } catch { mal(new Error('JSON no válido')); } });
     req.on('error', mal);
@@ -276,10 +491,13 @@ function crearServidor({ raiz = __dirname, token = crypto.randomBytes(24).toStri
 
         if (req.method === 'GET' && url.pathname === '/api/datos') return enviar(res, 200, cargarDatos(raiz));
         if (req.method === 'GET' && url.pathname === '/api/verificar') return enviar(res, 200, verificarTodo(raiz));
-        if (req.method === 'POST' && url.pathname === '/api/evento') {
+        const POST = { '/api/evento': [anadirEvento, LIMITE_CUERPO], '/api/entidad': [guardarEntidad, LIMITE_CUERPO], '/api/imagen': [guardarFoto, LIMITE_IMAGEN] };
+        if (req.method === 'POST' && POST[url.pathname]) {
           if (!String(req.headers['content-type']).startsWith('application/json')) return enviar(res, 415, { error: 'Se espera JSON' });
-          const entrada = await leerCuerpo(req);
-          try { return enviar(res, 200, anadirEvento(raiz, entrada)); } catch (e) { return enviar(res, 400, { error: e.message }); }
+          const [accion, limite] = POST[url.pathname];
+          let entrada;
+          try { entrada = await leerCuerpo(req, limite); } catch (e) { return enviar(res, 413, { error: e.message }); }
+          try { return enviar(res, 200, accion(raiz, entrada)); } catch (e) { return enviar(res, 400, { error: e.message }); }
         }
         return enviar(res, 404, { error: 'Ruta desconocida' });
       }
@@ -306,7 +524,7 @@ function crearServidor({ raiz = __dirname, token = crypto.randomBytes(24).toStri
   return { servidor, token };
 }
 
-module.exports = { validarEvento, anadirEvento, cargarDatos, verificarTodo, crearServidor };
+module.exports = { validarEvento, anadirEvento, guardarEntidad, guardarFoto, cargarDatos, verificarTodo, crearServidor };
 
 if (require.main === module) {
   if (process.argv.includes('--verificar')) {

@@ -106,3 +106,60 @@ test('servidor: exige token, bloquea lo privado y otros hosts', async () => {
     s2.close();
   }
 });
+
+// ---------- Fase 4: entidades y fotos ----------
+const { guardarEntidad, guardarFoto } = require('../admin.js');
+const leerPub = rel => JSON.parse(fs.readFileSync(path.join(raiz, 'data', 'publico', rel), 'utf8'));
+const globales = () => leerPub('eventos_globales.json');
+
+test('crear y editar un objeto deja auditoría con antes y después; archivar no borra', () => {
+  const n = globales().length;
+  const { item } = guardarEntidad(raiz, { coleccion: 'objetos', valor: { nombre: 'Ezpata Berria', rareza: 'raro', tipo: 'arma', ambito: 'sareak', icono: '🗡️' } });
+  assert.strictEqual(item.id, 'o-ezpata-berria');
+  guardarEntidad(raiz, { coleccion: 'objetos', valor: { id: item.id, activo: false } });
+  const ev = globales().slice(n);
+  assert.strictEqual(ev.length, 2);
+  assert.strictEqual(ev[1].tipo, 'auditoria');
+  assert.strictEqual(ev[1].datos.antes.activo, true);
+  assert.strictEqual(ev[1].datos.despues.activo, false);
+  assert.ok(leerPub('catalogo.json').objetos.some(o => o.id === item.id)); // sigue ahí, archivado
+  assert.throws(() => anadirEvento(raiz, { aventura: 'sareak', tipo: 'objeto_ganado', grupo: 'g1', datos: { objeto: item.id } }), /desconocido/);
+  assert.ok(verificarTodo(raiz).ok);
+});
+
+test('valida los campos de las entidades', () => {
+  assert.throws(() => guardarEntidad(raiz, { coleccion: 'grupos', valor: { id: 'g1', color: 'rojo' } }), /color/);
+  assert.throws(() => guardarEntidad(raiz, { coleccion: 'objetos', valor: { nombre: 'x', rareza: 'mitico', tipo: 'arma', ambito: 'todas' } }), /no permitido/);
+  assert.throws(() => guardarEntidad(raiz, { coleccion: 'objetos', valor: { nombre: 'x', rareza: 'raro', tipo: 'arma', ambito: 'todas', icono: '../../etc/x.png' } }), /emoji/);
+  assert.throws(() => guardarEntidad(raiz, { coleccion: 'grupos', valor: { id: 'g1', foto_grupo: 'data/privado/x.webp' } }), /no existe/);
+  assert.throws(() => guardarEntidad(raiz, { coleccion: 'tablas', valor: {} }), /desconocida/);
+  assert.throws(() => guardarEntidad(raiz, { coleccion: 'entregas', aventura: 'zerbitzuak', valor: { id: 'z-e1', fecha_limite: '31/12/2026' } }), /fecha/);
+});
+
+test('miembros nuevos con id correlativo y cometido por aventura', () => {
+  const { item } = guardarEntidad(raiz, { coleccion: 'miembros', grupo: 'g2', valor: { alias: 'Berria', cometido: { sareak: 'Kableatzailea', inventada: 'x' } } });
+  assert.strictEqual(item.id, 'g2-a6');
+  assert.deepStrictEqual(item.cometido, { sareak: 'Kableatzailea' });
+});
+
+test('las rúbricas se auditan en el registro privado', () => {
+  const n = globales().length;
+  guardarEntidad(raiz, { coleccion: 'criterios', aventura: 'sareak', valor: { nombre: 'Dokumentazioa' } });
+  assert.strictEqual(globales().length, n);
+  assert.strictEqual(cargarDatos(raiz).privado.eventos.at(-1).tipo, 'auditoria');
+});
+
+test('foto de grupo: guarda versión nueva, original privado y permite restaurar la anterior', () => {
+  // WebP mínimo válido (1x1) y un PNG de 8 bytes de cabecera para el original.
+  const webp = 'data:image/webp;base64,' + Buffer.from('UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA==', 'base64').toString('base64');
+  const png = 'data:image/png;base64,' + Buffer.from('89504e470d0a1a0a0000', 'hex').toString('base64');
+  const a = guardarFoto(raiz, { grupo: 'g4', foto: webp, original: png });
+  assert.match(a.item.foto_grupo, /^img\/fichas\/g4-\d+T\d+\.webp$/);
+  assert.ok(fs.existsSync(path.join(raiz, a.item.foto_grupo)));
+  assert.strictEqual(fs.readdirSync(path.join(raiz, 'data', 'privado', 'fotos_reales')).length, 1);
+  assert.strictEqual(a.evento.datos.cambio, 'ficha_modificada');
+  guardarEntidad(raiz, { coleccion: 'grupos', valor: { id: 'g4', foto_grupo: null } }); // restaurar la versión anterior (sin foto)
+  assert.strictEqual(leerPub('grupos.json').grupos.find(g => g.id === 'g4').foto_grupo, null);
+  assert.ok(fs.existsSync(path.join(raiz, a.item.foto_grupo)));                      // la versión no se borra
+  assert.throws(() => guardarFoto(raiz, { grupo: 'g4', foto: 'data:image/webp;base64,' + Buffer.from('hola').toString('base64') }), /no es una imagen/);
+});
