@@ -21,6 +21,23 @@
     "fecha": "2026-10-02T10:00:00+02:00",
     "autor": "profesor",
     "aventura": "zerbitzuak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "entrega_cerrada",
+    "datos": {
+      "entrega": "z-e1"
+    },
+    "puntos": 0,
+    "visible_publico": true,
+    "referencia": null,
+    "hash_anterior": "0c43ed7481d6f3c68041c2777bbac7534ffab79a3ee1d3eca5d106072706b139",
+    "hash": "48b07012e7b81a08c56df82e1cc23c6b8729754f1fabfb18a62e118b320d0353"
+  },
+  {
+    "id": 3,
+    "fecha": "2026-10-02T10:00:00+02:00",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
     "grupo": "g1",
     "miembro": null,
     "tipo": "avance",
@@ -32,11 +49,11 @@
     "puntos": 10,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "0c43ed7481d6f3c68041c2777bbac7534ffab79a3ee1d3eca5d106072706b139",
-    "hash": "a243a6ced3b210b6fcfdcf26f458a8ab2b8e3b123551c3ca085c896254bdcd56"
+    "hash_anterior": "48b07012e7b81a08c56df82e1cc23c6b8729754f1fabfb18a62e118b320d0353",
+    "hash": "cfdb35b0a596f4a9125c9facf1cfae36d879719161f58982a21cb6529d9677c2"
   },
   {
-    "id": 3,
+    "id": 4,
     "fecha": "2026-10-02T10:00:00+02:00",
     "autor": "profesor",
     "aventura": "zerbitzuak",
@@ -51,11 +68,11 @@
     "puntos": 10,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "a243a6ced3b210b6fcfdcf26f458a8ab2b8e3b123551c3ca085c896254bdcd56",
-    "hash": "5755487ddc09e05b16a99f41d97c40d381d107c3893c2c2b9c6952b5ea5a556f"
+    "hash_anterior": "cfdb35b0a596f4a9125c9facf1cfae36d879719161f58982a21cb6529d9677c2",
+    "hash": "5e03bc871aa136999b9cd7bffecb5c6bdff5873de44ecfd7647b6607bcd98616"
   },
   {
-    "id": 4,
+    "id": 5,
     "fecha": "2026-10-02T10:00:00+02:00",
     "autor": "profesor",
     "aventura": "zerbitzuak",
@@ -70,11 +87,11 @@
     "puntos": 8,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "5755487ddc09e05b16a99f41d97c40d381d107c3893c2c2b9c6952b5ea5a556f",
-    "hash": "4321296dbb9c84b3bf03f30b8c0626d1ad048466dc9bf382585f9e77563303dd"
+    "hash_anterior": "5e03bc871aa136999b9cd7bffecb5c6bdff5873de44ecfd7647b6607bcd98616",
+    "hash": "bfd29e03ca5a70d12b628089812010f36f6539b6b3b1944a8848b804d481565b"
   },
   {
-    "id": 5,
+    "id": 6,
     "fecha": "2026-10-02T10:00:00+02:00",
     "autor": "profesor",
     "aventura": "zerbitzuak",
@@ -89,11 +106,11 @@
     "puntos": 10,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "4321296dbb9c84b3bf03f30b8c0626d1ad048466dc9bf382585f9e77563303dd",
-    "hash": "8b38e869131445a1215d025cccb3c4a7512bfdd505c8d61428f75cd8a71c0ceb"
+    "hash_anterior": "bfd29e03ca5a70d12b628089812010f36f6539b6b3b1944a8848b804d481565b",
+    "hash": "43d7b31c219f97d644ffea0e463d66b44f24f53994cda04129b3c0e4eb7e0db8"
   },
   {
-    "id": 6,
+    "id": 7,
     "fecha": "2026-10-02T10:00:00+02:00",
     "autor": "profesor",
     "aventura": "zerbitzuak",
@@ -108,11 +125,11 @@
     "puntos": 6,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "8b38e869131445a1215d025cccb3c4a7512bfdd505c8d61428f75cd8a71c0ceb",
-    "hash": "8686afd0c791ef0d63c7d3d9af30a2f02338642a4949d1e1517304a1d25f4113"
+    "hash_anterior": "43d7b31c219f97d644ffea0e463d66b44f24f53994cda04129b3c0e4eb7e0db8",
+    "hash": "be33e2b793ba3ee6fef364b471d1b0a33169e46214d8c5da5f3206be18dad3e2"
   },
   {
-    "id": 7,
+    "id": 8,
     "fecha": "2026-10-02T10:00:00+02:00",
     "autor": "profesor",
     "aventura": "zerbitzuak",
@@ -125,11 +142,11 @@
     "puntos": 3,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "8686afd0c791ef0d63c7d3d9af30a2f02338642a4949d1e1517304a1d25f4113",
-    "hash": "ae5a2571af2adb114e121a27565951a0b67370c31a4a8f1be4d573b178627551"
+    "hash_anterior": "be33e2b793ba3ee6fef364b471d1b0a33169e46214d8c5da5f3206be18dad3e2",
+    "hash": "b10cceabedb8f9626721f546a3606f5c1dbb3438eff9896ed398816a6012d541"
   },
   {
-    "id": 8,
+    "id": 9,
     "fecha": "2026-10-02T10:00:00+02:00",
     "autor": "profesor",
     "aventura": "zerbitzuak",
@@ -142,11 +159,11 @@
     "puntos": -2,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "ae5a2571af2adb114e121a27565951a0b67370c31a4a8f1be4d573b178627551",
-    "hash": "7eaa5fc869506a7c6b0581c0e69c662ee0f9f79dcff5325221c421848a91882e"
+    "hash_anterior": "b10cceabedb8f9626721f546a3606f5c1dbb3438eff9896ed398816a6012d541",
+    "hash": "7809f35c5069c4790e3feda40731b1c04e1f853fa5abdd973eeb7fb1555b65c1"
   },
   {
-    "id": 9,
+    "id": 10,
     "fecha": "2026-10-02T10:00:00+02:00",
     "autor": "profesor",
     "aventura": "zerbitzuak",
@@ -160,11 +177,11 @@
     "puntos": -3,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "7eaa5fc869506a7c6b0581c0e69c662ee0f9f79dcff5325221c421848a91882e",
-    "hash": "3d6b45290666a500232c8240972cd7c9bd53cf81c783a3d28197a135ac9dc312"
+    "hash_anterior": "7809f35c5069c4790e3feda40731b1c04e1f853fa5abdd973eeb7fb1555b65c1",
+    "hash": "cb9cfd47acf25dad40c9f36c955ca26460212e36ef33c64211ee09f1a542b1be"
   },
   {
-    "id": 10,
+    "id": 11,
     "fecha": "2026-10-02T10:00:00+02:00",
     "autor": "profesor",
     "aventura": "zerbitzuak",
@@ -178,11 +195,11 @@
     "puntos": 0,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "3d6b45290666a500232c8240972cd7c9bd53cf81c783a3d28197a135ac9dc312",
-    "hash": "e3d626307ba24e2ac2153bfc30f292b624127a8cd7ce7e0115b6cad3d6c7fa3c"
+    "hash_anterior": "cb9cfd47acf25dad40c9f36c955ca26460212e36ef33c64211ee09f1a542b1be",
+    "hash": "bd3b382b3e59ac221a8bf5b6aee9f668f31e35b0088689182350c3eef41440b8"
   },
   {
-    "id": 11,
+    "id": 12,
     "fecha": "2026-10-02T10:00:00+02:00",
     "autor": "profesor",
     "aventura": "zerbitzuak",
@@ -197,28 +214,28 @@
     "puntos": 0,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "e3d626307ba24e2ac2153bfc30f292b624127a8cd7ce7e0115b6cad3d6c7fa3c",
-    "hash": "24f5fe36c8c6a9331baec17741de582f6d18b006632c5d405615ead2ac344ef8"
+    "hash_anterior": "bd3b382b3e59ac221a8bf5b6aee9f668f31e35b0088689182350c3eef41440b8",
+    "hash": "01fd4537c6671aceb51741eea58913130df8025d98e21657c22696d8bbf4fdc9"
   },
   {
-    "id": 12,
-    "fecha": "2026-10-02T10:00:00+02:00",
+    "id": 13,
+    "fecha": "2026-10-23T10:00:00+02:00",
     "autor": "profesor",
     "aventura": "zerbitzuak",
     "grupo": null,
     "miembro": null,
     "tipo": "entrega_cerrada",
     "datos": {
-      "entrega": "z-e1"
+      "entrega": "z-e2"
     },
     "puntos": 0,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "24f5fe36c8c6a9331baec17741de582f6d18b006632c5d405615ead2ac344ef8",
-    "hash": "c3da51f361814c2a6a7dde25784737e73b498969851d70404859d8be371e0ca0"
+    "hash_anterior": "01fd4537c6671aceb51741eea58913130df8025d98e21657c22696d8bbf4fdc9",
+    "hash": "6370c21458d4cbd4353e852edfd4ad01806d0cfada5346ab3f5fe46ee7149705"
   },
   {
-    "id": 13,
+    "id": 14,
     "fecha": "2026-10-23T10:00:00+02:00",
     "autor": "profesor",
     "aventura": "zerbitzuak",
@@ -233,11 +250,11 @@
     "puntos": 10,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "c3da51f361814c2a6a7dde25784737e73b498969851d70404859d8be371e0ca0",
-    "hash": "5696b113a7571c1664df0f5fa12f1368487e5fa2c228076b526ef76cfdeafba6"
+    "hash_anterior": "6370c21458d4cbd4353e852edfd4ad01806d0cfada5346ab3f5fe46ee7149705",
+    "hash": "4fb93f07c36119e14409fa2b3c62f1467b75201089bc41c57ab4f46fe11c6cdd"
   },
   {
-    "id": 14,
+    "id": 15,
     "fecha": "2026-10-23T10:00:00+02:00",
     "autor": "profesor",
     "aventura": "zerbitzuak",
@@ -250,11 +267,11 @@
     "puntos": 5,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "5696b113a7571c1664df0f5fa12f1368487e5fa2c228076b526ef76cfdeafba6",
-    "hash": "5fd1ddeea5ebd7e58161522c54737372ca0d1a94f7ff3c57e7d95734d2f4df0c"
+    "hash_anterior": "4fb93f07c36119e14409fa2b3c62f1467b75201089bc41c57ab4f46fe11c6cdd",
+    "hash": "bceb447abf9b5b5f5024939f60cd55403a62035e68d7ba4d4130a5b2bdad22f3"
   },
   {
-    "id": 15,
+    "id": 16,
     "fecha": "2026-10-23T10:00:00+02:00",
     "autor": "profesor",
     "aventura": "zerbitzuak",
@@ -269,11 +286,11 @@
     "puntos": 10,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "5fd1ddeea5ebd7e58161522c54737372ca0d1a94f7ff3c57e7d95734d2f4df0c",
-    "hash": "f860ef07cb92ead93c14e82e877452d0a5628f549d57a03e779b6f5d291ae1df"
+    "hash_anterior": "bceb447abf9b5b5f5024939f60cd55403a62035e68d7ba4d4130a5b2bdad22f3",
+    "hash": "9141723efc2a2d04e45e8a165bc30c6549626c6d2928c102d8299ca4bb4efca1"
   },
   {
-    "id": 16,
+    "id": 17,
     "fecha": "2026-10-23T10:00:00+02:00",
     "autor": "profesor",
     "aventura": "zerbitzuak",
@@ -288,11 +305,11 @@
     "puntos": 10,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "f860ef07cb92ead93c14e82e877452d0a5628f549d57a03e779b6f5d291ae1df",
-    "hash": "b65f37dbdaa562d56bb2a795ab2dd31a314703e7b970a2a470c35a540b30e3ef"
+    "hash_anterior": "9141723efc2a2d04e45e8a165bc30c6549626c6d2928c102d8299ca4bb4efca1",
+    "hash": "15cede0c3c1f202b54038ee4bec57e6d4bdc27b20394b722b9c001a98b0113c3"
   },
   {
-    "id": 17,
+    "id": 18,
     "fecha": "2026-10-23T10:00:00+02:00",
     "autor": "profesor",
     "aventura": "zerbitzuak",
@@ -304,12 +321,12 @@
     },
     "puntos": 0,
     "visible_publico": true,
-    "referencia": 16,
-    "hash_anterior": "b65f37dbdaa562d56bb2a795ab2dd31a314703e7b970a2a470c35a540b30e3ef",
-    "hash": "87eaeda379a0a09d1cedfdc277b65c9fe22fb8aab853346b204bfe4319e87ad0"
+    "referencia": 17,
+    "hash_anterior": "15cede0c3c1f202b54038ee4bec57e6d4bdc27b20394b722b9c001a98b0113c3",
+    "hash": "f2656d4a8b1e8eecba45b3688478da5ca659df6fd907e23ba4735380cdc8a577"
   },
   {
-    "id": 18,
+    "id": 19,
     "fecha": "2026-10-23T10:00:00+02:00",
     "autor": "profesor",
     "aventura": "zerbitzuak",
@@ -324,11 +341,11 @@
     "puntos": 10,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "87eaeda379a0a09d1cedfdc277b65c9fe22fb8aab853346b204bfe4319e87ad0",
-    "hash": "17774b7c8aa11ce5e1e9aa735d930019a116d24e1c75a8da095d0c5cf4114946"
+    "hash_anterior": "f2656d4a8b1e8eecba45b3688478da5ca659df6fd907e23ba4735380cdc8a577",
+    "hash": "f8e554d66c1df4afdbbff9da206e103f6f3c5aaf11f90eb008bb6fd1800f8dc1"
   },
   {
-    "id": 19,
+    "id": 20,
     "fecha": "2026-10-23T10:00:00+02:00",
     "autor": "profesor",
     "aventura": "zerbitzuak",
@@ -342,11 +359,11 @@
     "puntos": 0,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "17774b7c8aa11ce5e1e9aa735d930019a116d24e1c75a8da095d0c5cf4114946",
-    "hash": "4eb9e3d8d7440008d8617c946281f6bbef6ba80896f775c5317c83625394f49a"
+    "hash_anterior": "f8e554d66c1df4afdbbff9da206e103f6f3c5aaf11f90eb008bb6fd1800f8dc1",
+    "hash": "0c4f7ff133b6f6a07ede559ad7836a2f3b2fa1fcacaf3e26d9da0024f90e22a8"
   },
   {
-    "id": 20,
+    "id": 21,
     "fecha": "2026-10-23T10:00:00+02:00",
     "autor": "profesor",
     "aventura": "zerbitzuak",
@@ -361,24 +378,7 @@
     "puntos": 0,
     "visible_publico": true,
     "referencia": null,
-    "hash_anterior": "4eb9e3d8d7440008d8617c946281f6bbef6ba80896f775c5317c83625394f49a",
-    "hash": "d12b07d5cb8266b3ed757511136c16789624568cba21f3969a76395df0f3b320"
-  },
-  {
-    "id": 21,
-    "fecha": "2026-10-23T10:00:00+02:00",
-    "autor": "profesor",
-    "aventura": "zerbitzuak",
-    "grupo": null,
-    "miembro": null,
-    "tipo": "entrega_cerrada",
-    "datos": {
-      "entrega": "z-e2"
-    },
-    "puntos": 0,
-    "visible_publico": true,
-    "referencia": null,
-    "hash_anterior": "d12b07d5cb8266b3ed757511136c16789624568cba21f3969a76395df0f3b320",
-    "hash": "599ed9c2751d8a1a9ffb667b8eebac0362238899a96b02e113497eda59967879"
+    "hash_anterior": "0c4f7ff133b6f6a07ede559ad7836a2f3b2fa1fcacaf3e26d9da0024f90e22a8",
+    "hash": "a4629f08b9a4ba87ec09154ef575eed4992eeb2695456d005baddf90fe02d6b2"
   }
 ]

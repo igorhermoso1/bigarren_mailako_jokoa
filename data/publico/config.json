@@ -42,30 +42,53 @@
       "titulo": "Jakintsua"
     }
   ],
+  "marcos_sprite": {
+    "archivo": "img/fichas/marcos.png",
+    "ancho": 1129,
+    "alto": 691
+  },
   "marcos": [
     {
       "id": "harria",
-      "nombre": "Harria"
+      "nombre": "Harria",
+      "cx": 171.5,
+      "cy": 167,
+      "d": 328
     },
     {
       "id": "marmola",
-      "nombre": "Marmol berdea"
+      "nombre": "Marmol berdea",
+      "cx": 565,
+      "cy": 167.5,
+      "d": 323
     },
     {
       "id": "egurra",
-      "nombre": "Egurra"
+      "nombre": "Egurra",
+      "cx": 956.5,
+      "cy": 168,
+      "d": 326
     },
     {
       "id": "obsidiana",
-      "nombre": "Obsidiana"
+      "nombre": "Obsidiana",
+      "cx": 170.5,
+      "cy": 521,
+      "d": 330
     },
     {
       "id": "turkesa",
-      "nombre": "Turkesa"
+      "nombre": "Turkesa",
+      "cx": 564.5,
+      "cy": 520,
+      "d": 327
     },
     {
       "id": "hezurra",
-      "nombre": "Hezurra"
+      "nombre": "Hezurra",
+      "cx": 958.5,
+      "cy": 519.5,
+      "d": 330
     }
   ],
   "tipos_casilla": {

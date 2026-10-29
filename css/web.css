@@ -1,0 +1,115 @@
+/* Web pública: estética de pergamino, móvil primero, modo oscuro automático. */
+:root {
+  --fondo: #f4ead5;
+  --tarjeta: #fffaf0;
+  --texto: #2b2118;
+  --suave: #6b5a45;
+  --borde: #c9b48a;
+  --acento: #2a9d8f;
+  --bueno: #1e7a3c;
+  --malo: #a12a2a;
+  --serif: Georgia, 'Times New Roman', serif;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fondo: #1d1a16;
+    --tarjeta: #2a251f;
+    --texto: #f1e6d2;
+    --suave: #bba98c;
+    --borde: #5a4c38;
+    --bueno: #6fcf8a;
+    --malo: #f08a8a;
+  }
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--fondo); color: var(--texto); font: 16px/1.5 system-ui, sans-serif; }
+h1, h2, h3 { font-family: var(--serif); line-height: 1.2; margin: 0 0 .5rem; }
+h3 { font-size: 1rem; margin-top: 1rem; }
+ul { padding-left: 1.2rem; margin: .25rem 0; }
+:focus-visible { outline: 3px solid var(--acento); outline-offset: 2px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.vacio { color: var(--suave); }
+
+/* Cabecera y pestañas de aventura */
+.cabecera { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1.5rem; padding: .75rem 1rem;
+  border-bottom: 4px solid var(--acento); background: var(--tarjeta); }
+.cabecera h1 { font-size: 1.4rem; margin: 0; }
+.pestanas { display: flex; gap: .5rem; }
+.pestanas a { padding: .45rem 1rem; border-radius: 999px; border: 2px solid var(--acento); color: var(--texto);
+  text-decoration: none; font-weight: 600; }
+.pestanas a[aria-current] { background: var(--acento); color: #fff; text-shadow: 0 1px 2px #0008; }
+
+/* Maquetación: una columna en móvil, mapa + panel en escritorio */
+.contenido { display: grid; gap: 1rem; padding: 1rem;
+  grid-template-areas: "mapa" "panel" "taldeak" "egunkaria"; }
+.zona-mapa { grid-area: mapa; min-width: 0; }
+.panel { grid-area: panel; }
+.taldeak { grid-area: taldeak; }
+.egunkaria { grid-area: egunkaria; }
+@media (min-width: 900px) {
+  .contenido { grid-template-columns: minmax(0, 1fr) 340px; grid-template-areas: "mapa panel" "taldeak taldeak" "egunkaria egunkaria"; }
+  .panel { max-height: calc(100vh - 6rem); overflow: auto; position: sticky; top: 1rem; align-self: start; }
+}
+.panel, .tarjeta, .egunkaria { background: var(--tarjeta); border: 1px solid var(--borde); border-radius: 12px; padding: 1rem; }
+.descripcion { margin: 0 0 .5rem; color: var(--suave); }
+
+/* Mapa: en pantallas estrechas se desplaza con el dedo dentro de su caja */
+.mapa { overflow: auto; border-radius: 12px; border: 3px solid var(--borde); }
+.lienzo { position: relative; min-width: 640px; container-type: inline-size; }
+.fondo { display: block; width: 100%; height: 100%; object-fit: cover; }
+.camino { position: absolute; inset: 0; width: 100%; height: 100%; }
+.camino line { stroke: #fff8e0; stroke-width: 4; stroke-dasharray: 2 8; stroke-linecap: round; }
+
+.casilla { position: absolute; width: clamp(14px, 2.2cqw, 28px); aspect-ratio: 1; transform: translate(-50%, -50%);
+  border-radius: 50%; border: 3px solid #fff; background: #ffffff55; cursor: pointer; padding: 0;
+  box-shadow: 0 1px 4px #0007; }
+.casilla:hover { background: #fffc; }
+.casilla[data-tipo="hito"], .casilla[data-tipo="recompensa"] { border-color: #f2c94c; }
+.casilla[data-tipo="jefe"], .casilla[data-tipo="penalizacion"] { border-color: #eb5757; }
+.casilla[data-tipo="meta"], .casilla[data-tipo="inicio"] { border-color: #6fcf97; width: clamp(18px, 2.8cqw, 34px); }
+.casilla[data-tipo="descanso"] { border-color: #56ccf2; }
+
+.ficha-mapa { --t: clamp(30px, 5cqw, 64px); position: absolute; padding: 0; border: 0; background: none; cursor: pointer;
+  transform: translate(calc(-50% + var(--dx) * var(--t)), calc(-100% + var(--dy) * var(--t)));
+  transition: left .5s ease-in-out, top .5s ease-in-out; filter: drop-shadow(0 3px 3px #0009); z-index: 1; }
+.ficha-mapa:hover, .ficha-mapa:focus-visible { z-index: 2; }
+@media (prefers-reduced-motion: reduce) { .ficha-mapa { transition: none; } }
+
+/* Ficha: foto o iniciales en el centro y marco del sprite encima */
+.ficha { position: relative; display: block; width: var(--t); height: var(--t); }
+.ficha-foto { position: absolute; inset: 22%; border-radius: 50%; overflow: hidden; background: var(--color);
+  display: grid; place-items: center; color: #fff; font: 700 calc(var(--t) * .2) / 1 system-ui, sans-serif;
+  text-shadow: 0 1px 2px #000a; }
+.ficha-foto img { width: 100%; height: 100%; object-fit: cover; }
+.ficha-marco { position: absolute; inset: 0; background-repeat: no-repeat; pointer-events: none; }
+
+/* Panel lateral y tarjetas */
+.cabecera-grupo { --t: 120px; display: flex; justify-content: center; margin-bottom: .5rem; }
+.lema { font-style: italic; color: var(--suave); margin: 0 0 .5rem; }
+.datos { display: grid; grid-template-columns: auto 1fr; gap: .1rem .75rem; margin: 0; }
+.datos dt { color: var(--suave); }
+.datos dd { margin: 0; font-weight: 600; }
+.etiqueta-tipo { display: inline-block; padding: .1rem .6rem; border-radius: 999px; background: var(--acento); color: #fff; margin: 0 0 .5rem; }
+.tarjetas { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.tarjeta { border-top: 6px solid var(--color); }
+.tarjeta-ficha { --t: 96px; float: right; margin: 0 0 .5rem .5rem; }
+.boton { margin-top: .75rem; padding: .45rem .9rem; border-radius: 8px; border: 2px solid var(--acento);
+  background: none; color: var(--texto); font: inherit; cursor: pointer; }
+.rareza { font-size: .75rem; padding: 0 .4rem; border-radius: 4px; background: var(--color); color: #fff; }
+.bueno { color: var(--bueno); }
+.malo { color: var(--malo); }
+
+/* Egunkaria e historiales */
+.filtros { display: flex; flex-wrap: wrap; gap: .5rem 1rem; margin-bottom: .5rem; }
+.filtros select { font: inherit; padding: .2rem; }
+.lista-eventos { list-style: none; padding: 0; margin: 0; }
+.lista-eventos li { display: flex; flex-wrap: wrap; gap: .25rem .6rem; align-items: baseline; padding: .4rem 0; border-bottom: 1px dashed var(--borde); }
+.lista-eventos time { color: var(--suave); font-size: .85rem; }
+.lista-eventos .tipo { font-size: .8rem; text-transform: uppercase; letter-spacing: .03em; color: var(--acento); font-weight: 700; }
+.lista-eventos .anulado > :not(time) { text-decoration: line-through; opacity: .6; }
+.nombre-grupo { border-left: 4px solid var(--color); padding-left: .35rem; }
+.puntos { font-weight: 700; color: var(--bueno); }
+.puntos.neg { color: var(--malo); }
+.aviso-error { padding: 1rem; margin: 1rem; border: 2px solid var(--malo); border-radius: 8px; color: var(--malo); background: var(--tarjeta); }

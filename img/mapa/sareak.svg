@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="t d">
+  <title id="t">Sareak: portuen eta bideen itsasoa</title>
+  <desc id="d">Mapa provisionala: itsaso urdina, uharteak eta olatuak.</desc>
+  <defs>
+    <linearGradient id="itsasoa" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5fa8c9"/>
+      <stop offset="1" stop-color="#2f6f8f"/>
+    </linearGradient>
+    <symbol id="olatua" viewBox="0 0 60 20">
+      <path d="M0 15 Q15 0 30 15 T60 15" fill="none" stroke="#d8f0fa" stroke-width="3" stroke-linecap="round" opacity=".6"/>
+    </symbol>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#itsasoa)"/>
+  <g id="region-portua" fill="#e8d6a8" stroke="#b89b5e" stroke-width="6">
+    <path d="M40 60 C260 20 560 40 820 70 C1000 90 1250 40 1560 80 L1560 300 C1300 330 1100 260 900 300 C600 340 300 260 40 300 Z"/>
+  </g>
+  <g id="region-uharteak" fill="#cfe3a4" stroke="#8fae5a" stroke-width="6">
+    <ellipse cx="160" cy="370" rx="150" ry="70"/>
+    <ellipse cx="470" cy="380" rx="130" ry="60"/>
+    <ellipse cx="800" cy="370" rx="140" ry="65"/>
+    <ellipse cx="1140" cy="390" rx="150" ry="60"/>
+    <ellipse cx="1460" cy="380" rx="120" ry="70"/>
+  </g>
+  <g id="region-ozeanoa" fill="#b9d98c" stroke="#7fa04d" stroke-width="6">
+    <path d="M40 520 C300 480 600 560 900 520 C1150 490 1350 540 1560 510 L1560 680 C1300 700 1000 640 700 690 C450 730 200 660 40 690 Z"/>
+    <ellipse cx="150" cy="810" rx="130" ry="65"/>
+    <ellipse cx="480" cy="820" rx="140" ry="60"/>
+    <ellipse cx="800" cy="800" rx="130" ry="70"/>
+    <ellipse cx="1130" cy="815" rx="140" ry="60"/>
+    <ellipse cx="1460" cy="805" rx="130" ry="70"/>
+  </g>
+  <g>
+    <use href="#olatua" x="300" y="440" width="60" height="20"/>
+    <use href="#olatua" x="980" y="450" width="60" height="20"/>
+    <use href="#olatua" x="620" y="720" width="60" height="20"/>
+    <use href="#olatua" x="1300" y="730" width="60" height="20"/>
+    <use href="#olatua" x="90" y="930" width="60" height="20"/>
+    <use href="#olatua" x="900" y="940" width="60" height="20"/>
+  </g>
+</svg>

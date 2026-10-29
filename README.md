@@ -2,7 +2,7 @@
 
 Web que convierte la evaluación por grupos en dos aventuras sobre un mapa. Los alumnos solo miran la web pública (GitHub Pages); el profesor registra todo desde un panel local.
 
-> Estado: **Fase 1**. Hay datos de ejemplo y la cadena de integridad. La web pública llega en la Fase 2 y el panel admin en la Fase 3.
+> Estado: **Fase 2**. La web pública ya funciona con los datos de ejemplo. El panel admin llega en la Fase 3.
 
 ## Requisitos
 - [Node.js](https://nodejs.org) (versión 20 o superior). No hay que instalar nada más.
@@ -25,6 +25,13 @@ Todo lo que pasa (avanzar, ganar un objeto, una nota…) es un **evento** que se
 
 - **Corregir un error** = añadir un evento `anulacion` que apunta al evento erróneo. El original sigue en el historial, tachado.
 - Cada evento lleva un **hash** encadenado con el anterior. Si alguien edita un evento antiguo a mano, la verificación lo detecta.
+
+## Ver la web en tu equipo
+Abre una terminal en la carpeta del proyecto y ejecuta:
+```bash
+python -m http.server 8080
+```
+Después abre <http://localhost:8080>. Abrir `index.html` con doble clic no funciona: el navegador no deja leer los JSON desde archivos locales.
 
 ## Comprobar que todo está bien
 ```bash

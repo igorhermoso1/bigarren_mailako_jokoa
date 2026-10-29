@@ -32,9 +32,19 @@ Stack: HTML + CSS + JS puro, sin frameworks, sin build y sin dependencias. Códi
 - Registros de eventos = **array JSON**. Campos: `id, fecha, autor, aventura, grupo, miembro, tipo, datos, puntos, visible_publico, referencia, hash_anterior, hash`.
 - Hash = `sha256(hash_anterior + JSON.stringify(evento sin hash))`. Añadir eventos siempre con `encadenar()` de `cadena.js`.
 - `anulacion`: `referencia` = id del evento anulado.
+- **Privacidad:** `visible_publico: false` solo oculta en la interfaz; el JSON público lo lee cualquiera. Lo privado (notas de grupo privadas, `nota_miembro`) se escribe en `data/privado/eventos_privados.json`.
+- Estados: su `puntos` se registra una vez en el propio evento `estado_aplicado` (el admin lo rellena desde `efecto`). La duración baja en cada `entrega_cerrada` posterior. Flujo: primero se cierra la entrega y después se registran sus resultados.
+- Un evento sin `grupo` y con `puntos` afecta a todos los grupos.
+
+## Código
+- `js/motor.js`: `calcularEstado()`, función pura (navegador y Node).
+- `js/mapa.js`: fondo, casillas y fichas. Las fichas animan desde la última posición vista en ese navegador (localStorage, solo comodidad).
+- `js/app.js`: carga, pestañas (`#id` en la URL), panel lateral, tarjetas y egunkaria.
+- `css/web.css`: hoja única, con modo oscuro por `prefers-color-scheme`.
+- Ficha: `config.marcos[i]` = centro y diámetro del marco en el sprite (medidos sobre la transparencia).
 
 ## Tests
 `node --test` (carpeta `tests/`).
 
 ## Fases
-Fase 0 ✔ · Fase 1 ✔ (esqueleto y datos) · siguiente: Fase 2 (motor + web pública).
+Fase 0 ✔ · Fase 1 ✔ (esqueleto y datos) · Fase 2 ✔ (motor + web pública) · siguiente: Fase 3 (admin.js + admin básico).
