@@ -50,7 +50,7 @@ Stack: HTML + CSS + JS puro, sin frameworks, sin build y sin dependencias. Códi
 - Ficha: `config.marcos[i]` = centro y diámetro del marco en el sprite (medidos sobre la transparencia).
 
 ## Admin (Fase 3)
-- `admin.js`: servidor en 127.0.0.1:${PUERTO||3000}. Comprueba `Host` y `Origin` y pide una cabecera `x-token` (token aleatorio en cada arranque, inyectado en `admin.html` en lugar de `%%TOKEN%%`). Sirve el repositorio salvo `.git` y `data/privado`.
+- `admin.js`: servidor en 127.0.0.1:3000 (variable de entorno PUERTO para cambiarlo). Comprueba `Host` y `Origin` y pide una cabecera `x-token` (token aleatorio en cada arranque, inyectado en `admin.html` en lugar de `%%TOKEN%%`). Sirve el repositorio salvo `.git` y `data/privado`.
 - API: `GET /api/datos`, `GET /api/verificar`, `POST /api/evento` (solo JSON). No hay borrado ni edición.
 - `validarEvento()` es la frontera de confianza: tipos permitidos, ids existentes y del ámbito correcto, límites numéricos y de texto, y solo campos conocidos. El servidor pone `id`, `fecha`, `desde` y los hashes.
 - `nota_miembro` y `nota_grupo` con `visible_publico: false` van siempre al registro privado.
