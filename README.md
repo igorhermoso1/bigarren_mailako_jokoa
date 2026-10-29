@@ -2,7 +2,7 @@
 
 Web que convierte la evaluación por grupos en dos aventuras sobre un mapa. Los alumnos solo miran la web pública (GitHub Pages); el profesor registra todo desde un panel local.
 
-> Estado: **Fase 4**. Web pública y panel completo: grupos, fichas con foto, catálogo, entregas, rúbrica y valoraciones con historial. Falta el editor visual del tablero (Fase 5).
+> Estado: **Fase 5**. Web pública y panel completo, con editor visual del tablero y gestión de mapas.
 
 ## Requisitos
 - [Node.js](https://nodejs.org) (versión 20 o superior). No hay que instalar nada más.
@@ -51,6 +51,7 @@ Todo lo que pasa (avanzar, ganar un objeto, una nota…) es un **evento** que se
 | 🛡️ Taldeak eta fitxak | Grupos y miembros; subir la foto del grupo, encuadrarla, elegir el marco y restaurar versiones anteriores |
 | 💎 Katalogoa | Crear y editar objetos, estados, hitos y logros |
 | 📅 Entregak eta errubrika | Fechas y puntos de cada entrega y criterios de la rúbrica (privada) |
+| 🗺️ Taulera eta mapa | Mover las casillas sobre el mapa, insertar zonas nuevas, conectarlas, enlazarlas a una entrega y subir o restaurar el mapa |
 | ⚖️ Konparaketa | Los 6 grupos en las dos aventuras a la vez |
 
 Para **corregir una nota**, pon una nueva para la misma entrega: la anterior queda marcada como «zuzendua». Para **quitar** algo (un objeto, un alumno…), usa **Artxibatu**: deja de usarse, pero no se borra.

@@ -74,7 +74,8 @@
   // ---------- Datos de la aventura activa ----------
   const av = () => datos.aventuras[avId];
   const nombreAv = () => buscar(datos.config.aventuras, avId).nombre;
-  const casillas = () => av().tablero.casillas;
+  // Casillas activas en el orden del recorrido; su posición es el número que se ve en el mapa.
+  const casillas = () => Motor.ordenCasillas(av().tablero);
   const numCasilla = id => casillas().findIndex(c => c.id === id) + 1;
   const nombreCasilla = id => { const c = buscar(casillas(), id); return c ? `${numCasilla(id)}. ${c.nombre}` : id; };
   const enAmbito = x => x.ambito === 'todas' || x.ambito === avId;
@@ -363,8 +364,9 @@
     }));
     const celda = (a, g) => {
       const e = estados[a.id].grupos[g.id];
-      const total = datos.aventuras[a.id].tablero.casillas.length;
-      const n = datos.aventuras[a.id].tablero.casillas.findIndex(c => c.id === e.posicion) + 1;
+      const orden = Motor.ordenCasillas(datos.aventuras[a.id].tablero);
+      const total = orden.length;
+      const n = orden.findIndex(c => c.id === e.posicion) + 1;
       return `<td><div class="xp"><div class="xp-relleno" style="width:${100 * (n - 1) / (total - 1)}%"></div><span>${n} / ${total}</span></div>
         <small>${e.puntos} pt · ${esc(e.nivel.titulo)}</small></td>`;
     };

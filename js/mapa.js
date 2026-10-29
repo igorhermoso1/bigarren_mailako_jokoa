@@ -72,14 +72,16 @@
     fondo.onerror = () => lienzo.prepend(Object.assign(crear('p', 'aviso-error'), { textContent: 'Ezin izan da maparen irudia kargatu.' }));
     lienzo.append(fondo);
 
-    const casilla = id => tablero.casillas.find(c => c.id === id);
+    // Solo las casillas activas, numeradas en el orden del recorrido.
+    const orden = Motor.ordenCasillas(tablero);
+    const casilla = id => orden.find(c => c.id === id);
     if (mapa.dibujar_camino) {
       const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
       svg.setAttribute('viewBox', '0 0 100 100');
       svg.setAttribute('preserveAspectRatio', 'none');
       svg.setAttribute('class', 'camino');
       svg.setAttribute('aria-hidden', 'true');
-      for (const c of tablero.casillas) {
+      for (const c of orden) {
         for (const s of c.siguientes) {
           const d = casilla(s);
           if (!d) continue;
@@ -93,7 +95,7 @@
 
     // Casillas: medallón con su número de orden; brillan las que algún grupo ya ha pisado.
     const pisadas = new Set(Object.values(estado.grupos).flatMap(g => g.camino));
-    tablero.casillas.forEach((c, i) => {
+    orden.forEach((c, i) => {
       const tipo = config.tipos_casilla[c.tipo] || c.tipo;
       const b = crear('button', 'casilla', { type: 'button', 'data-tipo': c.tipo, 'data-nombre': c.nombre, 'aria-label': `${i + 1}. ${c.nombre} (${tipo})` });
       b.textContent = c.tipo === 'meta' ? '⚑' : i + 1;

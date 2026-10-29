@@ -132,7 +132,7 @@ function validarEvento(entrada, datos) {
   switch (tipo) {
     case 'avance':
     case 'retroceso': {
-      if (!av.tablero.casillas.some(c => c.id === d.hasta)) throw new Error('Casilla de destino desconocida');
+      if (!av.tablero.casillas.some(c => c.id === d.hasta && c.activo !== false)) throw new Error('Casilla de destino desconocida o archivada');
       // La casilla de origen la calcula el servidor a partir de los eventos, no la manda el navegador.
       const estado = Motor.calcularEstado(aventura, av.eventos, datos.globales, cat, av.tablero, datos.grupos, datos.config);
       const desde = estado.grupos[grupo].posicion;
@@ -335,6 +335,37 @@ const ESQUEMAS = {
     campos: { nombre: V.texto(80, true), fecha_limite: V.fecha(), puntos_max: V.num(0, 1000), descripcion: V.texto(500), activo: V.bool() },
     nuevo: () => ({ fecha_limite: null, puntos_max: 10, activo: true }),
   },
+  casillas: {
+    archivo: (raiz, entrada) => pub(raiz, 'aventuras', entrada.aventura, 'tablero.json'), lista: obj => obj.casillas,
+    prefijo: entrada => `${entrada.aventura[0]}-c`, obligatorios: ['nombre', 'tipo', 'x', 'y'],
+    campos: {
+      nombre: V.texto(80, true), lugar: V.texto(80), tipo: V.opcion(ctx => Object.keys(ctx.config.tipos_casilla)),
+      x: V.num(0, 100), y: V.num(0, 100), descripcion: V.texto(500),
+      entrega: (v, n, ctx) => {
+        if (v == null || v === '') return undefined;
+        if (!ctx.aventuras[ctx.entrada.aventura].entregas.entregas.some(e => e.id === v)) throw new Error('Entrega desconocida');
+        return v;
+      },
+      siguientes: (v, n, ctx) => {
+        if (!Array.isArray(v)) throw new Error('Siguientes debe ser una lista');
+        const ids = ctx.aventuras[ctx.entrada.aventura].tablero.casillas.map(c => c.id);
+        for (const id of v) if (!ids.includes(id) || id === ctx.idActual) throw new Error(`Conexión no válida: ${id}`);
+        return [...new Set(v)];
+      },
+      // No se archiva una casilla en la que está algún grupo: su posición dejaría de existir.
+      activo: (v, n, ctx) => {
+        V.bool()(v, n);
+        if (v === false) {
+          const a = ctx.aventuras[ctx.entrada.aventura];
+          const estado = Motor.calcularEstado(ctx.entrada.aventura, a.eventos, ctx.globales, ctx.catalogo, a.tablero, ctx.grupos, ctx.config);
+          const aqui = Object.entries(estado.grupos).filter(([, g]) => g.posicion === ctx.idActual).map(([id]) => id);
+          if (aqui.length) throw new Error(`No se puede archivar: hay grupos en esa casilla (${aqui.join(', ')})`);
+        }
+        return v;
+      },
+    },
+    nuevo: () => ({ siguientes: [], activo: true }),
+  },
   criterios: {
     privado: true,
     archivo: raiz => path.join(rutas(raiz).priv, 'rubricas.json'),
@@ -347,7 +378,7 @@ const ESQUEMAS = {
 
 // Identificador legible y único a partir del nombre: "Espada del Validador" → "o-espada-del-validador".
 function nuevoId(prefijo, nombre, existentes) {
-  if (prefijo.endsWith('-a') || prefijo.endsWith('-e')) { // miembros y entregas: numeración correlativa
+  if (/-[aec]$/.test(prefijo)) { // miembros, entregas y casillas: numeración correlativa
     let n = existentes.length + 1;
     while (existentes.includes(prefijo + n)) n++;
     return prefijo + n;
@@ -380,8 +411,8 @@ function guardarEntidad(raiz, entrada) {
   const esquema = ESQUEMAS[entrada?.coleccion];
   if (!esquema) throw new Error(`Colección desconocida: ${entrada?.coleccion}`);
   const datos = cargarDatos(raiz);
-  if (['entregas', 'criterios'].includes(entrada.coleccion) && !datos.aventuras[entrada.aventura]) throw new Error('Aventura desconocida');
-  const ctx = { ...datos, raiz };
+  if (['entregas', 'criterios', 'casillas'].includes(entrada.coleccion) && !datos.aventuras[entrada.aventura]) throw new Error('Aventura desconocida');
+  const ctx = { ...datos, raiz, entrada, idActual: entrada.valor?.id };
   const valor = entrada.valor || {};
   const registro = esquema.privado ? 'privado' : 'global';
   comprobarRegistro(raiz, registro);
@@ -447,6 +478,56 @@ function guardarFoto(raiz, entrada) {
   return guardarEntidad(raiz, { coleccion: 'grupos', valor: { id: g.id, foto_grupo: relativa } });
 }
 
+// ---------- Mapas ----------
+// Un SVG se acepta solo si no puede ejecutar código ni cargar nada de fuera.
+function validarSvg(buf) {
+  const t = buf.toString('utf8');
+  if (!/<svg[\s>]/i.test(t)) throw new Error('El archivo no es un SVG');
+  if (/<script|<foreignObject|\son\w+\s*=|javascript:/i.test(t)) throw new Error('El SVG contiene código (script, on…=): no se acepta');
+  if (/(?:xlink:)?href\s*=\s*["'](?!#)/i.test(t) || /url\(\s*["']?(?!#)/i.test(t)) throw new Error('El SVG carga recursos externos: solo se permiten referencias internas (#id)');
+  const vb = /viewBox\s*=\s*["']\s*[-\d.]+[\s,]+[-\d.]+[\s,]+([\d.]+)[\s,]+([\d.]+)/i.exec(t);
+  if (!vb) throw new Error('El SVG necesita un viewBox');
+  return { ancho: Number(vb[1]), alto: Number(vb[2]) };
+}
+
+// Sube un mapa nuevo (una versión nueva por archivo; las anteriores no se borran) o vuelve a uno anterior.
+// También permite cambiar solo "dibujar_camino".
+function guardarMapa(raiz, entrada) {
+  const datos = cargarDatos(raiz);
+  const av = datos.aventuras[entrada?.aventura];
+  if (!av) throw new Error('Aventura desconocida');
+  const mapa = { ...av.aventura.mapa };
+  if (entrada.archivo) {
+    const m = /^data:image\/(svg\+xml|webp|jpeg|png);base64,([A-Za-z0-9+/=]+)$/.exec(entrada.archivo);
+    if (!m) throw new Error('Formato de mapa no válido (SVG, JPG, PNG o WebP)');
+    const buf = Buffer.from(m[2], 'base64');
+    const ext = { 'svg+xml': 'svg', jpeg: 'jpg', webp: 'webp', png: 'png' }[m[1]];
+    let medidas;
+    if (ext === 'svg') medidas = validarSvg(buf);
+    else {
+      if (!FIRMAS[ext](buf)) throw new Error('El contenido no es una imagen del tipo indicado');
+      medidas = { ancho: numero(entrada.ancho, 'Ancho', 1, 20000), alto: numero(entrada.alto, 'Alto', 1, 20000) };
+    }
+    const sello = new Date().toISOString().replace(/[-:]/g, '').replace(/\..*/, '');
+    mapa.archivo = `img/mapa/${entrada.aventura}-${sello}.${ext}`;
+    Object.assign(mapa, medidas);
+    comprobarRegistro(raiz, 'global');
+    fs.mkdirSync(path.join(raiz, 'img', 'mapa'), { recursive: true });
+    fs.writeFileSync(path.join(raiz, mapa.archivo), buf);
+  } else if (entrada.existente) {
+    if (!/^img\/mapa\/[\w-]+\.(svg|jpe?g|png|webp)$/.test(entrada.existente) || !fs.existsSync(path.join(raiz, entrada.existente))) throw new Error('Ese mapa no existe');
+    Object.assign(mapa, { archivo: entrada.existente, ancho: numero(entrada.ancho, 'Ancho', 1, 20000), alto: numero(entrada.alto, 'Alto', 1, 20000) });
+  }
+  if (entrada.dibujar_camino !== undefined) mapa.dibujar_camino = V.bool()(entrada.dibujar_camino, 'Dibujar camino');
+  if (JSON.stringify(mapa) === JSON.stringify(av.aventura.mapa)) return { mapa, sinCambios: true };
+
+  comprobarRegistro(raiz, 'global');
+  const archivo = pub(raiz, 'aventuras', entrada.aventura, 'aventura.json');
+  escribirAtomico(archivo, { ...av.aventura, mapa });
+  const evento = auditar(raiz, 'global', { coleccion: 'mapa', aventura: entrada.aventura, id: entrada.aventura, cambio: 'mapa', antes: av.aventura.mapa, despues: mapa });
+  return { mapa, evento };
+}
+
 // ---------- HTTP ----------
 const TIPOS_MIME = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8',
@@ -491,7 +572,7 @@ function crearServidor({ raiz = __dirname, token = crypto.randomBytes(24).toStri
 
         if (req.method === 'GET' && url.pathname === '/api/datos') return enviar(res, 200, cargarDatos(raiz));
         if (req.method === 'GET' && url.pathname === '/api/verificar') return enviar(res, 200, verificarTodo(raiz));
-        const POST = { '/api/evento': [anadirEvento, LIMITE_CUERPO], '/api/entidad': [guardarEntidad, LIMITE_CUERPO], '/api/imagen': [guardarFoto, LIMITE_IMAGEN] };
+        const POST = { '/api/evento': [anadirEvento, LIMITE_CUERPO], '/api/entidad': [guardarEntidad, LIMITE_CUERPO], '/api/imagen': [guardarFoto, LIMITE_IMAGEN], '/api/mapa': [guardarMapa, LIMITE_IMAGEN] };
         if (req.method === 'POST' && POST[url.pathname]) {
           if (!String(req.headers['content-type']).startsWith('application/json')) return enviar(res, 415, { error: 'Se espera JSON' });
           const [accion, limite] = POST[url.pathname];
@@ -524,7 +605,7 @@ function crearServidor({ raiz = __dirname, token = crypto.randomBytes(24).toStri
   return { servidor, token };
 }
 
-module.exports = { validarEvento, anadirEvento, guardarEntidad, guardarFoto, cargarDatos, verificarTodo, crearServidor };
+module.exports = { validarEvento, anadirEvento, guardarEntidad, guardarFoto, guardarMapa, cargarDatos, verificarTodo, crearServidor };
 
 if (require.main === module) {
   if (process.argv.includes('--verificar')) {

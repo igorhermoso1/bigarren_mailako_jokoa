@@ -25,6 +25,7 @@ Stack: HTML + CSS + JS puro, sin frameworks, sin build y sin dependencias. Códi
 - `aventura.json → mapa`: `archivo` (cualquier imagen: jpg/webp/svg), `ancho`, `alto` y `dibujar_camino`.
 - Zerbitzuak usa una ilustración raster (`img/mapa/zerbitzuak.jpg`) que ya trae el camino punteado y sus rótulos, así que `dibujar_camino: false`. Sareak usa un SVG provisional y la web dibuja el camino entre casillas.
 - **Casilla = ejercicio**: cada casilla lleva `entrega` (id en `entregas.json`) y `lugar` (nombre del sitio en el mapa). Zerbitzuak: 18 temas en orden + `meta`. Los temas de Sareak están por decidir.
+- **Numeración**: `Motor.ordenCasillas(tablero)` = casillas activas en el orden del recorrido (anchura desde `inicio`); las sueltas van al final. Es el número que se ve en la web y en el admin, no la posición en el JSON.
 - Casillas en **% del mapa** (`x`, `y` de 0 a 100). Las fichas se mueven de casilla en casilla; no hace falta `<path id="camino-principal">`.
 
 ## Datos
@@ -68,10 +69,14 @@ Stack: HTML + CSS + JS puro, sin frameworks, sin build y sin dependencias. Códi
 - Restaurar una ficha = volver a guardar `ficha` + `foto_grupo` de un `antes` de la auditoría.
 - Panel: módulos Kontrola, Balorazioak (historial de grupo y de miembro, medias, gráfica SVG, tendencia, corrección = nota nueva, lotes), Taldeak eta fitxak, Katalogoa, Entregak eta errubrika, Konparaketa.
 - `js/admin/panel.js` expone `window.Admin` (api, datos, avId, confirmar, avisar…). `entidades.js` y `valoraciones.js` se registran en `Admin.modulos`.
-- Pendiente (Fase 5): enlazar una entrega nueva a una casilla (`casilla.entrega`) con el editor del tablero.
+
+## Admin (Fase 5)
+- Colección `casillas` en `/api/entidad` (por aventura): nombre, lugar, tipo, x/y (0-100), entrega, descripcion, siguientes (ids existentes, nunca la propia) y activo. No se archiva una casilla con grupos encima. A una casilla archivada no se puede avanzar.
+- `POST /api/mapa` {aventura, archivo (dataURL) | existente (ruta img/mapa/…), ancho, alto, dibujar_camino}: crea un archivo nuevo por versión, `img/mapa/<av>-<fecha>.<ext>`, y audita el cambio (`coleccion: 'mapa'`). Un SVG solo se acepta sin script, sin on…= y sin href ni url() externos, y con viewBox (de ahí salen ancho y alto).
+- `js/admin/tablero.js`: arrastre con pointer events (se guarda al soltar), flechas del teclado (se guarda a los 600 ms), «＋ Honen ondoren txertatu» (la nueva hereda las conexiones de la elegida), conexiones con casillas de verificación, versiones de mapa con «Leheneratu».
 
 ## Tests
 `node --test` (carpeta `tests/`).
 
 ## Fases
-Fase 0 ✔ · Fase 1 ✔ (esqueleto y datos) · Fase 2 ✔ (motor + web pública) · Fase 3 ✔ (admin.js + admin básico) · Fase 4 ✔ (gestión completa) · siguiente: Fase 5 (editor visual del tablero).
+Fase 0 ✔ · Fase 1 ✔ (esqueleto y datos) · Fase 2 ✔ (motor + web pública) · Fase 3 ✔ (admin.js + admin básico) · Fase 4 ✔ (gestión completa) · Fase 5 ✔ (editor del tablero y mapas) · siguiente: Fase 6 (gamificación avanzada; muchos elementos están recortados, ver arriba).

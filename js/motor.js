@@ -20,9 +20,26 @@
     return actual;
   }
 
+  // Casillas activas en el orden del recorrido: desde la de inicio, siguiendo "siguientes" (en anchura).
+  // Las que no se alcanzan desde el inicio van al final. Es el orden con el que se numeran en el mapa.
+  function ordenCasillas(tablero) {
+    const activas = tablero.casillas.filter(c => c.activo !== false);
+    const porId = new Map(activas.map(c => [c.id, c]));
+    const inicio = activas.find(c => c.tipo === 'inicio') || activas[0];
+    const orden = [], vistos = new Set(), cola = inicio ? [inicio.id] : [];
+    while (cola.length) {
+      const id = cola.shift();
+      if (vistos.has(id) || !porId.has(id)) continue;
+      vistos.add(id);
+      orden.push(porId.get(id));
+      cola.push(...porId.get(id).siguientes);
+    }
+    return [...orden, ...activas.filter(c => !vistos.has(c.id))];
+  }
+
   // Devuelve { grupos: { g1: {...}, ... }, eventos: [...] } para la aventura indicada.
   function calcularEstado(aventuraId, eventos, eventosGlobales, catalogo, tablero, grupos, config) {
-    const inicio = (tablero.casillas.find(c => c.tipo === 'inicio') || tablero.casillas[0]).id;
+    const inicio = ordenCasillas(tablero)[0].id;
     const estado = {};
     for (const g of grupos.grupos) {
       estado[g.id] = {
@@ -91,7 +108,7 @@
     return { grupos: estado, eventos: lista };
   }
 
-  const Motor = { calcularEstado, prepararEventos, nivelDe };
+  const Motor = { calcularEstado, prepararEventos, nivelDe, ordenCasillas };
   if (typeof module !== 'undefined') module.exports = Motor;
   else window.Motor = Motor;
 })();

@@ -11,6 +11,7 @@ let raiz;
 before(() => {
   raiz = fs.mkdtempSync(path.join(os.tmpdir(), 'abentura-'));
   fs.cpSync(path.join(ORIGEN, 'data', 'publico'), path.join(raiz, 'data', 'publico'), { recursive: true });
+  fs.cpSync(path.join(ORIGEN, 'img', 'mapa'), path.join(raiz, 'img', 'mapa'), { recursive: true });
   fs.mkdirSync(path.join(raiz, 'data', 'privado'), { recursive: true });
   const criterios = [{ id: 'ekarpena', nombre: 'Ekarpena' }];
   fs.writeFileSync(path.join(raiz, 'data', 'privado', 'rubricas.json'),
@@ -162,4 +163,41 @@ test('foto de grupo: guarda versión nueva, original privado y permite restaurar
   assert.strictEqual(leerPub('grupos.json').grupos.find(g => g.id === 'g4').foto_grupo, null);
   assert.ok(fs.existsSync(path.join(raiz, a.item.foto_grupo)));                      // la versión no se borra
   assert.throws(() => guardarFoto(raiz, { grupo: 'g4', foto: 'data:image/webp;base64,' + Buffer.from('hola').toString('base64') }), /no es una imagen/);
+});
+
+// ---------- Fase 5: tablero y mapas ----------
+const { guardarMapa } = require('../admin.js');
+
+test('casillas: crear, mover, conectar y no archivar si hay grupos encima', () => {
+  const extra = { coleccion: 'casillas', aventura: 'sareak' };
+  const { item } = guardarEntidad(raiz, { ...extra, valor: { nombre: 'Gune berria', tipo: 'normal', x: 40, y: 50, siguientes: ['s03'] } });
+  assert.match(item.id, /^s-c\d+$/);
+  guardarEntidad(raiz, { ...extra, valor: { id: item.id, x: 42.5, y: 51 } });
+  const t = leerPub('aventuras/sareak/tablero.json');
+  assert.deepStrictEqual(t.casillas.find(c => c.id === item.id).x, 42.5);
+  assert.throws(() => guardarEntidad(raiz, { ...extra, valor: { id: item.id, siguientes: [item.id] } }), /Conexión no válida/);
+  assert.throws(() => guardarEntidad(raiz, { ...extra, valor: { id: item.id, siguientes: ['z03'] } }), /Conexión no válida/);
+  assert.throws(() => guardarEntidad(raiz, { ...extra, valor: { id: item.id, x: 140 } }), /entre 0 y 100/);
+  assert.throws(() => guardarEntidad(raiz, { ...extra, valor: { id: item.id, entrega: 'z-e1' } }), /Entrega desconocida/);
+  assert.throws(() => guardarEntidad(raiz, { ...extra, valor: { id: 's03', activo: false } }), /hay grupos/);
+  guardarEntidad(raiz, { ...extra, valor: { id: item.id, activo: false } });
+  assert.throws(() => anadirEvento(raiz, { aventura: 'sareak', tipo: 'avance', grupo: 'g1', datos: { hasta: item.id } }), /archivada/);
+});
+
+test('mapas: SVG seguro sí, SVG con código no; versión nueva con auditoría', () => {
+  const svg = s => 'data:image/svg+xml;base64,' + Buffer.from(s).toString('base64');
+  const bueno = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="a"/></defs><rect fill="url(#a)" width="10" height="10"/></svg>';
+  const r = guardarMapa(raiz, { aventura: 'sareak', archivo: svg(bueno) });
+  assert.deepStrictEqual([r.mapa.ancho, r.mapa.alto], [1200, 800]);
+  assert.ok(fs.existsSync(path.join(raiz, r.mapa.archivo)));
+  assert.strictEqual(r.evento.datos.cambio, 'mapa');
+  for (const malo of [
+    '<svg viewBox="0 0 1 1"><script>alert(1)</script></svg>',
+    '<svg viewBox="0 0 1 1" onload="alert(1)"></svg>',
+    '<svg viewBox="0 0 1 1"><image href="https://ejemplo.com/x.png"/></svg>',
+    '<svg width="10"></svg>',
+  ]) assert.throws(() => guardarMapa(raiz, { aventura: 'sareak', archivo: svg(malo) }), undefined, malo);
+  const vuelta = guardarMapa(raiz, { aventura: 'sareak', existente: 'img/mapa/sareak.svg', ancho: 1600, alto: 1000, dibujar_camino: true });
+  assert.strictEqual(vuelta.mapa.archivo, 'img/mapa/sareak.svg');
+  assert.ok(fs.existsSync(path.join(raiz, r.mapa.archivo))); // la versión anterior no se borra
 });

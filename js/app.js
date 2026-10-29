@@ -32,7 +32,8 @@
   const publico = ev => ev.visible_publico !== false;
   const buscar = (lista, id) => (lista || []).find(x => x.id === id);
   const casilla = id => buscar(actual.tablero.casillas, id);
-  const numCasilla = id => actual.tablero.casillas.findIndex(c => c.id === id) + 1;
+  // Número de una casilla = su posición en el recorrido (las archivadas no cuentan).
+  const numCasilla = id => actual.orden.findIndex(c => c.id === id) + 1;
   const nombreCasilla = id => casilla(id)?.nombre || id;
   const grupo = id => buscar(comun.grupos.grupos, id);
   const gruposActivos = () => comun.grupos.grupos.filter(g => g.activo);
@@ -211,7 +212,7 @@
     const taldea = `${htmlBarra(n, e.puntos)}
       <dl class="stats">
         <div><dt>Gunea</dt><dd>${numCasilla(e.posicion)}. ${esc(nombreCasilla(e.posicion))}</dd></div>
-        <div><dt>Gaindituak</dt><dd>${superadas} / ${actual.tablero.casillas.length - 1}</dd></div>
+        <div><dt>Gaindituak</dt><dd>${superadas} / ${actual.orden.length - 1}</dd></div>
       </dl>
       <h3>Inbentarioa</h3>${htmlInventario(e.inventario)}
       <h3>Egoerak</h3>${htmlEstados(e.estados)}
@@ -350,7 +351,7 @@
     }
     const d = cache[id];
     const estado = Motor.calcularEstado(id, d.eventos, comun.globales, comun.catalogo, d.tablero, comun.grupos, comun.config);
-    actual = { ...d, estado };
+    actual = { ...d, estado, orden: Motor.ordenCasillas(d.tablero) };
 
     const info = buscar(comun.config.aventuras, id);
     document.documentElement.style.setProperty('--acento', info.color_acento);

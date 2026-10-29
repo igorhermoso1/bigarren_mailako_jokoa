@@ -63,3 +63,16 @@ test('un evento global con puntos afecta a todos los grupos de cada aventura', (
   assert.strictEqual(z.g5.puntos, -1);
   assert.strictEqual(s.g1.puntos, 12);
 });
+
+test('las casillas se numeran por el recorrido, no por su posición en el archivo', () => {
+  const { ordenCasillas } = require('../js/motor.js');
+  const tablero = { casillas: [
+    { id: 'a', tipo: 'inicio', siguientes: ['b'] },
+    { id: 'c', tipo: 'meta', siguientes: [] },
+    { id: 'x', tipo: 'normal', siguientes: ['c'], activo: false },
+    { id: 'b', tipo: 'normal', siguientes: ['n'] },
+    { id: 'n', tipo: 'normal', siguientes: ['c'] },   // insertada después, pero va entre b y c
+    { id: 'suelta', tipo: 'normal', siguientes: [] },
+  ] };
+  assert.deepStrictEqual(ordenCasillas(tablero).map(c => c.id), ['a', 'b', 'n', 'c', 'suelta']);
+});
