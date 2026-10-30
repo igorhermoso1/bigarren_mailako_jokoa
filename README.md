@@ -65,6 +65,12 @@ Las fotos que te pasen los alumnos pueden estar en cualquier carpeta de tu equip
 ## Estilo de las cartelas
 Cada zona del mapa tiene una cartela con el estilo de su región (bosque, ciénaga, ciudad, hielo, volcán, desierto, misterio, mina, costa o meta). Para cambiarlo: 🗺️ **Taulera eta mapa** → elige la zona → **Eskualdearen estiloa** → Gorde.
 
+## En la web pública
+- **📽 Modo proyector**: pantalla completa para clase; recorre los grupos solos (← →, espacio para pausar, Esc para salir).
+- **Bitrina**: pestaña de la barra lateral con los logros, hitos y objetos; lo que nadie tiene aún sale en silueta.
+- **Zoom del mapa**: rueda del ratón, pellizco o doble clic; arrastrar para moverse; ⟲ vuelve al mapa entero.
+- **Zer berri?**: al entrar sale lo que ha pasado desde la última visita (se cierra con «Jarraitu»).
+
 ## Uso diario (panel del profesor)
 1. Abre una terminal en la carpeta del proyecto y arranca el panel:
    ```bash

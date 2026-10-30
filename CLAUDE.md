@@ -103,9 +103,17 @@ Stack: HTML + CSS + JS puro, sin frameworks, sin build y sin dependencias. Códi
 
 ## Comodidad y rendimiento (30/10, cierre)
 - **Rendimiento**: las animaciones grandes solo usan transform u opacity (las hace la tarjeta gráfica, sin repintar). Ascuas: capa `body::before` desplazada -300 px con mosaicas divisoras de 300 px. Antorcha: `.lienzo::before` que solo cambia de opacidad. Rayo: `.fx-rayo::before` con translateX. Halo del rastro, fijo. No animar `background-position`, `box-shadow` ni `filter` en capas grandes.
-- **«Zer berri?»** (`app.js → mostrarNovedades`): localStorage `ikusita:<aventura>` = último id visto de cada registro. En la primera visita solo lo apunta; después muestra los eventos públicos nuevos y las subidas de nivel (comparando con el estado hasta lo visto).
+- **«Zer berri?»** (`app.js → mostrarNovedades`): localStorage `ikusita:<aventura>` = último id visto de cada registro. Sale **siempre** al abrir la web y solo se cierra con «Jarraitu» o Esc: muestra lo nuevo desde la última visita (con las subidas de nivel) o, si no hay nada nuevo, los últimos eventos. Al cambiar de aventura solo sale si hay novedades.
 - **Luz por hora**: `#mapa[data-ordua]` = eguna (7-17), ilunabarra (17-20) o gaua; filtros fijos sobre `.fondo`.
 - Cursor de espada en SVG (dorado sobre lo pulsable) y barra de recorrido (`.fg-ruta`) en la barra lateral.
+
+## Proyector, vitrina, meta y zoom (30/10)
+- **Modo proyector** (botón 📽 de la cabecera, `app.js → abrirProyector`): pantalla completa que recorre los grupos cada 10 s, con ← → para cambiar, espacio para pausar y Esc para salir.
+- **Vitrina** (pestaña «Bitrina» de la barra lateral): logros, hitos y objetos de la aventura. Lo conseguido brilla y muestra quién lo tiene; lo que nadie tiene sale en silueta, y un logro `oculto` sale como «???».
+- **Meta**: si un grupo está en una casilla `meta`, estandarte «HELMUGA!» y `Fx.fuegos` cada 3,2 s.
+- **Zoom** (`mapa.js → habilitarZoom`): rueda, pellizco, doble clic y botones ＋ − ⟲, de 1 a 4 aumentos, con translate+scale sobre `.lienzo`. Al arrastrar no se abre ninguna ventana. Las ventanas emergentes son ahora `position: fixed` en `body` y siguen a lo pulsado (evento `mapa-mugitu`). Tras el zoom, las fichas se vuelven a preparar a su tamaño ampliado (`ficha._preparar`). En móvil el mapa cabe entero (sin min-width) y `touch-action: pan-y` deja desplazar la página sin zoom.
+- El mapa de Zerbitzuak está ahora en WebP: `img/mapa/zerbitzuak-20261030T133209.webp` (294 KB; la JPG sigue como versión anterior).
+- Sareak: el profesor diseñará su mapa más adelante; no tocarlo.
 
 ## Tests
 `node --test` (carpeta `tests/`). Los tests usan `tests/datos_prueba/publico` (ficticio), nunca `data/`.

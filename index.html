@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Lit Zerbitzuak RPG</title>
-  <link rel="stylesheet" href="css/web.css?v=20261030d">
+  <link rel="stylesheet" href="css/web.css?v=20261030e">
 </head>
 <body>
   <header class="cabecera">
@@ -23,6 +23,7 @@
       </div>
       <input type="range" id="m-bolumena" class="m-bolumena" min="0" max="1" step="0.05" aria-label="Bolumena">
     </div>
+    <button type="button" id="proiektorea" class="m-boton proiektore-botoia" title="Proiektore modua (klasean erakusteko)" aria-label="Proiektore modua">📽</button>
     <nav id="pestanas" class="estandartes" aria-label="Abenturak"></nav>
   </header>
 
@@ -35,6 +36,7 @@
       <div class="lat-pestanas" role="tablist" aria-label="Alboko panela">
         <button type="button" role="tab" id="tab-taldeak" aria-controls="lat-taldeak" aria-selected="true">Taldeak</button>
         <button type="button" role="tab" id="tab-egunkaria" aria-controls="lat-egunkaria" aria-selected="false">Egunkaria</button>
+        <button type="button" role="tab" id="tab-bitrina" aria-controls="lat-bitrina" aria-selected="false">Bitrina</button>
       </div>
       <div id="lat-taldeak" role="tabpanel" aria-labelledby="tab-taldeak" class="lat-cuerpo"></div>
       <div id="lat-egunkaria" role="tabpanel" aria-labelledby="tab-egunkaria" class="lat-cuerpo" hidden>
@@ -44,13 +46,14 @@
         </div>
         <ol id="lista-eventos" class="cronica"></ol>
       </div>
+      <div id="lat-bitrina" role="tabpanel" aria-labelledby="tab-bitrina" class="lat-cuerpo" hidden></div>
     </aside>
   </main>
 
-  <script src="js/motor.js?v=20261030d"></script>
-  <script src="js/fx.js?v=20261030d"></script>
-  <script src="js/mapa.js?v=20261030d"></script>
-  <script src="js/app.js?v=20261030d"></script>
-  <script src="js/musika.js?v=20261030d"></script>
+  <script src="js/motor.js?v=20261030e"></script>
+  <script src="js/fx.js?v=20261030e"></script>
+  <script src="js/mapa.js?v=20261030e"></script>
+  <script src="js/app.js?v=20261030e"></script>
+  <script src="js/musika.js?v=20261030e"></script>
 </body>
 </html>

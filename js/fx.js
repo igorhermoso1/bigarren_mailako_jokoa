@@ -6,7 +6,7 @@
   const reducir = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
   const MOTAS = 70;
   let ctx = null, canvas = null, lienzo = null, ultimo = 0, activo = false;
-  let motas = [], chispas = [], ondas = [], pilares = [], estrellas = [], proximaEstrella = 0;
+  let motas = [], chispas = [], ondas = [], pilares = [], estrellas = [], cohetes = [], proximaEstrella = 0;
   let generacion = 0; // cada arranque tiene su número: así nunca corren dos bucles a la vez
 
   // Sprites de brillo por color, pintados una vez (mucho más baratos que shadowBlur en cada partícula).
@@ -112,6 +112,18 @@
       ctx.stroke();
     }
 
+    // Cohetes de los fuegos artificiales: suben y estallan
+    cohetes = cohetes.filter(c => {
+      c.y += c.vy * dt;
+      ctx.globalAlpha = 1;
+      ctx.drawImage(brillo('#fff2c0'), c.x - 8 * escala, c.y - 8 * escala, 16 * escala, 16 * escala);
+      if (c.y > c.objetivo) return true;
+      chorro(c.x, c.y, c.k, 70, c.color, { vel: [90, 330], subida: 0, gravedad: 90, tam: [9, 18], vida: [.9, 1.8] });
+      chorro(c.x, c.y, c.k, 20, '#ffffff', { vel: [40, 160], subida: 0, gravedad: 60, tam: [6, 10], vida: [.5, 1] });
+      ondas.push({ x: c.x, y: c.y, radio: 90 * c.k, vida: .6, total: .6, color: c.color });
+      return false;
+    });
+
     // Chispas
     chispas = chispas.filter(c => (c.vida -= dt) > 0);
     for (const c of chispas) {
@@ -193,6 +205,18 @@
     arrancar();
   }
 
+  // Fuegos artificiales sobre un elemento (la meta): cohetes de colores que suben y estallan.
+  const COLORES_FUEGO = ['#ff4d6d', '#ffd23f', '#3ee0ff', '#7dff6b', '#c77dff', '#ff9f1c'];
+  function fuegos(el, n = 3) {
+    if (!canvas || reducir() || !el.isConnected) return;
+    const { x, y, k } = centro(el);
+    for (let i = 0; i < n; i++) {
+      setTimeout(() => cohetes.push({ x: x + azar(-140, 140) * k, y: y + 20 * k, vy: -azar(420, 560) * k, objetivo: y - azar(110, 230) * k, k,
+        color: COLORES_FUEGO[Math.floor(Math.random() * COLORES_FUEGO.length)] }), i * 260);
+    }
+    arrancar();
+  }
+
   document.addEventListener('visibilitychange', () => { if (document.hidden) activo = false; else arrancar(); });
-  window.Fx = { iniciar, estallido, llegada };
+  window.Fx = { iniciar, estallido, llegada, fuegos };
 })();

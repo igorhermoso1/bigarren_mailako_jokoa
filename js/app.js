@@ -186,14 +186,16 @@
       document.body.append(el);
       return;
     }
-    lienzo.append(el);
-    const r = lienzo.getBoundingClientRect(), a = ancla.getBoundingClientRect();
-    el.style.maxHeight = (r.height - 16) + 'px';
+    // Fija respecto a la pantalla (no dentro del mapa), para que el zoom del mapa no la agrande.
+    document.body.append(el);
+    el.style.position = 'fixed';
+    const a = ancla.getBoundingClientRect(), anchoV = innerWidth, altoV = innerHeight;
+    el.style.maxHeight = (altoV - 16) + 'px';
     const p = el.getBoundingClientRect();
-    let left = a.right - r.left + 14;
-    if (left + p.width > r.width - 8) left = a.left - r.left - p.width - 14;
-    const top = Math.min(Math.max(8, a.top - r.top + a.height / 2 - p.height / 2), r.height - p.height - 8);
-    el.style.left = Math.max(8, left) + 'px';
+    let left = a.right + 14;
+    if (left + p.width > anchoV - 8) left = a.left - p.width - 14;
+    const top = Math.min(Math.max(8, a.top + a.height / 2 - p.height / 2), altoV - p.height - 8);
+    el.style.left = Math.max(8, Math.min(left, anchoV - p.width - 8)) + 'px';
     el.style.top = Math.max(8, top) + 'px';
   }
 
@@ -318,10 +320,41 @@
         ev.stopPropagation();
         const ficha = document.querySelector(`.ficha-mapa[data-grupo="${g.id}"]`);
         ficha.scrollIntoView({ behavior: sinAnimacion() ? 'auto' : 'smooth', block: 'nearest', inline: 'center' });
+        Mapa.enfocar(ficha); // si el mapa está ampliado, lo centra en la ficha
         abrirGrupo(g.id, ficha);
       };
       ul.append(li);
     }
+  }
+
+  // Vitrina: logros, hitos y objetos del catálogo de esta aventura. Los conseguidos brillan y muestran
+  // quién los tiene; los que nadie tiene aún salen en silueta (y los logros ocultos, sin nombre: «???»).
+  function pintarVitrina() {
+    const cat = comun.catalogo;
+    const vale = x => x.ambito === 'todas' || x.ambito === actual.aventura.id;
+    const grupos = gruposActivos();
+    const dueños = (fn) => grupos.filter(g => fn(actual.estado.grupos[g.id]));
+    const seccion = (titulo, items, tiene, iconoDef, extra = () => '') => {
+      const filas = items.filter(vale).map(x => ({ x, quien: dueños(e => tiene(e, x.id)) }))
+        .filter(({ x, quien }) => x.activo !== false || quien.length);
+      if (!filas.length) return '';
+      return `<h3>${titulo} <small>${filas.filter(f => f.quien.length).length} / ${filas.length}</small></h3>
+        <ul class="bitrina">${filas.map(({ x, quien }) => {
+          const lortua = quien.length > 0, ezkutua = !lortua && x.oculto;
+          return `<li class="${lortua ? 'lortua' : 'itxita'}" ${extra(x)} title="${ezkutua ? '???' : esc(x.descripcion || '')}">
+            <span class="b-ikonoa" aria-hidden="true">${ezkutua ? '❔' : icono(x.icono, iconoDef(x))}</span>
+            <span class="b-izena">${ezkutua ? '???' : esc(x.nombre)}</span>
+            <span class="b-jabeak">${quien.map(g => `<span class="b-ficha" data-ficha="${esc(g.id)}" title="${esc(g.nombre)}"></span>`).join('')}</span>
+          </li>`;
+        }).join('')}</ul>`;
+    };
+    const html = seccion('🏆 Lorpenak', cat.logros, (e, id) => e.logros.includes(id), () => '🏆') +
+      seccion('🏰 Mugarriak', cat.hitos, (e, id) => e.hitos.includes(id), () => '🏰') +
+      seccion('💎 Objektuak', cat.objetos, (e, id) => id in e.inventario, x => ICONO_OBJETO[x.tipo] || '❔',
+        x => `style="--rareza:${esc(buscar(cat.rarezas, x.rareza)?.color || '#888')}"`);
+    const cont = $('lat-bitrina');
+    cont.innerHTML = html || '<p class="vacio">Katalogoa hutsik dago oraindik.</p>';
+    cont.querySelectorAll('[data-ficha]').forEach(el => el.append(Mapa.crearFicha(grupo(el.dataset.ficha), comun.config)));
   }
 
   function pintarEgunkaria() {
@@ -336,7 +369,7 @@
     $('filtro-tipo').innerHTML = '<option value="">Mota guztiak</option>' +
       Object.entries(TIPOS_EVENTO).map(([k, v]) => `<option value="${k}">${esc(v)}</option>`).join('');
     $('filtro-grupo').onchange = $('filtro-tipo').onchange = pintarEgunkaria;
-    const tabs = [$('tab-taldeak'), $('tab-egunkaria')];
+    const tabs = [$('tab-taldeak'), $('tab-egunkaria'), $('tab-bitrina')];
     tabs.forEach(t => t.onclick = () => tabs.forEach(o => {
       o.setAttribute('aria-selected', o === t);
       $(o.getAttribute('aria-controls')).hidden = o !== t;
@@ -367,48 +400,142 @@
     Mapa.dibujar($('mapa'), { ...actual, grupos: comun.grupos, config: comun.config }, { casilla: abrirCasilla, ficha: abrirGrupo });
     pintarLateral();
     pintarEgunkaria();
+    pintarVitrina();
     mostrarNovedades(id, d, estado);
   }
 
   // «Zer berri?»: lo que ha pasado desde la última visita de este navegador a esta aventura,
-  // con las subidas de nivel destacadas. La primera visita solo apunta dónde se quedó.
+  // con las subidas de nivel destacadas. Sale siempre al abrir la web (si no hay nada nuevo, con lo
+  // último que ha pasado) y solo se cierra a mano. Al cambiar de aventura, solo si hay novedades.
+  let novedadesVistas = false;
   function mostrarNovedades(id, d, estado) {
     const clave = 'ikusita:' + id;
     let visto = null;
     try { visto = JSON.parse(localStorage.getItem(clave)); } catch { /* sin almacenamiento */ }
     const maxId = lista => lista.reduce((m, e) => Math.max(m, e.id), 0);
     try { localStorage.setItem(clave, JSON.stringify({ aventura: maxId(d.eventos), global: maxId(comun.globales) })); } catch { /* idem */ }
-    if (!visto) return;
-
-    const nuevos = estado.eventos.filter(ev => publico(ev) && !ev.anulado && !['anulacion', 'auditoria'].includes(ev.tipo) &&
-      ev.id > (ev.origen === 'global' ? visto.global : visto.aventura));
-    if (!nuevos.length) return;
-    const antes = Motor.calcularEstado(id, d.eventos.filter(e => e.id <= visto.aventura), comun.globales.filter(e => e.id <= visto.global),
-      comun.catalogo, d.tablero, comun.grupos, comun.config);
-    const subidas = gruposActivos().map(g => ({ g, a: barraNivel(antes.grupos[g.id].puntos), n: barraNivel(estado.grupos[g.id].puntos) }))
-      .filter(x => x.n.numero > x.a.numero);
+    const visibles = estado.eventos.filter(ev => publico(ev) && !ev.anulado && !['anulacion', 'auditoria'].includes(ev.tipo));
+    const nuevos = visto ? visibles.filter(ev => ev.id > (ev.origen === 'global' ? visto.global : visto.aventura)) : [];
+    if (novedadesVistas && !nuevos.length) return;
+    novedadesVistas = true;
+    let subidas = [];
+    if (nuevos.length) {
+      const antes = Motor.calcularEstado(id, d.eventos.filter(e => e.id <= visto.aventura), comun.globales.filter(e => e.id <= visto.global),
+        comun.catalogo, d.tablero, comun.grupos, comun.config);
+      subidas = gruposActivos().map(g => ({ g, a: barraNivel(antes.grupos[g.id].puntos), n: barraNivel(estado.grupos[g.id].puntos) }))
+        .filter(x => x.n.numero > x.a.numero);
+    }
+    const lista = nuevos.length ? nuevos : visibles;
+    const subtitulo = nuevos.length ? `Azken bisitatik ${esc(actual.aventura.nombre)}-n` : `Azken gertaerak ${esc(actual.aventura.nombre)}-n`;
 
     const MAX = 8;
     const caja = document.createElement('div');
     caja.className = 'berriak-fondoa';
     caja.innerHTML = `<div class="berriak pergamino" role="dialog" aria-modal="true" aria-labelledby="berriak-izenburua">
         <h2 id="berriak-izenburua">📜 Zer berri?</h2>
-        <p class="lema">Azken bisitatik ${esc(actual.aventura.nombre)}-n</p>
+        <p class="lema">${subtitulo}</p>
         ${subidas.length ? `<ul class="maila-igoerak">${subidas.map(x => `<li style="--color:${esc(x.g.color)}">
           <span class="mi-ficha" data-ficha="${esc(x.g.id)}"></span>
           <span><b>${esc(x.g.nombre)}</b><br>⬆ MAILA IGOTA! <span class="nivel-num">${x.n.numero}</span> ${esc(x.n.titulo)}</span></li>`).join('')}</ul>` : ''}
-        ${cronica(nuevos.slice(-MAX).reverse())}
-        ${nuevos.length > MAX ? `<p class="vacio">… eta beste ${nuevos.length - MAX} (Egunkarian)</p>` : ''}
+        ${lista.length ? cronica(lista.slice(-MAX).reverse()) : '<p class="vacio">Oraindik ez da ezer gertatu. Abentura hastear dago!</p>'}
+        ${lista.length > MAX ? `<p class="vacio">… eta beste ${lista.length - MAX} (Egunkarian)</p>` : ''}
         <div class="d-botones"><button type="button" class="boton-jarraitu">Jarraitu ▶</button></div>
       </div>`;
     caja.querySelectorAll('[data-ficha]').forEach(el => el.append(Mapa.crearFicha(grupo(el.dataset.ficha), comun.config)));
     const cerrar = () => { caja.remove(); removeEventListener('keydown', tecla); };
     const tecla = e => { if (e.key === 'Escape') cerrar(); };
-    caja.onclick = e => { if (e.target === caja) cerrar(); };
     caja.querySelector('.boton-jarraitu').onclick = cerrar;
     addEventListener('keydown', tecla);
     document.body.append(caja);
     caja.querySelector('.boton-jarraitu').focus();
+  }
+
+  // ---------- Modo proyector ----------
+  // Pantalla completa para clase: recorre los grupos uno a uno (ficha grande, nivel, zona, inventario,
+  // logros y lo último que les ha pasado). ← → para cambiar, espacio para pausar, Esc para salir.
+  const SEGUNDOS_PROYECTOR = 10;
+  function abrirProyector() {
+    const grupos = gruposActivos();
+    if (!grupos.length) return;
+    let i = 0, pausa = false, temporizador = null;
+    const pantalla = document.createElement('div');
+    pantalla.className = 'proiektorea';
+    pantalla.setAttribute('role', 'dialog');
+    pantalla.setAttribute('aria-label', 'Proiektore modua');
+    pantalla.innerHTML = `<div class="p-eszena" aria-live="polite"></div>
+      <div class="p-oina">
+        <div class="p-puntuak"></div>
+        <div class="p-kontrolak">
+          <button type="button" class="m-boton" data-p="aurrekoa" aria-label="Aurrekoa">◀</button>
+          <button type="button" class="m-boton" data-p="pausa" aria-label="Gelditu">❚❚</button>
+          <button type="button" class="m-boton" data-p="hurrengoa" aria-label="Hurrengoa">▶</button>
+          <button type="button" class="m-boton" data-p="itxi" aria-label="Itxi">✕</button>
+        </div>
+        <div class="p-denbora"><i></i></div>
+      </div>`;
+    const eszena = pantalla.querySelector('.p-eszena');
+
+    const pintar = () => {
+      const g = grupos[i], e = actual.estado.grupos[g.id], n = barraNivel(e.puntos);
+      const total = actual.orden.length, num = numCasilla(e.posicion);
+      const cat = comun.catalogo;
+      const ultimos = e.historial.filter(ev => publico(ev) && !ev.anulado && ev.tipo !== 'anulacion').slice(-3).reverse();
+      pantalla.style.setProperty('--color', g.color);
+      eszena.innerHTML = `<div class="p-fitxa"></div>
+        <div class="p-datuak pergamino">
+          <p class="p-abentura">${esc(actual.aventura.nombre)}</p>
+          <h2>${esc(g.nombre)}</h2>
+          ${g.lema ? `<p class="lema">«${esc(g.lema)}»</p>` : ''}
+          <p class="p-maila"><span class="nivel-num">${n.numero}</span> ${esc(n.titulo)} · <b>${e.puntos} pt</b></p>
+          ${htmlBarra(n, e.puntos)}
+          <p class="p-gunea">📍 ${num}. ${esc(nombreCasilla(e.posicion))} <small>(${num} / ${total})</small></p>
+          <div class="fg-ruta"><i style="width:${total > 1 ? 100 * (num - 1) / (total - 1) : 0}%"></i></div>
+          <h3>Inbentarioa</h3>${htmlInventario(e.inventario)}
+          ${e.estados.length ? `<h3>Egoerak</h3>${htmlEstados(e.estados)}` : ''}
+          ${e.logros.length || e.hitos.length ? `<h3>Lorpenak</h3>${htmlInsignias([...e.logros, ...e.hitos], [...cat.logros, ...cat.hitos], '🏆')}` : ''}
+          ${ultimos.length ? `<h3>Azkenak</h3>${cronica(ultimos)}` : ''}
+        </div>`;
+      eszena.querySelector('.p-fitxa').append(Mapa.crearFicha(g, comun.config));
+      pantalla.querySelector('.p-puntuak').innerHTML = grupos.map((x, j) =>
+        `<span class="${j === i ? 'aktiboa' : ''}" style="--color:${esc(x.color)}" title="${esc(x.nombre)}"></span>`).join('');
+      // Reinicia las animaciones de entrada y la barra de tiempo.
+      eszena.classList.remove('sartu'); void eszena.offsetWidth; eszena.classList.add('sartu');
+      const barra = pantalla.querySelector('.p-denbora i');
+      barra.style.animation = 'none'; void barra.offsetWidth;
+      barra.style.animation = pausa ? 'none' : `p-denbora ${SEGUNDOS_PROYECTOR}s linear forwards`;
+      clearTimeout(temporizador);
+      if (!pausa) temporizador = setTimeout(() => ir(1), SEGUNDOS_PROYECTOR * 1000);
+    };
+    const ir = paso => { i = (i + paso + grupos.length) % grupos.length; pintar(); };
+    const cerrar = () => {
+      clearTimeout(temporizador);
+      removeEventListener('keydown', tecla, true);
+      if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+      pantalla.remove();
+    };
+    const alternarPausa = () => {
+      pausa = !pausa;
+      const b = pantalla.querySelector('[data-p="pausa"]');
+      b.textContent = pausa ? '▶▶' : '❚❚';
+      b.setAttribute('aria-label', pausa ? 'Jarraitu' : 'Gelditu');
+      pintar();
+    };
+    const tecla = e => {
+      const acciones = { ArrowRight: () => ir(1), ArrowLeft: () => ir(-1), ' ': alternarPausa, Escape: cerrar };
+      if (acciones[e.key]) { e.preventDefault(); e.stopPropagation(); acciones[e.key](); }
+    };
+    pantalla.querySelector('[data-p="aurrekoa"]').onclick = () => ir(-1);
+    pantalla.querySelector('[data-p="hurrengoa"]').onclick = () => ir(1);
+    pantalla.querySelector('[data-p="pausa"]').onclick = alternarPausa;
+    pantalla.querySelector('[data-p="itxi"]').onclick = cerrar;
+    pantalla.addEventListener('click', e => e.stopPropagation());
+    document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && pantalla.isConnected && pantalla.dataset.osoa) cerrar(); });
+    addEventListener('keydown', tecla, true);
+    cerrarEmergente();
+    document.body.append(pantalla);
+    pantalla.requestFullscreen?.().then(() => { pantalla.dataset.osoa = '1'; }).catch(() => { /* sin pantalla completa: sigue ocupando la ventana */ });
+    pintar();
+    pantalla.querySelector('[data-p="hurrengoa"]').focus();
   }
 
   function mostrarError(err) {
@@ -427,10 +554,12 @@
     $('pestanas').innerHTML = aventuras.map(a =>
       `<a href="#${esc(a.id)}" style="--acento:${esc(a.color_acento)}">${esc(a.nombre)}</a>`).join('');
     prepararLateral();
+    $('proiektorea').onclick = abrirProyector;
 
     document.addEventListener('click', cerrarEmergente);
     document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarEmergente(); });
     addEventListener('resize', () => emergente && colocar(emergente.el, emergente.ancla));
+    addEventListener('mapa-mugitu', () => emergente && colocar(emergente.el, emergente.ancla)); // la ventana sigue a lo pulsado al mover el mapa
 
     const irA = () => {
       const id = location.hash.slice(1);
