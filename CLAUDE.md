@@ -79,4 +79,4 @@ Stack: HTML + CSS + JS puro, sin frameworks, sin build y sin dependencias. Códi
 `node --test` (carpeta `tests/`).
 
 ## Fases
-Fase 0 ✔ · Fase 1 ✔ (esqueleto y datos) · Fase 2 ✔ (motor + web pública) · Fase 3 ✔ (admin.js + admin básico) · Fase 4 ✔ (gestión completa) · Fase 5 ✔ (editor del tablero y mapas) · siguiente: Fase 6 (gamificación avanzada; muchos elementos están recortados, ver arriba).
+Fase 0 ✔ · Fase 1 ✔ (esqueleto y datos) · Fase 2 ✔ (motor + web pública) · Fase 3 ✔ (admin.js + admin básico) · Fase 4 ✔ (gestión completa) · Fase 5 ✔ (editor del tablero y mapas) · Fase 6 saltada (sus elementos están recortados, ver arriba) · Fase 8 ✔ (GitHub Pages: https://igorhermoso1.github.io/bigarren_mailako_jokoa/) · pendientes: Fase 7 (pulido) y Fase 9 (mapas definitivos).

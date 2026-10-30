@@ -2,7 +2,7 @@
 
 Web que convierte la evaluación por grupos en dos aventuras sobre un mapa. Los alumnos solo miran la web pública (GitHub Pages); el profesor registra todo desde un panel local.
 
-> Estado: **Fase 5**. Web pública y panel completo, con editor visual del tablero y gestión de mapas.
+> Estado: **Fase 8**. Publicado en GitHub Pages: <https://igorhermoso1.github.io/bigarren_mailako_jokoa/>
 
 ## Requisitos
 - [Node.js](https://nodejs.org) (versión 20 o superior). No hay que instalar nada más.
@@ -25,6 +25,19 @@ Todo lo que pasa (avanzar, ganar un objeto, una nota…) es un **evento** que se
 
 - **Corregir un error** = añadir un evento `anulacion` que apunta al evento erróneo. El original sigue en el historial, tachado.
 - Cada evento lleva un **hash** encadenado con el anterior. Si alguien edita un evento antiguo a mano, la verificación lo detecta.
+
+## Publicar en GitHub Pages (una sola vez)
+1. Entra en <https://github.com/igorhermoso1/bigarren_mailako_jokoa> → **Settings** → **Pages**.
+2. En **Build and deployment**: *Source* = **Deploy from a branch**, *Branch* = **main**, carpeta **/ (root)** → **Save**.
+3. Al cabo de 1-2 minutos la web está en <https://igorhermoso1.github.io/bigarren_mailako_jokoa/>. Ese es el enlace para los alumnos.
+4. **Protege la rama `main`** para que el historial no se pueda reescribir: **Settings** → **Rules** → **Rulesets** → **New branch ruleset**.
+   - *Target branches*: **Include default branch**.
+   - Marca **Restrict deletions** y **Block force pushes**.
+   - **Create**.
+
+Cada `git push` actualiza la web en uno o dos minutos. El archivo `.nojekyll` hace que GitHub publique los archivos tal cual, sin procesarlos.
+
+> Antes de empezar el curso de verdad, los datos de ejemplo (grupos, eventos, notas) se deben sustituir por los reales. Ver «Empezar con datos reales» más abajo.
 
 ## Uso diario (panel del profesor)
 1. Abre una terminal en la carpeta del proyecto y arranca el panel:
@@ -78,6 +91,14 @@ Para verificar solo las cadenas de hashes (también las privadas):
 node admin.js --verificar
 ```
 O pulsa **🔍 Egiaztatu** en el panel.
+
+## Empezar con datos reales
+Los registros de eventos son de solo añadir, así que los de ejemplo no se borran desde el panel. Para empezar de cero **una sola vez**, antes del primer día de clase:
+1. Vacía los registros: deja `[]` como único contenido de `data/publico/eventos_globales.json`, de `data/publico/aventuras/*/eventos.json` y de `data/privado/eventos_privados.json`.
+2. Desde el panel, cambia los nombres de los grupos, los alias de los alumnos y el catálogo (o archiva lo que no quieras).
+3. `node admin.js --verificar` y después `git add . && git commit -m "Datos reales" && git push`.
+
+Los eventos de ejemplo seguirán en el historial de Git, pero son ficticios.
 
 ## Copias de seguridad
 - **GitHub** es la copia principal: cada `git push` guarda una versión completa.
