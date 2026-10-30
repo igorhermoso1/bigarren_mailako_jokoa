@@ -113,16 +113,30 @@ button { font: inherit; color: inherit; }
 .casilla:hover, .casilla:focus-visible, .casilla.seleccionada { transform: translate(-50%, -50%) scale(1.25); opacity: 1; z-index: 3; }
 .casilla.seleccionada { box-shadow: 0 0 0 3px var(--oro-claro), 0 0 18px 4px var(--oro); }
 
-/* Nombre de cada zona: cartela siempre visible, flotando sobre su peana */
-.casilla::after {
-  content: attr(data-nombre); position: absolute; left: 50%; bottom: calc(100% + 5px); transform: translateX(-50%);
-  white-space: nowrap; padding: .1rem .5rem; border-radius: 4px; pointer-events: none;
-  font: 700 clamp(.55rem, 1.05cqw, .8rem)/1.3 var(--titulo); color: var(--oro-claro); text-shadow: 0 1px 1px #000;
-  background: linear-gradient(#2b1d14f0, #160f0af0); border: 1px solid var(--oro-osc); box-shadow: 0 2px 6px #000a;
-  animation: flotar 3.2s ease-in-out infinite; animation-delay: calc(var(--i, 0) * -.45s);
+/* Nombre de cada zona: cartela que flota junto a su peana. mapa.js elige el lado (data-sitio) para
+   que no se pisen y le da el tono del diorama en el que está (--tono, --sat). */
+.cartela {
+  --tono: 40; --sat: 55%;
+  position: absolute; left: 50%; top: 50%; white-space: nowrap; pointer-events: none; z-index: 1;
+  padding: .12rem .5rem; border-radius: 4px;
+  font: 700 clamp(.55rem, 1.05cqw, .8rem)/1.3 var(--titulo); letter-spacing: .02em;
+  color: hsl(var(--tono) 90% 90%); text-shadow: 0 1px 1px #000, 0 0 6px hsl(var(--tono) 90% 50% / .6);
+  background: linear-gradient(hsl(var(--tono) var(--sat) 33% / .96), hsl(var(--tono) var(--sat) 17% / .96));
+  border: 1px solid hsl(var(--tono) 70% 62%);
+  box-shadow: 0 2px 6px #000b, inset 0 1px 0 hsl(var(--tono) 80% 80% / .35), 0 0 10px hsl(var(--tono) 90% 55% / .35);
+  transform: translate(-50%, calc(-100% - var(--d) / 2 - 6px));
+  animation: cartela-entra .5s cubic-bezier(.3, 1.6, .5, 1) both, flotar 3.2s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * 45ms + 300ms), calc(var(--i, 0) * -.45s);
 }
-@keyframes flotar { 50% { transform: translate(-50%, -5px); } }
-.casilla:hover::after, .casilla:focus-visible::after, .casilla.seleccionada::after { border-color: var(--oro-claro); color: #fff; }
+.casilla .num { position: relative; z-index: 1; }
+.cartela[data-sitio="abajo"] { transform: translate(-50%, calc(var(--d) / 2 + 6px)); }
+.cartela[data-sitio="derecha"] { transform: translate(calc(var(--d) / 2 + 6px), -50%); }
+.cartela[data-sitio="izquierda"] { transform: translate(calc(-100% - var(--d) / 2 - 6px), -50%); }
+@keyframes flotar { 50% { translate: 0 -4px; } }
+@keyframes cartela-entra { from { scale: 0; opacity: 0; } }
+.casilla:hover .cartela, .casilla:focus-visible .cartela, .casilla.seleccionada .cartela {
+  z-index: 5; color: #fff; border-color: hsl(var(--tono) 90% 75%); box-shadow: 0 0 14px hsl(var(--tono) 95% 60% / .8), 0 2px 6px #000b;
+}
 
 /* Nombre del grupo al pasar el ratón por su ficha */
 .ficha-mapa::after {
@@ -143,7 +157,7 @@ button { font: inherit; color: inherit; }
 .ficha-mapa:hover, .ficha-mapa:focus-visible { z-index: 4; filter: drop-shadow(0 0 8px var(--oro-claro)) drop-shadow(0 4px 3px #000b); }
 .ficha-mapa.seleccionada { z-index: 4; filter: drop-shadow(0 0 10px var(--oro)) drop-shadow(0 0 4px #fff); }
 .ficha-mapa.seleccionada .ficha { animation: latir 1.6s ease-in-out infinite; }
-@keyframes latir { 50% { transform: scale(1.08); } }
+@keyframes latir { 50% { scale: 1.08; } }
 
 /* Ficha: foto o iniciales en el centro y marco del sprite encima */
 .ficha { position: relative; display: block; width: var(--t); height: var(--t); flex: none; }
@@ -202,7 +216,7 @@ button { font: inherit; color: inherit; }
 .emergente.hoja { position: fixed; left: 50%; bottom: 0; top: auto; transform: translateX(-50%); width: min(560px, 100vw);
   max-height: 78dvh; border-radius: 12px 12px 0 0; animation-name: subir; }
 @keyframes subir { from { transform: translate(-50%, 30%); opacity: 0; } }
-@media (prefers-reduced-motion: reduce) { .emergente, .ficha-mapa .ficha, .casilla::after { animation: none !important; } .ficha-mapa { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .emergente, .ficha-mapa .ficha, .cartela { animation: none !important; } .ficha-mapa { transition: none; } }
 
 .cerrar {
   position: absolute; right: .5rem; top: .5rem; width: 2rem; height: 2rem; border-radius: 50%; cursor: pointer; z-index: 1;
@@ -436,4 +450,68 @@ body::before {
 @media (prefers-reduced-motion: reduce) {
   body::before, .titulo, .lienzo::after, .casilla.pisada, .xp-relleno, .fila-grupo::before { animation: none !important; }
   .estandartes a::after { display: none; }
+}
+
+/* ======================================================================
+   Efectos del mapa (js/fx.js y CSS): partículas, nubes, rayo de luz,
+   entrada del mapa, anillo rúnico, ondas, faro de la meta y fichas que levitan
+   ====================================================================== */
+.fx-particulas, .fx-nubes, .fx-rayo { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+.fx-nubes { overflow: hidden; opacity: .5; mix-blend-mode: screen; }
+.fx-nubes::before, .fx-nubes::after {
+  content: ''; position: absolute; width: 55%; height: 38%; filter: blur(14px);
+  background:
+    radial-gradient(ellipse at 30% 55%, #ffffffaa, transparent 55%),
+    radial-gradient(ellipse at 60% 45%, #ffffff99, transparent 50%),
+    radial-gradient(ellipse at 80% 60%, #ffffff77, transparent 45%);
+  animation: deriva 75s linear infinite;
+}
+.fx-nubes::before { top: 4%; }
+.fx-nubes::after { top: 52%; width: 45%; animation-duration: 105s; animation-delay: -50s; opacity: .7; }
+@keyframes deriva { from { translate: -70% 0; } to { translate: 230% 0; } }
+.fx-rayo {
+  background: linear-gradient(105deg, transparent 42%, #fff6d855 49%, #ffffff33 51%, transparent 58%) no-repeat;
+  background-size: 300% 100%; mix-blend-mode: soft-light; animation: rayo 11s ease-in-out infinite;
+}
+@keyframes rayo { 0%, 55% { background-position: 130% 0; } 85%, 100% { background-position: -30% 0; } }
+
+/* El mapa aparece saliendo de la oscuridad */
+.lienzo { animation: mapa-entra 1.1s ease-out both; }
+@keyframes mapa-entra { from { filter: brightness(.15) saturate(.2) blur(4px); scale: 1.03; } }
+
+/* Casilla con grupos: anillo de runas que gira */
+.casilla.ocupada::before {
+  content: ''; position: absolute; inset: -42%; border-radius: 50%; pointer-events: none;
+  border: 2px dashed var(--oro-claro); box-shadow: 0 0 10px #f6dc95aa, inset 0 0 8px #f6dc9566;
+  animation: girar 9s linear infinite;
+}
+@keyframes girar { to { rotate: 360deg; } }
+/* Onda mágica al pasar el ratón por una casilla */
+.casilla::after {
+  content: ''; position: absolute; inset: -8%; border-radius: 50%; pointer-events: none;
+  border: 2px solid hsl(var(--tono, 40) 90% 75%); opacity: 0;
+}
+.casilla:hover::after, .casilla:focus-visible::after { animation: onda 1.1s ease-out infinite; }
+@keyframes onda { from { scale: .9; opacity: .9; } to { scale: 2.4; opacity: 0; } }
+/* Faro de luz sobre la meta */
+.casilla[data-tipo="meta"]:not(.ocupada)::before {
+  content: ''; position: absolute; left: 50%; bottom: 50%; width: 70%; height: 320%; translate: -50% 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(to top, #ffe9a8cc, #ffe9a800); filter: blur(3px); border-radius: 50% 50% 0 0;
+  animation: faro 2.8s ease-in-out infinite;
+}
+@keyframes faro { 50% { opacity: .45; scale: 1 .85; } }
+
+/* Fichas que levitan sobre su sombra */
+.ficha-mapa .ficha { animation: levitar 3.4s ease-in-out infinite; animation-delay: calc(var(--dx, 0) * -1.1s); }
+.ficha-mapa.seleccionada .ficha { animation: latir 1.6s ease-in-out infinite, levitar 3.4s ease-in-out infinite; }
+@keyframes levitar { 50% { translate: 0 -5px; } }
+.ficha-mapa::before {
+  content: ''; position: absolute; left: 50%; bottom: -5px; width: 66%; height: 9px; translate: -50% 0; pointer-events: none;
+  background: radial-gradient(ellipse, #000b, transparent 70%); animation: sombra 3.4s ease-in-out infinite; animation-delay: calc(var(--dx, 0) * -1.1s);
+}
+@keyframes sombra { 50% { scale: .75; opacity: .55; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-nubes, .fx-rayo { display: none; }
+  .lienzo, .casilla.ocupada::before, .casilla::after, .casilla[data-tipo="meta"]::before, .ficha-mapa .ficha, .ficha-mapa::before { animation: none !important; }
 }

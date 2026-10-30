@@ -88,6 +88,11 @@ Stack: HTML + CSS + JS puro, sin frameworks, sin build y sin dependencias. Códi
 - `css/web.css` termina con la capa «RPG de los 90»: muro de piedra, ascuas animadas, cabecera de hierro con remaches, título metálico con destello, ventanas con bisel y gemas en las esquinas, luz de antorcha sobre el mapa, latido en zonas superadas, cursor ▶ en el menú de grupos y XP con rayas. Todo se desactiva con reducir movimiento.
 - `css/admin.css` termina con la capa de controles: escala de espacios `--e1…--e5`, campos de 2.4rem con flecha propia en los select, botones con bisel y `[hidden]` siempre oculto.
 
+## Mapa vivo (30/10, tarde)
+- **Versión en las URL**: `index.html` y `admin.html` cargan CSS y JS con `?v=AAAAMMDDx`. **Cada cambio de código publicado necesita subir esa versión en los dos archivos**: GitHub Pages guarda en caché 10 min y, si no, el navegador mezcla archivos viejos y nuevos (así salió el cubo gigante). El SVG del cubo lleva además `width`/`height` propios.
+- **Cartelas** de zona = `<span class="cartela">` dentro del botón de la casilla. `mapa.js → repartirCartelas()` elige arriba/abajo/derecha/izquierda sin solapes (con medidas de maquetación, no de pantalla; se repite al redimensionar) y `teñirCartelas()` toma el color medio del mapa alrededor de la casilla (`--tono`, `--sat`).
+- **Efectos**: `js/fx.js` (solo en la web pública) pone un canvas con luciérnagas y un `Fx.estallido(el)` al pulsar una casilla o ficha, además de las capas CSS `.fx-nubes` y `.fx-rayo`. En CSS: entrada del mapa, anillo rúnico en casillas ocupadas, onda al pasar el ratón, faro en la meta y fichas que levitan con sombra. Todo se apaga con reducir movimiento y el canvas se para con la pestaña oculta.
+
 ## Tests
 `node --test` (carpeta `tests/`). Los tests usan `tests/datos_prueba/publico` (ficticio), nunca `data/`.
 
