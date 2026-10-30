@@ -348,6 +348,8 @@ const ESQUEMAS = {
     prefijo: entrada => `${entrada.aventura[0]}-c`, obligatorios: ['nombre', 'tipo', 'x', 'y'],
     campos: {
       nombre: V.texto(80, true), lugar: V.texto(80), tipo: V.opcion(ctx => Object.keys(ctx.config.tipos_casilla)),
+      // Estilo de la cartela según la región del mapa (bosque, hielo, ciudad…); vacío = color tomado del mapa.
+      estiloa: (v, n, ctx) => v == null || v === '' ? undefined : V.opcion(c => (c.config.estilos_cartela || []).map(e => e.id))(v, n, ctx),
       x: V.num(0, 100), y: V.num(0, 100), descripcion: V.texto(500),
       entrega: (v, n, ctx) => {
         if (v == null || v === '') return undefined;
@@ -543,10 +545,23 @@ function git(raiz, args) {
   return new Promise((ok, mal) => execFile('git', args, { cwd: raiz, timeout: 120000, env: { ...process.env, GIT_TERMINAL_PROMPT: '0' } },
     (err, stdout, stderr) => err ? mal(new Error((stderr || err.message).trim())) : ok(stdout.trim())));
 }
+// Lista de canciones para la web: todos los archivos de audio de la carpeta music/, por nombre.
+// Se rehace al arrancar el panel y al publicar, así basta con meter o quitar archivos en la carpeta.
+const EXT_AUDIO = /\.(mp3|ogg|oga|m4a|aac|wav|opus|flac)$/i;
+function actualizarMusica(raiz) {
+  const dir = path.join(raiz, 'music');
+  if (!fs.existsSync(dir)) return [];
+  const lista = fs.readdirSync(dir).filter(f => EXT_AUDIO.test(f) && !f.startsWith('.')).sort((a, b) => a.localeCompare(b));
+  const archivo = path.join(dir, 'zerrenda.json');
+  if (JSON.stringify(leer(archivo, null)) !== JSON.stringify(lista)) escribirAtomico(archivo, lista);
+  return lista;
+}
+
 async function publicar(raiz, entrada) {
   if (!verificarTodo(raiz).ok) throw new Error('Hay registros dañados: revisa «Egiaztatu» antes de publicar');
   const mensaje = texto(entrada?.mensaje, 'Mensaje', false, 200) || `Eguneraketa ${new Date().toISOString().slice(0, 16).replace('T', ' ')}`;
-  await git(raiz, ['add', '--', 'data/publico', 'img']);
+  actualizarMusica(raiz);
+  await git(raiz, ['add', '--', 'data/publico', 'img', ...(fs.existsSync(path.join(raiz, 'music')) ? ['music'] : [])]);
   const archivos = (await git(raiz, ['diff', '--cached', '--name-only'])).split(/\r?\n/).filter(Boolean);
   if (archivos.length) await git(raiz, ['commit', '-m', mensaje]);
   try { await git(raiz, ['push', 'origin', 'HEAD']); } catch (e) {
@@ -560,6 +575,7 @@ const TIPOS_MIME = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8',
   '.json': 'application/json; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.ico': 'image/x-icon',
+  '.mp3': 'audio/mpeg', '.ogg': 'audio/ogg', '.oga': 'audio/ogg', '.opus': 'audio/ogg', '.m4a': 'audio/mp4', '.aac': 'audio/aac', '.wav': 'audio/wav', '.flac': 'audio/flac',
 };
 // Insensible a mayúsculas: en Windows «DATA/Privado» es la misma carpeta.
 const PROHIBIDO = [/^\.git(\/|$)/i, /^data\/privado(\/|$)/i, /^backups(\/|$)/i];
@@ -632,7 +648,7 @@ function crearServidor({ raiz = __dirname, token = crypto.randomBytes(24).toStri
   return { servidor, token };
 }
 
-module.exports = { publicar, validarEvento, anadirEvento, guardarEntidad, guardarFoto, guardarMapa, cargarDatos, verificarTodo, crearServidor };
+module.exports = { actualizarMusica, publicar, validarEvento, anadirEvento, guardarEntidad, guardarFoto, guardarMapa, cargarDatos, verificarTodo, crearServidor };
 
 if (require.main === module) {
   if (process.argv.includes('--verificar')) {
@@ -641,7 +657,9 @@ if (require.main === module) {
     process.exit(ok ? 0 : 1);
   }
   const { servidor } = crearServidor();
+  const canciones = actualizarMusica(__dirname);
   servidor.listen(PUERTO, '127.0.0.1', () => {
+    console.log(`Música: ${canciones.length} canción(es) en music/`);
     console.log(`Panel del profesor: http://localhost:${PUERTO}/admin.html`);
     console.log(`Web pública:        http://localhost:${PUERTO}/`);
     console.log('Ctrl+C para parar.');

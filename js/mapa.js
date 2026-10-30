@@ -10,31 +10,92 @@
     return el;
   };
 
+  // Reduce una imagen (o un recorte de ella) a `lado` píxeles por pasos de la mitad y con suavizado alto.
+  // Encoger de golpe 5 o 15 veces (marco de 330 px o foto de 512 px a una ficha de 40 px) la deja borrosa
+  // y dentada; así queda nítida. El resultado se guarda en memoria para no repetirlo.
+  const cacheNitido = new Map();
+  function nitido(src, recorte, lado) {
+    lado = Math.max(1, Math.round(lado));
+    const clave = `${src}|${recorte ? Object.values(recorte).join(',') : ''}|${lado}`;
+    if (!cacheNitido.has(clave)) {
+      cacheNitido.set(clave, new Promise((ok, mal) => {
+        const img = new Image();
+        img.onload = () => {
+          try {
+            const r = recorte || { x: 0, y: 0, w: img.naturalWidth, h: img.naturalHeight };
+            const escala = Math.min(1, lado / Math.min(r.w, r.h));
+            const finW = Math.max(1, Math.round(r.w * escala)), finH = Math.max(1, Math.round(r.h * escala));
+            const lienzoDe = (w, h) => Object.assign(document.createElement('canvas'), { width: w, height: h });
+            let w = Math.round(r.w), h = Math.round(r.h), c = lienzoDe(w, h);
+            c.getContext('2d').drawImage(img, r.x, r.y, r.w, r.h, 0, 0, w, h);
+            const paso = (nw, nh) => {
+              const n = lienzoDe(nw, nh), x = n.getContext('2d');
+              x.imageSmoothingQuality = 'high';
+              x.drawImage(c, 0, 0, nw, nh);
+              c = n; w = nw; h = nh;
+            };
+            while (w / 2 > finW) paso(Math.round(w / 2), Math.round(h / 2));
+            paso(finW, finH);
+            ok(c.toDataURL('image/png'));
+          } catch (e) { mal(e); }
+        };
+        img.onerror = mal;
+        img.src = src;
+      }));
+    }
+    return cacheNitido.get(clave);
+  }
+
   // Ficha de un grupo: foto (o iniciales) en el centro y el marco del sprite encima.
-  // El tamaño lo marca la variable CSS --t del contenedor, así sirve para el mapa y para las tarjetas.
+  // El tamaño lo marca la variable CSS --t del contenedor. Cuando la ficha ya tiene tamaño en pantalla,
+  // marco y foto se preparan exactamente a esos píxeles (por la densidad de la pantalla), así se ven nítidos.
   function crearFicha(grupo, config) {
     const ficha = crear('span', 'ficha');
     ficha.style.setProperty('--color', grupo.color);
 
     const foto = crear('span', 'ficha-foto');
+    const { zoom = 1, x = 0, y = 0 } = grupo.ficha?.encuadre || {};
+    let imgFoto = null;
     if (grupo.foto_grupo) {
-      const { zoom = 1, x = 0, y = 0 } = grupo.ficha.encuadre || {};
-      const img = crear('img', '', { src: grupo.foto_grupo, alt: '', loading: 'lazy' });
-      img.style.transform = `translate(${x * 100}%, ${y * 100}%) scale(${zoom})`;
-      foto.append(img);
+      imgFoto = crear('img', '', { alt: '', decoding: 'async' });
+      imgFoto.style.transform = `translate(${x * 100}%, ${y * 100}%) scale(${zoom})`;
+      foto.append(imgFoto);
     } else {
-      foto.textContent = grupo.nombre.split(/\s+/).map(p => p[0]).join('').slice(0, 2).toUpperCase();
+      foto.textContent = grupo.nombre.split(/s+/).map(p => p[0]).join('').slice(0, 2).toUpperCase();
     }
 
     const marco = crear('span', 'ficha-marco');
-    const m = config.marcos.find(mm => mm.id === grupo.ficha.marco);
+    const m = config.marcos.find(mm => mm.id === grupo.ficha?.marco);
+    const s = config.marcos_sprite;
+    let imgMarco = null;
     if (m) {
-      const s = config.marcos_sprite;
+      // Mientras se prepara la versión nítida se ve el sprite tal cual.
       marco.style.backgroundImage = `url(${s.archivo})`;
       marco.style.backgroundSize = `calc(var(--t) * ${s.ancho / m.d}) calc(var(--t) * ${s.alto / m.d})`;
       marco.style.backgroundPosition = `calc(var(--t) * ${-(m.cx - m.d / 2) / m.d}) calc(var(--t) * ${-(m.cy - m.d / 2) / m.d})`;
     }
     ficha.append(foto, marco);
+
+    let ladoActual = 0;
+    const preparar = ancho => {
+      const lado = Math.round(ancho * (devicePixelRatio || 1));
+      if (!lado || lado === ladoActual) return;
+      ladoActual = lado;
+      if (m) nitido(s.archivo, { x: m.cx - m.d / 2, y: m.cy - m.d / 2, w: m.d, h: m.d }, lado).then(url => {
+        if (!imgMarco) {
+          imgMarco = crear('img', 'ficha-marco-img', { alt: '' });
+          imgMarco.onload = () => { marco.style.backgroundImage = 'none'; };
+          marco.append(imgMarco);
+        }
+        imgMarco.src = url;
+      }, () => { /* se queda el sprite */ });
+      // La foto ocupa el 56 % de la ficha y se amplía con el zoom del encuadre.
+      if (imgFoto) nitido(grupo.foto_grupo, null, lado * .56 * Math.max(1, zoom)).then(url => { imgFoto.src = url; }, () => { imgFoto.src = grupo.foto_grupo; });
+    };
+    // Se rehace si cambia el tamaño en pantalla; y una primera vez en cuanto la ficha está en la página.
+    new ResizeObserver(([entrada]) => preparar(entrada.contentRect.width)).observe(ficha);
+    const primeraVez = (intentos = 20) => ficha.offsetWidth ? preparar(ficha.offsetWidth) : intentos && setTimeout(() => primeraVez(intentos - 1), 100);
+    setTimeout(primeraVez, 0);
     return ficha;
   }
 
@@ -93,6 +154,22 @@
       lienzo.append(svg);
     }
 
+    // Rastro de energía: tramos del camino que algún grupo ya ha recorrido, con luz que fluye.
+    const pisadasRastro = new Set(Object.values(estado.grupos).flatMap(g => g.camino));
+    const tramos = orden.flatMap(c => c.siguientes.filter(sg => pisadasRastro.has(c.id) && pisadasRastro.has(sg) && casilla(sg)).map(sg => [c, casilla(sg)]));
+    if (tramos.length) {
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      Object.entries({ viewBox: '0 0 100 100', preserveAspectRatio: 'none', class: 'rastro', 'aria-hidden': 'true' }).forEach(([k, v]) => svg.setAttribute(k, v));
+      for (const [a, z] of tramos) {
+        for (const clase of ['rastro-halo', 'rastro-nucleo']) {
+          const l = document.createElementNS(svg.namespaceURI, 'line');
+          Object.entries({ x1: a.x, y1: a.y, x2: z.x, y2: z.y, class: clase, 'vector-effect': 'non-scaling-stroke' }).forEach(([k, v]) => l.setAttribute(k, v));
+          svg.append(l);
+        }
+      }
+      lienzo.append(svg);
+    }
+
     // Casillas: medallón con su número de orden y cartela con el nombre.
     // Brillan las que algún grupo ya ha pisado; las ocupadas llevan un anillo rúnico.
     const pisadas = new Set(Object.values(estado.grupos).flatMap(g => g.camino));
@@ -103,6 +180,9 @@
       b.append(crear('span', 'num'), crear('span', 'cartela', { 'aria-hidden': 'true' }));
       b.firstChild.textContent = c.tipo === 'meta' ? '⚑' : i + 1;
       b.lastChild.textContent = c.nombre;
+      // Estilo de región elegido por el profesor (bosque, hielo, ciudad…); sin él, color tomado del mapa.
+      const estilo = (config.estilos_cartela || []).find(e => e.id === c.estiloa);
+      if (estilo) Object.assign(b.lastChild.dataset, { estiloa: estilo.id, ikonoa: estilo.ikonoa || '' });
       b.classList.toggle('pisada', pisadas.has(c.id));
       b.classList.toggle('ocupada', ocupadas.has(c.id));
       b.style.setProperty('--i', i); // desfase de las animaciones para que no vayan todas a la vez
@@ -127,6 +207,7 @@
       const [dx, dy] = abanico(ocupantes.length, ocupantes.indexOf(g.id));
       const b = crear('button', 'ficha-mapa', { type: 'button', 'data-grupo': g.id, 'data-nombre': g.nombre, 'aria-label': `${g.nombre}: ${casilla(e.posicion)?.nombre || e.posicion}` });
       b.style.setProperty('--dx', dx);
+      b.style.setProperty('--color', g.color); // aura del color del grupo bajo la ficha
       b.style.setProperty('--dy', dy);
       b.append(crearFicha(g, config));
       b.onclick = ev => { ev.stopPropagation(); window.Fx?.estallido(b); al.ficha(g.id, b); };
@@ -137,6 +218,8 @@
       const pasos = sinAnimacion() || desde === e.posicion ? [e.posicion] : ruta(tablero, desde, e.posicion);
       colocar(pasos[0]);
       pasos.slice(1).forEach((id, i) => setTimeout(() => colocar(id), 300 + i * PASO_MS));
+      // Al llegar a la casilla nueva: onda, columna de luz y chispas del color del grupo.
+      if (pasos.length > 1) setTimeout(() => window.Fx?.llegada(b, g.color), 300 + (pasos.length - 2) * PASO_MS + 520);
       vistas[g.id] = e.posicion;
     }
     try { localStorage.setItem(clave, JSON.stringify(vistas)); } catch { /* idem */ }
@@ -165,7 +248,7 @@
           const d = lienzo2d.getImageData(px, py, 1, 1).data;
           r += d[0]; g += d[1]; b += d[2]; n++;
         }
-        if (!n) continue;
+        if (!n || lienzo.querySelector(`.casilla[data-id="${CSS.escape(c.id)}"] .cartela[data-estiloa]`)) continue;
         const [h, s] = rgbAHsl(r / n, g / n, b / n);
         const boton = lienzo.querySelector(`.casilla[data-id="${CSS.escape(c.id)}"]`);
         boton?.style.setProperty('--tono', Math.round(h));
@@ -187,17 +270,22 @@
   // se prueba primero abajo, porque arriba están las fichas.
   // Los rectángulos se calculan a partir de las medidas de maquetación (no de la pantalla), así las
   // animaciones de flotar o de aparecer no falsean el cálculo.
-  const SITIOS = ['arriba', 'abajo', 'derecha', 'izquierda'];
+  // Cuatro lados y cuatro diagonales (la cartela arranca en el medallón y se alarga hacia un lado).
+  const SITIOS = ['arriba', 'abajo', 'derecha', 'izquierda', 'arriba-der', 'arriba-izq', 'abajo-der', 'abajo-izq'];
+  const MARGEN = 4; // holgura para el vaivén de la animación
   const HUECO = 6; // separación entre medallón y cartela (la misma que en web.css)
   function rectCartela(sitio, cx, cy, d, w, h) {
     const r = d / 2 + HUECO;
-    const [x, y] = { arriba: [cx - w / 2, cy - r - h], abajo: [cx - w / 2, cy + r], derecha: [cx + r, cy - h / 2], izquierda: [cx - r - w, cy - h / 2] }[sitio];
+    const [x, y] = {
+      arriba: [cx - w / 2, cy - r - h], abajo: [cx - w / 2, cy + r], derecha: [cx + r, cy - h / 2], izquierda: [cx - r - w, cy - h / 2],
+      'arriba-der': [cx - d / 2, cy - r - h], 'arriba-izq': [cx + d / 2 - w, cy - r - h], 'abajo-der': [cx - d / 2, cy + r], 'abajo-izq': [cx + d / 2 - w, cy + r],
+    }[sitio];
     return { left: x, top: y, right: x + w, bottom: y + h };
   }
   function repartirCartelas(lienzo) {
     const botones = [...lienzo.querySelectorAll('.casilla')];
     if (!botones.length || !lienzo.isConnected) return;
-    const area = (a, b) => Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left)) * Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top));
+    const area = (a, b) => Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left) + MARGEN) * Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top) + MARGEN);
     const datos = botones.map(b => ({ b, cx: b.offsetLeft, cy: b.offsetTop, d: b.offsetWidth }));
     const medallones = datos.map(({ cx, cy, d }) => ({ left: cx - d / 2, top: cy - d / 2, right: cx + d / 2, bottom: cy + d / 2 }));
     const ancho = lienzo.clientWidth, alto = lienzo.clientHeight;
@@ -205,7 +293,7 @@
     for (const [i, { b, cx, cy, d }] of datos.entries()) {
       const cartela = b.querySelector('.cartela');
       const w = cartela.offsetWidth, h = cartela.offsetHeight;
-      const orden = b.classList.contains('ocupada') ? ['abajo', 'derecha', 'izquierda', 'arriba'] : SITIOS;
+      const orden = b.classList.contains('ocupada') ? ['abajo', 'abajo-der', 'abajo-izq', 'derecha', 'izquierda', 'arriba', 'arriba-der', 'arriba-izq'] : SITIOS;
       let mejor = null;
       for (const sitio of orden) {
         const r = rectCartela(sitio, cx, cy, d, w, h);

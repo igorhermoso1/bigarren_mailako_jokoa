@@ -4,17 +4,24 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Lit Zerbitzuak RPG</title>
-  <link rel="stylesheet" href="css/web.css?v=20261030b">
+  <link rel="stylesheet" href="css/web.css?v=20261030c">
 </head>
 <body>
   <header class="cabecera">
     <div class="marca">
-      <svg class="kuboa" viewBox="0 0 100 100" width="36" height="36" aria-hidden="true">
-        <polygon points="50,6 92,29 50,52 8,29" fill="#f2453a"/>
-        <polygon points="8,29 50,52 50,96 8,73" fill="#d0201a"/>
-        <polygon points="92,29 50,52 50,96 92,73" fill="#9b1410"/>
-      </svg>
+      <div class="kuboa" aria-hidden="true"><div class="kuboa-gorputza">
+        <i class="k-aurrea"></i><i class="k-atzea"></i><i class="k-eskuina"></i><i class="k-ezkerra"></i><i class="k-goia"></i><i class="k-behea"></i>
+      </div></div>
       <h1 id="titulo" class="titulo">Lit Zerbitzuak RPG</h1>
+    </div>
+    <div id="musika" class="musika" hidden>
+      <button type="button" id="m-jo" class="m-boton" aria-label="Musika piztu">▶</button>
+      <button type="button" id="m-hurrengoa" class="m-boton" aria-label="Hurrengo abestia">⏭</button>
+      <div class="m-pantaila">
+        <span class="m-etiketa"><span class="m-ekualizadorea" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Orain jotzen</span>
+        <div class="m-zinta" aria-live="polite"><span id="m-abestia">Sakatu ▶ musika entzuteko</span></div>
+      </div>
+      <input type="range" id="m-bolumena" class="m-bolumena" min="0" max="1" step="0.05" aria-label="Bolumena">
     </div>
     <nav id="pestanas" class="estandartes" aria-label="Abenturak"></nav>
   </header>
@@ -40,9 +47,10 @@
     </aside>
   </main>
 
-  <script src="js/motor.js?v=20261030b"></script>
-  <script src="js/fx.js?v=20261030b"></script>
-  <script src="js/mapa.js?v=20261030b"></script>
-  <script src="js/app.js?v=20261030b"></script>
+  <script src="js/motor.js?v=20261030c"></script>
+  <script src="js/fx.js?v=20261030c"></script>
+  <script src="js/mapa.js?v=20261030c"></script>
+  <script src="js/app.js?v=20261030c"></script>
+  <script src="js/musika.js?v=20261030c"></script>
 </body>
 </html>

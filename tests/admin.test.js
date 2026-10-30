@@ -232,3 +232,12 @@ test('publicar: sube solo data/publico e img a GitHub (aquí, a un remoto local)
   assert.deepStrictEqual(await publicar(raiz, {}), { archivos: 0 }); // sin cambios: no crea commit vacío
   fs.rmSync(remoto, { recursive: true, force: true });
 });
+
+test('música: la lista sale de los archivos de audio de la carpeta music/', () => {
+  const { actualizarMusica } = require('../admin.js');
+  const dir = path.join(raiz, 'music');
+  fs.mkdirSync(dir, { recursive: true });
+  for (const f of ['B abestia.mp3', 'a abestia.ogg', 'oharra.txt']) fs.writeFileSync(path.join(dir, f), 'x');
+  assert.deepStrictEqual(actualizarMusica(raiz), ['a abestia.ogg', 'B abestia.mp3']);
+  assert.deepStrictEqual(JSON.parse(fs.readFileSync(path.join(dir, 'zerrenda.json'), 'utf8')), ['a abestia.ogg', 'B abestia.mp3']);
+});

@@ -54,6 +54,7 @@
               <p class="ed-id">ID: <code>${esc(c.id)}</code> · x ${c.x}% · y ${c.y}%</p>
               <label>Izena (gaia) <input name="nombre" value="${esc(c.nombre)}" maxlength="80"></label>
               <label>Lekua (mapako izena) <input name="lugar" value="${esc(c.lugar || '')}" maxlength="80"></label>
+              <label>Eskualdearen estiloa (kartela) <select name="estiloa"><option value="">Automatikoa (maparen kolorea)</option>${(A.datos.config.estilos_cartela || []).map(e => `<option value="${esc(e.id)}"${e.id === c.estiloa ? ' selected' : ''}>${esc(e.ikonoa || '')} ${esc(e.nombre)}</option>`).join('')}</select></label>
               <label>Mota <select name="tipo">${Object.entries(tipos).map(([k, v]) => `<option value="${esc(k)}"${k === c.tipo ? ' selected' : ''}>${esc(v)}</option>`).join('')}</select></label>
               <label>Ariketa (entrega) <select name="entrega"><option value="">—</option>${av().entregas.entregas.map(e => {
                 const otra = usadas.get(e.id);
@@ -127,7 +128,7 @@
         e.preventDefault();
         const f = form.elements;
         const valor = {
-          id: c.id, nombre: f.nombre.value, lugar: f.lugar.value, tipo: f.tipo.value, entrega: f.entrega.value,
+          id: c.id, nombre: f.nombre.value, lugar: f.lugar.value, tipo: f.tipo.value, entrega: f.entrega.value, estiloa: f.estiloa.value,
           descripcion: f.descripcion.value, siguientes: [...form.querySelectorAll('[name=siguientes]:checked')].map(i => i.value),
         };
         if (await guardarCasilla(valor, 'Laukia gordeta')) await A.recargar();

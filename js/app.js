@@ -155,6 +155,8 @@
     const elegir = i => {
       tabs.forEach((t, j) => { t.setAttribute('aria-selected', i === j); t.tabIndex = i === j ? 0 : -1; });
       cuerpo.innerHTML = pestanas[i].html;
+      // Las fichas se ponen como nodos (sus imágenes nítidas llegan después y no sobreviven a un innerHTML).
+      cuerpo.querySelectorAll('[data-ficha]').forEach(el => el.append(Mapa.crearFicha(grupo(el.dataset.ficha), comun.config)));
       cuerpo.scrollTop = 0;
     };
     tabs.forEach((t, i) => {
@@ -259,10 +261,9 @@
       return { g, salida, nota: nota && publico(nota) ? nota : null, estado };
     });
     const superados = filas.filter(f => f.salida).length;
-    const ficha = g => { const s = document.createElement('div'); s.append(Mapa.crearFicha(g, comun.config)); return s.innerHTML; };
     const taldeak = `<ul class="resultados">${filas.map(({ g, salida, nota, estado }) => `
       <li class="${estado[0]}" style="--color:${esc(g.color)}">
-        <div class="mini-ficha">${ficha(g)}</div>
+        <div class="mini-ficha" data-ficha="${esc(g.id)}"></div>
         <div class="res-texto">
           <strong>${esc(g.nombre)}</strong> <span class="chip ${estado[0]}">${estado[1]}</span>
           ${salida ? `<div class="res-meta">📅 ${fecha(salida.fecha)}${salida.datos.motivo ? ` · ${esc(salida.datos.motivo)}` : ''}${salida.puntos ? ` · <b>${conSigno(salida.puntos)} pt</b>` : ''}</div>` : ''}

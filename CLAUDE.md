@@ -93,6 +93,14 @@ Stack: HTML + CSS + JS puro, sin frameworks, sin build y sin dependencias. Códi
 - **Cartelas** de zona = `<span class="cartela">` dentro del botón de la casilla. `mapa.js → repartirCartelas()` elige arriba/abajo/derecha/izquierda sin solapes (con medidas de maquetación, no de pantalla; se repite al redimensionar) y `teñirCartelas()` toma el color medio del mapa alrededor de la casilla (`--tono`, `--sat`).
 - **Efectos**: `js/fx.js` (solo en la web pública) pone un canvas con luciérnagas y un `Fx.estallido(el)` al pulsar una casilla o ficha, además de las capas CSS `.fx-nubes` y `.fx-rayo`. En CSS: entrada del mapa, anillo rúnico en casillas ocupadas, onda al pasar el ratón, faro en la meta y fichas que levitan con sombra. Todo se apaga con reducir movimiento y el canvas se para con la pestaña oculta.
 
+## Música, regiones y nitidez (30/10, noche)
+- **Música**: carpeta `music/`. `admin.js → actualizarMusica()` escribe `music/zerrenda.json` (lista de archivos de audio) al arrancar y al publicar; `publicar` añade también `music`. `js/musika.js`: bolsa barajada (ninguna se repite hasta acabar la ronda y la nueva ronda no empieza por la última), «Orain jotzen» con letrero que se desplaza, ▶/❚❚, ⏭, volumen y ecualizador. Recuerda encendido y volumen (localStorage) y vuelve a sonar con el primer toque si estaba encendida. Título = nombre del archivo sin extensión.
+- **Regiones**: `config.estilos_cartela` (id, nombre, ikonoa) y `casilla.estiloa` (validado; vacío = color tomado del mapa). En CSS: `.cartela[data-estiloa="…"]`, cada una con material y animación propios. Asignadas en Zerbitzuak según el lugar del mapa; se cambian en el editor del tablero.
+- **Cartelas**: 8 posiciones (4 lados + 4 diagonales) con 4 px de holgura.
+- **Cubo** 3D con 6 caras en CSS (`.kuboa-gorputza`), girando sin parar.
+- **Fichas nítidas**: `mapa.js → nitido()` reduce marco y foto por pasos de la mitad con suavizado alto, exactamente a los píxeles en pantalla (ResizeObserver × devicePixelRatio, y una primera vez en cuanto la ficha está en la página), y lo guarda en memoria. Mientras tanto se ve el sprite. Por eso las fichas se insertan siempre como nodos (`[data-ficha]` en las ventanas), nunca vía innerHTML.
+- **Efectos**: rastro de energía en los tramos ya recorridos (`.rastro`), llegada de ficha (`Fx.llegada`: columna de luz, ondas y chispas del color del grupo), estrellas fugaces, luciérnagas de dos colores, entrada en iris, aura del color del grupo bajo cada ficha, faro de la meta y estandartes que ondean.
+
 ## Tests
 `node --test` (carpeta `tests/`). Los tests usan `tests/datos_prueba/publico` (ficticio), nunca `data/`.
 

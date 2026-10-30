@@ -134,7 +134,8 @@ button { font: inherit; color: inherit; }
 .cartela[data-sitio="izquierda"] { transform: translate(calc(-100% - var(--d) / 2 - 6px), -50%); }
 @keyframes flotar { 50% { translate: 0 -4px; } }
 @keyframes cartela-entra { from { scale: 0; opacity: 0; } }
-.casilla:hover .cartela, .casilla:focus-visible .cartela, .casilla.seleccionada .cartela {
+.casilla:is(:hover, :focus-visible, .seleccionada) .cartela[data-estiloa] { z-index: 5; filter: brightness(1.2) drop-shadow(0 0 6px #fff8); }
+.casilla:is(:hover, :focus-visible, .seleccionada) .cartela:not([data-estiloa]) {
   z-index: 5; color: #fff; border-color: hsl(var(--tono) 90% 75%); box-shadow: 0 0 14px hsl(var(--tono) 95% 60% / .8), 0 2px 6px #000b;
 }
 
@@ -515,3 +516,188 @@ body::before {
   .fx-nubes, .fx-rayo { display: none; }
   .lienzo, .casilla.ocupada::before, .casilla::after, .casilla[data-tipo="meta"]::before, .ficha-mapa .ficha, .ficha-mapa::before { animation: none !important; }
 }
+
+/* ======================================================================
+   Cubo rojo en 3D girando sin parar (seis caras con CSS)
+   ====================================================================== */
+.kuboa { --k: 20px; width: 2.6rem; height: 2.6rem; display: grid; place-items: center; perspective: 240px; transform: none; filter: drop-shadow(0 5px 6px #000c); flex: none; }
+.kuboa-gorputza { position: relative; width: var(--k); height: var(--k); transform-style: preserve-3d; animation: kubo-biraka 8s linear infinite; }
+.kuboa i { position: absolute; inset: 0; border: 1px solid #ff8a7a55; box-shadow: inset 0 0 7px #0005; }
+.k-aurrea { background: #e0302a; transform: translateZ(calc(var(--k) / 2)); }
+.k-atzea { background: #a8160f; transform: rotateY(180deg) translateZ(calc(var(--k) / 2)); }
+.k-eskuina { background: #b91a14; transform: rotateY(90deg) translateZ(calc(var(--k) / 2)); }
+.k-ezkerra { background: #cc211a; transform: rotateY(-90deg) translateZ(calc(var(--k) / 2)); }
+.k-goia { background: linear-gradient(135deg, #ff6a5c, #e2362d); transform: rotateX(90deg) translateZ(calc(var(--k) / 2)); }
+.k-behea { background: #7d0d0a; transform: rotateX(-90deg) translateZ(calc(var(--k) / 2)); }
+@keyframes kubo-biraka {
+  from { transform: rotateZ(-14deg) rotateX(-26deg) rotateY(0deg); }
+  to { transform: rotateZ(-14deg) rotateX(-26deg) rotateY(360deg); }
+}
+
+/* ======================================================================
+   Reproductor de música: placa de hierro con botones de bronce
+   ====================================================================== */
+.musika {
+  display: flex; align-items: center; gap: .45rem; margin-left: auto; padding: .3rem .55rem; border-radius: 10px;
+  background: linear-gradient(#2a1d14, #120c08); border: 2px solid; border-color: var(--oro) var(--oro-osc) var(--oro-osc) var(--oro);
+  box-shadow: 0 0 0 2px #0a0705, inset 0 1px 0 #ffffff22, 0 4px 10px #000a;
+}
+.musika[hidden] { display: none; }
+.m-boton {
+  width: 2.1rem; height: 2.1rem; border-radius: 50%; cursor: pointer; display: grid; place-items: center; flex: none;
+  font: 700 .8rem system-ui; color: #2b1a0b; text-shadow: 0 1px 0 #fff8;
+  background: radial-gradient(circle at 35% 30%, #fff1c4, #d9a945 45%, #8a5f1c 100%);
+  border: 2px solid #5a3b14; box-shadow: 0 0 0 1px #f6dc9566, 0 3px 0 #3a250c, 0 4px 8px #000a; transition: transform .08s, box-shadow .08s, filter .15s;
+}
+.m-boton:hover { filter: brightness(1.12) drop-shadow(0 0 6px #f6dc95aa); }
+.m-boton:active { transform: translateY(2px); box-shadow: 0 0 0 1px #f6dc9566, 0 1px 0 #3a250c, 0 2px 4px #000a; }
+.m-pantaila {
+  width: clamp(9rem, 18vw, 15rem); padding: .2rem .55rem; border-radius: 6px; overflow: hidden;
+  background: linear-gradient(#0f1a10, #071009); border: 1px solid #000; box-shadow: inset 0 0 10px #000, inset 0 0 0 1px #3c5a2e55;
+}
+.m-etiketa { display: flex; align-items: center; gap: .35rem; font: 700 .58rem/1 var(--titulo); letter-spacing: .14em; text-transform: uppercase; color: #9fe07a; text-shadow: 0 0 6px #6fd04a; }
+.m-zinta { overflow: hidden; white-space: nowrap; margin-top: .15rem; }
+#m-abestia { display: inline-block; font: 700 .82rem/1.2 var(--titulo); color: #e9ffd6; text-shadow: 0 0 8px #8fe36488; }
+#m-abestia.desplazar { animation: letrero 9s ease-in-out infinite alternate; }
+@keyframes letrero { 0%, 15% { transform: translateX(0); } 85%, 100% { transform: translateX(var(--sobra)); } }
+/* Ecualizador: barras que bailan mientras suena */
+.m-ekualizadorea { display: inline-flex; align-items: flex-end; gap: 1px; height: .6rem; }
+.m-ekualizadorea i { width: 2px; height: 30%; background: #9fe07a; box-shadow: 0 0 4px #6fd04a; }
+.sonando .m-ekualizadorea i { animation: barra .9s ease-in-out infinite; }
+.sonando .m-ekualizadorea i:nth-child(2) { animation-delay: -.3s; } .sonando .m-ekualizadorea i:nth-child(3) { animation-delay: -.6s; } .sonando .m-ekualizadorea i:nth-child(4) { animation-delay: -.15s; }
+@keyframes barra { 50% { height: 100%; } }
+.m-bolumena { width: 4.5rem; accent-color: var(--oro); cursor: pointer; }
+.sonando .m-boton#m-jo { box-shadow: 0 0 0 1px #f6dc95, 0 3px 0 #3a250c, 0 0 14px #f6dc95aa; }
+@media (max-width: 899px) { .musika { order: 3; width: 100%; margin: .2rem 0 .4rem; } .m-pantaila { flex: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .kuboa-gorputza { animation: none; transform: rotateZ(-14deg) rotateX(-26deg) rotateY(35deg); }
+  #m-abestia.desplazar, .sonando .m-ekualizadorea i { animation: none; }
+}
+
+/* ======================================================================
+   Cartelas con personalidad según la región del mapa (casilla.estiloa)
+   ====================================================================== */
+.cartela[data-ikonoa]::before { content: attr(data-ikonoa); margin-right: .3em; font-size: .95em; text-shadow: none; }
+
+/* Bosque: tablilla de madera con borde de hojas */
+.cartela[data-estiloa="basoa"] {
+  color: #eaf7c9; text-shadow: 0 1px 0 #1c2b0c;
+  background: repeating-linear-gradient(0deg, #6b4a26 0 3px, #5c3f20 3px 5px), #5c3f20;
+  border: 2px solid #5fae3a; border-radius: 10px 3px 10px 3px; box-shadow: 0 0 0 1px #1f3d10, 0 3px 6px #000b, 0 0 10px #7fd34a55;
+}
+/* Ciénaga: lodo verdoso con burbujas que brillan */
+.cartela[data-estiloa="padura"] {
+  color: #d3ff8a; text-shadow: 0 0 6px #9be34a;
+  background: radial-gradient(circle at 15% 30%, #c8ff7a33 0 2px, transparent 3px), radial-gradient(circle at 80% 70%, #c8ff7a33 0 3px, transparent 4px), linear-gradient(#2f3d1c, #1a2410);
+  border: 2px dotted #8fcf4a; border-radius: 12px; box-shadow: 0 3px 6px #000b, 0 0 12px #8fcf4a66;
+  animation-name: cartela-entra, flotar, burbujeo; animation-duration: .5s, 3.2s, 2.4s; animation-iteration-count: 1, infinite, infinite;
+}
+@keyframes burbujeo { 50% { box-shadow: 0 3px 6px #000b, 0 0 20px #b6ff5aaa; } }
+/* Ciudad: placa de piedra tallada con remaches */
+.cartela[data-estiloa="hiria"] {
+  color: #f4f4f4; text-transform: uppercase; letter-spacing: .08em; font-size: clamp(.5rem, .95cqw, .72rem); text-shadow: 0 -1px 0 #000, 0 1px 0 #ffffff33;
+  background: radial-gradient(circle at 5px 50%, #c9c9c9 0 1.5px, transparent 2px), radial-gradient(circle at calc(100% - 5px) 50%, #c9c9c9 0 1.5px, transparent 2px), linear-gradient(#7d7f86, #4a4c52);
+  border: 2px solid #b8bcc6; border-radius: 1px; padding-inline: .8rem; box-shadow: 0 0 0 1px #222, 0 3px 6px #000b, inset 0 1px 0 #ffffff44;
+}
+/* Hielo: cristal escarchado con brillo que lo recorre */
+.cartela[data-estiloa="izotza"] {
+  color: #ffffff; text-shadow: 0 0 6px #6fd8ff, 0 1px 0 #0b3550;
+  background: linear-gradient(115deg, transparent 30%, #ffffff88 45%, transparent 60%) no-repeat, linear-gradient(#bfe9ffcc, #6cb9e3cc);
+  background-size: 250% 100%, 100% 100%; backdrop-filter: blur(3px);
+  border: 2px solid #ffffff; border-radius: 6px; box-shadow: 0 0 12px #9be6ffaa, 0 3px 6px #0008, inset 0 0 6px #ffffffaa;
+  animation-name: cartela-entra, flotar, escarcha; animation-duration: .5s, 3.2s, 4s; animation-iteration-count: 1, infinite, infinite;
+}
+@keyframes escarcha { 0%, 60% { background-position: 150% 0, 0 0; } 100% { background-position: -50% 0, 0 0; } }
+/* Volcán / forja: basalto con borde de lava que palpita */
+.cartela[data-estiloa="sumendia"] {
+  color: #ffd27a; text-shadow: 0 0 6px #ff6a00, 0 1px 0 #000;
+  background: linear-gradient(#2a1410, #120806); border: 2px solid #ff6a1a; border-radius: 3px;
+  box-shadow: 0 0 10px #ff4d00aa, inset 0 -6px 10px -6px #ff5a0088, 0 3px 6px #000b;
+  animation-name: cartela-entra, flotar, lava; animation-duration: .5s, 3.2s, 1.6s; animation-iteration-count: 1, infinite, infinite;
+}
+@keyframes lava { 50% { border-color: #ffc23a; box-shadow: 0 0 20px #ff7a00dd, inset 0 -8px 12px -6px #ff9a00aa, 0 3px 6px #000b; } }
+/* Desierto: papiro arenoso con bordes desgastados */
+.cartela[data-estiloa="basamortua"] {
+  color: #5a3410; text-shadow: 0 1px 0 #fff6d8;
+  background: radial-gradient(circle at 20% 40%, #c9974f33 0 3px, transparent 4px), linear-gradient(#f3dca4, #d9b46a);
+  border: 1px solid #9a6a2a; border-radius: 2px;
+  clip-path: polygon(3% 0, 97% 4%, 100% 50%, 96% 100%, 4% 96%, 0 50%); padding-inline: .7rem; box-shadow: none;
+}
+/* Misterio: velo arcano violeta que late */
+.cartela[data-estiloa="misterioa"] {
+  color: #f0d8ff; font-style: italic; text-shadow: 0 0 8px #c76bff;
+  background: radial-gradient(ellipse at 50% 120%, #8a3cffaa, transparent 70%), linear-gradient(#2a1240, #120620);
+  border: 2px solid #b26bff; border-radius: 14px 2px; box-shadow: 0 0 12px #a14cffaa, 0 3px 6px #000b;
+  animation-name: cartela-entra, flotar, arcano; animation-duration: .5s, 3.2s, 2.2s; animation-iteration-count: 1, infinite, infinite;
+}
+@keyframes arcano { 50% { border-color: #5ef0ff; box-shadow: 0 0 22px #5ef0ffaa, 0 3px 6px #000b; } }
+/* Mina: pizarra con vetas de amatista */
+.cartela[data-estiloa="meatzea"] {
+  color: #ffd6ff; text-shadow: 0 0 6px #e05cff;
+  background: linear-gradient(135deg, #3b2a4a 0 30%, #2a1f36 30% 60%, #3d2550 60%), #2a1f36;
+  border: 2px solid; border-image: linear-gradient(135deg, #ff9cff, #8a3cff, #ff9cff) 1; box-shadow: 0 0 12px #d06cff88, 0 3px 6px #000b;
+}
+/* Costa: azul profundo con olas */
+.cartela[data-estiloa="itsasoa"] {
+  color: #e8fdff; text-shadow: 0 0 6px #3fd0ff;
+  background: radial-gradient(circle at 10px 120%, transparent 6px, #3fd0ff55 7px, transparent 8px) 0 0 / 14px 100% repeat-x, linear-gradient(#0f4f73, #08283d);
+  border: 2px solid #5fe0ff; border-radius: 8px 8px 3px 3px; box-shadow: 0 0 10px #3fd0ff88, 0 3px 6px #000b;
+}
+/* Meta: estandarte real carmesí y oro */
+.cartela[data-estiloa="helmuga"] {
+  color: #ffe9a8; text-transform: uppercase; letter-spacing: .1em; text-shadow: 0 0 8px #ffcf4a, 0 1px 0 #000;
+  background: linear-gradient(#a3141c, #5e070c); border: 2px solid #f6dc95; border-radius: 3px; padding-inline: .8rem;
+  box-shadow: 0 0 0 2px #5e070c, 0 0 18px #ffd56aaa, 0 3px 6px #000b;
+  animation-name: cartela-entra, flotar, gloria; animation-duration: .5s, 3.2s, 2s; animation-iteration-count: 1, infinite, infinite;
+}
+@keyframes gloria { 50% { box-shadow: 0 0 0 2px #5e070c, 0 0 30px #ffe08aee, 0 3px 6px #000b; } }
+
+@media (prefers-reduced-motion: reduce) { .cartela[data-estiloa] { animation: none !important; } }
+
+/* Marco nítido (preparado por mapa.js) encima del sprite provisional */
+.ficha-marco-img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.ficha-foto img { image-rendering: auto; }
+
+/* ======================================================================
+   Efectos más atrevidos
+   ====================================================================== */
+/* Entrada del mapa: se abre como un iris con un fogonazo de luz */
+.lienzo { animation: mapa-entra 1.6s cubic-bezier(.2, .8, .2, 1) backwards; }
+@keyframes mapa-entra {
+  0% { clip-path: circle(0% at 50% 55%); filter: brightness(3) saturate(1.6); }
+  45% { filter: brightness(1.6) saturate(1.3); }
+  100% { clip-path: circle(75% at 50% 50%); filter: none; }
+}
+
+/* Rastro de energía en los tramos ya recorridos: halo y luz que fluye */
+.rastro { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: visible; }
+.rastro-halo { stroke: #ffcf5a; stroke-width: 9; stroke-linecap: round; opacity: .35; filter: blur(3px); animation: halo-rastro 2.4s ease-in-out infinite; }
+.rastro-nucleo { stroke: #fff6cf; stroke-width: 3; stroke-linecap: round; stroke-dasharray: 2 10; filter: drop-shadow(0 0 3px #ffb02e); animation: flujo 1.2s linear infinite; }
+@keyframes flujo { to { stroke-dashoffset: -24; } }
+@keyframes halo-rastro { 50% { opacity: .6; } }
+
+/* Aura del color del grupo bajo cada ficha, que respira */
+.ficha-mapa::before {
+  width: 95%; height: 16px; bottom: -8px;
+  background: radial-gradient(ellipse, color-mix(in srgb, var(--color, #ffd678) 90%, #fff) 0%, color-mix(in srgb, var(--color, #ffd678) 55%, transparent) 35%, transparent 70%);
+  filter: blur(1px); mix-blend-mode: screen;
+}
+@keyframes sombra { 50% { scale: .7; opacity: .5; } }
+
+/* Faro de la meta más intenso, con anillo dorado que gira */
+.casilla[data-tipo="meta"]:not(.ocupada)::before { height: 520%; width: 90%; background: linear-gradient(to top, #fff3c4, #ffd56a88 40%, #ffd56a00); }
+.casilla[data-tipo="meta"] { box-shadow: 0 0 0 2px #000a, 0 0 22px 6px #ffd56acc; }
+
+/* Estandartes de aventura que ondean */
+.estandartes a { transform-origin: 50% 0; animation: ondear 4.5s ease-in-out infinite; }
+.estandartes a:nth-child(2) { animation-delay: -1.7s; }
+@keyframes ondear { 25% { transform: skewX(1.6deg) scaleY(1.02); } 75% { transform: skewX(-1.6deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .lienzo, .rastro-halo, .rastro-nucleo, .estandartes a { animation: none !important; }
+}
+.cartela[data-sitio="arriba-der"] { transform: translate(calc(var(--d) / -2), calc(-100% - var(--d) / 2 - 6px)); }
+.cartela[data-sitio="arriba-izq"] { transform: translate(calc(var(--d) / 2 - 100%), calc(-100% - var(--d) / 2 - 6px)); }
+.cartela[data-sitio="abajo-der"] { transform: translate(calc(var(--d) / -2), calc(var(--d) / 2 + 6px)); }
+.cartela[data-sitio="abajo-izq"] { transform: translate(calc(var(--d) / 2 - 100%), calc(var(--d) / 2 + 6px)); }

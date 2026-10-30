@@ -56,6 +56,15 @@ Las fotos que te pasen los alumnos pueden estar en cualquier carpeta de tu equip
 
 > El alias de cada alumno y los textos de «Oharra» son **públicos**. Las notas individuales no.
 
+## Música
+- Mete o quita canciones en la carpeta **`music/`** (mp3, ogg, m4a, wav, opus o flac). El **nombre del archivo** es el título que sale en «Orain jotzen» (por ejemplo, `DNS ez da amaiera.mp3`).
+- La lista se actualiza sola al arrancar el panel y al pulsar **⬆ Argitaratu**, que también sube las canciones.
+- En la web, los alumnos pulsan ▶ para escucharla (los navegadores no dejan que suene sola). Suenan en orden aleatorio y ninguna se repite hasta que han sonado todas.
+- GitHub no admite archivos de más de 100 MB; una canción normal ocupa 3-5 MB.
+
+## Estilo de las cartelas
+Cada zona del mapa tiene una cartela con el estilo de su región (bosque, ciénaga, ciudad, hielo, volcán, desierto, misterio, mina, costa o meta). Para cambiarlo: 🗺️ **Taulera eta mapa** → elige la zona → **Eskualdearen estiloa** → Gorde.
+
 ## Uso diario (panel del profesor)
 1. Abre una terminal en la carpeta del proyecto y arranca el panel:
    ```bash
