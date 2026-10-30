@@ -309,6 +309,7 @@
             <span class="fg-nivel"><span class="nivel-num">${n.numero}</span> ${esc(n.titulo)}</span>
             ${htmlBarra(n, e.puntos)}
             <span class="fg-zona">📍 ${numCasilla(e.posicion)}. ${esc(nombreCasilla(e.posicion))}</span>
+            <span class="fg-ruta" aria-hidden="true"><i style="width:${actual.orden.length > 1 ? 100 * (numCasilla(e.posicion) - 1) / (actual.orden.length - 1) : 0}%"></i></span>
             ${objetos || estados ? `<span class="fg-extra">${objetos}${estados ? `<span class="fg-estados">${estados}</span>` : ''}</span>` : ''}
           </span>
         </button>`;
@@ -360,9 +361,54 @@
     document.title = `${info.nombre} · ${comun.config.titulo}`;
     document.querySelectorAll('#pestanas a').forEach(a => a.toggleAttribute('aria-current', a.hash === '#' + id));
 
+    // Luz del mapa según la hora real: día, atardecer o noche.
+    const hora = new Date().getHours();
+    $('mapa').dataset.ordua = hora >= 7 && hora < 17 ? 'eguna' : hora >= 17 && hora < 20 ? 'ilunabarra' : 'gaua';
     Mapa.dibujar($('mapa'), { ...actual, grupos: comun.grupos, config: comun.config }, { casilla: abrirCasilla, ficha: abrirGrupo });
     pintarLateral();
     pintarEgunkaria();
+    mostrarNovedades(id, d, estado);
+  }
+
+  // «Zer berri?»: lo que ha pasado desde la última visita de este navegador a esta aventura,
+  // con las subidas de nivel destacadas. La primera visita solo apunta dónde se quedó.
+  function mostrarNovedades(id, d, estado) {
+    const clave = 'ikusita:' + id;
+    let visto = null;
+    try { visto = JSON.parse(localStorage.getItem(clave)); } catch { /* sin almacenamiento */ }
+    const maxId = lista => lista.reduce((m, e) => Math.max(m, e.id), 0);
+    try { localStorage.setItem(clave, JSON.stringify({ aventura: maxId(d.eventos), global: maxId(comun.globales) })); } catch { /* idem */ }
+    if (!visto) return;
+
+    const nuevos = estado.eventos.filter(ev => publico(ev) && !ev.anulado && !['anulacion', 'auditoria'].includes(ev.tipo) &&
+      ev.id > (ev.origen === 'global' ? visto.global : visto.aventura));
+    if (!nuevos.length) return;
+    const antes = Motor.calcularEstado(id, d.eventos.filter(e => e.id <= visto.aventura), comun.globales.filter(e => e.id <= visto.global),
+      comun.catalogo, d.tablero, comun.grupos, comun.config);
+    const subidas = gruposActivos().map(g => ({ g, a: barraNivel(antes.grupos[g.id].puntos), n: barraNivel(estado.grupos[g.id].puntos) }))
+      .filter(x => x.n.numero > x.a.numero);
+
+    const MAX = 8;
+    const caja = document.createElement('div');
+    caja.className = 'berriak-fondoa';
+    caja.innerHTML = `<div class="berriak pergamino" role="dialog" aria-modal="true" aria-labelledby="berriak-izenburua">
+        <h2 id="berriak-izenburua">📜 Zer berri?</h2>
+        <p class="lema">Azken bisitatik ${esc(actual.aventura.nombre)}-n</p>
+        ${subidas.length ? `<ul class="maila-igoerak">${subidas.map(x => `<li style="--color:${esc(x.g.color)}">
+          <span class="mi-ficha" data-ficha="${esc(x.g.id)}"></span>
+          <span><b>${esc(x.g.nombre)}</b><br>⬆ MAILA IGOTA! <span class="nivel-num">${x.n.numero}</span> ${esc(x.n.titulo)}</span></li>`).join('')}</ul>` : ''}
+        ${cronica(nuevos.slice(-MAX).reverse())}
+        ${nuevos.length > MAX ? `<p class="vacio">… eta beste ${nuevos.length - MAX} (Egunkarian)</p>` : ''}
+        <div class="d-botones"><button type="button" class="boton-jarraitu">Jarraitu ▶</button></div>
+      </div>`;
+    caja.querySelectorAll('[data-ficha]').forEach(el => el.append(Mapa.crearFicha(grupo(el.dataset.ficha), comun.config)));
+    const cerrar = () => { caja.remove(); removeEventListener('keydown', tecla); };
+    const tecla = e => { if (e.key === 'Escape') cerrar(); };
+    caja.onclick = e => { if (e.target === caja) cerrar(); };
+    caja.querySelector('.boton-jarraitu').onclick = cerrar;
+    addEventListener('keydown', tecla);
+    document.body.append(caja);
+    caja.querySelector('.boton-jarraitu').focus();
   }
 
   function mostrarError(err) {

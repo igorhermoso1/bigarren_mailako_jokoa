@@ -101,6 +101,12 @@ Stack: HTML + CSS + JS puro, sin frameworks, sin build y sin dependencias. Códi
 - **Fichas nítidas**: `mapa.js → nitido()` reduce marco y foto por pasos de la mitad con suavizado alto, exactamente a los píxeles en pantalla (ResizeObserver × devicePixelRatio, y una primera vez en cuanto la ficha está en la página), y lo guarda en memoria. Mientras tanto se ve el sprite. Por eso las fichas se insertan siempre como nodos (`[data-ficha]` en las ventanas), nunca vía innerHTML.
 - **Efectos**: rastro de energía en los tramos ya recorridos (`.rastro`), llegada de ficha (`Fx.llegada`: columna de luz, ondas y chispas del color del grupo), estrellas fugaces, luciérnagas de dos colores, entrada en iris, aura del color del grupo bajo cada ficha, faro de la meta y estandartes que ondean.
 
+## Comodidad y rendimiento (30/10, cierre)
+- **Rendimiento**: las animaciones grandes solo usan transform u opacity (las hace la tarjeta gráfica, sin repintar). Ascuas: capa `body::before` desplazada -300 px con mosaicas divisoras de 300 px. Antorcha: `.lienzo::before` que solo cambia de opacidad. Rayo: `.fx-rayo::before` con translateX. Halo del rastro, fijo. No animar `background-position`, `box-shadow` ni `filter` en capas grandes.
+- **«Zer berri?»** (`app.js → mostrarNovedades`): localStorage `ikusita:<aventura>` = último id visto de cada registro. En la primera visita solo lo apunta; después muestra los eventos públicos nuevos y las subidas de nivel (comparando con el estado hasta lo visto).
+- **Luz por hora**: `#mapa[data-ordua]` = eguna (7-17), ilunabarra (17-20) o gaua; filtros fijos sobre `.fondo`.
+- Cursor de espada en SVG (dorado sobre lo pulsable) y barra de recorrido (`.fg-ruta`) en la barra lateral.
+
 ## Tests
 `node --test` (carpeta `tests/`). Los tests usan `tests/datos_prueba/publico` (ficticio), nunca `data/`.
 

@@ -353,18 +353,20 @@ body {
     linear-gradient(#241a14, #120c08);
   background-attachment: fixed;
 }
-/* Ascuas que suben lentamente por toda la pantalla */
+/* Ascuas que suben lentamente por toda la pantalla.
+   Rendimiento: se mueve la capa entera con transform (lo hace la tarjeta gráfica, sin repintar);
+   todas las mosaicas miden divisores de 300 px, así el bucle de -300 px no tiene saltos. */
 body::before {
-  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: .55;
+  content: ''; position: fixed; left: 0; right: 0; top: 0; height: calc(100% + 300px); pointer-events: none; z-index: 0; opacity: .55;
   background-image:
     radial-gradient(circle, #ffb347 0 1.4px, transparent 2.4px),
     radial-gradient(circle, #ff7b2e 0 1px, transparent 2px),
     radial-gradient(circle, #ffd27a 0 1.2px, transparent 2.2px);
-  background-size: 230px 310px, 370px 430px, 520px 610px;
-  background-position: 0 0, 80px 120px, 200px 40px;
-  animation: ascuas 26s linear infinite;
+  background-size: 300px 300px, 150px 150px, 100px 100px;
+  background-position: 0 0, 80px 40px, 37px 70px;
+  animation: ascuas 30s linear infinite; will-change: transform;
 }
-@keyframes ascuas { to { background-position: 40px -310px, 20px -430px, 260px -610px; } }
+@keyframes ascuas { to { transform: translateY(-300px); } }
 .cabecera, .contenido, .registrando, .modulos, .admin-cuerpo { position: relative; z-index: 1; }
 
 /* Cabecera de hierro con remaches y filo dorado */
@@ -412,13 +414,14 @@ body::before {
   padding: 12px; border: 3px solid; border-color: var(--oro-claro) var(--oro-osc) var(--oro-osc) var(--oro-claro);
   box-shadow: 0 0 0 3px #0d0906, 0 0 0 6px var(--oro-osc), 0 0 0 8px #0d0906, 0 0 40px #d4a64a33, 0 24px 50px #000e;
 }
-.lienzo::after { animation: antorcha 5s ease-in-out infinite; }
-@keyframes antorcha {
-  0%, 100% { box-shadow: inset 0 0 60px #2b1b10cc; }
-  30% { box-shadow: inset 0 0 70px #3a1d08dd, inset 0 0 120px #ff9a3a14; }
-  55% { box-shadow: inset 0 0 55px #2b1b10bb; }
-  75% { box-shadow: inset 0 0 75px #3a1d08e0, inset 0 0 140px #ff9a3a1c; }
+/* Luz de antorcha: viñeta fija y un resplandor cálido que solo cambia de opacidad (sin repintar el mapa) */
+.lienzo::after { box-shadow: inset 0 0 60px #2b1b10cc; }
+.lienzo::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background: radial-gradient(ellipse at 50% 50%, transparent 50%, #ff9a3a26 100%);
+  animation: antorcha 5s ease-in-out infinite; will-change: opacity;
 }
+@keyframes antorcha { 0%, 100% { opacity: .2; } 30% { opacity: .9; } 55% { opacity: .35; } 75% { opacity: 1; } }
 
 /* Zonas superadas: el medallón late con luz dorada */
 .casilla.pisada { animation: latido-oro 2.8s ease-in-out infinite; }
@@ -449,7 +452,7 @@ body::before {
 .em-pestanas button[aria-selected="true"]::before, .lat-pestanas button[aria-selected="true"]::before { content: '▸ '; color: var(--acento); }
 
 @media (prefers-reduced-motion: reduce) {
-  body::before, .titulo, .lienzo::after, .casilla.pisada, .xp-relleno, .fila-grupo::before { animation: none !important; }
+  body::before, .titulo, .lienzo::before, .lienzo::after, .casilla.pisada, .xp-relleno, .fila-grupo::before { animation: none !important; }
   .estandartes a::after { display: none; }
 }
 
@@ -470,11 +473,14 @@ body::before {
 .fx-nubes::before { top: 4%; }
 .fx-nubes::after { top: 52%; width: 45%; animation-duration: 105s; animation-delay: -50s; opacity: .7; }
 @keyframes deriva { from { translate: -70% 0; } to { translate: 230% 0; } }
-.fx-rayo {
-  background: linear-gradient(105deg, transparent 42%, #fff6d855 49%, #ffffff33 51%, transparent 58%) no-repeat;
-  background-size: 300% 100%; mix-blend-mode: soft-light; animation: rayo 11s ease-in-out infinite;
+/* Rayo de luz: una franja que se desplaza con transform */
+.fx-rayo { overflow: hidden; mix-blend-mode: soft-light; }
+.fx-rayo::before {
+  content: ''; position: absolute; top: 0; bottom: 0; left: 0; width: 45%;
+  background: linear-gradient(105deg, transparent 20%, #fff6d877 46%, #ffffff55 54%, transparent 80%);
+  transform: translateX(-120%); animation: rayo 11s ease-in-out infinite; will-change: transform;
 }
-@keyframes rayo { 0%, 55% { background-position: 130% 0; } 85%, 100% { background-position: -30% 0; } }
+@keyframes rayo { 0%, 55% { transform: translateX(-120%); } 85%, 100% { transform: translateX(260%); } }
 
 /* El mapa aparece saliendo de la oscuridad */
 .lienzo { animation: mapa-entra 1.1s ease-out both; }
@@ -672,7 +678,7 @@ body::before {
 
 /* Rastro de energía en los tramos ya recorridos: halo y luz que fluye */
 .rastro { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: visible; }
-.rastro-halo { stroke: #ffcf5a; stroke-width: 9; stroke-linecap: round; opacity: .35; filter: blur(3px); animation: halo-rastro 2.4s ease-in-out infinite; }
+.rastro-halo { stroke: #ffcf5a; stroke-width: 9; stroke-linecap: round; opacity: .45; filter: blur(3px); } /* fijo: animar un blur obliga a repintarlo */
 .rastro-nucleo { stroke: #fff6cf; stroke-width: 3; stroke-linecap: round; stroke-dasharray: 2 10; filter: drop-shadow(0 0 3px #ffb02e); animation: flujo 1.2s linear infinite; }
 @keyframes flujo { to { stroke-dashoffset: -24; } }
 @keyframes halo-rastro { 50% { opacity: .6; } }
@@ -701,3 +707,46 @@ body::before {
 .cartela[data-sitio="arriba-izq"] { transform: translate(calc(var(--d) / 2 - 100%), calc(-100% - var(--d) / 2 - 6px)); }
 .cartela[data-sitio="abajo-der"] { transform: translate(calc(var(--d) / -2), calc(var(--d) / 2 + 6px)); }
 .cartela[data-sitio="abajo-izq"] { transform: translate(calc(var(--d) / 2 - 100%), calc(var(--d) / 2 + 6px)); }
+
+
+/* ======================================================================
+   Comodidad: cursor de espada, «Zer berri?», luz según la hora y recorrido
+   ====================================================================== */
+/* Cursor de espada (dorada al pasar por algo que se puede pulsar) */
+body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cg stroke='%231a0f05' stroke-width='1.3' stroke-linejoin='round'%3E%3Cpath d='M2 2 L7 3 L21 17 L17 21 L3 7 Z' fill='%23dfe6ee'/%3E%3Cpath d='M14 24 L24 14 L26.5 16.5 L16.5 26.5 Z' fill='%23d4a64a'/%3E%3Cpath d='M20.5 23 L23 20.5 L28 25.5 L25.5 28 Z' fill='%236b3d1a'/%3E%3Ccircle cx='28.3' cy='28.3' r='2.2' fill='%23f6dc95'/%3E%3C/g%3E%3C/svg%3E") 2 2, auto; }
+a, button, select, summary, label, [role="tab"], input[type="range"], input[type="checkbox"] { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cg stroke='%231a0f05' stroke-width='1.3' stroke-linejoin='round'%3E%3Cpath d='M2 2 L7 3 L21 17 L17 21 L3 7 Z' fill='%23ffe89a'/%3E%3Cpath d='M14 24 L24 14 L26.5 16.5 L16.5 26.5 Z' fill='%23d4a64a'/%3E%3Cpath d='M20.5 23 L23 20.5 L28 25.5 L25.5 28 Z' fill='%236b3d1a'/%3E%3Ccircle cx='28.3' cy='28.3' r='2.2' fill='%23f6dc95'/%3E%3C/g%3E%3C/svg%3E") 2 2, pointer; }
+input[type="text"], input[type="number"], textarea { cursor: text; }
+
+/* Luz del mapa según la hora: filtros fijos sobre la imagen (no se animan, no cuestan) */
+.marco-mapa[data-ordua="ilunabarra"] .fondo { filter: sepia(.28) saturate(1.25) hue-rotate(-12deg) brightness(.93); }
+.marco-mapa[data-ordua="gaua"] .fondo { filter: brightness(.55) saturate(.75) hue-rotate(12deg) contrast(1.08); }
+.marco-mapa[data-ordua="gaua"] .fx-particulas { opacity: 1; filter: brightness(1.3); }
+
+/* Recorrido de cada grupo en la barra lateral */
+.fg-ruta { position: relative; display: block; height: 4px; margin-top: 2px; border-radius: 2px; background: #3b271622; }
+.fg-ruta i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 2px; background: var(--color); box-shadow: 0 0 6px var(--color); }
+.fg-ruta::after { content: '⚑'; position: absolute; right: -2px; top: -9px; font-size: .62rem; color: var(--oro-osc); }
+
+/* «Zer berri?»: pergamino que se despliega con las novedades desde la última visita */
+.berriak-fondoa { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 1rem; background: #0a0604b3; backdrop-filter: blur(2px); animation: fundido .3s ease-out; }
+@keyframes fundido { from { opacity: 0; } }
+.berriak { width: min(520px, 100%); max-height: 85dvh; overflow: auto; padding: 1.4rem 1.5rem 1.1rem; animation: desenrollar .55s cubic-bezier(.2, 1.3, .4, 1); transform-origin: 50% 0; }
+@keyframes desenrollar { from { transform: scaleY(.05); opacity: .3; } }
+.berriak h2 { font-size: 1.6rem; text-align: center; letter-spacing: .04em; }
+.berriak .lema { text-align: center; margin-bottom: .8rem; }
+.maila-igoerak { list-style: none; margin: 0 0 .8rem; padding: 0; display: grid; gap: .5rem; }
+.maila-igoerak li {
+  --t: 54px; display: flex; gap: .8rem; align-items: center; padding: .5rem .8rem; border-radius: 8px; font-family: var(--titulo);
+  background: linear-gradient(100deg, #fff6d4, #f6dc95 50%, #fff6d4); background-size: 200% 100%; border: 2px solid var(--oro);
+  box-shadow: 0 0 16px #f6dc95, inset 0 0 0 1px #fff; animation: brillo-maila 2.4s ease-in-out infinite;
+}
+.maila-igoerak li b { font-size: 1.05rem; }
+@keyframes brillo-maila { 50% { background-position: 100% 0; box-shadow: 0 0 26px #ffd56a, inset 0 0 0 1px #fff; } }
+.boton-jarraitu {
+  padding: .55rem 1.2rem; border-radius: 8px; font: 700 1rem var(--titulo); letter-spacing: .05em; color: #fff;
+  background: linear-gradient(var(--acento), color-mix(in srgb, var(--acento) 50%, #000)); border: 2px solid var(--oro); text-shadow: 0 1px 2px #000;
+  box-shadow: 0 3px 0 #0006, 0 0 12px color-mix(in srgb, var(--acento) 60%, transparent);
+}
+.boton-jarraitu:hover { filter: brightness(1.15); }
+
+@media (prefers-reduced-motion: reduce) { .berriak-fondoa, .berriak, .maila-igoerak li { animation: none; } }
