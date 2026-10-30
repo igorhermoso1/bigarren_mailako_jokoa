@@ -1,1 +1,150 @@
-[]
+[
+  {
+    "id": 1,
+    "fecha": "2026-10-30T08:30:24.379Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": "g3",
+    "miembro": null,
+    "tipo": "bonus",
+    "datos": {
+      "motivo": "Entrega puntuala"
+    },
+    "puntos": 3,
+    "visible_publico": true,
+    "referencia": null,
+    "hash_anterior": "",
+    "hash": "2e6ca4e9c142c2c8dbf3e18c26ef75381a8bcae408b01dfb3f0a8a6f06344b70"
+  },
+  {
+    "id": 2,
+    "fecha": "2026-10-30T08:30:27.871Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": "g3",
+    "miembro": null,
+    "tipo": "avance",
+    "datos": {
+      "desde": "z01",
+      "hasta": "z02",
+      "motivo": "Makina birtualen sorrera onartua"
+    },
+    "puntos": 10,
+    "visible_publico": true,
+    "referencia": null,
+    "hash_anterior": "2e6ca4e9c142c2c8dbf3e18c26ef75381a8bcae408b01dfb3f0a8a6f06344b70",
+    "hash": "bbc07b6cde1f45c3d68c51d2b629adf77d0068d7c159823e5a38c4ad26285087"
+  },
+  {
+    "id": 3,
+    "fecha": "2026-10-30T08:32:15.281Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": "g3",
+    "miembro": null,
+    "tipo": "avance",
+    "datos": {
+      "desde": "z02",
+      "hasta": "z03",
+      "motivo": "DNS onartua"
+    },
+    "puntos": 10,
+    "visible_publico": true,
+    "referencia": null,
+    "hash_anterior": "bbc07b6cde1f45c3d68c51d2b629adf77d0068d7c159823e5a38c4ad26285087",
+    "hash": "394c14e6acf1735ae9e3a7ff106636bfc593df67b90f44198ce04612372a03f6"
+  },
+  {
+    "id": 4,
+    "fecha": "2026-10-30T08:32:17.025Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": "g3",
+    "miembro": null,
+    "tipo": "avance",
+    "datos": {
+      "desde": "z03",
+      "hasta": "z04",
+      "motivo": "DHCP onartua"
+    },
+    "puntos": 10,
+    "visible_publico": true,
+    "referencia": null,
+    "hash_anterior": "394c14e6acf1735ae9e3a7ff106636bfc593df67b90f44198ce04612372a03f6",
+    "hash": "251d78151b2f0c8096eacefe2ca0c9287617b99eff7173fe09369f052637328d"
+  },
+  {
+    "id": 5,
+    "fecha": "2026-10-30T08:32:19.688Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": "g3",
+    "miembro": null,
+    "tipo": "avance",
+    "datos": {
+      "desde": "z04",
+      "hasta": "z05",
+      "motivo": "SSH urruneko saioa onartua"
+    },
+    "puntos": 10,
+    "visible_publico": true,
+    "referencia": null,
+    "hash_anterior": "251d78151b2f0c8096eacefe2ca0c9287617b99eff7173fe09369f052637328d",
+    "hash": "b7523bb789e7dfccbdb5cee40c943e0813ac38f8355128321ccdf46baa8b22a2"
+  },
+  {
+    "id": 6,
+    "fecha": "2026-10-30T08:35:00.013Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": "g1",
+    "miembro": null,
+    "tipo": "nota_grupo",
+    "datos": {
+      "entrega": "z-e1",
+      "nota": 2,
+      "comentario": "dsvfd"
+    },
+    "puntos": 0,
+    "visible_publico": true,
+    "referencia": null,
+    "hash_anterior": "b7523bb789e7dfccbdb5cee40c943e0813ac38f8355128321ccdf46baa8b22a2",
+    "hash": "f18a74faad2905757fc713783bbd0af98e63a58ec1151e86896fcb1c986c6b4b"
+  },
+  {
+    "id": 7,
+    "fecha": "2026-10-30T08:36:07.318Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": "g3",
+    "miembro": null,
+    "tipo": "penalizacion",
+    "datos": {
+      "motivo": "Entrega berandu"
+    },
+    "puntos": -2,
+    "visible_publico": true,
+    "referencia": null,
+    "hash_anterior": "f18a74faad2905757fc713783bbd0af98e63a58ec1151e86896fcb1c986c6b4b",
+    "hash": "ba309362e44d933bcea9912b1caf1435c57f7ae538efefd1bc614afe4991d9bc"
+  },
+  {
+    "id": 8,
+    "fecha": "2026-10-30T08:52:47.211Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": "g3",
+    "miembro": null,
+    "tipo": "avance",
+    "datos": {
+      "desde": "z05",
+      "hasta": "z06",
+      "motivo": "SSH - OpenSSH onartua"
+    },
+    "puntos": 10,
+    "visible_publico": true,
+    "referencia": null,
+    "hash_anterior": "ba309362e44d933bcea9912b1caf1435c57f7ae538efefd1bc614afe4991d9bc",
+    "hash": "af6d2d1827b23dcfb243d9e171045bb8d8732232a9eb2850568a1eb0914456ae"
+  }
+]

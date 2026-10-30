@@ -1,1 +1,202 @@
-[]
+[
+  {
+    "id": 1,
+    "fecha": "2026-10-30T08:31:53.586Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "zerbitzuak",
+      "id": "z01",
+      "cambio": null,
+      "antes": {
+        "id": "z01",
+        "nombre": "Makina birtualen sorrera",
+        "lugar": "Script-aren Liburutegia",
+        "tipo": "inicio",
+        "entrega": "z-e1",
+        "x": 15.8,
+        "y": 49.2,
+        "siguientes": [
+          "z02"
+        ]
+      },
+      "despues": {
+        "id": "z01",
+        "nombre": "Makina birtualen sorrera",
+        "lugar": "Script-aren Liburutegia",
+        "tipo": "inicio",
+        "entrega": "z-e1",
+        "x": 15.5,
+        "y": 49.6,
+        "siguientes": [
+          "z02"
+        ]
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "",
+    "hash": "edfae2b3745c7f08a81c398993c380409d9f159dcbc1d7c78cccce36e951368a"
+  },
+  {
+    "id": 2,
+    "fecha": "2026-10-30T08:31:55.630Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "zerbitzuak",
+      "id": "z01",
+      "cambio": null,
+      "antes": {
+        "id": "z01",
+        "nombre": "Makina birtualen sorrera",
+        "lugar": "Script-aren Liburutegia",
+        "tipo": "inicio",
+        "entrega": "z-e1",
+        "x": 15.5,
+        "y": 49.6,
+        "siguientes": [
+          "z02"
+        ]
+      },
+      "despues": {
+        "id": "z01",
+        "nombre": "Makina birtualen sorrera",
+        "lugar": "Script-aren Liburutegia",
+        "tipo": "inicio",
+        "entrega": "z-e1",
+        "x": 15.5,
+        "y": 49,
+        "siguientes": [
+          "z02"
+        ]
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "edfae2b3745c7f08a81c398993c380409d9f159dcbc1d7c78cccce36e951368a",
+    "hash": "338615ae5504c78cb82a1794e23b58f3affa8472c65f8421921fe864f6476f8d"
+  },
+  {
+    "id": 3,
+    "fecha": "2026-10-30T08:35:13.259Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "zerbitzuak",
+      "id": "z-c20",
+      "cambio": null,
+      "antes": null,
+      "despues": {
+        "id": "z-c20",
+        "siguientes": [],
+        "activo": true,
+        "nombre": "Lauki berria",
+        "tipo": "normal",
+        "x": 50,
+        "y": 50
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "338615ae5504c78cb82a1794e23b58f3affa8472c65f8421921fe864f6476f8d",
+    "hash": "0b969f898dd0ce9217298bfce2d4246342162c1ec332c6de1f9d3b1945375995"
+  },
+  {
+    "id": 4,
+    "fecha": "2026-10-30T08:35:22.824Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "zerbitzuak",
+      "id": "z-c20",
+      "cambio": null,
+      "antes": {
+        "id": "z-c20",
+        "siguientes": [],
+        "activo": true,
+        "nombre": "Lauki berria",
+        "tipo": "normal",
+        "x": 50,
+        "y": 50
+      },
+      "despues": {
+        "id": "z-c20",
+        "siguientes": [],
+        "activo": false,
+        "nombre": "Lauki berria",
+        "tipo": "normal",
+        "x": 50,
+        "y": 50
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "0b969f898dd0ce9217298bfce2d4246342162c1ec332c6de1f9d3b1945375995",
+    "hash": "7628139a827350c7fa853fc0fb42839aab68263c8e2bb401d63fd35ee4de3d60"
+  },
+  {
+    "id": 5,
+    "fecha": "2026-10-30T08:55:06.049Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "zerbitzuak",
+      "id": "z12",
+      "cambio": null,
+      "antes": {
+        "id": "z12",
+        "nombre": "Posta sistema - Thunderbird",
+        "lugar": "Mendi-oinetako bidea",
+        "tipo": "normal",
+        "entrega": "z-e12",
+        "x": 52.5,
+        "y": 37.8,
+        "siguientes": [
+          "z13"
+        ]
+      },
+      "despues": {
+        "id": "z12",
+        "nombre": "Posta sistema - Thunderbird",
+        "lugar": "Mendi-oinetako bidea",
+        "tipo": "normal",
+        "entrega": "z-e12",
+        "x": 50.8,
+        "y": 38.6,
+        "siguientes": [
+          "z13"
+        ]
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "7628139a827350c7fa853fc0fb42839aab68263c8e2bb401d63fd35ee4de3d60",
+    "hash": "aba5220fe6e36f68fbf774469ef59ed8fe363ab54cbd563275f396f9d35a6428"
+  }
+]

@@ -6,8 +6,8 @@
       "lugar": "Script-aren Liburutegia",
       "tipo": "inicio",
       "entrega": "z-e1",
-      "x": 15.8,
-      "y": 49.2,
+      "x": 15.5,
+      "y": 49,
       "siguientes": [
         "z02"
       ]
@@ -138,8 +138,8 @@
       "lugar": "Mendi-oinetako bidea",
       "tipo": "normal",
       "entrega": "z-e12",
-      "x": 52.5,
-      "y": 37.8,
+      "x": 50.8,
+      "y": 38.6,
       "siguientes": [
         "z13"
       ]
@@ -224,6 +224,15 @@
       "x": 81,
       "y": 58.9,
       "siguientes": []
+    },
+    {
+      "id": "z-c20",
+      "siguientes": [],
+      "activo": false,
+      "nombre": "Lauki berria",
+      "tipo": "normal",
+      "x": 50,
+      "y": 50
     }
   ]
 }
