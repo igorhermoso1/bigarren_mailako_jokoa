@@ -20,7 +20,7 @@ Stack: HTML + CSS + JS puro, sin frameworks, sin build y sin dependencias. Códi
 ## Recortes aceptados (no implementar sin que el profesor lo pida)
 - **Fichas:** marco circular raster de `img/fichas/marcos.png` (sprite de 3x2, en el orden de `config.marcos`) con la foto del grupo recortada en círculo. Editor: subir foto, zoom y posición. Sin formas, rotación ni «aplicar a todos».
 - **Integridad:** append-only, `anulacion`, escritura atómica y cadena SHA-256 por registro (`cadena.js`). Sin carpeta `backups/`, sin ZIP y sin archivos JSON Schema: Git es la copia y el historial, y la validación se hace en código.
-- **Admin:** 5 módulos (panel de control, formulario de evento genérico, valoraciones con historial, grupos y fichas, editor del tablero). Sin botón de git.
+- **Admin:** 5 módulos (panel de control, formulario de evento genérico, valoraciones con historial, grupos y fichas, editor del tablero). Botón «⬆ Argitaratu» pedido por el profesor (ver abajo).
 - **Gamificación:** puntos/nivel, objetos con rareza y ámbito, estados con duración, hitos, logros y comentarios. Fuera: tienda/monedas, cartas, jefes con vida, side quests, rachas, alianzas, temporadas, niebla de guerra, sonidos, hall de la fama, viento a favor y jefe conjunto.
 - **Web pública:** mapa, tarjetas de grupo, línea temporal y ranking (este último desactivado). Sin vista «Resumen» ni vitrina «???».
 
@@ -80,6 +80,13 @@ Stack: HTML + CSS + JS puro, sin frameworks, sin build y sin dependencias. Códi
 - Colección `casillas` en `/api/entidad` (por aventura): nombre, lugar, tipo, x/y (0-100), entrega, descripcion, siguientes (ids existentes, nunca la propia) y activo. No se archiva una casilla con grupos encima. A una casilla archivada no se puede avanzar.
 - `POST /api/mapa` {aventura, archivo (dataURL) | existente (ruta img/mapa/…), ancho, alto, dibujar_camino}: crea un archivo nuevo por versión, `img/mapa/<av>-<fecha>.<ext>`, y audita el cambio (`coleccion: 'mapa'`). Un SVG solo se acepta sin script, sin on…= y sin href ni url() externos, y con viewBox (de ahí salen ancho y alto).
 - `js/admin/tablero.js`: arrastre con pointer events (se guarda al soltar), flechas del teclado (se guarda a los 600 ms), «＋ Honen ondoren txertatu» (la nueva hereda las conexiones de la elegida), conexiones con casillas de verificación, versiones de mapa con «Leheneratu».
+
+## Publicar y aspecto (30/10)
+- `POST /api/publicar` {mensaje?}: `git add -- data/publico img` → commit (si hay cambios) → `git push origin HEAD`, con `execFile` (sin shell) y `GIT_TERMINAL_PROMPT=0`. Usa las credenciales de Git del equipo. No publica si alguna cadena está dañada. Nunca añade código ni `data/privado`.
+- Decisión: el panel NO se aloja en GitHub Pages con contraseña (obligaría a guardar un token de GitHub en el navegador); se publica desde el panel local.
+- Título `config.titulo` = «Lit Zerbitzuak RPG», con un cubo rojo en SVG (`.kuboa`, girado -14°) junto al título, en la web y en el panel.
+- `css/web.css` termina con la capa «RPG de los 90»: muro de piedra, ascuas animadas, cabecera de hierro con remaches, título metálico con destello, ventanas con bisel y gemas en las esquinas, luz de antorcha sobre el mapa, latido en zonas superadas, cursor ▶ en el menú de grupos y XP con rayas. Todo se desactiva con reducir movimiento.
+- `css/admin.css` termina con la capa de controles: escala de espacios `--e1…--e5`, campos de 2.4rem con flecha propia en los select, botones con bisel y `[hidden]` siempre oculto.
 
 ## Tests
 `node --test` (carpeta `tests/`). Los tests usan `tests/datos_prueba/publico` (ficticio), nunca `data/`.

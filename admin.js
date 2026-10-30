@@ -7,6 +7,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const { execFile } = require('child_process');
 const { encadenar, verificar } = require('./cadena.js');
 const Motor = require('./js/motor.js');
 
@@ -535,6 +536,25 @@ function guardarMapa(raiz, entrada) {
   return { mapa, evento };
 }
 
+// ---------- Publicar en GitHub ----------
+// Sube a GitHub solo los datos públicos y las imágenes (nunca data/privado, que está en .gitignore).
+// Usa el acceso a GitHub ya configurado en este equipo (Git Credential Manager, con su verificación en dos pasos).
+function git(raiz, args) {
+  return new Promise((ok, mal) => execFile('git', args, { cwd: raiz, timeout: 120000, env: { ...process.env, GIT_TERMINAL_PROMPT: '0' } },
+    (err, stdout, stderr) => err ? mal(new Error((stderr || err.message).trim())) : ok(stdout.trim())));
+}
+async function publicar(raiz, entrada) {
+  if (!verificarTodo(raiz).ok) throw new Error('Hay registros dañados: revisa «Egiaztatu» antes de publicar');
+  const mensaje = texto(entrada?.mensaje, 'Mensaje', false, 200) || `Eguneraketa ${new Date().toISOString().slice(0, 16).replace('T', ' ')}`;
+  await git(raiz, ['add', '--', 'data/publico', 'img']);
+  const archivos = (await git(raiz, ['diff', '--cached', '--name-only'])).split(/\r?\n/).filter(Boolean);
+  if (archivos.length) await git(raiz, ['commit', '-m', mensaje]);
+  try { await git(raiz, ['push', 'origin', 'HEAD']); } catch (e) {
+    throw new Error(`Guardado en este equipo pero no se ha podido subir a GitHub: ${e.message}`);
+  }
+  return { archivos: archivos.length };
+}
+
 // ---------- HTTP ----------
 const TIPOS_MIME = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8',
@@ -579,13 +599,13 @@ function crearServidor({ raiz = __dirname, token = crypto.randomBytes(24).toStri
 
         if (req.method === 'GET' && url.pathname === '/api/datos') return enviar(res, 200, cargarDatos(raiz));
         if (req.method === 'GET' && url.pathname === '/api/verificar') return enviar(res, 200, verificarTodo(raiz));
-        const POST = { '/api/evento': [anadirEvento, LIMITE_CUERPO], '/api/entidad': [guardarEntidad, LIMITE_CUERPO], '/api/imagen': [guardarFoto, LIMITE_IMAGEN], '/api/mapa': [guardarMapa, LIMITE_IMAGEN] };
+        const POST = { '/api/evento': [anadirEvento, LIMITE_CUERPO], '/api/entidad': [guardarEntidad, LIMITE_CUERPO], '/api/imagen': [guardarFoto, LIMITE_IMAGEN], '/api/mapa': [guardarMapa, LIMITE_IMAGEN], '/api/publicar': [publicar, LIMITE_CUERPO] };
         if (req.method === 'POST' && POST[url.pathname]) {
           if (!String(req.headers['content-type']).startsWith('application/json')) return enviar(res, 415, { error: 'Se espera JSON' });
           const [accion, limite] = POST[url.pathname];
           let entrada;
           try { entrada = await leerCuerpo(req, limite); } catch (e) { return enviar(res, 413, { error: e.message }); }
-          try { return enviar(res, 200, accion(raiz, entrada)); } catch (e) { return enviar(res, 400, { error: e.message }); }
+          try { return enviar(res, 200, await accion(raiz, entrada)); } catch (e) { return enviar(res, 400, { error: e.message }); }
         }
         return enviar(res, 404, { error: 'Ruta desconocida' });
       }
@@ -612,7 +632,7 @@ function crearServidor({ raiz = __dirname, token = crypto.randomBytes(24).toStri
   return { servidor, token };
 }
 
-module.exports = { validarEvento, anadirEvento, guardarEntidad, guardarFoto, guardarMapa, cargarDatos, verificarTodo, crearServidor };
+module.exports = { publicar, validarEvento, anadirEvento, guardarEntidad, guardarFoto, guardarMapa, cargarDatos, verificarTodo, crearServidor };
 
 if (require.main === module) {
   if (process.argv.includes('--verificar')) {

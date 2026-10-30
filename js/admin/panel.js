@@ -336,6 +336,26 @@
     } catch (e) { avisar('✖ ' + e.message, 'error'); }
   }
 
+  // Sube a GitHub los datos y las imágenes: la web pública se actualiza en 1-2 minutos.
+  async function publicarCambios() {
+    const html = `<p>Datu publikoak eta irudiak GitHub-era igoko dira; webgunea 1-2 minututan eguneratuko da.</p>
+      <p class="vacio">Datu pribatuak (banakako notak, jatorrizko argazkiak) ez dira inoiz igotzen.</p>
+      <label>Oharra (aukerakoa) <input type="text" id="d-mensaje" maxlength="200" placeholder="Adib.: 3. entrega"></label>`;
+    if (!await confirmar('Argitaratu?', html, 'Argitaratu')) return;
+    const b = $('publicar');
+    b.disabled = true;
+    b.textContent = '⏳ Igotzen…';
+    try {
+      const r = await api('/api/publicar', { mensaje: $('d-mensaje').value });
+      avisar(r.archivos ? `✔ Argitaratuta (${r.archivos} fitxategi). Webgunea laster eguneratuko da.` : '✔ Dena argitaratuta zegoen');
+    } catch (e) {
+      avisar('✖ ' + e.message, 'error');
+    } finally {
+      b.disabled = false;
+      b.textContent = '⬆ Argitaratu';
+    }
+  }
+
   // ---------- Carga ----------
   async function recargar() {
     datos = await api('/api/datos');
@@ -403,6 +423,7 @@
     form.elements.estado.onchange = proponerEstado;
     form.onsubmit = e => { e.preventDefault(); enviar(); };
     $('verificar').onclick = verificarCadenas;
+    $('publicar').onclick = publicarCambios;
     document.querySelectorAll('[data-ir]').forEach(b => b.onclick = () => irA(b.dataset.ir));
     addEventListener('hashchange', () => recargar().catch(e => avisar('✖ ' + e.message, 'error')));
     try { await recargar(); } catch (e) {

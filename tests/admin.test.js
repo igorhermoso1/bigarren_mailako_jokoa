@@ -212,3 +212,23 @@ test('oharrak: generales, de un grupo o de un miembro', () => {
   const glob = anadirEvento(raiz, { ambito: 'global', tipo: 'comentario', grupo: 'g1', datos: { texto: 'Denontzat' } });
   assert.strictEqual(glob.evento.grupo, null);
 });
+
+test('publicar: sube solo data/publico e img a GitHub (aquí, a un remoto local)', async () => {
+  const { execFileSync } = require('child_process');
+  const { publicar } = require('../admin.js');
+  const g = (cwd, ...a) => execFileSync('git', a, { cwd, encoding: 'utf8' }).trim();
+  const remoto = fs.mkdtempSync(path.join(os.tmpdir(), 'remoto-'));
+  g(remoto, 'init', '--bare', '-q');
+  g(raiz, 'init', '-q'); g(raiz, 'config', 'user.email', 'proba@proba'); g(raiz, 'config', 'user.name', 'Proba');
+  g(raiz, 'remote', 'add', 'origin', remoto);
+  fs.writeFileSync(path.join(raiz, '.gitignore'), 'data/privado/\n');
+  fs.writeFileSync(path.join(raiz, 'kodea.js'), '// no se debe publicar desde el panel');
+  const r = await publicar(raiz, { mensaje: 'Proba' });
+  assert.ok(r.archivos > 0);
+  const subidos = g(remoto, 'ls-tree', '-r', '--name-only', 'HEAD');
+  assert.match(subidos, /data\/publico\/grupos\.json/);
+  assert.doesNotMatch(subidos, /data\/privado|kodea\.js|admin\.html/);
+  assert.strictEqual(g(remoto, 'log', '-1', '--format=%s'), 'Proba');
+  assert.deepStrictEqual(await publicar(raiz, {}), { archivos: 0 }); // sin cambios: no crea commit vacío
+  fs.rmSync(remoto, { recursive: true, force: true });
+});

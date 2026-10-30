@@ -68,10 +68,7 @@ Las fotos que te pasen los alumnos pueden estar en cualquier carpeta de tu equip
 
    Antes de guardar siempre sale un resumen para confirmar.
 4. ¿Te has equivocado? En **Azken gertaerak**, pulsa **Baliogabetu** junto al evento. No se borra: queda tachado y deja de contar.
-5. Cuando termines, publica los cambios:
-   ```bash
-   git add data && git commit -m "Entrega 3" && git push
-   ```
+5. Cuando termines, pulsa **⬆ Argitaratu** (arriba a la derecha). Sube a GitHub los datos públicos y las imágenes; la web se actualiza en 1-2 minutos. Usa el acceso a GitHub que ya tienes en este ordenador (la primera vez puede abrir una ventana de GitHub para iniciar sesión). Nunca sube `data/privado/`.
 
 ### Módulos del panel
 | Módulo | Para qué |

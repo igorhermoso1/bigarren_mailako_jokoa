@@ -323,3 +323,117 @@ button { font: inherit; color: inherit; }
 ::-webkit-scrollbar-corner { background: #160f0a; }
 /* Firefox no admite lo anterior: solo colores */
 @supports not selector(::-webkit-scrollbar) { * { scrollbar-color: var(--oro) #2b1d14; } }
+
+/* ======================================================================
+   Capa «RPG de los 90»: mazmorra de piedra, metal biselado, brillos y
+   ascuas. Todo con CSS; sin animación si el sistema pide reducir movimiento.
+   ====================================================================== */
+
+/* Fondo: muro de piedra en penumbra con viñeta */
+body {
+  background:
+    radial-gradient(ellipse at 50% 35%, transparent 30%, #000c 90%),
+    repeating-linear-gradient(0deg, #00000055 0 2px, transparent 2px 46px),
+    repeating-linear-gradient(90deg, #00000044 0 2px, transparent 2px 92px),
+    linear-gradient(#241a14, #120c08);
+  background-attachment: fixed;
+}
+/* Ascuas que suben lentamente por toda la pantalla */
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: .55;
+  background-image:
+    radial-gradient(circle, #ffb347 0 1.4px, transparent 2.4px),
+    radial-gradient(circle, #ff7b2e 0 1px, transparent 2px),
+    radial-gradient(circle, #ffd27a 0 1.2px, transparent 2.2px);
+  background-size: 230px 310px, 370px 430px, 520px 610px;
+  background-position: 0 0, 80px 120px, 200px 40px;
+  animation: ascuas 26s linear infinite;
+}
+@keyframes ascuas { to { background-position: 40px -310px, 20px -430px, 260px -610px; } }
+.cabecera, .contenido, .registrando, .modulos, .admin-cuerpo { position: relative; z-index: 1; }
+
+/* Cabecera de hierro con remaches y filo dorado */
+.cabecera {
+  background:
+    radial-gradient(circle at 6px 50%, #c9a24c 0 2px, #4a3520 2.5px, transparent 3.5px) 0 calc(100% - 7px) / 28px 14px repeat-x,
+    linear-gradient(#3a2a1e, #1a120c 70%, #0d0906);
+  border-bottom: 3px solid; border-image: linear-gradient(90deg, transparent, var(--oro), var(--oro-claro), var(--oro), transparent) 1;
+  box-shadow: 0 6px 18px #000e;
+}
+.marca { display: flex; align-items: center; gap: .7rem; }
+/* Cubo rojo, ligeramente girado */
+.kuboa { width: 2.3rem; height: 2.3rem; flex: none; transform: rotate(-14deg); filter: drop-shadow(2px 3px 0 #000a); }
+/* Título metálico con destello que lo recorre */
+.titulo {
+  font-variant: small-caps; text-transform: none; letter-spacing: .1em;
+  background-image: linear-gradient(110deg, var(--oro-osc) 0%, var(--oro) 28%, #fff6d6 42%, var(--oro-claro) 50%, var(--oro) 62%, var(--oro-osc) 100%);
+  background-size: 260% 100%; animation: destello 7s ease-in-out infinite;
+  filter: drop-shadow(2px 2px 0 #000) drop-shadow(0 0 8px #d4a64a55);
+}
+@keyframes destello { 0%, 100% { background-position: 100% 0; } 50% { background-position: 0 0; } }
+
+/* Estandartes: brillo que cruza al pasar el ratón */
+.estandartes a { position: relative; overflow: hidden; }
+.estandartes a::after {
+  content: ''; position: absolute; inset: 0; transform: translateX(-120%);
+  background: linear-gradient(100deg, transparent 30%, #ffffff55 50%, transparent 70%); transition: transform .5s;
+}
+.estandartes a:hover::after { transform: translateX(120%); }
+
+/* Ventanas «de los 90»: pergamino con marco metálico biselado y gemas en las esquinas */
+.pergamino {
+  border: 3px solid; border-color: var(--oro-claro) var(--oro-osc) var(--oro-osc) var(--oro-claro);
+  box-shadow: 0 0 0 2px #0d0906, 0 0 0 4px var(--oro-osc), 0 0 0 5px #0d0906, 0 14px 34px #000c, inset 0 0 0 1px #fff6, inset 0 0 40px #8a642440;
+  background:
+    radial-gradient(circle at 7px 7px, #e04a3a 0 2.5px, var(--oro) 3px 4.5px, transparent 5px) top left / 14px 14px no-repeat,
+    radial-gradient(circle at 7px 7px, #e04a3a 0 2.5px, var(--oro) 3px 4.5px, transparent 5px) top right / 14px 14px no-repeat,
+    radial-gradient(circle at 7px 7px, #e04a3a 0 2.5px, var(--oro) 3px 4.5px, transparent 5px) bottom left / 14px 14px no-repeat,
+    radial-gradient(circle at 7px 7px, #e04a3a 0 2.5px, var(--oro) 3px 4.5px, transparent 5px) bottom right / 14px 14px no-repeat,
+    var(--grano), radial-gradient(ellipse at 50% 40%, var(--pergamino), var(--pergamino-2));
+}
+
+/* Marco del mapa: más grueso, con luz de antorcha que parpadea */
+.marco-mapa {
+  padding: 12px; border: 3px solid; border-color: var(--oro-claro) var(--oro-osc) var(--oro-osc) var(--oro-claro);
+  box-shadow: 0 0 0 3px #0d0906, 0 0 0 6px var(--oro-osc), 0 0 0 8px #0d0906, 0 0 40px #d4a64a33, 0 24px 50px #000e;
+}
+.lienzo::after { animation: antorcha 5s ease-in-out infinite; }
+@keyframes antorcha {
+  0%, 100% { box-shadow: inset 0 0 60px #2b1b10cc; }
+  30% { box-shadow: inset 0 0 70px #3a1d08dd, inset 0 0 120px #ff9a3a14; }
+  55% { box-shadow: inset 0 0 55px #2b1b10bb; }
+  75% { box-shadow: inset 0 0 75px #3a1d08e0, inset 0 0 140px #ff9a3a1c; }
+}
+
+/* Zonas superadas: el medallón late con luz dorada */
+.casilla.pisada { animation: latido-oro 2.8s ease-in-out infinite; }
+@keyframes latido-oro { 50% { box-shadow: 0 0 0 2px #0009, 0 0 18px 5px #f6dc95aa, 0 3px 6px #000a; } }
+
+/* Menú de grupos: cursor «▶» parpadeante, como en los RPG clásicos */
+.fila-grupo { position: relative; }
+.fila-grupo::before {
+  content: '▶'; position: absolute; left: -1.05rem; top: 50%; transform: translateY(-50%);
+  color: var(--oro-claro); text-shadow: 1px 1px 0 #000; opacity: 0; font-size: .85rem;
+}
+.lista-grupos { padding-left: .9rem; }
+.fila-grupo:hover::before, .fila-grupo:focus-visible::before { opacity: 1; animation: parpadeo 1s steps(2) infinite; }
+@keyframes parpadeo { 50% { opacity: 0; } }
+
+/* Barra de experiencia con rayas que avanzan */
+.xp-relleno {
+  background-image: repeating-linear-gradient(-45deg, #ffffff40 0 6px, transparent 6px 12px), linear-gradient(#f6dc95, #d4a64a 60%, #a8792c);
+  background-size: 17px 17px, 100% 100%; animation: rayas 1.2s linear infinite;
+}
+@keyframes rayas { to { background-position: 17px 0, 0 0; } }
+
+/* Las ventanas emergentes se despliegan como un menú de los 90 */
+@keyframes aparecer { from { transform: scaleY(.04); opacity: .5; filter: brightness(2); } 60% { filter: brightness(1.3); } }
+.emergente { transform-origin: 50% 50%; animation-duration: .22s; }
+
+/* Pestañas activas con marca de selección */
+.em-pestanas button[aria-selected="true"]::before, .lat-pestanas button[aria-selected="true"]::before { content: '▸ '; color: var(--acento); }
+
+@media (prefers-reduced-motion: reduce) {
+  body::before, .titulo, .lienzo::after, .casilla.pisada, .xp-relleno, .fila-grupo::before { animation: none !important; }
+  .estandartes a::after { display: none; }
+}
