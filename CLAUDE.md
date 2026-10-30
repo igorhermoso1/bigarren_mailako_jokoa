@@ -2,6 +2,9 @@
 
 Especificación original completa: `docs/PROMPT_MAESTRO.md`. Este archivo recoge **las decisiones vigentes**, que mandan sobre el prompt.
 
+## Regla principal
+**No inventar contenido ni funciones.** Ni nombres, ni alumnos, ni textos, ni eventos, ni objetos de ejemplo. Los datos reales empiezan vacíos y los rellena el profesor desde el panel. Los datos ficticios solo viven en `tests/datos_prueba/`. No añadir nada que el profesor no haya pedido.
+
 ## Qué es
 Web estática (GitHub Pages) que gamifica la evaluación por grupos. Dos aventuras en paralelo (`zerbitzuak`, `sareak`), 6 grupos de 5 alumnos, los mismos en ambas. Solo el profesor escribe (admin local con `node admin.js`).
 
@@ -37,6 +40,7 @@ Stack: HTML + CSS + JS puro, sin frameworks, sin build y sin dependencias. Códi
 - **Privacidad:** `visible_publico: false` solo oculta en la interfaz; el JSON público lo lee cualquiera. Lo privado (notas de grupo privadas, `nota_miembro`) se escribe en `data/privado/eventos_privados.json`.
 - Estados: su `puntos` se registra una vez en el propio evento `estado_aplicado` (el admin lo rellena desde `efecto`). La duración baja en cada `entrega_cerrada` posterior. Flujo: primero se cierra la entrega y después se registran sus resultados.
 - Un evento sin `grupo` y con `puntos` afecta a todos los grupos.
+- `comentario` (Oharra / testua): general, de un grupo (sale en su Historia) o de un miembro (`miembro`, sale en la pestaña del alumno, en «Lana»). Es público.
 
 ## Código
 - `js/motor.js`: `calcularEstado()`, función pura (navegador y Node).
@@ -45,6 +49,8 @@ Stack: HTML + CSS + JS puro, sin frameworks, sin build y sin dependencias. Códi
   - grupo: Taldea (nivel, XP, inventario en huecos, estados, logros), una pestaña por miembro (alias, clase, cometido) e Historia;
   - zona: Taldeak (cuándo, cómo y valoración de cada grupo en esa zona), Ariketa y Gertaerak.
 - Las notas individuales nunca salen en la web pública: la pestaña de miembro solo muestra datos públicos.
+- Cada zona muestra su nombre en una cartela que flota (animada, salvo con reducir movimiento) sobre su medallón.
+- Barras de desplazamiento con estilo de madera y oro (web y panel).
 - `css/web.css`: hoja única con tema RPG fijo (madera, oro y pergamino; sin modo claro/oscuro). Sin fuentes externas.
 - Iconos: `icono` de objeto/logro/hito = emoji o ruta de imagen; si falta, se usa el emoji por defecto del tipo. `config.clases` = clase RPG con su icono.
 - El profesor gestiona logros, objetos y estados desde el admin; los del catálogo actual son de ejemplo.
@@ -76,7 +82,7 @@ Stack: HTML + CSS + JS puro, sin frameworks, sin build y sin dependencias. Códi
 - `js/admin/tablero.js`: arrastre con pointer events (se guarda al soltar), flechas del teclado (se guarda a los 600 ms), «＋ Honen ondoren txertatu» (la nueva hereda las conexiones de la elegida), conexiones con casillas de verificación, versiones de mapa con «Leheneratu».
 
 ## Tests
-`node --test` (carpeta `tests/`).
+`node --test` (carpeta `tests/`). Los tests usan `tests/datos_prueba/publico` (ficticio), nunca `data/`.
 
 ## Fases
 Fase 0 ✔ · Fase 1 ✔ (esqueleto y datos) · Fase 2 ✔ (motor + web pública) · Fase 3 ✔ (admin.js + admin básico) · Fase 4 ✔ (gestión completa) · Fase 5 ✔ (editor del tablero y mapas) · Fase 6 saltada (sus elementos están recortados, ver arriba) · Fase 8 ✔ (GitHub Pages: https://igorhermoso1.github.io/bigarren_mailako_jokoa/) · pendientes: Fase 7 (pulido) y Fase 9 (mapas definitivos).

@@ -1,0 +1,229 @@
+{
+  "casillas": [
+    {
+      "id": "z01",
+      "nombre": "Makina birtualen sorrera",
+      "lugar": "Script-aren Liburutegia",
+      "tipo": "inicio",
+      "entrega": "z-e1",
+      "x": 15.8,
+      "y": 49.2,
+      "siguientes": [
+        "z02"
+      ]
+    },
+    {
+      "id": "z02",
+      "nombre": "DNS",
+      "lugar": "Basoen Erresuma",
+      "tipo": "normal",
+      "entrega": "z-e2",
+      "x": 21.5,
+      "y": 42.4,
+      "siguientes": [
+        "z03"
+      ]
+    },
+    {
+      "id": "z03",
+      "nombre": "DHCP",
+      "lugar": "Elfoen Hondakinak",
+      "tipo": "normal",
+      "entrega": "z-e3",
+      "x": 28.8,
+      "y": 46.6,
+      "siguientes": [
+        "z04"
+      ]
+    },
+    {
+      "id": "z04",
+      "nombre": "SSH urruneko saioa",
+      "lugar": "Aldagaien Ibarra",
+      "tipo": "normal",
+      "entrega": "z-e4",
+      "x": 27.4,
+      "y": 56.6,
+      "siguientes": [
+        "z05"
+      ]
+    },
+    {
+      "id": "z05",
+      "nombre": "SSH - OpenSSH",
+      "lugar": "Padura Eremua",
+      "tipo": "normal",
+      "entrega": "z-e5",
+      "x": 24.9,
+      "y": 70.3,
+      "siguientes": [
+        "z06"
+      ]
+    },
+    {
+      "id": "z06",
+      "nombre": "SSH - Webmin - VNC",
+      "lugar": "Bug Zingira",
+      "tipo": "normal",
+      "entrega": "z-e6",
+      "x": 30,
+      "y": 79.4,
+      "siguientes": [
+        "z07"
+      ]
+    },
+    {
+      "id": "z07",
+      "nombre": "AnyDesk",
+      "lugar": "Log-aren Padura",
+      "tipo": "normal",
+      "entrega": "z-e7",
+      "x": 34.2,
+      "y": 67.7,
+      "siguientes": [
+        "z08"
+      ]
+    },
+    {
+      "id": "z08",
+      "nombre": "Webmin eta Samba",
+      "lugar": "Nekropoli Loretsua",
+      "tipo": "normal",
+      "entrega": "z-e8",
+      "x": 39.6,
+      "y": 70.1,
+      "siguientes": [
+        "z09"
+      ]
+    },
+    {
+      "id": "z09",
+      "nombre": "Proxy-cache Squid",
+      "lugar": "Hiri Grisaren atea",
+      "tipo": "normal",
+      "entrega": "z-e9",
+      "x": 49.9,
+      "y": 63.4,
+      "siguientes": [
+        "z10"
+      ]
+    },
+    {
+      "id": "z10",
+      "nombre": "FTP",
+      "lugar": "Hiri Grisa",
+      "tipo": "normal",
+      "entrega": "z-e10",
+      "x": 45.2,
+      "y": 56,
+      "siguientes": [
+        "z11"
+      ]
+    },
+    {
+      "id": "z11",
+      "nombre": "FTP sarbidea kontrolatzea",
+      "lugar": "Aldagaien Harana",
+      "tipo": "normal",
+      "entrega": "z-e11",
+      "x": 41.8,
+      "y": 48.4,
+      "siguientes": [
+        "z12"
+      ]
+    },
+    {
+      "id": "z12",
+      "nombre": "Posta sistema - Thunderbird",
+      "lugar": "Mendi-oinetako bidea",
+      "tipo": "normal",
+      "entrega": "z-e12",
+      "x": 52.5,
+      "y": 37.8,
+      "siguientes": [
+        "z13"
+      ]
+    },
+    {
+      "id": "z13",
+      "nombre": "Web zerbitzaria - Apache HTTP",
+      "lugar": "Konpilatzailearen Forja",
+      "tipo": "normal",
+      "entrega": "z-e13",
+      "x": 57.3,
+      "y": 32.2,
+      "siguientes": [
+        "z14"
+      ]
+    },
+    {
+      "id": "z14",
+      "nombre": "Moodle",
+      "lugar": "Forjaren irteera",
+      "tipo": "normal",
+      "entrega": "z-e14",
+      "x": 68.3,
+      "y": 34.9,
+      "siguientes": [
+        "z15"
+      ]
+    },
+    {
+      "id": "z15",
+      "nombre": "WordPress",
+      "lugar": "Kosta Etsi-etsia",
+      "tipo": "normal",
+      "entrega": "z-e15",
+      "x": 73.4,
+      "y": 48.6,
+      "siguientes": [
+        "z16"
+      ]
+    },
+    {
+      "id": "z16",
+      "nombre": "OpenLDAP",
+      "lugar": "Baldintzen Labirintoa",
+      "tipo": "normal",
+      "entrega": "z-e16",
+      "x": 59.1,
+      "y": 50.5,
+      "siguientes": [
+        "z17"
+      ]
+    },
+    {
+      "id": "z17",
+      "nombre": "Segurtasun-kopiak",
+      "lugar": "Begizten Basamortua",
+      "tipo": "normal",
+      "entrega": "z-e17",
+      "x": 64.9,
+      "y": 68.6,
+      "siguientes": [
+        "z18"
+      ]
+    },
+    {
+      "id": "z18",
+      "nombre": "Babeskopiak - Déjà Dup",
+      "lugar": "Commit-en Meategiak",
+      "tipo": "normal",
+      "entrega": "z-e18",
+      "x": 75.9,
+      "y": 66.8,
+      "siguientes": [
+        "z19"
+      ]
+    },
+    {
+      "id": "z19",
+      "nombre": "Helmuga",
+      "lugar": "Zabor-eskualdea",
+      "tipo": "meta",
+      "x": 81,
+      "y": 58.9,
+      "siguientes": []
+    }
+  ]
+}

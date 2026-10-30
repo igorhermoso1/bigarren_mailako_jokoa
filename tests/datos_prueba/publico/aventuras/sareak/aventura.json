@@ -1,0 +1,12 @@
+{
+  "id": "sareak",
+  "nombre": "Sareak",
+  "tema": "Portuen eta bideen itsasoa",
+  "descripcion": "Paketeak portutik portura eraman behar dituzue Internet uhartera iritsi arte.",
+  "mapa": {
+    "archivo": "img/mapa/sareak.svg",
+    "ancho": 1600,
+    "alto": 1000,
+    "dibujar_camino": true
+  }
+}

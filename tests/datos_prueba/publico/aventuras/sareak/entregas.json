@@ -1,0 +1,58 @@
+{
+  "entregas": [
+    {
+      "id": "s-e1",
+      "nombre": "Kableatua",
+      "fecha_limite": null,
+      "puntos_max": 10
+    },
+    {
+      "id": "s-e2",
+      "nombre": "IP helbideratzea",
+      "fecha_limite": null,
+      "puntos_max": 10
+    },
+    {
+      "id": "s-e3",
+      "nombre": "VLANak",
+      "fecha_limite": null,
+      "puntos_max": 10
+    },
+    {
+      "id": "s-e4",
+      "nombre": "Azpisareak",
+      "fecha_limite": null,
+      "puntos_max": 10
+    },
+    {
+      "id": "s-e5",
+      "nombre": "Bideratze estatikoa",
+      "fecha_limite": null,
+      "puntos_max": 10
+    },
+    {
+      "id": "s-e6",
+      "nombre": "NAT",
+      "fecha_limite": null,
+      "puntos_max": 10
+    },
+    {
+      "id": "s-e7",
+      "nombre": "OSPF",
+      "fecha_limite": null,
+      "puntos_max": 10
+    },
+    {
+      "id": "s-e8",
+      "nombre": "Wifi",
+      "fecha_limite": null,
+      "puntos_max": 10
+    },
+    {
+      "id": "s-e9",
+      "nombre": "Proiektu finala",
+      "fecha_limite": null,
+      "puntos_max": 10
+    }
+  ]
+}

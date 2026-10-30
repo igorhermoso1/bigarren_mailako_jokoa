@@ -2,8 +2,7 @@
   "casillas": [
     {
       "id": "s01",
-      "nombre": "Kableatua",
-      "lugar": "",
+      "nombre": "1. gaia",
       "tipo": "inicio",
       "entrega": "s-e1",
       "x": 8,
@@ -14,8 +13,7 @@
     },
     {
       "id": "s02",
-      "nombre": "IP helbideratzea",
-      "lugar": "",
+      "nombre": "2. gaia",
       "tipo": "normal",
       "entrega": "s-e2",
       "x": 50,
@@ -26,8 +24,7 @@
     },
     {
       "id": "s03",
-      "nombre": "VLANak",
-      "lugar": "",
+      "nombre": "3. gaia",
       "tipo": "normal",
       "entrega": "s-e3",
       "x": 92,
@@ -38,8 +35,7 @@
     },
     {
       "id": "s04",
-      "nombre": "Azpisareak",
-      "lugar": "",
+      "nombre": "4. gaia",
       "tipo": "normal",
       "entrega": "s-e4",
       "x": 92,
@@ -50,8 +46,7 @@
     },
     {
       "id": "s05",
-      "nombre": "Bideratze estatikoa",
-      "lugar": "",
+      "nombre": "5. gaia",
       "tipo": "normal",
       "entrega": "s-e5",
       "x": 50,
@@ -62,8 +57,7 @@
     },
     {
       "id": "s06",
-      "nombre": "NAT",
-      "lugar": "",
+      "nombre": "6. gaia",
       "tipo": "normal",
       "entrega": "s-e6",
       "x": 8,
@@ -74,8 +68,7 @@
     },
     {
       "id": "s07",
-      "nombre": "OSPF",
-      "lugar": "",
+      "nombre": "7. gaia",
       "tipo": "normal",
       "entrega": "s-e7",
       "x": 8,
@@ -86,8 +79,7 @@
     },
     {
       "id": "s08",
-      "nombre": "Wifi",
-      "lugar": "",
+      "nombre": "8. gaia",
       "tipo": "normal",
       "entrega": "s-e8",
       "x": 50,
@@ -98,8 +90,7 @@
     },
     {
       "id": "s09",
-      "nombre": "Proiektu finala",
-      "lugar": "",
+      "nombre": "9. gaia",
       "tipo": "normal",
       "entrega": "s-e9",
       "x": 92,
@@ -111,7 +102,6 @@
     {
       "id": "s10",
       "nombre": "Helmuga",
-      "lugar": "Internet uhartea",
       "tipo": "meta",
       "x": 50,
       "y": 81,

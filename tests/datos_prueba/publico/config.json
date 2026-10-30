@@ -1,0 +1,134 @@
+{
+  "titulo": "Bigarren mailako abentura",
+  "idioma": "eu",
+  "ranking_publico": false,
+  "acciones_rapidas": [
+    { "etiqueta": "Garaiz", "tipo": "bonus", "puntos": 3, "motivo": "Entrega puntuala" },
+    { "etiqueta": "Bikaina", "tipo": "bonus", "puntos": 5, "motivo": "Lan bikaina" },
+    { "etiqueta": "Berandu", "tipo": "penalizacion", "puntos": -2, "motivo": "Entrega berandu" }
+  ],
+  "aventuras": [
+    {
+      "id": "zerbitzuak",
+      "nombre": "Zerbitzuak",
+      "color_acento": "#2a9d8f",
+      "activa": true
+    },
+    {
+      "id": "sareak",
+      "nombre": "Sareak",
+      "color_acento": "#e9c46a",
+      "activa": true
+    }
+  ],
+  "niveles": [
+    {
+      "puntos": 0,
+      "titulo": "Ikastuna"
+    },
+    {
+      "puntos": 30,
+      "titulo": "Laguntzailea"
+    },
+    {
+      "puntos": 70,
+      "titulo": "Artisaua"
+    },
+    {
+      "puntos": 120,
+      "titulo": "Aditua"
+    },
+    {
+      "puntos": 180,
+      "titulo": "Maisua"
+    },
+    {
+      "puntos": 250,
+      "titulo": "Jakintsua"
+    }
+  ],
+  "marcos_sprite": {
+    "archivo": "img/fichas/marcos.png",
+    "ancho": 1129,
+    "alto": 691
+  },
+  "marcos": [
+    {
+      "id": "harria",
+      "nombre": "Harria",
+      "cx": 171.5,
+      "cy": 167,
+      "d": 328
+    },
+    {
+      "id": "marmola",
+      "nombre": "Marmol berdea",
+      "cx": 565,
+      "cy": 167.5,
+      "d": 323
+    },
+    {
+      "id": "egurra",
+      "nombre": "Egurra",
+      "cx": 956.5,
+      "cy": 168,
+      "d": 326
+    },
+    {
+      "id": "obsidiana",
+      "nombre": "Obsidiana",
+      "cx": 170.5,
+      "cy": 521,
+      "d": 330
+    },
+    {
+      "id": "turkesa",
+      "nombre": "Turkesa",
+      "cx": 564.5,
+      "cy": 520,
+      "d": 327
+    },
+    {
+      "id": "hezurra",
+      "nombre": "Hezurra",
+      "cx": 958.5,
+      "cy": 519.5,
+      "d": 330
+    }
+  ],
+  "clases": [
+    {
+      "nombre": "Arkitektoa",
+      "icono": "🏛️"
+    },
+    {
+      "nombre": "Sendatzailea",
+      "icono": "✨"
+    },
+    {
+      "nombre": "Bardoa",
+      "icono": "📜"
+    },
+    {
+      "nombre": "Ezkutaria",
+      "icono": "🛡️"
+    },
+    {
+      "nombre": "Esploratzailea",
+      "icono": "🧭"
+    }
+  ],
+  "tipos_casilla": {
+    "inicio": "Hasiera",
+    "normal": "Arrunta",
+    "hito": "Mugarria",
+    "evento": "Gertaera",
+    "recompensa": "Saria",
+    "penalizacion": "Zigorra",
+    "descanso": "Atsedena",
+    "jefe": "Nagusia",
+    "secreta": "Ezkutukoa",
+    "bifurcacion": "Bidegurutzea",
+    "meta": "Helmuga"
+  }
+}

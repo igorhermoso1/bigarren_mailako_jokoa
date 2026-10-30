@@ -1,8 +1,6 @@
 {
   "id": "zerbitzuak",
   "nombre": "Zerbitzuak",
-  "tema": "Kodearen uhartea",
-  "descripcion": "Hemezortzi zerbitzu, hemezortzi gune. Gainditu bakoitza hurrengo eskualdera igarotzeko.",
   "mapa": {
     "archivo": "img/mapa/zerbitzuak.jpg",
     "ancho": 1376,

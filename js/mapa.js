@@ -100,6 +100,7 @@
       const b = crear('button', 'casilla', { type: 'button', 'data-tipo': c.tipo, 'data-nombre': c.nombre, 'aria-label': `${i + 1}. ${c.nombre} (${tipo})` });
       b.textContent = c.tipo === 'meta' ? '⚑' : i + 1;
       b.classList.toggle('pisada', pisadas.has(c.id));
+      b.style.setProperty('--i', i); // desfase de la animación para que no floten todas a la vez
       b.style.left = c.x + '%';
       b.style.top = c.y + '%';
       b.onclick = ev => { ev.stopPropagation(); al.casilla(c, b); };

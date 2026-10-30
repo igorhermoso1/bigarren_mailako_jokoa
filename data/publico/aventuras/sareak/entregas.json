@@ -2,55 +2,55 @@
   "entregas": [
     {
       "id": "s-e1",
-      "nombre": "Kableatua",
+      "nombre": "1. gaia",
       "fecha_limite": null,
       "puntos_max": 10
     },
     {
       "id": "s-e2",
-      "nombre": "IP helbideratzea",
+      "nombre": "2. gaia",
       "fecha_limite": null,
       "puntos_max": 10
     },
     {
       "id": "s-e3",
-      "nombre": "VLANak",
+      "nombre": "3. gaia",
       "fecha_limite": null,
       "puntos_max": 10
     },
     {
       "id": "s-e4",
-      "nombre": "Azpisareak",
+      "nombre": "4. gaia",
       "fecha_limite": null,
       "puntos_max": 10
     },
     {
       "id": "s-e5",
-      "nombre": "Bideratze estatikoa",
+      "nombre": "5. gaia",
       "fecha_limite": null,
       "puntos_max": 10
     },
     {
       "id": "s-e6",
-      "nombre": "NAT",
+      "nombre": "6. gaia",
       "fecha_limite": null,
       "puntos_max": 10
     },
     {
       "id": "s-e7",
-      "nombre": "OSPF",
+      "nombre": "7. gaia",
       "fecha_limite": null,
       "puntos_max": 10
     },
     {
       "id": "s-e8",
-      "nombre": "Wifi",
+      "nombre": "8. gaia",
       "fecha_limite": null,
       "puntos_max": 10
     },
     {
       "id": "s-e9",
-      "nombre": "Proiektu finala",
+      "nombre": "9. gaia",
       "fecha_limite": null,
       "puntos_max": 10
     }

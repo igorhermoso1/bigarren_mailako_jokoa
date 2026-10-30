@@ -205,7 +205,7 @@
     cab.className = 'em-cab-grupo';
     cab.style.setProperty('--color', g.color);
     cab.append(Mapa.crearFicha(g, comun.config));
-    cab.insertAdjacentHTML('beforeend', `<div><h2 id="em-titulo">${esc(g.nombre)}</h2><p class="lema">«${esc(g.lema)}»</p>
+    cab.insertAdjacentHTML('beforeend', `<div><h2 id="em-titulo">${esc(g.nombre)}</h2>${g.lema ? `<p class="lema">«${esc(g.lema)}»</p>` : ''}
       <p class="em-nivel"><span class="nivel-num">${n.numero}</span> ${esc(n.titulo)}</p></div>`);
 
     const superadas = e.camino.length - 1;
@@ -229,7 +229,8 @@
             <h3>${esc(m.alias)}</h3>
             ${m.clase ? `<p class="clase"><span aria-hidden="true">${clase ? esc(clase.icono) : '⚜️'}</span> ${esc(m.clase)}</p>` : ''}
           </div>
-          <dl class="stats"><div><dt>Zeregina ${esc(actual.aventura.nombre)}-n</dt><dd>${esc(m.cometido?.[actual.aventura.id] || '—')}</dd></div></dl>`,
+          <dl class="stats"><div><dt>Zeregina ${esc(actual.aventura.nombre)}-n</dt><dd>${esc(m.cometido?.[actual.aventura.id] || '—')}</dd></div></dl>
+          <h3>Lana</h3>${cronica(e.historial.filter(ev => publico(ev) && ev.miembro === m.id).reverse())}`,
       };
     });
 

@@ -82,7 +82,8 @@ function verificarTodo(raiz) {
 const TIPOS = ['avance', 'retroceso', 'objeto_ganado', 'objeto_usado', 'objeto_perdido', 'estado_aplicado', 'estado_expirado',
   'hito', 'logro', 'bonus', 'penalizacion', 'nota_grupo', 'nota_miembro', 'entrega_cerrada', 'comentario', 'anulacion'];
 const TIPOS_GLOBALES = ['bonus', 'penalizacion', 'comentario', 'anulacion'];
-const SIN_GRUPO = ['entrega_cerrada', 'comentario', 'anulacion'];
+const SIN_GRUPO = ['entrega_cerrada', 'anulacion'];
+const GRUPO_OPCIONAL = ['bonus', 'penalizacion', 'comentario'];
 
 function texto(v, nombre, obligatorio = false, max = MAX_TEXTO) {
   if (v == null || v === '') { if (obligatorio) throw new Error(`Falta ${nombre}`); return undefined; }
@@ -117,7 +118,8 @@ function validarEvento(entrada, datos) {
   const g = grupo && datos.grupos.grupos.find(x => x.id === grupo);
   if (grupo && !g) throw new Error(`Grupo desconocido: ${grupo}`);
   if (SIN_GRUPO.includes(tipo)) grupo = null;
-  else if (!grupo && !['bonus', 'penalizacion'].includes(tipo)) throw new Error('Falta el grupo');
+  else if (!grupo && !GRUPO_OPCIONAL.includes(tipo)) throw new Error('Falta el grupo');
+  if (global) grupo = null; // lo que va a las dos aventuras es para todos los grupos
 
   const puntos = entrada.puntos == null || entrada.puntos === '' ? 0 : numero(entrada.puntos, 'Puntos', -1000, 1000);
   const d = entrada.datos || {};
@@ -193,6 +195,11 @@ function validarEvento(entrada, datos) {
       break;
     }
     case 'comentario':
+      // Oharra del profesor: general, para un grupo o para un miembro concreto (su trabajo).
+      if (entrada.miembro) {
+        if (!g || !g.miembros.some(m => m.id === entrada.miembro)) throw new Error('El miembro no pertenece a ese grupo');
+        miembro = entrada.miembro;
+      }
       datosLimpios = { texto: texto(d.texto, 'Texto', true) };
       break;
     case 'anulacion': {

@@ -6,7 +6,7 @@
     objeto_ganado: 'Objektua eman', objeto_usado: 'Objektua erabili', objeto_perdido: 'Objektua kendu',
     estado_aplicado: 'Egoera ezarri', estado_expirado: 'Egoera amaitu', hito: 'Mugarria', logro: 'Lorpena',
     nota_grupo: 'Taldearen nota', nota_miembro: 'Kide baten nota (pribatua)', entrega_cerrada: 'Entrega itxi',
-    comentario: 'Oharra', anulacion: 'Baliogabetzea',
+    comentario: 'Oharra / testua', anulacion: 'Baliogabetzea',
   };
   // Campos del formulario que necesita cada tipo de evento.
   const CAMPOS = {
@@ -17,10 +17,10 @@
     hito: ['grupo', 'hito', 'motivo', 'puntos'], logro: ['grupo', 'logro', 'motivo', 'puntos'],
     nota_grupo: ['grupo', 'entrega', 'nota', 'comentario', 'publico', 'puntos'],
     nota_miembro: ['grupo', 'miembro', 'entrega', 'criterios', 'comentario'],
-    entrega_cerrada: ['entrega'], comentario: ['texto'],
+    entrega_cerrada: ['entrega'], comentario: ['grupo', 'miembro', 'texto'],
   };
   const GLOBALES = ['bonus', 'penalizacion', 'comentario'];
-  const TODOS_LOS_GRUPOS = ['bonus', 'penalizacion'];
+  const TODOS_LOS_GRUPOS = ['bonus', 'penalizacion', 'comentario'];
 
   const $ = id => document.getElementById(id);
   const form = $('formulario');
@@ -220,7 +220,9 @@
 
   function actualizarMiembros() {
     const g = buscar(datos.grupos.grupos, form.elements.grupo.value);
-    $('f-miembro').innerHTML = g ? opciones(g.miembros.filter(m => m.activo), m => m.alias) : '';
+    // En un oharra el miembro es opcional: vacío = texto para todo el grupo.
+    const opcional = form.elements.tipo.value === 'comentario' ? '— Talde osoa —' : null;
+    $('f-miembro').innerHTML = g ? opciones(g.miembros.filter(m => m.activo), m => m.alias, opcional) : '';
   }
 
   // Al avanzar se propone la casilla siguiente del grupo; al retroceder, la anterior de su camino.
@@ -273,7 +275,7 @@
     return {
       aventura: avId, ambito: f.ambito.value, tipo,
       grupo: usa('grupo') ? f.grupo.value || null : null,
-      miembro: usa('miembro') ? f.miembro.value : null,
+      miembro: usa('miembro') ? f.miembro.value || null : null,
       puntos: usa('puntos') ? f.puntos.value : 0,
       visible_publico: usa('publico') ? f.publico.checked : true,
       datos: datosEv,

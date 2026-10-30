@@ -10,7 +10,8 @@ const ORIGEN = path.join(__dirname, '..');
 let raiz;
 before(() => {
   raiz = fs.mkdtempSync(path.join(os.tmpdir(), 'abentura-'));
-  fs.cpSync(path.join(ORIGEN, 'data', 'publico'), path.join(raiz, 'data', 'publico'), { recursive: true });
+  // Datos ficticios solo para los tests (tests/datos_prueba); los reales no se tocan.
+  fs.cpSync(path.join(__dirname, 'datos_prueba', 'publico'), path.join(raiz, 'data', 'publico'), { recursive: true });
   fs.cpSync(path.join(ORIGEN, 'img', 'mapa'), path.join(raiz, 'img', 'mapa'), { recursive: true });
   fs.mkdirSync(path.join(raiz, 'data', 'privado'), { recursive: true });
   const criterios = [{ id: 'ekarpena', nombre: 'Ekarpena' }];
@@ -200,4 +201,14 @@ test('mapas: SVG seguro sí, SVG con código no; versión nueva con auditoría',
   const vuelta = guardarMapa(raiz, { aventura: 'sareak', existente: 'img/mapa/sareak.svg', ancho: 1600, alto: 1000, dibujar_camino: true });
   assert.strictEqual(vuelta.mapa.archivo, 'img/mapa/sareak.svg');
   assert.ok(fs.existsSync(path.join(raiz, r.mapa.archivo))); // la versión anterior no se borra
+});
+
+test('oharrak: generales, de un grupo o de un miembro', () => {
+  const g = anadirEvento(raiz, { aventura: 'zerbitzuak', tipo: 'comentario', grupo: 'g1', datos: { texto: 'Taldearen oharra' } });
+  assert.strictEqual(g.evento.grupo, 'g1');
+  const m = anadirEvento(raiz, { aventura: 'zerbitzuak', tipo: 'comentario', grupo: 'g1', miembro: 'g1-a2', datos: { texto: 'Bere lana' } });
+  assert.strictEqual(m.evento.miembro, 'g1-a2');
+  assert.throws(() => anadirEvento(raiz, { aventura: 'zerbitzuak', tipo: 'comentario', grupo: 'g2', miembro: 'g1-a2', datos: { texto: 'x' } }), /no pertenece/);
+  const glob = anadirEvento(raiz, { ambito: 'global', tipo: 'comentario', grupo: 'g1', datos: { texto: 'Denontzat' } });
+  assert.strictEqual(glob.evento.grupo, null);
 });

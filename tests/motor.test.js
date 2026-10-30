@@ -5,7 +5,8 @@ const path = require('path');
 const { calcularEstado } = require('../js/motor.js');
 const { encadenar } = require('../cadena.js');
 
-const PUB = path.join(__dirname, '..', 'data', 'publico');
+// Datos ficticios solo para los tests; los reales empiezan vacíos.
+const PUB = path.join(__dirname, 'datos_prueba', 'publico');
 const leer = rel => JSON.parse(fs.readFileSync(path.join(PUB, rel), 'utf8'));
 const comun = { catalogo: leer('catalogo.json'), grupos: leer('grupos.json'), config: leer('config.json'), globales: leer('eventos_globales.json') };
 const av = id => ({ eventos: leer(`aventuras/${id}/eventos.json`), tablero: leer(`aventuras/${id}/tablero.json`) });

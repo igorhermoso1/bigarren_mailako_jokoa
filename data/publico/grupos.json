@@ -2,8 +2,7 @@
   "grupos": [
     {
       "id": "g1",
-      "nombre": "Ezpata Digitalak",
-      "lema": "Kodea da gure armarik onena",
+      "nombre": "1. taldea",
       "color": "#c0392b",
       "foto_grupo": null,
       "ficha": {
@@ -15,63 +14,11 @@
         }
       },
       "activo": true,
-      "miembros": [
-        {
-          "id": "g1-a1",
-          "alias": "Ada",
-          "cometido": {
-            "zerbitzuak": "Koordinatzailea",
-            "sareak": "Koordinatzailea"
-          },
-          "clase": "Arkitektoa",
-          "activo": true
-        },
-        {
-          "id": "g1-a2",
-          "alias": "Linus",
-          "cometido": {
-            "zerbitzuak": "Hedapen-arduraduna",
-            "sareak": "Helbideratze-arduraduna"
-          },
-          "clase": "Sendatzailea",
-          "activo": true
-        },
-        {
-          "id": "g1-a3",
-          "alias": "Grace",
-          "cometido": {
-            "zerbitzuak": "Dokumentazio-arduraduna",
-            "sareak": "Kableatze-arduraduna"
-          },
-          "clase": "Bardoa",
-          "activo": true
-        },
-        {
-          "id": "g1-a4",
-          "alias": "Alan",
-          "cometido": {
-            "zerbitzuak": "Proba-arduraduna",
-            "sareak": "Konfigurazio-arduraduna"
-          },
-          "clase": "Ezkutaria",
-          "activo": true
-        },
-        {
-          "id": "g1-a5",
-          "alias": "Margaret",
-          "cometido": {
-            "zerbitzuak": "Segurtasun-arduraduna",
-            "sareak": "Dokumentazio-arduraduna"
-          },
-          "clase": "Esploratzailea",
-          "activo": true
-        }
-      ]
+      "miembros": []
     },
     {
       "id": "g2",
-      "nombre": "Hodei Ehiztariak",
-      "lema": "Hodeien gainetik, beti",
+      "nombre": "2. taldea",
       "color": "#2e86c1",
       "foto_grupo": null,
       "ficha": {
@@ -83,63 +30,11 @@
         }
       },
       "activo": true,
-      "miembros": [
-        {
-          "id": "g2-a1",
-          "alias": "Dennis",
-          "cometido": {
-            "zerbitzuak": "Koordinatzailea",
-            "sareak": "Helbideratze-arduraduna"
-          },
-          "clase": "Sendatzailea",
-          "activo": true
-        },
-        {
-          "id": "g2-a2",
-          "alias": "Barbara",
-          "cometido": {
-            "zerbitzuak": "Hedapen-arduraduna",
-            "sareak": "Kableatze-arduraduna"
-          },
-          "clase": "Bardoa",
-          "activo": true
-        },
-        {
-          "id": "g2-a3",
-          "alias": "Ken",
-          "cometido": {
-            "zerbitzuak": "Dokumentazio-arduraduna",
-            "sareak": "Konfigurazio-arduraduna"
-          },
-          "clase": "Ezkutaria",
-          "activo": true
-        },
-        {
-          "id": "g2-a4",
-          "alias": "Radia",
-          "cometido": {
-            "zerbitzuak": "Proba-arduraduna",
-            "sareak": "Dokumentazio-arduraduna"
-          },
-          "clase": "Esploratzailea",
-          "activo": true
-        },
-        {
-          "id": "g2-a5",
-          "alias": "Vint",
-          "cometido": {
-            "zerbitzuak": "Segurtasun-arduraduna",
-            "sareak": "Koordinatzailea"
-          },
-          "clase": "Arkitektoa",
-          "activo": true
-        }
-      ]
+      "miembros": []
     },
     {
       "id": "g3",
-      "nombre": "Bit Basatiak",
-      "lema": "Zero eta bat, beti batera",
+      "nombre": "3. taldea",
       "color": "#27ae60",
       "foto_grupo": null,
       "ficha": {
@@ -151,63 +46,11 @@
         }
       },
       "activo": true,
-      "miembros": [
-        {
-          "id": "g3-a1",
-          "alias": "Hedy",
-          "cometido": {
-            "zerbitzuak": "Koordinatzailea",
-            "sareak": "Kableatze-arduraduna"
-          },
-          "clase": "Bardoa",
-          "activo": true
-        },
-        {
-          "id": "g3-a2",
-          "alias": "Tim",
-          "cometido": {
-            "zerbitzuak": "Hedapen-arduraduna",
-            "sareak": "Konfigurazio-arduraduna"
-          },
-          "clase": "Ezkutaria",
-          "activo": true
-        },
-        {
-          "id": "g3-a3",
-          "alias": "Frances",
-          "cometido": {
-            "zerbitzuak": "Dokumentazio-arduraduna",
-            "sareak": "Dokumentazio-arduraduna"
-          },
-          "clase": "Esploratzailea",
-          "activo": true
-        },
-        {
-          "id": "g3-a4",
-          "alias": "Bjarne",
-          "cometido": {
-            "zerbitzuak": "Proba-arduraduna",
-            "sareak": "Koordinatzailea"
-          },
-          "clase": "Arkitektoa",
-          "activo": true
-        },
-        {
-          "id": "g3-a5",
-          "alias": "Katherine",
-          "cometido": {
-            "zerbitzuak": "Segurtasun-arduraduna",
-            "sareak": "Helbideratze-arduraduna"
-          },
-          "clase": "Sendatzailea",
-          "activo": true
-        }
-      ]
+      "miembros": []
     },
     {
       "id": "g4",
-      "nombre": "Pakete Galduak",
-      "lema": "Galduta ere, helmugara",
+      "nombre": "4. taldea",
       "color": "#8e44ad",
       "foto_grupo": null,
       "ficha": {
@@ -219,63 +62,11 @@
         }
       },
       "activo": true,
-      "miembros": [
-        {
-          "id": "g4-a1",
-          "alias": "Guido",
-          "cometido": {
-            "zerbitzuak": "Koordinatzailea",
-            "sareak": "Konfigurazio-arduraduna"
-          },
-          "clase": "Ezkutaria",
-          "activo": true
-        },
-        {
-          "id": "g4-a2",
-          "alias": "Annie",
-          "cometido": {
-            "zerbitzuak": "Hedapen-arduraduna",
-            "sareak": "Dokumentazio-arduraduna"
-          },
-          "clase": "Esploratzailea",
-          "activo": true
-        },
-        {
-          "id": "g4-a3",
-          "alias": "Edsger",
-          "cometido": {
-            "zerbitzuak": "Dokumentazio-arduraduna",
-            "sareak": "Koordinatzailea"
-          },
-          "clase": "Arkitektoa",
-          "activo": true
-        },
-        {
-          "id": "g4-a4",
-          "alias": "Joan",
-          "cometido": {
-            "zerbitzuak": "Proba-arduraduna",
-            "sareak": "Helbideratze-arduraduna"
-          },
-          "clase": "Sendatzailea",
-          "activo": true
-        },
-        {
-          "id": "g4-a5",
-          "alias": "Donald",
-          "cometido": {
-            "zerbitzuak": "Segurtasun-arduraduna",
-            "sareak": "Kableatze-arduraduna"
-          },
-          "clase": "Bardoa",
-          "activo": true
-        }
-      ]
+      "miembros": []
     },
     {
       "id": "g5",
-      "nombre": "Ping Pirata",
-      "lema": "Pong erantzuten dugu beti",
+      "nombre": "5. taldea",
       "color": "#d35400",
       "foto_grupo": null,
       "ficha": {
@@ -287,63 +78,11 @@
         }
       },
       "activo": true,
-      "miembros": [
-        {
-          "id": "g5-a1",
-          "alias": "Mary",
-          "cometido": {
-            "zerbitzuak": "Koordinatzailea",
-            "sareak": "Dokumentazio-arduraduna"
-          },
-          "clase": "Esploratzailea",
-          "activo": true
-        },
-        {
-          "id": "g5-a2",
-          "alias": "Claude",
-          "cometido": {
-            "zerbitzuak": "Hedapen-arduraduna",
-            "sareak": "Koordinatzailea"
-          },
-          "clase": "Arkitektoa",
-          "activo": true
-        },
-        {
-          "id": "g5-a3",
-          "alias": "Sophie",
-          "cometido": {
-            "zerbitzuak": "Dokumentazio-arduraduna",
-            "sareak": "Helbideratze-arduraduna"
-          },
-          "clase": "Sendatzailea",
-          "activo": true
-        },
-        {
-          "id": "g5-a4",
-          "alias": "Niklaus",
-          "cometido": {
-            "zerbitzuak": "Proba-arduraduna",
-            "sareak": "Kableatze-arduraduna"
-          },
-          "clase": "Bardoa",
-          "activo": true
-        },
-        {
-          "id": "g5-a5",
-          "alias": "Karen",
-          "cometido": {
-            "zerbitzuak": "Segurtasun-arduraduna",
-            "sareak": "Konfigurazio-arduraduna"
-          },
-          "clase": "Ezkutaria",
-          "activo": true
-        }
-      ]
+      "miembros": []
     },
     {
       "id": "g6",
-      "nombre": "Root Erregeak",
-      "lema": "Baimen guztiak gureak dira",
+      "nombre": "6. taldea",
       "color": "#b7950b",
       "foto_grupo": null,
       "ficha": {
@@ -355,58 +94,7 @@
         }
       },
       "activo": true,
-      "miembros": [
-        {
-          "id": "g6-a1",
-          "alias": "Larry",
-          "cometido": {
-            "zerbitzuak": "Koordinatzailea",
-            "sareak": "Koordinatzailea"
-          },
-          "clase": "Arkitektoa",
-          "activo": true
-        },
-        {
-          "id": "g6-a2",
-          "alias": "Evelyn",
-          "cometido": {
-            "zerbitzuak": "Hedapen-arduraduna",
-            "sareak": "Helbideratze-arduraduna"
-          },
-          "clase": "Sendatzailea",
-          "activo": true
-        },
-        {
-          "id": "g6-a3",
-          "alias": "Steve",
-          "cometido": {
-            "zerbitzuak": "Dokumentazio-arduraduna",
-            "sareak": "Kableatze-arduraduna"
-          },
-          "clase": "Bardoa",
-          "activo": true
-        },
-        {
-          "id": "g6-a4",
-          "alias": "Jean",
-          "cometido": {
-            "zerbitzuak": "Proba-arduraduna",
-            "sareak": "Konfigurazio-arduraduna"
-          },
-          "clase": "Ezkutaria",
-          "activo": true
-        },
-        {
-          "id": "g6-a5",
-          "alias": "Ward",
-          "cometido": {
-            "zerbitzuak": "Segurtasun-arduraduna",
-            "sareak": "Dokumentazio-arduraduna"
-          },
-          "clase": "Esploratzailea",
-          "activo": true
-        }
-      ]
+      "miembros": []
     }
   ]
 }

@@ -1,0 +1,121 @@
+{
+  "casillas": [
+    {
+      "id": "s01",
+      "nombre": "Kableatua",
+      "lugar": "",
+      "tipo": "inicio",
+      "entrega": "s-e1",
+      "x": 8,
+      "y": 15,
+      "siguientes": [
+        "s02"
+      ]
+    },
+    {
+      "id": "s02",
+      "nombre": "IP helbideratzea",
+      "lugar": "",
+      "tipo": "normal",
+      "entrega": "s-e2",
+      "x": 50,
+      "y": 15,
+      "siguientes": [
+        "s03"
+      ]
+    },
+    {
+      "id": "s03",
+      "nombre": "VLANak",
+      "lugar": "",
+      "tipo": "normal",
+      "entrega": "s-e3",
+      "x": 92,
+      "y": 15,
+      "siguientes": [
+        "s04"
+      ]
+    },
+    {
+      "id": "s04",
+      "nombre": "Azpisareak",
+      "lugar": "",
+      "tipo": "normal",
+      "entrega": "s-e4",
+      "x": 92,
+      "y": 37,
+      "siguientes": [
+        "s05"
+      ]
+    },
+    {
+      "id": "s05",
+      "nombre": "Bideratze estatikoa",
+      "lugar": "",
+      "tipo": "normal",
+      "entrega": "s-e5",
+      "x": 50,
+      "y": 37,
+      "siguientes": [
+        "s06"
+      ]
+    },
+    {
+      "id": "s06",
+      "nombre": "NAT",
+      "lugar": "",
+      "tipo": "normal",
+      "entrega": "s-e6",
+      "x": 8,
+      "y": 37,
+      "siguientes": [
+        "s07"
+      ]
+    },
+    {
+      "id": "s07",
+      "nombre": "OSPF",
+      "lugar": "",
+      "tipo": "normal",
+      "entrega": "s-e7",
+      "x": 8,
+      "y": 59,
+      "siguientes": [
+        "s08"
+      ]
+    },
+    {
+      "id": "s08",
+      "nombre": "Wifi",
+      "lugar": "",
+      "tipo": "normal",
+      "entrega": "s-e8",
+      "x": 50,
+      "y": 59,
+      "siguientes": [
+        "s09"
+      ]
+    },
+    {
+      "id": "s09",
+      "nombre": "Proiektu finala",
+      "lugar": "",
+      "tipo": "normal",
+      "entrega": "s-e9",
+      "x": 92,
+      "y": 59,
+      "siguientes": [
+        "s10"
+      ]
+    },
+    {
+      "id": "s10",
+      "nombre": "Helmuga",
+      "lugar": "Internet uhartea",
+      "tipo": "meta",
+      "x": 50,
+      "y": 81,
+      "siguientes": []
+    }
+  ]
+}

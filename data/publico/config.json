@@ -3,9 +3,18 @@
   "idioma": "eu",
   "ranking_publico": false,
   "acciones_rapidas": [
-    { "etiqueta": "Garaiz", "tipo": "bonus", "puntos": 3, "motivo": "Entrega puntuala" },
-    { "etiqueta": "Bikaina", "tipo": "bonus", "puntos": 5, "motivo": "Lan bikaina" },
-    { "etiqueta": "Berandu", "tipo": "penalizacion", "puntos": -2, "motivo": "Entrega berandu" }
+    {
+      "etiqueta": "Garaiz",
+      "tipo": "bonus",
+      "puntos": 3,
+      "motivo": "Entrega puntuala"
+    },
+    {
+      "etiqueta": "Berandu",
+      "tipo": "penalizacion",
+      "puntos": -2,
+      "motivo": "Entrega berandu"
+    }
   ],
   "aventuras": [
     {
@@ -96,28 +105,7 @@
       "d": 330
     }
   ],
-  "clases": [
-    {
-      "nombre": "Arkitektoa",
-      "icono": "🏛️"
-    },
-    {
-      "nombre": "Sendatzailea",
-      "icono": "✨"
-    },
-    {
-      "nombre": "Bardoa",
-      "icono": "📜"
-    },
-    {
-      "nombre": "Ezkutaria",
-      "icono": "🛡️"
-    },
-    {
-      "nombre": "Esploratzailea",
-      "icono": "🧭"
-    }
-  ],
+  "clases": [],
   "tipos_casilla": {
     "inicio": "Hasiera",
     "normal": "Arrunta",

@@ -39,6 +39,23 @@ Cada `git push` actualiza la web en uno o dos minutos. El archivo `.nojekyll` ha
 
 > Antes de empezar el curso de verdad, los datos de ejemplo (grupos, eventos, notas) se deben sustituir por los reales. Ver «Empezar con datos reales» más abajo.
 
+## Primeros pasos: todo lo metes tú desde el panel
+Los datos empiezan vacíos: 6 grupos llamados «1. taldea» … «6. taldea», sin alumnos y con todos en la casilla 1.
+
+| Quiero… | Dónde |
+|---|---|
+| Poner nombre, lema y color a un grupo | 🛡️ Taldeak eta fitxak → elegir grupo → Gorde |
+| Añadir alumnos al grupo | 🛡️ Taldeak eta fitxak → elegir grupo → *kideak* → ＋ Berria |
+| Poner la foto del grupo | 🛡️ Taldeak eta fitxak → elegir grupo → arrastrar la foto al recuadro «Taldearen argazkia» → ajustar → Gorde fitxa |
+| Pasar un grupo a la siguiente casilla | ⚔️ Kontrola → tarjeta del grupo → **▶ Aurreratu** → Erregistratu |
+| Escribir un texto en el historial de un grupo | ⚔️ Kontrola → Gertaera berria → Mota **Oharra / testua** → Taldea → Kidea «Talde osoa» |
+| Escribir el trabajo de un alumno | Igual que arriba, pero eligiendo al alumno en **Kidea**: sale en su pestaña, en «Lana» |
+| Valorar a un grupo o a sus alumnos | 📜 Balorazioak |
+
+Las fotos que te pasen los alumnos pueden estar en cualquier carpeta de tu equipo. Al arrastrarlas al panel, se guarda una copia reducida en `img/fichas/` (es la que se publica) y el original en `data/privado/fotos_reales/` (no se publica).
+
+> El alias de cada alumno y los textos de «Oharra» son **públicos**. Las notas individuales no.
+
 ## Uso diario (panel del profesor)
 1. Abre una terminal en la carpeta del proyecto y arranca el panel:
    ```bash
@@ -91,14 +108,6 @@ Para verificar solo las cadenas de hashes (también las privadas):
 node admin.js --verificar
 ```
 O pulsa **🔍 Egiaztatu** en el panel.
-
-## Empezar con datos reales
-Los registros de eventos son de solo añadir, así que los de ejemplo no se borran desde el panel. Para empezar de cero **una sola vez**, antes del primer día de clase:
-1. Vacía los registros: deja `[]` como único contenido de `data/publico/eventos_globales.json`, de `data/publico/aventuras/*/eventos.json` y de `data/privado/eventos_privados.json`.
-2. Desde el panel, cambia los nombres de los grupos, los alias de los alumnos y el catálogo (o archiva lo que no quieras).
-3. `node admin.js --verificar` y después `git add . && git commit -m "Datos reales" && git push`.
-
-Los eventos de ejemplo seguirán en el historial de Git, pero son ficticios.
 
 ## Copias de seguridad
 - **GitHub** es la copia principal: cada `git push` guarda una versión completa.
