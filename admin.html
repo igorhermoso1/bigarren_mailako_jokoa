@@ -6,8 +6,8 @@
   <!-- node admin.js sustituye este valor por el token de la sesión -->
   <meta name="token" content="%%TOKEN%%">
   <title>Irakaslearen panela</title>
-  <link rel="stylesheet" href="css/web.css?v=20261030e">
-  <link rel="stylesheet" href="css/admin.css?v=20261030e">
+  <link rel="stylesheet" href="css/web.css?v=20261102a">
+  <link rel="stylesheet" href="css/admin.css?v=20261102a">
 </head>
 <body class="admin">
   <header class="cabecera">
@@ -33,6 +33,7 @@
     <button type="button" data-ir="katalogoa">💎 Katalogoa</button>
     <button type="button" data-ir="entregak">📅 Entregak eta errubrika</button>
     <button type="button" data-ir="taulera">🗺️ Taulera eta mapa</button>
+    <button type="button" data-ir="borrokak">⚔️ Borrokak</button>
     <button type="button" data-ir="konparaketa">⚖️ Konparaketa</button>
   </nav>
 
@@ -82,6 +83,7 @@
   <div class="admin-cuerpo" data-modulo="katalogoa" hidden><div id="mod-katalogoa" class="ancha"></div></div>
   <div class="admin-cuerpo" data-modulo="entregak" hidden><div id="mod-entregak" class="ancha"></div></div>
   <div class="admin-cuerpo" data-modulo="taulera" hidden><div id="mod-taulera" class="ancha"></div></div>
+  <div class="admin-cuerpo" data-modulo="borrokak" hidden><div id="mod-borrokak" class="ancha"></div></div>
   <div class="admin-cuerpo" data-modulo="konparaketa" hidden>
     <section class="pergamino caja ancha"><h2>Bi abenturak alderatuta</h2><div id="mod-konparaketa"></div></section>
   </div>
@@ -100,11 +102,12 @@
 
   <div id="aviso" class="aviso" role="status" aria-live="polite"></div>
 
-  <script src="js/motor.js?v=20261030e"></script>
-  <script src="js/mapa.js?v=20261030e"></script>
-  <script src="js/admin/panel.js?v=20261030e"></script>
-  <script src="js/admin/entidades.js?v=20261030e"></script>
-  <script src="js/admin/valoraciones.js?v=20261030e"></script>
-  <script src="js/admin/tablero.js?v=20261030e"></script>
+  <script src="js/motor.js?v=20261102a"></script>
+  <script src="js/mapa.js?v=20261102a"></script>
+  <script src="js/admin/panel.js?v=20261102a"></script>
+  <script src="js/admin/entidades.js?v=20261102a"></script>
+  <script src="js/admin/valoraciones.js?v=20261102a"></script>
+  <script src="js/admin/tablero.js?v=20261102a"></script>
+  <script src="js/admin/borrokak.js?v=20261102a"></script>
 </body>
 </html>

@@ -6,7 +6,7 @@
     objeto_ganado: 'Objektua eman', objeto_usado: 'Objektua erabili', objeto_perdido: 'Objektua kendu',
     estado_aplicado: 'Egoera ezarri', estado_expirado: 'Egoera amaitu', hito: 'Mugarria', logro: 'Lorpena',
     nota_grupo: 'Taldearen nota', nota_miembro: 'Kide baten nota (pribatua)', entrega_cerrada: 'Entrega itxi',
-    comentario: 'Oharra / testua', anulacion: 'Baliogabetzea',
+    comentario: 'Oharra / testua', anulacion: 'Baliogabetzea', borroka: 'Borroka',
   };
   // Campos del formulario que necesita cada tipo de evento.
   const CAMPOS = {
@@ -108,6 +108,7 @@
       d.logro && buscar(cat.logros, d.logro)?.nombre,
       d.entrega && buscar(av().entregas.entregas, d.entrega)?.nombre,
       d.nota != null && `nota ${d.nota}`,
+      d.asmatuak != null && `⚔ ${d.asmatuak}/${d.guztira}`,
       d.criterios && Object.entries(d.criterios).map(([k, v]) => `${k} ${v}`).join(', '),
       ev.tipo === 'anulacion' && `#${ev.referencia} baliogabetua`,
       d.texto, d.motivo, d.comentario,
@@ -348,6 +349,7 @@
     try {
       const r = await api('/api/publicar', { mensaje: $('d-mensaje').value });
       avisar(r.archivos ? `✔ Argitaratuta (${r.archivos} fitxategi). Webgunea laster eguneratuko da.` : '✔ Dena argitaratuta zegoen');
+      pintarEstadoGit();
     } catch (e) {
       avisar('✖ ' + e.message, 'error');
     } finally {
@@ -375,6 +377,18 @@
     pintarUltimos();
     pintarKonparaketa();
     for (const m of Admin.modulos) m.pintar();
+    pintarEstadoGit();
+  }
+
+  // Contador en el botón Argitaratu: cuántos cambios están sin subir a GitHub.
+  async function pintarEstadoGit() {
+    try {
+      const { cambios, sinSubir } = await api('/api/git');
+      const n = cambios + sinSubir;
+      const b = $('publicar');
+      b.dataset.zain = n ? String(n) : '';
+      b.title = n ? `${cambios} aldaketa eta ${sinSubir} commit argitaratu gabe` : 'Dena argitaratuta';
+    } catch { /* sin git: sin contador */ }
   }
 
   // ---------- Panel comparado: los grupos en todas las aventuras a la vez ----------

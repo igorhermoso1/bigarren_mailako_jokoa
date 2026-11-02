@@ -1,0 +1,202 @@
+/* Pantalla de combate: escenario lateral de RPG clásico con ventanas azules ribeteadas en oro,
+   coherente con el resto (oro, bisel, pergamino). Cada región del mapa tiñe el escenario. */
+
+/* ---------- Paleta por región (body[data-estiloa]) ---------- */
+.borroka-orria {
+  --zerua1: #1b2a4a; --zerua2: #6b4a7a; --mendia: #2a2140; --mendia2: #3d2f55; --lurra1: #3b2c22; --lurra2: #1a120c;
+  --e1: #c25cff; --e2: #7a2fb0; --argia: #ffd678;
+  margin: 0; height: 100vh; overflow: hidden; color: #fff; background: #000;
+}
+body[data-estiloa="basoa"] { --zerua1: #0f2a1c; --zerua2: #6fae5c; --mendia: #163a22; --mendia2: #24502e; --lurra1: #3e5a24; --lurra2: #18240e; --e1: #8be05a; --e2: #3f8a2a; }
+body[data-estiloa="padura"] { --zerua1: #10180c; --zerua2: #4f5f2a; --mendia: #1d2814; --mendia2: #2c3a1c; --lurra1: #2d3a1a; --lurra2: #10160a; --e1: #b6e04a; --e2: #5c7a1e; }
+body[data-estiloa="hiria"] { --zerua1: #20222c; --zerua2: #7d7f96; --mendia: #2e3038; --mendia2: #44464f; --lurra1: #4a4c54; --lurra2: #1c1d22; --e1: #c9ccd6; --e2: #6c707c; }
+body[data-estiloa="izotza"] { --zerua1: #0e2a4a; --zerua2: #a8e2ff; --mendia: #6fa9cf; --mendia2: #b9e3f7; --lurra1: #d8f1ff; --lurra2: #6fa9cf; --e1: #8fe3ff; --e2: #3a8fc0; }
+body[data-estiloa="sumendia"] { --zerua1: #1a0505; --zerua2: #b8401a; --mendia: #2a0c08; --mendia2: #4a160c; --lurra1: #3a1a10; --lurra2: #120504; --e1: #ff7a3a; --e2: #b8261a; --argia: #ff9a3a; }
+body[data-estiloa="basamortua"] { --zerua1: #3a2410; --zerua2: #f2c67a; --mendia: #b07a3a; --mendia2: #d39c52; --lurra1: #e2b46a; --lurra2: #8a5a28; --e1: #ffcf6a; --e2: #b0782a; }
+body[data-estiloa="misterioa"] { --zerua1: #0a0618; --zerua2: #4a1f7a; --mendia: #160c2a; --mendia2: #2a1650; --lurra1: #2a1a40; --lurra2: #0c0618; --e1: #c77dff; --e2: #5ef0ff; --argia: #c77dff; }
+body[data-estiloa="meatzea"] { --zerua1: #0c0a12; --zerua2: #3a2a4a; --mendia: #1a1426; --mendia2: #2a1f36; --lurra1: #2a2034; --lurra2: #0c0a12; --e1: #ff9cff; --e2: #8a3cff; --argia: #ff9cff; }
+body[data-estiloa="itsasoa"] { --zerua1: #04182a; --zerua2: #2a8fbf; --mendia: #0a3550; --mendia2: #105a7a; --lurra1: #c9b27a; --lurra2: #5a4a2a; --e1: #5fe0ff; --e2: #1a7aa8; }
+body[data-estiloa="helmuga"] { --zerua1: #2a0508; --zerua2: #d4a64a; --mendia: #3a0a10; --mendia2: #5e070c; --lurra1: #5a3a14; --lurra2: #1a0e04; --e1: #ffd23f; --e2: #b0161f; }
+
+/* ---------- Escenario ---------- */
+.eszena { position: fixed; inset: 0; overflow: hidden; }
+.eszena > .fondo { display: none !important; }
+.eszena-zerua { position: absolute; inset: 0; background:
+  radial-gradient(circle at 80% 18%, color-mix(in srgb, var(--argia) 55%, transparent) 0 4%, transparent 18%),
+  radial-gradient(ellipse at 50% 120%, color-mix(in srgb, var(--zerua2) 90%, transparent), transparent 60%),
+  linear-gradient(var(--zerua1), var(--zerua2)); }
+.eszena-mendiak { position: absolute; left: 0; right: 0; top: 22%; height: 34%; }
+.eszena-mendiak::before, .eszena-mendiak::after { content: ''; position: absolute; inset: 0; }
+.eszena-mendiak::before { background: var(--mendia2); clip-path: polygon(0 70%, 8% 40%, 16% 62%, 26% 22%, 36% 58%, 46% 34%, 56% 66%, 66% 18%, 78% 56%, 88% 30%, 100% 60%, 100% 100%, 0 100%); opacity: .8; }
+.eszena-mendiak::after { background: var(--mendia); clip-path: polygon(0 88%, 12% 60%, 22% 80%, 34% 50%, 46% 82%, 58% 56%, 70% 86%, 82% 58%, 92% 78%, 100% 64%, 100% 100%, 0 100%); }
+/* Suelo con cuadrícula en perspectiva */
+.eszena-lurra { position: absolute; left: -20%; right: -20%; bottom: 0; height: 52%; transform-origin: 50% 0; transform: perspective(500px) rotateX(58deg);
+  background: repeating-linear-gradient(90deg, #ffffff12 0 2px, transparent 2px 70px), repeating-linear-gradient(0deg, #ffffff12 0 2px, transparent 2px 70px), linear-gradient(var(--lurra1), var(--lurra2)); }
+.eszena::after { content: ''; position: absolute; inset: 0; pointer-events: none; box-shadow: inset 0 0 160px #000c; }
+.etsaiak, .taldea-lerroa { position: absolute; inset: 9% 0 22% 0; z-index: 2; }
+.efektuak { position: fixed; inset: 0; z-index: 30; pointer-events: none; }
+
+/* Entrada: remolino de luz y estandarte que cruza la pantalla */
+.sartzen .eszena { animation: b-sartu 1.2s cubic-bezier(.2, .9, .3, 1); }
+@keyframes b-sartu { from { filter: brightness(3) blur(10px); transform: scale(1.25) rotate(5deg); } }
+.b-banda { position: absolute; left: 0; right: 0; top: 42%; height: 16%; display: grid; place-items: center;
+  background: linear-gradient(90deg, transparent, #000d 20%, #000d 80%, transparent); animation: banda 1.7s ease-in-out forwards; }
+.b-banda span { font: 700 clamp(2rem, 7vw, 5.5rem) var(--titulo); letter-spacing: .25em; color: transparent;
+  background: linear-gradient(var(--oro-claro), var(--oro) 55%, var(--oro-osc)); -webkit-background-clip: text; background-clip: text; filter: drop-shadow(0 0 18px #ffcf5a); }
+@keyframes banda { 0% { transform: scaleY(0); } 15%, 80% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(0); opacity: 0; } }
+
+/* ---------- Enemigos ---------- */
+.etsaia, .kidea { position: absolute; transform: translate(-50%, -50%); padding: 0; border: 0; background: none; cursor: inherit; }
+.etsaia { width: clamp(84px, 11vw, 170px); --e1: inherit; }
+.e-sprite { display: block; animation: b-flotatu 2.6s ease-in-out infinite; animation-delay: calc(var(--n) * -.55s); filter: drop-shadow(0 8px 6px #000a); }
+.e-sprite svg { display: block; width: 100%; height: auto; }
+@keyframes b-flotatu { 50% { translate: 0 -8px; } }
+.itzala { position: absolute; left: 50%; bottom: -6%; width: 70%; height: 12%; translate: -50% 0; border-radius: 50%; background: radial-gradient(#000b, transparent 70%); }
+.e-zenbakia { position: absolute; left: 50%; top: -14%; translate: -50% 0; width: 1.9rem; height: 1.9rem; border-radius: 50%; display: grid; place-items: center;
+  font: 700 .95rem var(--titulo); color: #2b1a0b; background: radial-gradient(circle at 35% 30%, #fff1c4, #d9a945 55%, #8a5f1c); border: 2px solid #5a3b14; box-shadow: 0 2px 6px #000a; }
+.etsaia:hover .e-sprite, .etsaia:focus-visible .e-sprite { filter: drop-shadow(0 0 14px var(--e1)) drop-shadow(0 8px 6px #000a); }
+.etsaia.helburua .e-sprite { filter: drop-shadow(0 0 18px #ff4d4d) drop-shadow(0 8px 6px #000a); }
+.etsaia.helburua::after { content: '☛'; position: absolute; left: 105%; top: 40%; font-size: 2.2rem; color: #fff; text-shadow: 0 2px 4px #000; transform: scaleX(-1); animation: eskua .6s ease-in-out infinite alternate; }
+@keyframes eskua { to { translate: -8px 0; } }
+.etsaia.jota .e-sprite { animation: b-jota .35s steps(2) 3; }
+@keyframes b-jota { 50% { filter: brightness(4) saturate(0); } }
+.etsaia.garaitua { pointer-events: none; animation: b-desegin .9s ease-in .2s forwards; }
+@keyframes b-desegin { to { opacity: 0; transform: translate(-50%, -60%) scale(1.35); filter: brightness(3) blur(6px); } }
+.etsaia.ihes { pointer-events: none; animation: b-ihes .8s ease-in forwards; }
+@keyframes b-ihes { to { opacity: 0; transform: translate(-160%, -50%) scale(.8); filter: grayscale(1) blur(3px); } }
+
+/* ---------- Grupo ---------- */
+.kidea { width: clamp(70px, 8vw, 128px); transition: translate .25s; }
+.k-sprite { display: block; animation: b-flotatu 3s ease-in-out infinite; animation-delay: calc(var(--n) * -.4s); filter: drop-shadow(0 8px 6px #000a); }
+.k-irudia { display: block; width: 100%; height: auto; }
+.k-izena { position: absolute; left: 50%; top: 102%; translate: -50% 0; white-space: nowrap; padding: .05rem .5rem; border-radius: 4px;
+  font: 700 .78rem var(--titulo); background: #0b1238e6; border: 1px solid var(--oro-osc); text-shadow: 0 1px 1px #000; }
+.k-kurtsorea { position: absolute; left: 50%; top: -18%; translate: -50% 0; color: var(--oro-claro); font-size: 1.3rem; text-shadow: 0 0 8px var(--oro); opacity: 0; }
+.kidea.aktiboa { translate: -22px 0; }
+.kidea.aktiboa .k-kurtsorea { opacity: 1; animation: kurtsorea .7s ease-in-out infinite alternate; }
+@keyframes kurtsorea { to { translate: -50% -6px; } }
+.kidea.aktiboa .itzala { background: radial-gradient(color-mix(in srgb, var(--kolorea) 90%, #fff), color-mix(in srgb, var(--kolorea) 40%, transparent) 50%, transparent 72%); }
+.kidea.aktiboa .k-sprite { filter: drop-shadow(0 0 14px var(--kolorea)) drop-shadow(0 8px 6px #000a); }
+.kidea:hover .k-sprite { filter: drop-shadow(0 0 10px #fff8) drop-shadow(0 8px 6px #000a); }
+.kidea.zauritua .k-sprite { animation: zauritu .12s linear 4; filter: drop-shadow(0 0 12px #ff2020) sepia(1) saturate(6) hue-rotate(-30deg); }
+@keyframes zauritu { 50% { translate: 6px 0; } }
+
+/* ---------- Ventanas (azul clásico con bisel dorado) ---------- */
+.b-leihoa {
+  color: #fff; text-shadow: 1px 1px 0 #000; border-radius: 8px;
+  background: linear-gradient(#26368a, #121c58 60%, #0b1238);
+  border: 3px solid; border-color: var(--oro-claro) var(--oro-osc) var(--oro-osc) var(--oro-claro);
+  box-shadow: 0 0 0 2px #05081c, inset 0 0 0 2px #ffffff30, 0 10px 30px #000c;
+}
+.b-goiburua { position: fixed; left: 0; right: 0; top: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: .55rem 1.2rem; background: linear-gradient(#000c, transparent); }
+.b-izenburua { display: flex; align-items: center; gap: .7rem; --t: 52px; }
+.b-izenburua h1 { margin: 0; font: 700 clamp(1rem, 2vw, 1.5rem) var(--titulo); text-shadow: 0 2px 4px #000; }
+.b-izenburua p { margin: 0; font: 600 .85rem var(--titulo); color: var(--oro-claro); text-shadow: 0 1px 2px #000; }
+.b-bizitza { display: flex; align-items: center; gap: .6rem; padding: .3rem .9rem; border-radius: 999px; background: #000a; border: 1px solid var(--oro-osc); }
+.b-etiketa { font: 700 .72rem var(--titulo); letter-spacing: .15em; text-transform: uppercase; color: var(--oro-claro); }
+.bihotzak { display: flex; gap: .15rem; }
+.bihotza { font-size: 1.5rem; line-height: 1; color: #ff3b4a; text-shadow: 0 0 8px #ff2030, 0 2px 0 #6a0008; }
+.bihotza.hutsa { color: #3a2a2c; text-shadow: none; }
+.bihotza.apurtzen { animation: apurtu .6s ease-out; }
+@keyframes apurtu { 0% { color: #fff; transform: scale(1.6); } 60% { transform: scale(.6) rotate(-20deg); } }
+.bihotza.sortzen { animation: sortu .6s ease-out; }
+@keyframes sortu { from { transform: scale(2.4); color: #fff; } }
+.b-botoia {
+  padding: .55rem 1.2rem; border-radius: 8px; font: 700 1rem var(--titulo); letter-spacing: .04em; color: #2b1a0b; text-shadow: 0 1px 0 #fff8;
+  background: radial-gradient(circle at 35% 25%, #fff1c4, #d9a945 55%, #8a5f1c); border: 2px solid #5a3b14; box-shadow: 0 3px 0 #3a250c, 0 0 12px #f6dc9566;
+}
+.b-botoia:hover { filter: brightness(1.1); }
+.b-botoia:disabled { opacity: .6; }
+.b-botoia.txikia { padding: .35rem .8rem; font-size: .82rem; }
+
+/* HUD inferior */
+.b-hud { position: fixed; left: 0; right: 0; bottom: 0; z-index: 15; display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: .8rem; padding: .8rem 1rem 1rem; height: 21vh; min-height: 140px; }
+.b-hud .b-leihoa { padding: .6rem .9rem; overflow: auto; }
+.b-hud ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .15rem; }
+.b-hud li { display: flex; justify-content: space-between; align-items: center; gap: .5rem; font: 700 clamp(.8rem, 1.3vw, 1rem) var(--titulo); padding: .1rem .3rem; border-radius: 4px; }
+#hud-etsaiak li.garaitua { color: #8affa0; text-decoration: line-through; opacity: .7; }
+#hud-etsaiak li.ihes { color: #ff8a8a; opacity: .7; }
+#hud-taldea li { cursor: inherit; }
+#hud-taldea li.aktiboa { background: #ffffff1f; }
+.h-kurtsorea { opacity: 0; color: var(--oro-claro); }
+#hud-taldea li.aktiboa .h-kurtsorea { opacity: 1; animation: parpadeo 1s steps(2) infinite; }
+.h-izena { flex: 1; }
+.ondo { color: #8affa0; }
+.gaizki { color: #ff8a8a; }
+.b-mezua { display: grid; place-items: center; text-align: center; }
+.b-mezua p { margin: 0; font: 600 clamp(.95rem, 1.6vw, 1.25rem)/1.35 var(--titulo); }
+
+/* ---------- Pregunta ---------- */
+.galdera-fondoa { position: fixed; inset: 0; z-index: 25; display: grid; place-items: center; padding: 1rem; background: #00000080; }
+.galdera-fondoa[hidden] { display: none; }
+.galdera { width: min(900px, 96vw); padding: 1.2rem 1.5rem 1.4rem; animation: g-ireki .3s cubic-bezier(.2, 1.3, .4, 1); }
+@keyframes g-ireki { from { transform: scaleY(.05); } }
+.g-goiburua { margin: 0 0 .4rem; font: 700 .85rem var(--titulo); letter-spacing: .12em; text-transform: uppercase; color: var(--oro-claro); }
+.galdera h2 { margin: 0 0 1rem; font: 700 clamp(1.2rem, 2.6vw, 2rem)/1.3 var(--titulo); }
+.g-pista { margin: -.4rem 0 1rem; padding: .5rem .8rem; border-radius: 6px; background: #ffd67822; border: 1px dashed var(--oro); color: #ffe9a8; font-style: italic; }
+.g-aukerak { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
+.aukera { width: 100%; display: flex; align-items: center; gap: .8rem; text-align: left; padding: .75rem 1rem; border-radius: 8px; cursor: inherit;
+  font: 600 clamp(.95rem, 1.7vw, 1.2rem) var(--titulo); color: #fff; text-shadow: 1px 1px 0 #000;
+  background: linear-gradient(#ffffff14, #ffffff05); border: 2px solid #ffffff40; transition: transform .1s, background .15s, border-color .15s; }
+.aukera:hover, .aukera:focus-visible { background: linear-gradient(#ffffff30, #ffffff10); border-color: var(--oro-claro); transform: translateX(6px); outline: none; }
+.aukera:hover::before, .aukera:focus-visible::before { content: '▶'; position: absolute; translate: -1.6rem 0; color: var(--oro-claro); }
+.a-letra { flex: none; width: 2.2rem; height: 2.2rem; display: grid; place-items: center; border-radius: 50%; color: #2b1a0b; text-shadow: none;
+  background: radial-gradient(circle at 35% 30%, #fff1c4, #d9a945 55%, #8a5f1c); border: 2px solid #5a3b14; }
+.aukera.kendua { opacity: .25; text-decoration: line-through; transform: none; }
+.aukera.argitua { border-color: #8affa0; box-shadow: 0 0 22px #8affa0aa; animation: argitu 1s ease-in-out infinite alternate; }
+@keyframes argitu { to { box-shadow: 0 0 34px #8affa0; } }
+.g-objektuak { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-top: 1.1rem; }
+.g-objektuak:empty { display: none; }
+.o-izenburua { font: 700 .75rem var(--titulo); letter-spacing: .12em; text-transform: uppercase; color: var(--oro-claro); margin-right: .3rem; }
+.objektua { display: flex; align-items: center; gap: .5rem; padding: .35rem .7rem .35rem .4rem; border-radius: 999px; color: #fff; cursor: inherit;
+  background: #00000055; border: 2px solid var(--oro); text-shadow: 1px 1px 0 #000; }
+.objektua:hover { background: #ffd67833; }
+.o-ikonoa { width: 2rem; height: 2rem; display: grid; place-items: center; border-radius: 50%; background: #0008; font-size: 1.1rem; }
+.o-izena { display: grid; font: 700 .85rem var(--titulo); text-align: left; }
+.o-izena small { font-weight: 400; color: var(--oro-claro); font-size: .72rem; }
+.o-kopurua { font: 700 .8rem var(--titulo); color: var(--oro-claro); }
+
+/* ---------- Golpes ---------- */
+.b-zenbakia { position: fixed; translate: -50% 0; font: 900 clamp(1.8rem, 4vw, 3.2rem) var(--titulo); animation: zenbakia 1.3s ease-out forwards; }
+.b-zenbakia.kritikoa { color: #fff6c8; text-shadow: 0 0 12px #ffcf5a, 3px 3px 0 #8a5f1c; }
+.b-zenbakia.kaltea { color: #ff5a5a; text-shadow: 0 0 10px #ff0000, 3px 3px 0 #4a0008; }
+@keyframes zenbakia { 0% { transform: scale(.3); opacity: 0; } 15% { transform: scale(1.3); opacity: 1; } 30% { transform: scale(1); } 100% { transform: translateY(-70px); opacity: 0; } }
+.b-tajoa { position: fixed; width: 220px; height: 220px; translate: -50% -50%; }
+.b-tajoa::before, .b-tajoa::after { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 7px; translate: -50% 0; border-radius: 4px;
+  background: linear-gradient(transparent, #fff 35%, #fff6c8 65%, transparent); box-shadow: 0 0 18px #fff; animation: tajoa .45s ease-out forwards; }
+.b-tajoa::before { rotate: 40deg; }
+.b-tajoa::after { rotate: -40deg; animation-delay: .08s; }
+@keyframes tajoa { from { transform: scaleY(0); opacity: 1; } 60% { transform: scaleY(1.1); opacity: 1; } to { transform: scaleY(1); opacity: 0; } }
+body.mina::after { content: ''; position: fixed; inset: 0; z-index: 28; pointer-events: none; background: radial-gradient(transparent 30%, #ff000099); animation: mina .45s ease-out forwards; }
+@keyframes mina { to { opacity: 0; } }
+
+/* ---------- Final ---------- */
+.amaiera-fondoa { position: fixed; inset: 0; z-index: 40; display: grid; place-items: center; padding: 1rem; background: #000a; animation: fundido .5s; }
+.amaiera-fondoa[hidden] { display: none; }
+.amaiera { width: min(640px, 96vw); padding: 1.4rem 1.8rem 1.6rem; text-align: center; animation: g-ireki .5s cubic-bezier(.2, 1.3, .4, 1); }
+.a-titulua { margin: 0; font: 900 clamp(2.4rem, 7vw, 4.6rem) var(--titulo); letter-spacing: .12em; color: transparent; -webkit-background-clip: text; background-clip: text;
+  background-image: linear-gradient(110deg, var(--oro-osc), var(--oro) 30%, #fff6d6 45%, var(--oro-claro) 52%, var(--oro) 65%, var(--oro-osc)); background-size: 250% 100%;
+  animation: destello 3s ease-in-out infinite; filter: drop-shadow(0 0 16px #ffcf5a88); text-shadow: none; }
+.amaiera[data-emaitza="porrota"] .a-titulua { background-image: linear-gradient(#ff8a8a, #a3141c 60%, #4a0008); filter: drop-shadow(0 0 16px #ff000088); }
+.amaiera[data-emaitza="amaitu_gabe"] .a-titulua { background-image: linear-gradient(#e9eef5, #8a94a8); }
+.a-puntuazioa { margin: .2rem 0; font: 700 1.6rem var(--titulo); color: var(--oro-claro); }
+.a-puntuazioa b { font-size: 3rem; color: #fff; }
+.a-azpititulua { margin: 0 0 1rem; color: #cfd6ff; font-size: .9rem; }
+.a-taula { width: 100%; border-collapse: collapse; margin-bottom: 1rem; font-family: var(--titulo); }
+.a-taula th, .a-taula td { padding: .35rem .6rem; border-bottom: 1px solid #ffffff22; text-align: left; }
+.a-taula td.ondo, .a-taula td.gaizki { text-align: center; font-size: 1.1rem; font-weight: 700; }
+.a-egoera { min-height: 1.3em; margin: 0 0 .8rem; color: #ffe9a8; }
+.a-botoiak { display: flex; justify-content: center; gap: .8rem; flex-wrap: wrap; }
+.amaiera-porrota .eszena { filter: grayscale(.85) brightness(.6); transition: filter 1.2s; }
+
+@media (max-width: 760px) {
+  .b-hud { grid-template-columns: 1fr 1fr; height: auto; }
+  .b-mezua { grid-column: 1 / -1; order: -1; }
+  .g-aukerak { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .e-sprite, .k-sprite, .sartzen .eszena, .b-banda, .galdera, .amaiera, .a-titulua, .etsaia.helburua::after, .kidea.aktiboa .k-kurtsorea, .aukera.argitua { animation: none !important; }
+}
+
+.aukera { position: relative; }

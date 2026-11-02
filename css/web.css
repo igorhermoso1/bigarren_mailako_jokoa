@@ -859,3 +859,27 @@ input[type="text"], input[type="number"], textarea { cursor: text; }
 @media (max-width: 899px) {
   .lienzo { min-width: 0; width: calc(100vw - 2.5rem - 24px); }   /* el mapa cabe entero; se amplía con dos dedos */
 }
+
+/* ======================================================================
+   Combates en la web pública: tarjetas de cada combate del grupo
+   ====================================================================== */
+.borroka-txartela { border-radius: 8px; padding: .6rem .7rem; background: linear-gradient(#26368a, #121c58 70%, #0b1238); color: #fff; text-shadow: 1px 1px 0 #000;
+  border: 2px solid; border-color: var(--oro-claro) var(--oro-osc) var(--oro-osc) var(--oro-claro); box-shadow: 0 3px 8px #0006; }
+.borroka-txartela + .borroka-txartela { margin-top: .5rem; }
+.borroka-txartela header { display: flex; justify-content: space-between; font: 700 .72rem var(--titulo); letter-spacing: .06em; text-transform: uppercase; color: var(--oro-claro); }
+.borroka-txartela[data-emaitza="porrota"] { background: linear-gradient(#5a1220, #2a0810); }
+.borroka-txartela h4 { margin: .2rem 0; font: 700 1rem var(--titulo); }
+.bt-puntuazioa { display: flex; align-items: baseline; gap: .5rem; font: 700 1rem var(--titulo); }
+.bt-puntuazioa b { font-size: 1.6rem; color: var(--oro-claro); }
+.bt-bihotzak { margin-left: auto; color: #ff3b4a; letter-spacing: .05em; text-shadow: 0 0 6px #ff2030; }
+.bt-bihotzak .hutsa { color: #ffffff30; text-shadow: none; }
+.bt-txandak { list-style: none; margin: .35rem 0 0; padding: 0; display: grid; gap: 2px; }
+.bt-txandak li { display: grid; grid-template-columns: 4.6rem 1fr auto 1.4rem; align-items: center; gap: .4rem; padding: .15rem .4rem; border-radius: 4px; background: #ffffff10; font-size: .85rem; }
+.bt-etsaia { color: #cfd6ff; font-size: .75rem; }
+.bt-kidea { font-weight: 700; }
+.bt-txandak .ondo .bt-ikurra { color: #8affa0; }
+.bt-txandak .gaizki .bt-ikurra { color: #ff8a8a; }
+.bt-ikurra { text-align: center; font-weight: 900; }
+.b-kidea-stats { display: flex; gap: .8rem; font: 700 1.05rem var(--titulo); }
+.b-kidea-stats .ondo { color: var(--bueno); } .b-kidea-stats .gaizki { color: var(--malo); }
+.res-borroka { font-size: .82rem; } .res-borroka[data-emaitza="garaipena"] { color: var(--bueno); } .res-borroka[data-emaitza="porrota"] { color: var(--malo); }

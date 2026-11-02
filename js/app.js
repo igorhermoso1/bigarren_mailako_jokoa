@@ -4,13 +4,14 @@
     avance: 'Aurrerapena', retroceso: 'Atzerapena', objeto_ganado: 'Objektua lortua', objeto_usado: 'Objektua erabilia',
     objeto_perdido: 'Objektua galdua', estado_aplicado: 'Egoera ezarria', estado_expirado: 'Egoera amaitua',
     hito: 'Mugarria', logro: 'Lorpena', bonus: 'Bonusa', penalizacion: 'Zigorra', nota_grupo: 'Balorazioa',
-    entrega_cerrada: 'Entrega itxia', comentario: 'Oharra', anulacion: 'Baliogabetzea',
+    entrega_cerrada: 'Entrega itxia', comentario: 'Oharra', anulacion: 'Baliogabetzea', borroka: 'Borroka',
   };
   const ICONO_EVENTO = {
     avance: '👣', retroceso: '↩️', objeto_ganado: '🎁', objeto_usado: '✨', objeto_perdido: '💨', estado_aplicado: '🌀',
     estado_expirado: '⌛', hito: '🏰', logro: '🏆', bonus: '⭐', penalizacion: '💀', nota_grupo: '📜',
-    entrega_cerrada: '🔒', comentario: '📣', anulacion: '✖️',
+    entrega_cerrada: '🔒', comentario: '📣', anulacion: '✖️', borroka: '⚔️',
   };
+  const EMAITZA = { garaipena: '🏆 Garaipena', porrota: '💀 Porrota', amaitu_gabe: '⏸ Amaitu gabe' };
   // Icono por defecto de cada tipo de objeto, si el objeto del catálogo no trae el suyo.
   const ICONO_OBJETO = { arma: '⚔️', armadura: '🛡️', pocion: '🧪', mapa: '🗺️', llave: '🗝️', reliquia: '💎' };
   const HUECOS_INVENTARIO = 8;
@@ -59,6 +60,7 @@
       case 'entrega_cerrada': return buscar(actual.entregas.entregas, d.entrega)?.nombre || d.entrega;
       case 'comentario': return d.texto;
       case 'anulacion': return `#${ev.referencia} gertaera baliogabetua${motivo}`;
+      case 'borroka': return `${nombreCasilla(d.casilla)}: ${d.asmatuak} / ${d.guztira} · ${EMAITZA[d.emaitza] || ''}`;
       default: return motivo.slice(3);
     }
   }
@@ -199,6 +201,38 @@
     el.style.top = Math.max(8, top) + 'px';
   }
 
+  // ---------- Combates ----------
+  // Combates del grupo en esta aventura (los más recientes primero, sin los anulados).
+  const borrokak = e => e.historial.filter(ev => ev.tipo === 'borroka' && !ev.anulado).reverse();
+
+  function borrokaKidea(e, m) {
+    const txandak = borrokak(e).flatMap(ev => ev.datos.txandak.filter(t => t.kidea === m.id));
+    if (!txandak.length) return '';
+    const ondo = txandak.filter(t => t.zuzena).length;
+    return `<h3>Borrokak</h3><div class="b-kidea-stats"><span class="ondo">✔ ${ondo}</span><span class="gaizki">✖ ${txandak.length - ondo}</span>
+      <span>🎒 ${txandak.filter(t => t.objektuak).length}</span></div>`;
+  }
+
+  // Resumen de cada combate: tema, resultado, vida y quién respondió a cada enemigo (y con qué objetos).
+  function htmlBorrokak(g, e) {
+    const alias = id => buscar(g.miembros, id)?.alias || id;
+    const obj = id => buscar(comun.catalogo.objetos, id);
+    return borrokak(e).map(ev => {
+      const d = ev.datos;
+      return `<article class="borroka-txartela" data-emaitza="${d.emaitza}">
+        <header><span class="bt-emaitza">${EMAITZA[d.emaitza]}</span><time>${fecha(ev.fecha)}</time></header>
+        <h4>${numCasilla(d.casilla)}. ${esc(nombreCasilla(d.casilla))}</h4>
+        <div class="bt-puntuazioa"><b>${d.asmatuak}</b> / ${d.guztira}
+          <span class="bt-bihotzak">${'♥'.repeat(d.bizitza)}<span class="hutsa">${'♥'.repeat(Math.max(0, d.guztira - d.bizitza))}</span></span></div>
+        <ol class="bt-txandak">${d.txandak.map((t, i) => `<li class="${t.zuzena ? 'ondo' : 'gaizki'}">
+          <span class="bt-etsaia">${d.etsaiak.indexOf(t.galdera) + 1}. etsaia</span>
+          <span class="bt-kidea">${esc(alias(t.kidea))}</span>
+          <span class="bt-objektuak">${(t.objektuak || []).map(id => `<span title="${esc(obj(id)?.nombre || id)}">${icono(obj(id)?.icono, ICONO_OBJETO[obj(id)?.tipo] || '🎒')}</span>`).join('')}</span>
+          <span class="bt-ikurra">${t.zuzena ? '✔' : '✖'}</span></li>`).join('')}</ol>
+      </article>`;
+    }).join('');
+  }
+
   // ---------- Ventana de grupo ----------
   function abrirGrupo(gid, ancla) {
     const g = grupo(gid);
@@ -234,6 +268,7 @@
             ${m.clase ? `<p class="clase"><span aria-hidden="true">${clase ? esc(clase.icono) : '⚜️'}</span> ${esc(m.clase)}</p>` : ''}
           </div>
           <dl class="stats"><div><dt>Zeregina ${esc(actual.aventura.nombre)}-n</dt><dd>${esc(m.cometido?.[actual.aventura.id] || '—')}</dd></div></dl>
+          ${borrokaKidea(e, m)}
           <h3>Lana</h3>${cronica(e.historial.filter(ev => publico(ev) && ev.miembro === m.id).reverse())}`,
       };
     });
@@ -242,7 +277,7 @@
     abrirEmergente(ancla, {
       clase: 'em-grupo',
       cabecera: cab,
-      pestanas: [{ etiqueta: 'Taldea', html: taldea }, ...kideak, { etiqueta: 'Historia', html: cronica(historial) }],
+      pestanas: [{ etiqueta: 'Taldea', html: taldea }, ...kideak, ...(borrokak(e).length ? [{ etiqueta: '⚔ Borrokak', html: htmlBorrokak(g, e) }] : []), { etiqueta: 'Historia', html: cronica(historial) }],
     });
   }
 
@@ -269,6 +304,7 @@
         <div class="res-texto">
           <strong>${esc(g.nombre)}</strong> <span class="chip ${estado[0]}">${estado[1]}</span>
           ${salida ? `<div class="res-meta">📅 ${fecha(salida.fecha)}${salida.datos.motivo ? ` · ${esc(salida.datos.motivo)}` : ''}${salida.puntos ? ` · <b>${conSigno(salida.puntos)} pt</b>` : ''}</div>` : ''}
+          ${(() => { const bk = borrokak(actual.estado.grupos[g.id]).find(ev => ev.datos.casilla === c.id); return bk ? `<div class="res-borroka" data-emaitza="${bk.datos.emaitza}">⚔ <b>${bk.datos.asmatuak} / ${bk.datos.guztira}</b> · ${EMAITZA[bk.datos.emaitza]}</div>` : ''; })()}
           ${nota ? `<div class="res-nota">${estrellas(nota.datos.nota)} <b>${esc(nota.datos.nota)}</b>${nota.datos.comentario ? `<q>${esc(nota.datos.comentario)}</q>` : ''}</div>` : ''}
         </div></li>`).join('')}</ul>`;
 

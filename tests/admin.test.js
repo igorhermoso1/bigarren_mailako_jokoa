@@ -241,3 +241,40 @@ test('música: la lista sale de los archivos de audio de la carpeta music/', () 
   assert.deepStrictEqual(actualizarMusica(raiz), ['a abestia.ogg', 'B abestia.mp3']);
   assert.deepStrictEqual(JSON.parse(fs.readFileSync(path.join(dir, 'zerrenda.json'), 'utf8')), ['a abestia.ogg', 'B abestia.mp3']);
 });
+
+// ---------- Combates ----------
+test('combate: el servidor corrige con las preguntas privadas, gasta objetos y nunca publica las preguntas', () => {
+  const { guardarBorroka } = require('../admin.js');
+  const q = (testua, zuzena) => guardarEntidad(raiz, { coleccion: 'galderak', aventura: 'sareak', casilla: 's03', valor: { testua, aukerak: ['a', 'b', 'c', 'd'], zuzena } }).item.id;
+  const ids = [q('Lehenengoa?', 0), q('Bigarrena?', 1), q('Hirugarrena?', 2)];
+  assert.match(fs.readFileSync(path.join(raiz, 'data', 'privado', 'galderak.json'), 'utf8'), /Lehenengoa/);
+  const pocion = guardarEntidad(raiz, { coleccion: 'objetos', valor: { nombre: 'Erdia', rareza: 'raro', tipo: 'pocion', ambito: 'todas', consumible: true, borroka: 'erdia' } }).item.id;
+  anadirEvento(raiz, { aventura: 'sareak', tipo: 'objeto_ganado', grupo: 'g1', datos: { objeto: pocion } });
+  const g1 = cargarDatos(raiz).grupos.grupos.find(g => g.id === 'g1');
+  const [a, b] = g1.miembros.map(m => m.id);
+  const { evento } = guardarBorroka(raiz, { aventura: 'sareak', grupo: 'g1', datos: { casilla: 's03', etsaiak: ids, txandak: [
+    { galdera: ids[0], kidea: a, aukera: 0, zuzena: false },             // el navegador dice «mal», pero está bien
+    { galdera: ids[1], kidea: b, aukera: 3, objektuak: [pocion] },        // mal, usando la poción
+    { galdera: ids[2], kidea: a, aukera: 2 },
+  ] } });
+  assert.strictEqual(evento.datos.asmatuak, 2);
+  assert.strictEqual(evento.datos.bizitza, 2);
+  assert.strictEqual(evento.datos.emaitza, 'garaipena');
+  assert.deepStrictEqual(evento.datos.txandak.map(t => t.zuzena), [true, false, true]);
+  const publicos = fs.readFileSync(path.join(raiz, 'data', 'publico', 'aventuras', 'sareak', 'eventos.json'), 'utf8');
+  assert.ok(!publicos.includes('Lehenengoa'));                          // el texto de las preguntas no sale
+  assert.strictEqual(JSON.parse(publicos).at(-1).tipo, 'objeto_usado');  // la poción consumida
+  // Sin la poción ya no puede volver a usarla
+  assert.throws(() => guardarBorroka(raiz, { aventura: 'sareak', grupo: 'g1', datos: { casilla: 's03', etsaiak: [ids[0]], txandak: [{ galdera: ids[0], kidea: a, aukera: 0, objektuak: [pocion] }] } }), /no tiene/);
+  // Alguien de otro grupo no puede responder
+  assert.throws(() => guardarBorroka(raiz, { aventura: 'sareak', grupo: 'g2', datos: { casilla: 's03', etsaiak: [ids[0]], txandak: [{ galdera: ids[0], kidea: a, aukera: 0 }] } }), /no es de ese grupo/);
+});
+
+test('combate: perder toda la vida termina el combate', () => {
+  const { guardarBorroka } = require('../admin.js');
+  const id = guardarEntidad(raiz, { coleccion: 'galderak', aventura: 'sareak', casilla: 's04', valor: { testua: 'Bakarra?', aukerak: ['a', 'b', 'c', 'd'], zuzena: 0 } }).item.id;
+  const kidea = cargarDatos(raiz).grupos.grupos.find(g => g.id === 'g2').miembros[0].id;
+  const { evento } = guardarBorroka(raiz, { aventura: 'sareak', grupo: 'g2', datos: { casilla: 's04', etsaiak: [id], txandak: [{ galdera: id, kidea, aukera: 1 }] } });
+  assert.strictEqual(evento.datos.emaitza, 'porrota');
+  assert.strictEqual(evento.datos.bizitza, 0);
+});

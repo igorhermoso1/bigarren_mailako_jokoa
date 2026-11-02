@@ -64,6 +64,7 @@ function cargarDatos(raiz) {
     aventuras,
     privado: {
       rubricas: leer(path.join(priv, 'rubricas.json'), {}),
+      galderak: leer(path.join(priv, 'galderak.json'), {}),   // preguntas de los combates (con sus respuestas): nunca se publican
       eventos: leer(path.join(priv, 'eventos_privados.json'), []),
     },
   };
@@ -81,7 +82,9 @@ function verificarTodo(raiz) {
 
 // ---------- Validación de eventos (frontera de confianza: todo lo que llega del navegador) ----------
 const TIPOS = ['avance', 'retroceso', 'objeto_ganado', 'objeto_usado', 'objeto_perdido', 'estado_aplicado', 'estado_expirado',
-  'hito', 'logro', 'bonus', 'penalizacion', 'nota_grupo', 'nota_miembro', 'entrega_cerrada', 'comentario', 'anulacion'];
+  'hito', 'logro', 'bonus', 'penalizacion', 'nota_grupo', 'nota_miembro', 'entrega_cerrada', 'comentario', 'anulacion', 'borroka'];
+// Efectos que puede tener un objeto en un combate: quitar dos respuestas falsas, pista, respuesta directa o +1 vida.
+const EFECTOS_BORROKA = ['erdia', 'pista', 'erantzuna', 'bizitza'];
 const TIPOS_GLOBALES = ['bonus', 'penalizacion', 'comentario', 'anulacion'];
 const SIN_GRUPO = ['entrega_cerrada', 'anulacion'];
 const GRUPO_OPCIONAL = ['bonus', 'penalizacion', 'comentario'];
@@ -203,6 +206,49 @@ function validarEvento(entrada, datos) {
       }
       datosLimpios = { texto: texto(d.texto, 'Texto', true) };
       break;
+    case 'borroka': {
+      // Combate tipo test. El servidor vuelve a corregir cada respuesta con las preguntas privadas
+      // y comprueba que el grupo tenía los objetos que dice haber usado.
+      const casilla = av.tablero.casillas.find(c => c.id === d.casilla);
+      if (!casilla) throw new Error('Casilla desconocida');
+      const preguntas = (datos.privado.galderak[aventura]?.[d.casilla] || []).filter(q => q.activo !== false);
+      if (!Array.isArray(d.etsaiak) || !d.etsaiak.length || d.etsaiak.length > 10) throw new Error('Faltan los enemigos del combate');
+      if (new Set(d.etsaiak).size !== d.etsaiak.length) throw new Error('Pregunta repetida en el combate');
+      const etsaiak = d.etsaiak.map(id => {
+        const q = preguntas.find(x => x.id === id);
+        if (!q) throw new Error(`Pregunta desconocida: ${id}`);
+        return q;
+      });
+      const estado = Motor.calcularEstado(aventura, av.eventos, datos.globales, cat, av.tablero, datos.grupos, datos.config);
+      const inventario = { ...estado.grupos[grupo].inventario };
+      const kideak = new Set(g.miembros.filter(m => m.activo !== false).map(m => m.id));
+      let bizitza = etsaiak.length;
+      const vistas = new Set(), txandak = [], usados = [];
+      for (const t of Array.isArray(d.txandak) ? d.txandak : []) {
+        if (bizitza <= 0) throw new Error('Hay turnos después de perder el combate');
+        const q = etsaiak.find(x => x.id === t?.galdera);
+        if (!q || vistas.has(q.id)) throw new Error('Turno con una pregunta que no es de este combate o repetida');
+        if (!kideak.has(t.kidea)) throw new Error('El que responde no es de ese grupo');
+        const objektuak = (Array.isArray(t.objektuak) ? t.objektuak : []).slice(0, 5).map(id => {
+          const o = cat.objetos.find(x => x.id === id);
+          if (!o?.borroka || !(inventario[id] > 0)) throw new Error(`El grupo no tiene ese objeto de combate: ${id}`);
+          if (o.consumible) { inventario[id]--; usados.push(id); }
+          if (o.borroka === 'bizitza') bizitza++;
+          return id;
+        });
+        const aukera = numero(t.aukera, 'Respuesta', 0, 3);
+        if (!Number.isInteger(aukera)) throw new Error('Respuesta no válida');
+        const zuzena = aukera === q.zuzena;
+        if (!zuzena) bizitza--;
+        vistas.add(q.id);
+        txandak.push(limpiar({ galdera: q.id, kidea: t.kidea, aukera, zuzena, objektuak: objektuak.length ? objektuak : undefined }));
+      }
+      const emaitza = bizitza <= 0 ? 'porrota' : txandak.length === etsaiak.length ? 'garaipena' : 'amaitu_gabe';
+      datosLimpios = { casilla: d.casilla, entrega: casilla.entrega, guztira: etsaiak.length, asmatuak: txandak.filter(t => t.zuzena).length,
+        bizitza: Math.max(0, bizitza), emaitza, etsaiak: [...d.etsaiak], txandak };
+      entrada._usados = usados; // objetos consumidos: guardarBorroka los registra después como objeto_usado
+      break;
+    }
     case 'anulacion': {
       registro = ['global', 'privado'].includes(entrada.registro) ? entrada.registro : registro;
       const lista = registro === 'global' ? datos.globales : registro === 'privado' ? datos.privado.eventos : av.eventos;
@@ -285,6 +331,12 @@ function validarCometido(v, n, ctx) {
   return r;
 }
 // Solo se acepta una foto ya subida por /api/imagen (sirve para restaurar versiones anteriores).
+// Sprite de combate de un alumno: solo una imagen ya subida por /api/sprite.
+function validarSprite(v, n, ctx) {
+  if (v == null || v === '') return undefined;
+  if (typeof v !== 'string' || !/^img\/sprites\/[\w-]+\.(webp|png|gif|jpg)$/.test(v) || !fs.existsSync(path.join(ctx.raiz, v))) throw new Error(`${n} no existe`);
+  return v;
+}
 function validarFotoGrupo(v, n, ctx) {
   if (v == null) return null;
   if (typeof v !== 'string' || !/^img\/fichas\/[\w-]+\.webp$/.test(v) || !fs.existsSync(path.join(ctx.raiz, v))) throw new Error(`${n} no existe`);
@@ -307,13 +359,14 @@ const ESQUEMAS = {
       return g.miembros;
     },
     prefijo: entrada => `${entrada.grupo}-a`, obligatorios: ['alias'],
-    campos: { alias: V.texto(40, true), clase: V.texto(40), cometido: validarCometido, activo: V.bool() },
+    campos: { alias: V.texto(40, true), clase: V.texto(40), cometido: validarCometido, activo: V.bool(), sprite: validarSprite },
     nuevo: () => ({ cometido: {}, activo: true }),
   },
   objetos: {
     archivo: raiz => pub(raiz, 'catalogo.json'), lista: obj => obj.objetos, prefijo: () => 'o', obligatorios: ['nombre', 'rareza', 'tipo', 'ambito'],
     campos: {
       nombre: V.texto(60, true), icono: V.icono(), rareza: V.opcion(ctx => ctx.catalogo.rarezas.map(r => r.id)), tipo: V.opcion(TIPOS_OBJETO),
+      borroka: (v, n) => v == null || v === '' ? undefined : V.opcion(EFECTOS_BORROKA)(v, n),
       ambito: V.opcion(ambitos), descripcion: V.texto(300), consumible: V.bool(), activo: V.bool(),
     },
     nuevo: () => ({ icono: null, consumible: false, activo: true }),
@@ -376,6 +429,24 @@ const ESQUEMAS = {
     },
     nuevo: () => ({ siguientes: [], activo: true }),
   },
+  galderak: {
+    // Preguntas de combate de una casilla (5 por tema). Privadas: llevan la respuesta correcta.
+    privado: true,
+    archivo: raiz => path.join(rutas(raiz).priv, 'galderak.json'),
+    lista: (obj, entrada) => ((obj[entrada.aventura] ||= {})[entrada.casilla] ||= []),
+    prefijo: () => 'q', obligatorios: ['testua', 'aukerak', 'zuzena'],
+    campos: {
+      testua: V.texto(500, true),
+      aukerak: v => {
+        const lista = Array.isArray(v) ? v : [0, 1, 2, 3].map(i => v?.[i]);
+        if (lista.length !== 4) throw new Error('Hacen falta 4 respuestas');
+        return lista.map((t, i) => texto(t, `Respuesta ${'ABCD'[i]}`, true, 200));
+      },
+      zuzena: v => { const z = numero(v, 'Respuesta correcta', 0, 3); if (!Number.isInteger(z)) throw new Error('Respuesta correcta no válida'); return z; },
+      pista: V.texto(300), activo: V.bool(),
+    },
+    nuevo: () => ({ activo: true }),
+  },
   criterios: {
     privado: true,
     archivo: raiz => path.join(rutas(raiz).priv, 'rubricas.json'),
@@ -421,7 +492,8 @@ function guardarEntidad(raiz, entrada) {
   const esquema = ESQUEMAS[entrada?.coleccion];
   if (!esquema) throw new Error(`Colección desconocida: ${entrada?.coleccion}`);
   const datos = cargarDatos(raiz);
-  if (['entregas', 'criterios', 'casillas'].includes(entrada.coleccion) && !datos.aventuras[entrada.aventura]) throw new Error('Aventura desconocida');
+  if (['entregas', 'criterios', 'casillas', 'galderak'].includes(entrada.coleccion) && !datos.aventuras[entrada.aventura]) throw new Error('Aventura desconocida');
+  if (entrada.coleccion === 'galderak' && !datos.aventuras[entrada.aventura].tablero.casillas.some(c => c.id === entrada.casilla)) throw new Error('Casilla desconocida');
   const ctx = { ...datos, raiz, entrada, idActual: entrada.valor?.id };
   const valor = entrada.valor || {};
   const registro = esquema.privado ? 'privado' : 'global';
@@ -435,7 +507,7 @@ function guardarEntidad(raiz, entrada) {
   const antes = item ? JSON.parse(JSON.stringify(item)) : null;
   if (!item) {
     for (const k of esquema.obligatorios) if (valor[k] == null || valor[k] === '') throw new Error(`Falta ${k}`);
-    item = { id: nuevoId(esquema.prefijo(entrada), valor.nombre || valor.alias, lista.map(x => x.id)), ...esquema.nuevo() };
+    item = { id: nuevoId(esquema.prefijo(entrada), valor.nombre || valor.alias || valor.testua, lista.map(x => x.id)), ...esquema.nuevo() };
     lista.push(item);
   }
   for (const [k, validar] of Object.entries(esquema.campos)) {
@@ -456,9 +528,9 @@ function guardarEntidad(raiz, entrada) {
 
 // ---------- Fotos de grupo ----------
 const LIMITE_IMAGEN = 15 * 1024 * 1024;
-const FIRMAS = { webp: b => b.toString('ascii', 0, 4) === 'RIFF' && b.toString('ascii', 8, 12) === 'WEBP', jpg: b => b[0] === 0xff && b[1] === 0xd8, png: b => b.toString('hex', 0, 4) === '89504e47' };
+const FIRMAS = { gif: b => b.toString('ascii', 0, 4) === 'GIF8', webp: b => b.toString('ascii', 0, 4) === 'RIFF' && b.toString('ascii', 8, 12) === 'WEBP', jpg: b => b[0] === 0xff && b[1] === 0xd8, png: b => b.toString('hex', 0, 4) === '89504e47' };
 function decodificarImagen(dataUrl, permitidos) {
-  const m = /^data:image\/(webp|jpeg|png);base64,([A-Za-z0-9+/=]+)$/.exec(dataUrl || '');
+  const m = /^data:image\/(webp|jpeg|png|gif);base64,([A-Za-z0-9+/=]+)$/.exec(dataUrl || '');
   if (!m) throw new Error('Imagen no válida');
   const ext = m[1] === 'jpeg' ? 'jpg' : m[1];
   const buf = Buffer.from(m[2], 'base64');
@@ -468,6 +540,31 @@ function decodificarImagen(dataUrl, permitidos) {
 
 // Guarda la foto reducida (pública, WebP) con un nombre nuevo por versión y el original en data/privado.
 // Las versiones anteriores no se borran: así se pueden restaurar desde el historial.
+// Sprite de combate de un alumno: se guarda tal cual (sin reducir, para no estropear el pixel art).
+function guardarSprite(raiz, entrada) {
+  const datos = cargarDatos(raiz);
+  const g = datos.grupos.grupos.find(x => x.id === entrada?.grupo);
+  if (!g || !g.miembros.some(m => m.id === entrada.miembro)) throw new Error('Alumno desconocido');
+  const img = decodificarImagen(entrada.sprite, ['webp', 'png', 'gif', 'jpg']);
+  if (img.buf.length > 3 * 1024 * 1024) throw new Error('El sprite pesa demasiado (máx. 3 MB)');
+  comprobarRegistro(raiz, 'global');
+  const sello = new Date().toISOString().replace(/[-:]/g, '').replace(/\..*/, '');
+  const relativa = `img/sprites/${entrada.miembro}-${sello}.${img.ext}`;
+  fs.mkdirSync(path.join(raiz, 'img', 'sprites'), { recursive: true });
+  fs.writeFileSync(path.join(raiz, relativa), img.buf);
+  return guardarEntidad(raiz, { coleccion: 'miembros', grupo: g.id, valor: { id: entrada.miembro, sprite: relativa } });
+}
+
+// Guarda un combate terminado y, después, los objetos consumibles que se gastaron en él.
+function guardarBorroka(raiz, entrada) {
+  const e = { ...entrada, tipo: 'borroka', puntos: 0, visible_publico: true };
+  const r = anadirEvento(raiz, e);
+  for (const objeto of e._usados || []) {
+    anadirEvento(raiz, { aventura: e.aventura, tipo: 'objeto_usado', grupo: e.grupo, datos: { objeto, motivo: 'Borrokan erabilia' } });
+  }
+  return r;
+}
+
 function guardarFoto(raiz, entrada) {
   const datos = cargarDatos(raiz);
   const g = datos.grupos.grupos.find(x => x.id === entrada?.grupo);
@@ -557,6 +654,15 @@ function actualizarMusica(raiz) {
   return lista;
 }
 
+// Cuántos archivos de datos han cambiado y cuántos commits faltan por subir (sin conectarse a GitHub).
+async function estadoGit(raiz) {
+  try {
+    const cambios = (await git(raiz, ['status', '--porcelain', '--', 'data/publico', 'img', 'music'])).split(/\r?\n/).filter(Boolean).length;
+    const sinSubir = Number(await git(raiz, ['rev-list', '--count', 'origin/main..HEAD']).catch(() => '0')) || 0;
+    return { cambios, sinSubir };
+  } catch { return { cambios: 0, sinSubir: 0 }; }
+}
+
 async function publicar(raiz, entrada) {
   if (!verificarTodo(raiz).ok) throw new Error('Hay registros dañados: revisa «Egiaztatu» antes de publicar');
   const mensaje = texto(entrada?.mensaje, 'Mensaje', false, 200) || `Eguneraketa ${new Date().toISOString().slice(0, 16).replace('T', ' ')}`;
@@ -615,7 +721,10 @@ function crearServidor({ raiz = __dirname, token = crypto.randomBytes(24).toStri
 
         if (req.method === 'GET' && url.pathname === '/api/datos') return enviar(res, 200, cargarDatos(raiz));
         if (req.method === 'GET' && url.pathname === '/api/verificar') return enviar(res, 200, verificarTodo(raiz));
-        const POST = { '/api/evento': [anadirEvento, LIMITE_CUERPO], '/api/entidad': [guardarEntidad, LIMITE_CUERPO], '/api/imagen': [guardarFoto, LIMITE_IMAGEN], '/api/mapa': [guardarMapa, LIMITE_IMAGEN], '/api/publicar': [publicar, LIMITE_CUERPO] };
+        if (req.method === 'GET' && url.pathname === '/api/git') return enviar(res, 200, await estadoGit(raiz));
+        // Un combate solo se guarda por /api/borroka (así también se gastan los objetos usados).
+        const eventoNormal = (r, e) => { if (e?.tipo === 'borroka') throw new Error('Los combates se guardan desde la pantalla de combate'); return anadirEvento(r, e); };
+        const POST = { '/api/evento': [eventoNormal, LIMITE_CUERPO], '/api/entidad': [guardarEntidad, LIMITE_CUERPO], '/api/imagen': [guardarFoto, LIMITE_IMAGEN], '/api/mapa': [guardarMapa, LIMITE_IMAGEN], '/api/publicar': [publicar, LIMITE_CUERPO], '/api/sprite': [guardarSprite, LIMITE_IMAGEN], '/api/borroka': [guardarBorroka, LIMITE_CUERPO] };
         if (req.method === 'POST' && POST[url.pathname]) {
           if (!String(req.headers['content-type']).startsWith('application/json')) return enviar(res, 415, { error: 'Se espera JSON' });
           const [accion, limite] = POST[url.pathname];
@@ -638,7 +747,7 @@ function crearServidor({ raiz = __dirname, token = crypto.randomBytes(24).toStri
         if (err) return enviar(res, 404, 'No encontrado', 'text/plain; charset=utf-8');
         const tipo = TIPOS_MIME[path.extname(archivo).toLowerCase()] || 'application/octet-stream';
         // El token solo viaja dentro de admin.html: otra web no puede leer esta respuesta.
-        if (rel === 'admin.html') contenido = contenido.toString('utf8').replace('%%TOKEN%%', token);
+        if (rel === 'admin.html' || rel === 'borroka.html') contenido = contenido.toString('utf8').replace('%%TOKEN%%', token);
         enviar(res, 200, contenido, tipo);
       });
     } catch (e) {
@@ -648,7 +757,7 @@ function crearServidor({ raiz = __dirname, token = crypto.randomBytes(24).toStri
   return { servidor, token };
 }
 
-module.exports = { actualizarMusica, publicar, validarEvento, anadirEvento, guardarEntidad, guardarFoto, guardarMapa, cargarDatos, verificarTodo, crearServidor };
+module.exports = { guardarBorroka, guardarSprite, actualizarMusica, publicar, validarEvento, anadirEvento, guardarEntidad, guardarFoto, guardarMapa, cargarDatos, verificarTodo, crearServidor };
 
 if (require.main === module) {
   if (process.argv.includes('--verificar')) {

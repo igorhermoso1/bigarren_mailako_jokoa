@@ -71,6 +71,15 @@ Cada zona del mapa tiene una cartela con el estilo de su región (bosque, ciéna
 - **Zoom del mapa**: rueda del ratón, pellizco o doble clic; arrastrar para moverse; ⟲ vuelve al mapa entero.
 - **Zer berri?**: al entrar sale lo que ha pasado desde la última visita (se cierra con «Jarraitu»).
 
+## Combates (⚔️ Borrokak)
+1. **Preguntas**: ⚔️ Borrokak → elige el tema → «＋ Berria» → galdera, 4 erantzun, la correcta y una pista opcional. Se recomiendan 5 por tema; cada una será un enemigo. Las preguntas **no se publican nunca**.
+2. **Sprites de los alumnos**: 🛡️ Taldeak eta fitxak → grupo → alumno → «Sprite-a igo» (PNG, GIF o WebP, mejor con fondo transparente). Sin sprite sale un caballero con sus iniciales.
+3. **Objetos de combate**: 💎 Katalogoa → objeto → «Borrokan (efektua)»: 50/50, pista, respuesta o +1 vida. Si es consumible, se gasta al usarlo. El grupo tiene que haberlo ganado antes.
+4. **Jugar**: ⚔️ Borrokak → tema → grupo → **⚔ Borroka hasi**. Se abre en una ventana nueva (ponla en el proyector). Se elige quién ataca (← →) y a qué enemigo (clic o 1-5); se responde con clic o con A-D. Acierto: el enemigo cae. Fallo: el grupo pierde 1 vida.
+5. Al terminar, **💾 Gorde emaitza** y después **⬆ Argitaratu** para que salga en la web (pestaña «⚔ Borrokak» de cada grupo).
+
+El combate solo funciona en tu equipo con `node admin.js` en marcha: así nadie puede leer las respuestas desde la web.
+
 ## Uso diario (panel del profesor)
 1. Abre una terminal en la carpeta del proyecto y arranca el panel:
    ```bash
@@ -83,7 +92,7 @@ Cada zona del mapa tiene una cartela con el estilo de su región (bosque, ciéna
 
    Antes de guardar siempre sale un resumen para confirmar.
 4. ¿Te has equivocado? En **Azken gertaerak**, pulsa **Baliogabetu** junto al evento. No se borra: queda tachado y deja de contar.
-5. Cuando termines, pulsa **⬆ Argitaratu** (arriba a la derecha). Sube a GitHub los datos públicos y las imágenes; la web se actualiza en 1-2 minutos. Usa el acceso a GitHub que ya tienes en este ordenador (la primera vez puede abrir una ventana de GitHub para iniciar sesión). Nunca sube `data/privado/`.
+5. Cuando termines, pulsa **⬆ Argitaratu** (arriba a la derecha). **Si tiene un número rojo, hay cambios sin publicar**: la web no cambia hasta que lo pulses. Sube a GitHub los datos públicos y las imágenes; la web se actualiza en 1-2 minutos. Usa el acceso a GitHub que ya tienes en este ordenador (la primera vez puede abrir una ventana de GitHub para iniciar sesión). Nunca sube `data/privado/`.
 
 ### Módulos del panel
 | Módulo | Para qué |

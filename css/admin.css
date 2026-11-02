@@ -285,3 +285,23 @@ input[type=checkbox], input[type=radio] { width: 1.1rem; height: 1.1rem; accent-
 /* Selector de grupos sobre fondo oscuro: chapas de pergamino legibles */
 .barra-sel .sub-pestanas button { background: linear-gradient(#f3e4c3, #e0c999); border-color: var(--oro-osc); color: var(--tinta); }
 .barra-sel .sub-pestanas button[aria-selected="true"] { background: var(--acento); color: #fff; }
+
+/* ---------- Borrokak y sprites ---------- */
+.borroka-gaiak { max-height: 9rem; overflow: auto; }
+.g-kop { display: inline-grid; place-items: center; min-width: 1.4rem; height: 1.4rem; margin-left: .3rem; border-radius: 999px; font-size: .72rem; background: #a3312b; color: #fff; }
+.g-kop.osoa { background: var(--bueno); }
+.txanda { display: inline-block; margin: 1px 2px; padding: 0 .4rem; border-radius: 999px; font-size: .75rem; background: #fff6; }
+.txanda.ondo { color: var(--bueno); } .txanda.gaizki { color: var(--malo); }
+.sprite-ed { display: grid; grid-template-columns: 180px 1fr; gap: var(--e5); align-items: center; }
+.sprite-aurrebista { height: 180px; display: grid; place-items: center; border-radius: 8px; border: 2px solid var(--oro-osc);
+  background: repeating-conic-gradient(#e6d6b0 0 25%, #f3e8cc 0 50%) 0 0 / 20px 20px; }
+.sprite-aurrebista img { max-width: 90%; max-height: 90%; }
+@media (max-width: 700px) { .sprite-ed { grid-template-columns: 1fr; } }
+/* Contador de cambios sin publicar en el botón Argitaratu */
+#publicar { position: relative; }
+#publicar[data-zain]:not([data-zain=""])::after {
+  content: attr(data-zain); position: absolute; top: -8px; right: -8px; min-width: 1.35rem; height: 1.35rem; padding: 0 .3rem; border-radius: 999px;
+  display: grid; place-items: center; font: 700 .72rem system-ui; color: #fff; background: #d62828; border: 2px solid #fff; box-shadow: 0 0 10px #ff4d4d;
+  animation: zain 1.6s ease-in-out infinite;
+}
+@keyframes zain { 50% { transform: scale(1.15); } }

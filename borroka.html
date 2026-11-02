@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="eu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- node admin.js sustituye este valor por el token de la sesión: el combate solo funciona en el equipo del profesor -->
+  <meta name="token" content="%%TOKEN%%">
+  <title>Borroka · Lit Zerbitzuak RPG</title>
+  <link rel="stylesheet" href="css/web.css?v=20261102a">
+  <link rel="stylesheet" href="css/borroka.css?v=20261102a">
+</head>
+<body class="borroka-orria">
+  <main id="eszena" class="eszena" aria-live="polite">
+    <div class="eszena-zerua" aria-hidden="true"></div>
+    <div class="eszena-mendiak" aria-hidden="true"></div>
+    <div class="eszena-lurra" aria-hidden="true"></div>
+    <img class="fondo" alt="" hidden>
+    <div id="etsaiak" class="etsaiak"></div>
+    <div id="taldea" class="taldea-lerroa"></div>
+    <div id="efektuak" class="efektuak" aria-hidden="true"></div>
+  </main>
+
+  <header class="b-goiburua">
+    <div class="b-izenburua"><span class="b-ficha"></span><div><h1 id="b-taldea">…</h1><p id="b-gaia"></p></div></div>
+    <div class="b-bizitza" aria-label="Taldearen bizitza"><span class="b-etiketa">Bizitza</span><span id="bihotzak" class="bihotzak"></span></div>
+    <button type="button" id="b-amaitu" class="b-botoia txikia">Amaitu orain</button>
+  </header>
+
+  <footer class="b-hud">
+    <section class="b-leihoa b-etsai-zerrenda" aria-label="Etsaiak"><ul id="hud-etsaiak"></ul></section>
+    <section class="b-leihoa b-mezua" aria-live="polite"><p id="mezua">…</p></section>
+    <section class="b-leihoa b-taldea" aria-label="Taldea"><ul id="hud-taldea"></ul></section>
+  </footer>
+
+  <div id="galdera" class="galdera-fondoa" hidden>
+    <div class="b-leihoa galdera" role="dialog" aria-modal="true" aria-labelledby="g-testua">
+      <p class="g-goiburua"><span id="g-nor"></span> ⚔ <span id="g-etsaia"></span></p>
+      <h2 id="g-testua"></h2>
+      <p id="g-pista" class="g-pista" hidden></p>
+      <ol id="g-aukerak" class="g-aukerak"></ol>
+      <div id="g-objektuak" class="g-objektuak"></div>
+    </div>
+  </div>
+
+  <div id="amaiera" class="amaiera-fondoa" hidden></div>
+
+  <script src="js/motor.js?v=20261102a"></script>
+  <script src="js/fx.js?v=20261102a"></script>
+  <script src="js/mapa.js?v=20261102a"></script>
+  <script src="js/borroka.js?v=20261102a"></script>
+</body>
+</html>

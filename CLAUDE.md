@@ -115,6 +115,16 @@ Stack: HTML + CSS + JS puro, sin frameworks, sin build y sin dependencias. Códi
 - El mapa de Zerbitzuak está ahora en WebP: `img/mapa/zerbitzuak-20261030T133209.webp` (294 KB; la JPG sigue como versión anterior).
 - Sareak: el profesor diseñará su mapa más adelante; no tocarlo.
 
+## Combates (02/11)
+- **Qué es**: cada tema (casilla) tiene preguntas tipo test (5 recomendadas); cada pregunta es un enemigo. El profesor abre el combate desde el panel (⚔️ Borrokak → taldea → «Borroka hasi») y se juega en `borroka.html` **en su equipo** (proyector): solo funciona con `node admin.js` (token), porque las preguntas llevan la respuesta y son privadas (`data/privado/galderak.json` → `{ aventura: { casilla: [ {id, testua, aukerak[4], zuzena 0-3, pista?, activo} ] } }`, colección `galderak` de `/api/entidad`, con auditoría privada).
+- **Mecánica**: vida del grupo = número de preguntas. Se elige quién ataca (← →) y a qué enemigo; si acierta, el enemigo cae, y si falla, el grupo pierde 1 de vida y el enemigo huye (un solo intento por pregunta). El turno pasa al siguiente miembro. Termina al resolver todos los enemigos o al quedarse sin vida. Resultado: `garaipena`, `porrota` o `amaitu_gabe` (si se corta a mano).
+- **Objetos de combate**: `objeto.borroka` = `erdia` (quita 2 respuestas falsas), `pista` (muestra `pista`; solo sale si la pregunta tiene), `erantzuna` (marca la correcta) o `bizitza` (+1 vida). Se usan dentro de la ventana de la pregunta y quedan en el turno; los consumibles se gastan (`objeto_usado` automático).
+- **Registro**: `POST /api/borroka` → evento `borroka` en el registro de la aventura (público): `{casilla, entrega, guztira, asmatuak, bizitza, emaitza, etsaiak[ids], txandak[{galdera, kidea, aukera, zuzena, objektuak?}]}`, con `puntos: 0` (no suma XP; si el profesor quiere premiar, usa un bonus). **El servidor vuelve a corregir** cada respuesta con las preguntas privadas, comprueba que el miembro es del grupo y que el grupo tenía los objetos. Por `/api/evento` no se puede registrar un combate. El texto de las preguntas nunca va al registro público.
+- **Sprites**: `miembro.sprite` (`img/sprites/<miembro>-<fecha>.<ext>`, PNG/GIF/WebP sin reducir, `POST /api/sprite`). Si la imagen mide ≤ 160 px se pinta pixelada. Sin sprite: caballero con iniciales del color del grupo. Enemigos: 5 monstruos SVG provisionales (limo, murciélago, fantasma, gólem, ojo) teñidos con la región de la casilla (`body[data-estiloa]` en `css/borroka.css`).
+- **Web pública**: pestaña «⚔ Borrokak» en la ventana del grupo (tarjeta por combate: resultado, vida y quién respondió a cada enemigo, con aciertos y objetos), estadística de combate en la pestaña de cada alumno, el último combate de cada grupo en la ventana de la zona, y tipo `borroka` en el egunkaria.
+- No usar `garaipena` ni otros resultados como **clase** CSS: `.garaipena` es el estandarte de la meta. Usar `data-emaitza`.
+- **Panel**: el botón «⬆ Argitaratu» muestra un contador rojo con los cambios sin publicar (`GET /api/git`: archivos cambiados en data/publico, img y music, más commits por delante de origin/main).
+
 ## Tests
 `node --test` (carpeta `tests/`). Los tests usan `tests/datos_prueba/publico` (ficticio), nunca `data/`.
 

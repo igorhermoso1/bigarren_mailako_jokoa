@@ -16,6 +16,7 @@
       { k: 'rareza', e: 'Arraritasuna', t: 'select', o: rarezas }, { k: 'tipo', e: 'Mota', t: 'select', o: () => TIPOS_OBJETO },
       { k: 'ambito', e: 'Esparrua', t: 'select', o: ambitos }, { k: 'descripcion', e: 'Deskribapena', t: 'textarea' },
       { k: 'consumible', e: 'Kontsumigarria (behin erabiltzekoa)', t: 'checkbox' },
+      { k: 'borroka', e: 'Borrokan (efektua)', t: 'select', o: () => [['', '— Ez du efekturik —'], ['erdia', '✂️ 50/50: bi erantzun oker kendu'], ['pista', '💡 Pista erakutsi'], ['erantzuna', '👁️ Erantzun zuzena erakutsi'], ['bizitza', '❤️ +1 bizitza']] },
     ],
     estados: [
       { k: 'nombre', e: 'Izena' }, { k: 'tipo', e: 'Mota', t: 'select', o: () => [['upgrade', '▲ Hobekuntza'], ['downgrade', '▼ Zigorra']] },
@@ -35,6 +36,12 @@
       { k: 'descripcion', e: 'Deskribapena', t: 'textarea' },
     ],
     criterios: [{ k: 'nombre', e: 'Irizpidea' }],
+    galderak: [
+      { k: 'testua', e: 'Galdera', t: 'textarea' },
+      { k: 'aukerak.0', e: 'A erantzuna' }, { k: 'aukerak.1', e: 'B erantzuna' }, { k: 'aukerak.2', e: 'C erantzuna' }, { k: 'aukerak.3', e: 'D erantzuna' },
+      { k: 'zuzena', e: 'Erantzun zuzena', t: 'select', o: () => [['0', 'A'], ['1', 'B'], ['2', 'C'], ['3', 'D']] },
+      { k: 'pista', e: 'Pista (aukerakoa, «Pista» objektuarekin ikusten da)', t: 'textarea' },
+    ],
     grupos: [{ k: 'nombre', e: 'Izena' }, { k: 'lema', e: 'Leloa' }, { k: 'color', e: 'Kolorea', t: 'color' }],
     miembros: () => [
       { k: 'alias', e: 'Ezizena (publikoa)' },
@@ -225,6 +232,37 @@
   }
 
   // ---------- Módulos ----------
+  // Sprite de combate de un alumno: se sube tal cual (sin reducir, para no estropear el pixel art).
+  function editorSprite(cont, g, m) {
+    const sec = document.createElement('section');
+    sec.className = 'pergamino caja';
+    sec.innerHTML = `<h2>${esc(m.alias)}: borrokako sprite-a</h2>
+      <div class="sprite-ed">
+        <div class="sprite-aurrebista">${m.sprite ? `<img src="${esc(m.sprite)}" alt="">` : '<span class="vacio">Oraindik ez dago sprite-rik</span>'}</div>
+        <label class="soltar" tabindex="0">🗡️ <b>Sprite-a igo</b><br>PNG, GIF edo WebP (atzeko plano gardenarekin hobeto). Arrastatu hona edo sakatu.
+          <input type="file" accept="image/png,image/gif,image/webp" hidden></label>
+      </div>`;
+    const img = sec.querySelector('img');
+    if (img) img.onload = () => { if (img.naturalWidth <= 160) img.style.imageRendering = 'pixelated'; };
+    const soltar = sec.querySelector('.soltar');
+    const input = soltar.querySelector('input');
+    const subir = async archivo => {
+      if (!archivo) return;
+      const dataUrl = await leerDataUrl(archivo);
+      try {
+        await A.api('/api/sprite', { grupo: g.id, miembro: m.id, sprite: dataUrl });
+        A.avisar('✔ Sprite-a gordeta');
+        await A.recargar();
+      } catch (e) { A.avisar('✖ ' + e.message, 'error'); }
+    };
+    input.onchange = () => subir(input.files[0]);
+    soltar.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); input.click(); } };
+    soltar.ondragover = e => { e.preventDefault(); soltar.classList.add('encima'); };
+    soltar.ondragleave = () => soltar.classList.remove('encima');
+    soltar.ondrop = e => { e.preventDefault(); soltar.classList.remove('encima'); subir(e.dataTransfer.files[0]); };
+    cont.append(sec);
+  }
+
   function pintarTaldeak() {
     const cont = document.getElementById('mod-taldeak');
     cont.replaceChildren();
@@ -234,10 +272,11 @@
     cont.append(fila);
     const g = editor(fila, { titulo: 'Taldeak', coleccion: 'grupos', items: d.grupos.grupos });
     if (!g) return;
-    editor(fila, {
+    const m = editor(fila, {
       titulo: `${g.nombre}: kideak`, coleccion: 'miembros', items: g.miembros, extra: { grupo: g.id },
-      etiqueta: m => `${m.alias}${m.clase ? ' · ' + m.clase : ''}`,
+      etiqueta: m => `${m.sprite ? '🗡️ ' : ''}${m.alias}${m.clase ? ' · ' + m.clase : ''}`,
     });
+    if (m) editorSprite(cont, g, m);
     editorFicha(cont, g);
   }
 
@@ -275,5 +314,6 @@
     });
   }
 
+  A.editor = editor; // lo usa también borrokak.js
   A.modulos.push({ pintar: () => { pintarTaldeak(); pintarKatalogoa(); pintarEntregak(); } });
 })();
