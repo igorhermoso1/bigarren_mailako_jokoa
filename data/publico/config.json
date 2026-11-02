@@ -118,5 +118,57 @@
     "secreta": "Ezkutukoa",
     "bifurcacion": "Bidegurutzea",
     "meta": "Helmuga"
-  }
+  },
+  "estilos_cartela": [
+    {
+      "id": "basoa",
+      "nombre": "Basoa",
+      "ikonoa": "🌿"
+    },
+    {
+      "id": "padura",
+      "nombre": "Padura",
+      "ikonoa": "🫧"
+    },
+    {
+      "id": "hiria",
+      "nombre": "Hiria",
+      "ikonoa": "🏰"
+    },
+    {
+      "id": "izotza",
+      "nombre": "Izotza",
+      "ikonoa": "❄️"
+    },
+    {
+      "id": "sumendia",
+      "nombre": "Sumendia",
+      "ikonoa": "🔥"
+    },
+    {
+      "id": "basamortua",
+      "nombre": "Basamortua",
+      "ikonoa": "☀️"
+    },
+    {
+      "id": "misterioa",
+      "nombre": "Misterioa",
+      "ikonoa": "🔮"
+    },
+    {
+      "id": "meatzea",
+      "nombre": "Meatzea",
+      "ikonoa": "💎"
+    },
+    {
+      "id": "itsasoa",
+      "nombre": "Itsasoa",
+      "ikonoa": "🌊"
+    },
+    {
+      "id": "helmuga",
+      "nombre": "Helmuga",
+      "ikonoa": "👑"
+    }
+  ]
 }

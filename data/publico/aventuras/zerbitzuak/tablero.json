@@ -10,7 +10,8 @@
       "y": 49,
       "siguientes": [
         "z02"
-      ]
+      ],
+      "estiloa": "basoa"
     },
     {
       "id": "z02",
@@ -22,7 +23,8 @@
       "y": 42.4,
       "siguientes": [
         "z03"
-      ]
+      ],
+      "estiloa": "basoa"
     },
     {
       "id": "z03",
@@ -34,7 +36,8 @@
       "y": 46.6,
       "siguientes": [
         "z04"
-      ]
+      ],
+      "estiloa": "basoa"
     },
     {
       "id": "z04",
@@ -46,7 +49,8 @@
       "y": 56.6,
       "siguientes": [
         "z05"
-      ]
+      ],
+      "estiloa": "basoa"
     },
     {
       "id": "z05",
@@ -58,7 +62,8 @@
       "y": 70.3,
       "siguientes": [
         "z06"
-      ]
+      ],
+      "estiloa": "padura"
     },
     {
       "id": "z06",
@@ -70,7 +75,8 @@
       "y": 79.4,
       "siguientes": [
         "z07"
-      ]
+      ],
+      "estiloa": "padura"
     },
     {
       "id": "z07",
@@ -82,7 +88,8 @@
       "y": 67.7,
       "siguientes": [
         "z08"
-      ]
+      ],
+      "estiloa": "padura"
     },
     {
       "id": "z08",
@@ -94,7 +101,8 @@
       "y": 70.1,
       "siguientes": [
         "z09"
-      ]
+      ],
+      "estiloa": "misterioa"
     },
     {
       "id": "z09",
@@ -106,7 +114,8 @@
       "y": 63.4,
       "siguientes": [
         "z10"
-      ]
+      ],
+      "estiloa": "hiria"
     },
     {
       "id": "z10",
@@ -118,7 +127,8 @@
       "y": 56,
       "siguientes": [
         "z11"
-      ]
+      ],
+      "estiloa": "hiria"
     },
     {
       "id": "z11",
@@ -130,7 +140,8 @@
       "y": 48.4,
       "siguientes": [
         "z12"
-      ]
+      ],
+      "estiloa": "hiria"
     },
     {
       "id": "z12",
@@ -142,7 +153,8 @@
       "y": 38.6,
       "siguientes": [
         "z13"
-      ]
+      ],
+      "estiloa": "sumendia"
     },
     {
       "id": "z13",
@@ -154,7 +166,8 @@
       "y": 32.2,
       "siguientes": [
         "z14"
-      ]
+      ],
+      "estiloa": "sumendia"
     },
     {
       "id": "z14",
@@ -166,7 +179,8 @@
       "y": 34.9,
       "siguientes": [
         "z15"
-      ]
+      ],
+      "estiloa": "sumendia"
     },
     {
       "id": "z15",
@@ -178,7 +192,8 @@
       "y": 48.6,
       "siguientes": [
         "z16"
-      ]
+      ],
+      "estiloa": "itsasoa"
     },
     {
       "id": "z16",
@@ -190,7 +205,8 @@
       "y": 50.5,
       "siguientes": [
         "z17"
-      ]
+      ],
+      "estiloa": "misterioa"
     },
     {
       "id": "z17",
@@ -202,7 +218,8 @@
       "y": 68.6,
       "siguientes": [
         "z18"
-      ]
+      ],
+      "estiloa": "basamortua"
     },
     {
       "id": "z18",
@@ -214,7 +231,8 @@
       "y": 66.8,
       "siguientes": [
         "z19"
-      ]
+      ],
+      "estiloa": "meatzea"
     },
     {
       "id": "z19",
@@ -223,7 +241,8 @@
       "tipo": "meta",
       "x": 81,
       "y": 58.9,
-      "siguientes": []
+      "siguientes": [],
+      "estiloa": "helmuga"
     },
     {
       "id": "z-c20",

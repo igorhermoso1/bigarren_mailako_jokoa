@@ -26,7 +26,19 @@
       "color": "#d4a017"
     }
   ],
-  "objetos": [],
+  "objetos": [
+    {
+      "id": "o-ghh",
+      "icono": "hfhfh",
+      "consumible": false,
+      "activo": true,
+      "nombre": "ghh",
+      "rareza": "comun",
+      "tipo": "mapa",
+      "ambito": "todas",
+      "descripcion": "fghfghfghf"
+    }
+  ],
   "estados": [],
   "hitos": [],
   "logros": []
