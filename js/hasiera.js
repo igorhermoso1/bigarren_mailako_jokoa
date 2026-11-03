@@ -3,6 +3,7 @@
 // aparece el mapa. Se dibuja en un canvas pequeño (~320×180) ampliado sin suavizado, así todo es pixel art.
 // Sale una vez por sesión del navegador (sessionStorage).
 (function () {
+  const IZENBURUA = 'HARROBIA MSS RPG'; // el de la pantalla de inicio (la cabecera de la web usa config.titulo)
   const ABESTIA = 'music/' + encodeURIComponent('nugget wallahi - Release.mp3');
   const CARGA = 1.6;      // segundos manteniendo pulsado para sacar la espada
   const DESCARGA = 1.2;   // velocidad a la que vuelve a hundirse al soltar
@@ -70,13 +71,14 @@
   }
 
   // ---------- Escena ----------
-  let W, H, s, fondo, ventanas, estrellas, luciernagas = [], chispas = [], titulua = null, izenburua = '';
+  let W, H, s, fondo, ventanas, estrellas, luciernagas = [], chispas = [], titulua = null;
   const kuboa = document.createElement('canvas');
 
   function medir() {
     const px = Math.max(2, Math.floor(Math.min(innerWidth / 320, innerHeight / 180)));
-    W = lienzo.width = Math.ceil(innerWidth / px);
-    H = lienzo.height = Math.ceil(innerHeight / px);
+    // Mínimos por si la pestaña aún no tiene tamaño (abierta en segundo plano); al redimensionar se rehace.
+    W = lienzo.width = Math.max(64, Math.ceil(innerWidth / px));
+    H = lienzo.height = Math.max(36, Math.ceil(innerHeight / px));
     s = Math.max(1, Math.round(Math.min(W / 320, H / 180)));
     pintarFondo();
     prepararTitulo();
@@ -138,8 +140,7 @@
   }
 
   function prepararTitulo() {
-    if (!izenburua) return;
-    const palabras = izenburua.toUpperCase().split(' ');
+    const palabras = IZENBURUA.split(' ');
     const ultima = palabras.length > 1 ? palabras.pop() : '';
     const prueba = textoPixel(palabras.join(' '), 100, ['#fff'], '#000');
     const tam = Math.max(10, Math.min(Math.round(H * .12), Math.floor(W * .74 * 100 / prueba.width)));
@@ -364,6 +365,5 @@
   pantaila.querySelector('.h-saltatu').onclick = saltar;
 
   medir();
-  fetch('data/publico/config.json').then(r => r.json()).then(c => { izenburua = c.titulo || ''; prepararTitulo(); }).catch(() => { /* sin título */ });
   fotograma(performance.now());
 })();
