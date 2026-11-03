@@ -76,6 +76,8 @@
     audio.volume = Number(vol.value);
     vol.oninput = () => { audio.volume = Number(vol.value); guardar('musika-bolumena', vol.value); };
     // Si la última vez estaba encendida, vuelve a sonar con el primer toque en la página.
+    // Al pasar la pantalla de inicio (que ya ha sido un toque), sigue la música de la web si estaba encendida.
+    document.addEventListener('hasiera-amaitu', () => { if (recuperar('musika') === 'bai' && audio.paused) siguiente(); });
     if (recuperar('musika') === 'bai') {
       const reanudar = e => {
         removeEventListener('pointerdown', reanudar);

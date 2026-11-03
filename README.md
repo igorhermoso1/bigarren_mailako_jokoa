@@ -72,13 +72,19 @@ Cada zona del mapa tiene una cartela con el estilo de su región (bosque, ciéna
 - **Zer berri?**: al entrar sale lo que ha pasado desde la última visita (se cierra con «Jarraitu»).
 
 ## Combates (⚔️ Borrokak)
-1. **Preguntas**: ⚔️ Borrokak → elige el tema → «＋ Berria» → galdera, 4 erantzun, la correcta y una pista opcional. Se recomiendan 5 por tema; cada una será un enemigo. Las preguntas **no se publican nunca**.
+1. **Preguntas**: ⚔️ Borrokak → ① elige el tema en la lista de la izquierda → ② «＋ Etsai berria» (o pulsa una tarjeta para cambiarla) → galdera, 4 erantzun, la correcta y una pista opcional. Se recomiendan 5 por tema; cada una será un enemigo. Las preguntas **no se publican nunca**.
 2. **Sprites de los alumnos**: 🛡️ Taldeak eta fitxak → grupo → alumno → «Sprite-a igo» (PNG, GIF o WebP, mejor con fondo transparente). Sin sprite sale un caballero con sus iniciales.
 3. **Objetos de combate**: 💎 Katalogoa → objeto → «Borrokan (efektua)»: 50/50, pista, respuesta o +1 vida. Si es consumible, se gasta al usarlo. El grupo tiene que haberlo ganado antes.
-4. **Jugar**: ⚔️ Borrokak → tema → grupo → **⚔ Borroka hasi**. Se abre en una ventana nueva (ponla en el proyector). Se elige quién ataca (← →) y a qué enemigo (clic o 1-5); se responde con clic o con A-D. Acierto: el enemigo cae. Fallo: el grupo pierde 1 vida.
+4. **Jugar**: ⚔️ Borrokak → tema → ③ pulsa la tarjeta del grupo. Se abre en una ventana nueva (ponla en el proyector). Se elige quién ataca (← →) y a qué enemigo (clic o 1-5); se responde con clic o con A-D. Acierto: el enemigo cae. Fallo: el grupo pierde 1 vida.
 5. Al terminar, **💾 Gorde emaitza** y después **⬆ Argitaratu** para que salga en la web (pestaña «⚔ Borrokak» de cada grupo).
 
 El combate solo funciona en tu equipo con `node admin.js` en marcha: así nadie puede leer las respuestas desde la web.
+
+## Pantalla de inicio
+Al abrir la web (una vez por sesión del navegador) sale una pantalla pixel art: se pulsa cualquier tecla (o se toca) y empieza la canción `music/nugget wallahi - Release.mp3`; después hay que **mantener pulsado** para sacar la espada de la piedra y la escena se deshace en píxeles hasta mostrar el mapa. «Saltatu» o Esc la saltan. Para cambiar la canción, cambia el nombre en `js/hasiera.js` (`ABESTIA`).
+
+## Tutorial del panel
+Botón **🎓 Tutoriala** en la cabecera del panel: un capítulo por módulo que ilumina cada parte y explica qué hacer. Se puede usar el panel mientras tanto.
 
 ## Uso diario (panel del profesor)
 1. Abre una terminal en la carpeta del proyecto y arranca el panel:
