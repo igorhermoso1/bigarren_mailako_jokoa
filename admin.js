@@ -598,7 +598,7 @@ function validarSvg(buf) {
 }
 
 // Sube un mapa nuevo (una versión nueva por archivo; las anteriores no se borran) o vuelve a uno anterior.
-// También permite cambiar solo "dibujar_camino".
+// También permite cambiar solo "dibujar_camino" o "cartelas_al_pulsar".
 function guardarMapa(raiz, entrada) {
   const datos = cargarDatos(raiz);
   const av = datos.aventuras[entrada?.aventura];
@@ -626,6 +626,7 @@ function guardarMapa(raiz, entrada) {
     Object.assign(mapa, { archivo: entrada.existente, ancho: numero(entrada.ancho, 'Ancho', 1, 20000), alto: numero(entrada.alto, 'Alto', 1, 20000) });
   }
   if (entrada.dibujar_camino !== undefined) mapa.dibujar_camino = V.bool()(entrada.dibujar_camino, 'Dibujar camino');
+  if (entrada.cartelas_al_pulsar !== undefined) mapa.cartelas_al_pulsar = V.bool()(entrada.cartelas_al_pulsar, 'Cartelas al pulsar');
   if (JSON.stringify(mapa) === JSON.stringify(av.aventura.mapa)) return { mapa, sinCambios: true };
 
   comprobarRegistro(raiz, 'global');

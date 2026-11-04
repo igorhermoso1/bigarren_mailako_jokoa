@@ -2080,5 +2080,38 @@
     "referencia": null,
     "hash_anterior": "1e0ad5682194672ac9327b07cf79e89ce1eff6116ab860eab5e7e3243233ccac",
     "hash": "3f470821b11edd03a387c5333f6785e64b8680ade6f2f0d44d11e79daf398e4b"
+  },
+  {
+    "id": 53,
+    "fecha": "2026-11-04T13:45:17.715Z",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "mapa",
+      "aventura": "sareak",
+      "id": "sareak",
+      "cambio": "mapa",
+      "antes": {
+        "archivo": "img/mapa/sareak-20261104T122228.webp",
+        "ancho": 1672,
+        "alto": 941,
+        "dibujar_camino": false
+      },
+      "despues": {
+        "archivo": "img/mapa/sareak-20261104T122228.webp",
+        "ancho": 1672,
+        "alto": 941,
+        "dibujar_camino": false,
+        "cartelas_al_pulsar": true
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "3f470821b11edd03a387c5333f6785e64b8680ade6f2f0d44d11e79daf398e4b",
+    "hash": "480c53c21e9fc67ddb5ae2f62404be5e402a0cb22700c78ff5c89e9d05226c0f"
   }
 ]

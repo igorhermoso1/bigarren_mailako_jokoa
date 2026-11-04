@@ -156,6 +156,7 @@
         <label class="soltar" tabindex="0">🗺️ <b>Mapa berria igo</b><br>SVG, JPG, PNG edo WebP. Laukiak ehunekotan daude: berrikusi haien kokapena igo ondoren.
           <input type="file" accept="image/svg+xml,image/jpeg,image/png,image/webp" hidden></label>
         <label class="check"><input type="checkbox" data-camino${mapa.dibujar_camino ? ' checked' : ''}> Bidea marraztu laukien artean (mapak berak bidea ez badakar)</label>
+        <label class="check"><input type="checkbox" data-cartelak${mapa.cartelas_al_pulsar ? ' checked' : ''}> Lekuen izenak ezkutatu: leku bat sakatzean bakarrik agertzen da, eta peanek beren eremuaren kolorez distiratzen dute</label>
       </div>
       <h3>Aurreko mapak</h3>
       <ul class="versiones-mapa">${versiones.map((e, i) => `<li><img src="${esc(e.datos.antes.archivo)}" alt="" loading="lazy">
@@ -191,6 +192,7 @@
     soltar.ondragleave = () => soltar.classList.remove('encima');
     soltar.ondrop = e => { e.preventDefault(); soltar.classList.remove('encima'); subir(e.dataTransfer.files[0]); };
     cont.querySelector('[data-camino]').onchange = e => enviarMapa({ dibujar_camino: e.target.checked }, 'Gordeta');
+    cont.querySelector('[data-cartelak]').onchange = e => enviarMapa({ cartelas_al_pulsar: e.target.checked }, 'Gordeta');
     const versiones = A.datos.globales.filter(e => e.tipo === 'auditoria' && e.datos.coleccion === 'mapa' && e.datos.aventura === A.avId).reverse();
     cont.querySelectorAll('[data-volver]').forEach(b => b.onclick = async () => {
       const m = versiones[b.dataset.volver].datos.antes;

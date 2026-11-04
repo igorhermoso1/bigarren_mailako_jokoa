@@ -1017,7 +1017,7 @@ button:disabled, [aria-disabled="true"] { cursor: not-allowed !important; }
 
 /* ---------- Marco del mapa: marco de oro de ui1 a x3, pintado por fuera (outset) ---------- */
 .marco-mapa {
-  background: #0b0705; border-radius: 0; box-shadow: none; overflow: visible; filter: drop-shadow(5px 5px 0 #0009);
+  background: #0b0705; border-radius: 0; box-shadow: none; overflow: hidden; filter: drop-shadow(5px 5px 0 #0009);
   border-image: url(../img/ui/pixel/marco-urrea.png) 9 / 27px / 17px round; image-rendering: pixelated;
 }
 .marco-mapa .lienzo { overflow: hidden; image-rendering: auto; }
@@ -1061,13 +1061,13 @@ button:disabled, [aria-disabled="true"] { cursor: not-allowed !important; }
 /* ---------- Filas de grupo: losa de piedra con runas de ui1 a x2 ---------- */
 .fila-grupo {
   border: 28px solid transparent; border-width: 28px 24px; border-radius: 0; padding: 0; background: none; box-shadow: none;
-  border-image: url(../img/ui/pixel/harlauza.png) 14 12 fill / 28px 24px round; image-rendering: pixelated; margin: -8px 0;
+  border-image: url(../img/ui/pixel/harlauza-beroa.png) 14 12 fill / 28px 24px round; image-rendering: pixelated; margin: -8px 0;
 }
 .fila-grupo > * { image-rendering: auto; }
 .fila-grupo::before { display: none; }
 .fila-grupo:hover, .fila-grupo:focus-visible { transform: translateX(3px); box-shadow: none; filter: brightness(1.08) drop-shadow(var(--sombra-px)); }
 .fg-nombre { font-family: var(--titulo); font-weight: 400; font-size: 1.12rem; color: color-mix(in srgb, var(--color) 60%, #1a1008); }
-.fg-nivel, .fg-zona { color: #2f2418; }
+.fg-nivel, .fg-zona { color: #3a2614; }
 
 /* ---------- Barra de XP: canal de UI3 con relleno azul en franjas duras ---------- */
 .xp { height: 20px; border: 6px solid transparent; border-radius: 0; background: none; box-shadow: none;
@@ -1102,3 +1102,31 @@ button:disabled, [aria-disabled="true"] { cursor: not-allowed !important; }
   .gida-txartelak > li { transition: transform .15s steps(3); }
   .gida-txartelak > li:hover { transform: translateY(-4px); }
 }
+
+/* ---------- Mapas con «cartelas al pulsar» (mapa.cartelas_al_pulsar): nombres ocultos, peanas que brillan ---------- */
+.cartelas-al-pulsar .cartela { opacity: 0; visibility: hidden; transition: opacity .15s, visibility 0s .15s; }
+.cartelas-al-pulsar .casilla:is(.seleccionada, :focus-visible) .cartela { opacity: 1; visibility: visible; transition: opacity .15s; z-index: 6; }
+/* Anillo de luz del color de la zona (--argia lo toma mapa.js del dibujo); solo se anima su opacidad */
+.cartelas-al-pulsar .casilla::after {
+  content: ''; position: absolute; inset: -5px; border-radius: 50%; pointer-events: none; opacity: 1; scale: 1;
+  border: 2px solid hsl(var(--argia, 45) 100% 72%);
+  box-shadow: 0 0 14px 6px hsl(var(--argia, 45) 100% 58% / .95), inset 0 0 8px 2px hsl(var(--argia, 45) 100% 65% / .9);
+  animation: peana-argia 2.6s ease-in-out infinite; animation-delay: calc(var(--i, 0) * -.37s);
+}
+.cartelas-al-pulsar .casilla.seleccionada::after { animation: none; opacity: 1; inset: -7px; }
+@keyframes peana-argia { 50% { opacity: .55; } }
+@media (prefers-reduced-motion: reduce) { .cartelas-al-pulsar .casilla::after { animation: none; opacity: .8; } }
+
+/* ---------- Volumen: canal de hierro con relleno azul y una poción como tirador ---------- */
+.m-bolumena { appearance: none; -webkit-appearance: none; width: 5.2rem; height: 26px; background: none; accent-color: initial; }
+.m-bolumena::-webkit-slider-runnable-track {
+  height: 8px; border: 2px solid #000; box-shadow: 0 0 0 2px var(--oro-osc), 2px 2px 0 2px #0008;
+  background: linear-gradient(90deg, #4fa8f0 var(--v, 60%), #1b1410 var(--v, 60%));
+}
+.m-bolumena::-moz-range-track { height: 8px; border: 2px solid #000; box-shadow: 0 0 0 2px var(--oro-osc); background: linear-gradient(90deg, #4fa8f0 var(--v, 60%), #1b1410 var(--v, 60%)); }
+.m-bolumena::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 15px; height: 23px; margin-top: -9.5px; border: 0; background: url(../img/ui/pixel/edabea.png) center / 15px 23px no-repeat;
+  image-rendering: pixelated; filter: drop-shadow(1px 2px 0 #000a); transition: transform .1s;
+}
+.m-bolumena::-moz-range-thumb { width: 15px; height: 23px; border: 0; border-radius: 0; background: url(../img/ui/pixel/edabea.png) center / 15px 23px no-repeat; image-rendering: pixelated; }
+.m-bolumena:hover::-webkit-slider-thumb, .m-bolumena:active::-webkit-slider-thumb { transform: scale(1.15) rotate(-12deg); }

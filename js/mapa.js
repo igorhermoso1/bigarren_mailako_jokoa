@@ -128,6 +128,8 @@
     contenedor.innerHTML = '';
     const { mapa } = aventura;
     const lienzo = crear('div', 'lienzo');
+    // Mapas muy cargados: los nombres solo salen al pulsar una zona; las peanas brillan con el color de su zona.
+    lienzo.classList.toggle('cartelas-al-pulsar', !!mapa.cartelas_al_pulsar);
     lienzo.style.setProperty('--aspecto', mapa.ancho / mapa.alto);
 
     const fondo = crear('img', 'fondo', { src: mapa.archivo, alt: aventura.tema || aventura.nombre });
@@ -348,9 +350,11 @@
           const d = lienzo2d.getImageData(px, py, 1, 1).data;
           r += d[0]; g += d[1]; b += d[2]; n++;
         }
-        if (!n || lienzo.querySelector(`.casilla[data-id="${CSS.escape(c.id)}"] .cartela[data-estiloa]`)) continue;
+        if (!n) continue;
         const [h, s] = rgbAHsl(r / n, g / n, b / n);
         const boton = lienzo.querySelector(`.casilla[data-id="${CSS.escape(c.id)}"]`);
+        boton?.style.setProperty('--argia', Math.round(h)); // brillo de la peana: siempre el color de la zona
+        if (boton?.querySelector('.cartela[data-estiloa]')) continue;
         boton?.style.setProperty('--tono', Math.round(h));
         boton?.style.setProperty('--sat', Math.round(Math.max(45, Math.min(90, s * 1.3))) + '%');
       }

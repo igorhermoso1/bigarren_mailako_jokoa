@@ -73,8 +73,10 @@
     $('m-hurrengoa').onclick = () => { guardar('musika', 'bai'); siguiente(); };
     const vol = $('m-bolumena');
     vol.value = recuperar('musika-bolumena') ?? .6;
-    audio.volume = Number(vol.value);
-    vol.oninput = () => { audio.volume = Number(vol.value); guardar('musika-bolumena', vol.value); };
+    // --v pinta la parte llena del canal (el control nativo no lo hace con estilo propio)
+    const llenar = () => vol.style.setProperty('--v', vol.value * 100 + '%');
+    audio.volume = Number(vol.value); llenar();
+    vol.oninput = () => { audio.volume = Number(vol.value); llenar(); guardar('musika-bolumena', vol.value); };
     // Si la última vez estaba encendida, vuelve a sonar con el primer toque en la página.
     // Al pasar la pantalla de inicio (que ya ha sido un toque), sigue la música de la web si estaba encendida.
     document.addEventListener('hasiera-amaitu', () => { if (recuperar('musika') === 'bai' && audio.paused) siguiente(); });

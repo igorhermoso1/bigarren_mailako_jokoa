@@ -5,6 +5,7 @@
     "archivo": "img/mapa/sareak-20261104T122228.webp",
     "ancho": 1672,
     "alto": 941,
-    "dibujar_camino": false
+    "dibujar_camino": false,
+    "cartelas_al_pulsar": true
   }
 }
