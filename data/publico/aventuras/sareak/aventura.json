@@ -2,9 +2,9 @@
   "id": "sareak",
   "nombre": "Sareak",
   "mapa": {
-    "archivo": "img/mapa/sareak.svg",
-    "ancho": 1600,
-    "alto": 1000,
-    "dibujar_camino": true
+    "archivo": "img/mapa/sareak-20261104T122228.webp",
+    "ancho": 1672,
+    "alto": 941,
+    "dibujar_camino": false
   }
 }

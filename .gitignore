@@ -1,2 +1,14 @@
 # Notas individuales, rúbricas y fotos originales: solo en el equipo del profesor
 data/privado/
+
+# Material de trabajo del profesor: láminas originales y referencias que la web no usa
+# (la web solo carga los recortes de img/ui/pixel y los mapas convertidos a WebP).
+/UI/
+/enemys/
+img/ui/Ui_Pixel/
+img/ui/*.png
+img/props/
+img/mapa/*.png
+# Archivos personales del equipo del profesor
+/Iniciar_Admin.bat
+/Acceso al admin.png

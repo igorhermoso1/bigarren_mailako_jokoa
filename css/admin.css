@@ -380,3 +380,19 @@ input[type=checkbox], input[type=radio] { width: 1.1rem; height: 1.1rem; accent-
 .tut-kapituluak small { font: 600 .75rem system-ui; color: var(--tinta-suave); }
 .tut-kapituluak .eginda { background: linear-gradient(#f0fff0, #d8efcf); }
 @media (prefers-reduced-motion: reduce) { .tut-argia, .tut-bunbuiloa { transition: none; } .tut-argia::after { animation: none; } }
+
+/* ---------- Capa pixel art (mismas piezas que la web: img/ui/pixel) ---------- */
+.modulos button {
+  border: solid transparent; border-width: 14px 16px; border-radius: 0; padding: 0 .2rem; min-height: 0;
+  border-image: url(../img/ui/pixel/barra-egurra.png) 7 8 fill / 14px 16px round; image-rendering: pixelated; background: none;
+  font: 400 .92rem/1 var(--titulo); color: #f6e2b8; text-shadow: 2px 2px 0 #000;
+}
+.modulos button[aria-current] { border-image-source: url(../img/ui/pixel/botoia-urdina.png); border-image-slice: 6 8 fill; color: #fff; background: none; }
+.modulos button:hover { filter: brightness(1.12); }
+.boton-pri {
+  border: solid transparent; border-width: 12px 14px; border-radius: 0; padding: 0 .6rem; min-height: 0; box-shadow: none; background: none;
+  border-image: url(../img/ui/pixel/botoia-urdina.png) 6 8 fill / 12px 14px round; image-rendering: pixelated;
+  font-family: var(--titulo); font-weight: 400; color: #fff; text-shadow: 2px 2px 0 #000;
+}
+.boton-mal { border-radius: 0; box-shadow: 2px 2px 0 #0008; }
+.boton-sec { border-radius: 0; box-shadow: 2px 2px 0 #0008; font-family: var(--titulo); font-weight: 400; }

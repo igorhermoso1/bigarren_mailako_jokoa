@@ -53,6 +53,41 @@
       "nombre": "9. gaia",
       "fecha_limite": null,
       "puntos_max": 10
+    },
+    {
+      "id": "s-e10",
+      "fecha_limite": null,
+      "puntos_max": 10,
+      "activo": true,
+      "nombre": "10. gaia"
+    },
+    {
+      "id": "s-e11",
+      "fecha_limite": null,
+      "puntos_max": 10,
+      "activo": true,
+      "nombre": "11. gaia"
+    },
+    {
+      "id": "s-e12",
+      "fecha_limite": null,
+      "puntos_max": 10,
+      "activo": true,
+      "nombre": "12. gaia"
+    },
+    {
+      "id": "s-e13",
+      "fecha_limite": null,
+      "puntos_max": 10,
+      "activo": true,
+      "nombre": "13. gaia"
+    },
+    {
+      "id": "s-e14",
+      "fecha_limite": null,
+      "puntos_max": 10,
+      "activo": true,
+      "nombre": "14. gaia"
     }
   ]
 }

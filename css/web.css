@@ -70,7 +70,6 @@ button { font: inherit; color: inherit; }
 /* ---------- Maquetación ---------- */
 .contenido { display: grid; gap: 1.25rem; padding: 1.25rem; grid-template-columns: minmax(0, 1fr); }
 @media (min-width: 900px) {
-  body { overflow: hidden; }
   .contenido { height: calc(100dvh - var(--alto-cabecera)); grid-template-columns: minmax(0, 1fr) 350px; }
   .lateral { min-height: 0; }
 }
@@ -710,12 +709,8 @@ body::before {
 
 
 /* ======================================================================
-   Comodidad: cursor de espada, «Zer berri?», luz según la hora y recorrido
+   Comodidad: «Zer berri?», luz según la hora y recorrido
    ====================================================================== */
-/* Cursor de espada (dorada al pasar por algo que se puede pulsar) */
-body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cg stroke='%231a0f05' stroke-width='1.3' stroke-linejoin='round'%3E%3Cpath d='M2 2 L7 3 L21 17 L17 21 L3 7 Z' fill='%23dfe6ee'/%3E%3Cpath d='M14 24 L24 14 L26.5 16.5 L16.5 26.5 Z' fill='%23d4a64a'/%3E%3Cpath d='M20.5 23 L23 20.5 L28 25.5 L25.5 28 Z' fill='%236b3d1a'/%3E%3Ccircle cx='28.3' cy='28.3' r='2.2' fill='%23f6dc95'/%3E%3C/g%3E%3C/svg%3E") 2 2, auto; }
-a, button, select, summary, label, [role="tab"], input[type="range"], input[type="checkbox"] { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cg stroke='%231a0f05' stroke-width='1.3' stroke-linejoin='round'%3E%3Cpath d='M2 2 L7 3 L21 17 L17 21 L3 7 Z' fill='%23ffe89a'/%3E%3Cpath d='M14 24 L24 14 L26.5 16.5 L16.5 26.5 Z' fill='%23d4a64a'/%3E%3Cpath d='M20.5 23 L23 20.5 L28 25.5 L25.5 28 Z' fill='%236b3d1a'/%3E%3Ccircle cx='28.3' cy='28.3' r='2.2' fill='%23f6dc95'/%3E%3C/g%3E%3C/svg%3E") 2 2, pointer; }
-input[type="text"], input[type="number"], textarea { cursor: text; }
 
 /* Luz del mapa según la hora: filtros fijos sobre la imagen (no se animan, no cuestan) */
 .marco-mapa[data-ordua="ilunabarra"] .fondo { filter: sepia(.28) saturate(1.25) hue-rotate(-12deg) brightness(.93); }
@@ -901,3 +896,209 @@ html.hasiera-irekita { overflow: hidden; }
   letter-spacing: .08em; color: #ffe08a; background: #0009; border: 2px solid #ffe08a; box-shadow: 0 0 0 2px #2a1206; }
 .h-saltatu:hover, .h-saltatu:focus-visible { background: #ffe08a; color: #2a1206; }
 @media (prefers-reduced-motion: reduce) { .h-mezua { animation: none; } #hasiera { transition: none; } }
+
+/* ======================================================================
+   Capa pixel art (img/ui/pixel, recortada de img/ui/Ui_Pixel por su transparencia)
+   Las piezas nítidas de ui1 se amplían x2/x3/x4 exactos con image-rendering: pixelated;
+   los marcos son border-image de 9 trozos: esquinas intactas y lados que se repiten.
+   ====================================================================== */
+@font-face { font-family: 'MedievalSharp'; src: url(../fonts/medievalsharp.woff2) format('woff2'); font-display: swap; }
+@font-face { font-family: 'Cinzel Decorative'; src: url(../fonts/cinzel-decorative-400.woff2) format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Cinzel Decorative'; src: url(../fonts/cinzel-decorative-700.woff2) format('woff2'); font-weight: 700; font-display: swap; }
+@font-face { font-family: 'EB Garamond'; src: url(../fonts/eb-garamond.woff2) format('woff2'); font-weight: 400 700; font-display: swap; }
+@font-face { font-family: 'EB Garamond'; src: url(../fonts/eb-garamond-italic.woff2) format('woff2'); font-style: italic; font-display: swap; }
+:root {
+  --titulo: 'MedievalSharp', 'Palatino Linotype', Georgia, serif;   /* rótulos, botones, pestañas, cartelas */
+  --rotulo: 'Cinzel Decorative', 'Palatino Linotype', Georgia, serif; /* títulos grandes */
+  --alto-cabecera: 76px;  /* = barra de madera (19 px) x4 */
+  --sombra-px: 3px 3px 0 #0009;  /* sombras duras, como en un juego de 16 bits */
+}
+body { font: 17px/1.45 'EB Garamond', 'Palatino Linotype', Georgia, serif; }
+h1, h2 { font-family: var(--rotulo); }
+h3, h4 { font-family: var(--titulo); font-weight: 400; }
+
+/* ---------- Cursores (cursores.png reconstruido a su tamaño nativo) ----------
+   !important: muchas reglas anteriores ponen «cursor: pointer» con más especificidad. */
+html, body {
+  cursor: url(../img/ui/pixel/kurtsoreak/gezia.png) 1 1, auto;
+  cursor: image-set(url(../img/ui/pixel/kurtsoreak/gezia.png) 1x, url(../img/ui/pixel/kurtsoreak/gezia@2x.png) 2x) 1 1, auto;
+}
+a, button, select, summary, label, [role="tab"], [role="button"], input[type="range"], input[type="checkbox"], input[type="radio"], input[type="color"], input[type="file"], .soltar {
+  cursor: url(../img/ui/pixel/kurtsoreak/eskularrua.png) 1 2, pointer !important;
+  cursor: image-set(url(../img/ui/pixel/kurtsoreak/eskularrua.png) 1x, url(../img/ui/pixel/kurtsoreak/eskularrua@2x.png) 2x) 1 2, pointer !important;
+}
+/* Zonas del mapa y enemigos del combate: espada */
+.casilla, .etsaia, .aukera {
+  cursor: url(../img/ui/pixel/kurtsoreak/ezpata.png) 1 1, pointer !important;
+  cursor: image-set(url(../img/ui/pixel/kurtsoreak/ezpata.png) 1x, url(../img/ui/pixel/kurtsoreak/ezpata@2x.png) 2x) 1 1, pointer !important;
+}
+/* Fichas de los grupos y miembros: bastón de zafiro */
+.ficha-mapa, .fila-grupo, .kidea, .b-taldea {
+  cursor: url(../img/ui/pixel/kurtsoreak/makila-urdina.png) 7 7, pointer !important;
+  cursor: image-set(url(../img/ui/pixel/kurtsoreak/makila-urdina.png) 1x, url(../img/ui/pixel/kurtsoreak/makila-urdina@2x.png) 2x) 7 7, pointer !important;
+}
+/* Arrastrar el mapa ampliado o una casilla del editor: hoja */
+.lienzo.ampliado, .te-casilla {
+  cursor: url(../img/ui/pixel/kurtsoreak/hostoa.png) 5 6, grab !important;
+  cursor: image-set(url(../img/ui/pixel/kurtsoreak/hostoa.png) 1x, url(../img/ui/pixel/kurtsoreak/hostoa@2x.png) 2x) 5 6, grab !important;
+}
+/* Algo que leer (objetos del inventario, insignias y egoerak con explicación): pergamino */
+.hueco.lleno, .insignias li[title], .pildoras li[title] {
+  cursor: url(../img/ui/pixel/kurtsoreak/pergaminoa.png) 1 3, help !important;
+  cursor: image-set(url(../img/ui/pixel/kurtsoreak/pergaminoa.png) 1x, url(../img/ui/pixel/kurtsoreak/pergaminoa@2x.png) 2x) 1 3, help !important;
+}
+/* Pantalla de inicio y modo proyector: bastón de jade */
+#hasiera, .proiektorea {
+  cursor: url(../img/ui/pixel/kurtsoreak/makila-berdea.png) 3 1, pointer !important;
+  cursor: image-set(url(../img/ui/pixel/kurtsoreak/makila-berdea.png) 1x, url(../img/ui/pixel/kurtsoreak/makila-berdea@2x.png) 2x) 3 1, pointer !important;
+}
+input[type="text"], input[type="number"], input[type="date"], input[type="search"], textarea { cursor: text !important; }
+button:disabled, [aria-disabled="true"] { cursor: not-allowed !important; }
+
+/* ---------- Pergamino enrollado: ventanas, barra lateral, «Zer berri?», tarjetas ---------- */
+.pergamino {
+  border: solid transparent; border-width: 32px 18px 28px; border-radius: 0; background: none; box-shadow: none;
+  border-image: url(../img/ui/pixel/pergaminoa-9.png) 16 9 14 9 fill / 32px 18px 28px round;
+  image-rendering: pixelated; filter: drop-shadow(var(--sombra-px));
+}
+.pergamino * { image-rendering: auto; }
+.lateral.pergamino { padding: 0; }
+.emergente.pergamino { overflow: visible; }   /* el botón de cerrar va sobre la varilla, fuera de la caja de relleno */
+.emergente .em-cuerpo { min-height: 0; }
+.emergente .cerrar { right: -14px; top: -40px; }
+
+/* ---------- Cabecera: barra de madera de ui1 a x4 ---------- */
+.cabecera {
+  height: var(--alto-cabecera); border: solid transparent; border-width: 0 32px; background: none; box-shadow: 0 6px 0 #0007;
+  border-image: url(../img/ui/pixel/barra-egurra.png) 0 8 fill / 0 32px round; image-rendering: pixelated;
+}
+.cabecera > * { image-rendering: auto; }
+.titulo { font-family: var(--rotulo); font-weight: 700; letter-spacing: .04em; text-transform: none; filter: drop-shadow(2px 2px 0 #000); }
+#titulo { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.marca { min-width: 0; }
+
+/* Aventuras: estandartes de tela colgados (ui2) */
+.estandartes { align-self: flex-start; gap: .4rem; flex: none; }
+.admin .titulo { font-size: 1.15rem; white-space: nowrap; }
+.estandartes a {
+  min-width: 7.2rem; height: 4.6rem; padding: 1.35rem .6rem 0; clip-path: none; box-shadow: none !important;
+  font: 400 1rem var(--titulo); letter-spacing: .04em; text-transform: none; color: #fff; text-shadow: 2px 2px 0 #000;
+  background: url(../img/ui/pixel/estandartea-urdina.png) center top / 100% 100% no-repeat; opacity: .6; transition: opacity .15s, transform .15s;
+}
+.estandartes a:nth-child(2) { background-image: url(../img/ui/pixel/estandartea-morea.png); }
+.estandartes a:nth-child(3) { background-image: url(../img/ui/pixel/estandartea-berdea.png); }
+.estandartes a:nth-child(4) { background-image: url(../img/ui/pixel/estandartea-gorria.png); }
+.estandartes a[aria-current] { opacity: 1; padding-top: 1.35rem; transform: translateY(4px); background: url(../img/ui/pixel/estandartea-urdina.png) center top / 100% 100% no-repeat; }
+.estandartes a:nth-child(2)[aria-current] { background-image: url(../img/ui/pixel/estandartea-morea.png); }
+.estandartes a:nth-child(3)[aria-current] { background-image: url(../img/ui/pixel/estandartea-berdea.png); }
+.estandartes a:nth-child(4)[aria-current] { background-image: url(../img/ui/pixel/estandartea-gorria.png); }
+.estandartes a:hover { opacity: .9; }
+
+/* Botones redondos: moneda oscura de ui2 con el símbolo dibujado píxel a píxel (el texto queda para lectores de pantalla) */
+.m-boton, .cerrar {
+  width: 37px; height: 37px; padding: 0; border: 0; border-radius: 50%; box-shadow: none; color: transparent; text-shadow: none; font-size: 0;
+  background: url(../img/ui/pixel/b-jo.png) center / 37px 37px no-repeat; filter: drop-shadow(2px 2px 0 #000a);
+}
+.m-boton:hover, .cerrar:hover { filter: brightness(1.2) drop-shadow(2px 2px 0 #000a); }
+.m-boton:active, .cerrar:active { transform: translateY(2px); filter: none; }
+.sonando #m-jo { background-image: url(../img/ui/pixel/b-pausa.png); box-shadow: none; }
+#m-hurrengoa { background-image: url(../img/ui/pixel/b-hurrengoa.png); }
+#proiektorea { background-image: url(../img/ui/pixel/b-proiektorea.png); }
+.cerrar { background-image: url(../img/ui/pixel/b-itxi.png); }
+.zoom-kontrolak .m-boton { width: 37px; height: 37px; font-size: 0; }
+.zoom-kontrolak .m-boton:nth-child(1) { background-image: url(../img/ui/pixel/b-gehitu.png); }
+.zoom-kontrolak .m-boton:nth-child(2) { background-image: url(../img/ui/pixel/b-kendu.png); }
+.zoom-kontrolak .m-boton:nth-child(3) { background-image: url(../img/ui/pixel/b-osoa.png); }
+/* Pantallita de la música: bordes duros, sin redondeos */
+.musika { border: 0; border-radius: 0; background: none; box-shadow: none; padding: 0; }
+.m-pantaila { border-radius: 0; border: 3px solid #000; box-shadow: inset 0 0 0 2px #3c5a2e, var(--sombra-px); }
+.m-etiketa, #m-abestia { font-family: var(--titulo); font-weight: 400; }
+@media (max-width: 1180px) { .m-pantaila { width: 7.5rem; } .m-bolumena { width: 3rem; } .estandartes a { min-width: 6rem; } }
+
+/* ---------- Marco del mapa: marco de oro de ui1 a x3, pintado por fuera (outset) ---------- */
+.marco-mapa {
+  background: #0b0705; border-radius: 0; box-shadow: none; overflow: visible; filter: drop-shadow(5px 5px 0 #0009);
+  border-image: url(../img/ui/pixel/marco-urrea.png) 9 / 27px / 17px round; image-rendering: pixelated;
+}
+.marco-mapa .lienzo { overflow: hidden; image-rendering: auto; }
+.zoom-kontrolak { right: 22px; bottom: 22px; }
+
+/* Medallones de las casillas: monedas de ui2 (oscura; bronce si ya se ha pisado; morada en la meta) */
+.casilla {
+  border: 0; box-shadow: none; background: url(../img/ui/pixel/txanpona-iluna.png) center / 100% 100% no-repeat;
+  font-family: var(--titulo); font-weight: 400; text-shadow: 1px 1px 0 #000, -1px -1px 0 #000;
+}
+.casilla.pisada { background-image: url(../img/ui/pixel/txanpona-brontzea.png); box-shadow: none; filter: drop-shadow(0 0 5px #f6dc95); color: #fff6d0; }
+.casilla[data-tipo="meta"] { background: url(../img/ui/pixel/txanpona-morea.png) center / 100% 100% no-repeat; }
+.casilla.seleccionada { box-shadow: none; filter: drop-shadow(0 0 6px #fff6d0); }
+/* Cartelas: rótulo con borde duro de 2 px y sombra de bloque */
+.cartela { border-radius: 0; border-width: 2px; font-family: var(--titulo); font-weight: 400; letter-spacing: .03em;
+  box-shadow: 2px 2px 0 #000c, inset 0 2px 0 hsl(var(--tono) 80% 80% / .3); }
+
+/* ---------- Pestañas: tablilla de madera; la elegida, placa azul con su rubí ---------- */
+.lat-pestanas { border: 0; background: none; gap: .3rem; padding: 1rem .1rem .45rem; }
+.lat-pestanas button, .em-pestanas button {
+  position: relative; border: solid transparent; border-width: 14px 16px; padding: 0 .1rem; min-width: 0;
+  border-image: url(../img/ui/pixel/barra-egurra.png) 7 8 fill / 14px 16px round; image-rendering: pixelated;
+  font: 400 .92rem/1 var(--titulo); letter-spacing: .03em; text-transform: none; color: #f6e2b8; text-shadow: 2px 2px 0 #000;
+  background: none; box-shadow: none;
+}
+.lat-pestanas button[aria-selected="true"], .em-pestanas button[aria-selected="true"] {
+  border-image-source: url(../img/ui/pixel/botoia-urdina.png); border-image-slice: 6 8 fill; color: #fff; background: none; box-shadow: none;
+}
+.lat-pestanas button[aria-selected="true"]::before, .em-pestanas button[aria-selected="true"]::before {
+  content: ''; position: absolute; left: 50%; top: -28px; width: 24px; height: 24px; translate: -50% 0; /* medio rubí sobre el borde de 14 px */
+  background: url(../img/ui/pixel/gema-errubia.png) center / 24px 24px no-repeat; image-rendering: pixelated; filter: drop-shadow(1px 1px 0 #000);
+}
+.lat-pestanas button:hover, .em-pestanas button:hover { filter: brightness(1.12); }
+.lat-pestanas button { flex: 1; display: flex; align-items: center; justify-content: center; gap: .35em; font-size: .85rem; }
+.lat-pestanas button::after { content: ''; flex: none; width: 21px; height: 22px; margin: 0; background: center / contain no-repeat; image-rendering: pixelated; order: -1; }
+#tab-taldeak::after { background-image: url(../img/ui/pixel/eskularrua.png); }
+#tab-egunkaria::after { background-image: url(../img/ui/pixel/liburua.png); }
+#tab-bitrina::after { background-image: url(../img/ui/pixel/kutxa.png); }
+.em-pestanas { gap: .3rem; padding: 1rem .2rem .3rem; border: 0; }
+
+/* ---------- Filas de grupo: losa de piedra con runas de ui1 a x2 ---------- */
+.fila-grupo {
+  border: 28px solid transparent; border-width: 28px 24px; border-radius: 0; padding: 0; background: none; box-shadow: none;
+  border-image: url(../img/ui/pixel/harlauza.png) 14 12 fill / 28px 24px round; image-rendering: pixelated; margin: -8px 0;
+}
+.fila-grupo > * { image-rendering: auto; }
+.fila-grupo::before { display: none; }
+.fila-grupo:hover, .fila-grupo:focus-visible { transform: translateX(3px); box-shadow: none; filter: brightness(1.08) drop-shadow(var(--sombra-px)); }
+.fg-nombre { font-family: var(--titulo); font-weight: 400; font-size: 1.12rem; color: color-mix(in srgb, var(--color) 60%, #1a1008); }
+.fg-nivel, .fg-zona { color: #2f2418; }
+
+/* ---------- Barra de XP: canal de UI3 con relleno azul en franjas duras ---------- */
+.xp { height: 20px; border: 6px solid transparent; border-radius: 0; background: none; box-shadow: none;
+  border-image: url(../img/ui/pixel/xp-hutsa.png) 12 fill / 6px stretch; overflow: hidden; }
+.xp-relleno { box-shadow: none; animation: none;
+  background: linear-gradient(#a8e4ff 0 2px, #4fa8f0 2px 5px, #2a74c8 5px 7px, #1a4c8e 7px); }
+.xp span { font: 400 .72rem/1 var(--titulo); color: #fff; text-shadow: 1px 1px 0 #000, -1px 0 0 #000; }
+
+/* Número de nivel: moneda de bronce */
+.nivel-num { border-radius: 50%; box-shadow: none; color: #fff6d0; text-shadow: 1px 1px 0 #000; font-family: var(--titulo); font-weight: 400;
+  background: url(../img/ui/pixel/txanpona-brontzea.png) center / 100% 100% no-repeat; }
+
+/* «Jarraitu»: botón rojo de ui1 */
+.boton-jarraitu { border: solid transparent; border-width: 12px 14px; border-radius: 0; box-shadow: none; padding: 0 .8rem;
+  background: none; border-image: url(../img/ui/pixel/botoia-gorria.png) 6 7 fill / 12px 14px round; image-rendering: pixelated;
+  font: 400 1.05rem/1.2 var(--titulo); color: #fff; text-shadow: 2px 2px 0 #000; }
+
+/* ---------- Guía para el alumno, debajo del mapa ---------- */
+.gida { position: relative; z-index: 1; max-width: 1200px; margin: 2rem auto 3rem; padding: 0 1.25rem; text-align: center; }
+.gida-arkua { width: 308px; height: 144px; margin: 0 auto -96px; background: url(../img/ui/pixel/arkua-urrea.png) center / 308px 144px no-repeat; image-rendering: pixelated; }
+.gida h2 { position: relative; font-size: 1.25rem; max-width: 240px; margin-inline: auto; color: var(--oro-claro); text-shadow: 3px 3px 0 #000; margin-bottom: 2.4rem; }
+.gida-txartelak { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.2rem 1.4rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); text-align: left; }
+.gida-txartelak > li { position: relative; padding: 2.2rem .6rem .2rem; margin-top: 2.6rem; color: var(--tinta);
+  border: solid transparent; border-width: 32px 18px 28px; border-image: url(../img/ui/pixel/pergaminoa-9.png) 16 9 14 9 fill / 32px 18px 28px round; filter: drop-shadow(var(--sombra-px)); }
+.gida-txartelak img { position: absolute; left: 50%; bottom: calc(100% - 1.6rem); transform: translateX(-50%); image-rendering: pixelated; filter: drop-shadow(var(--sombra-px)); }
+.gida-txartelak h3 { text-align: center; font-size: 1.3rem; margin-bottom: .45rem; color: var(--tinta); }
+.gida-txartelak p { margin: 0; line-height: 1.45; }
+.gida-mailak { list-style: none; margin: .55rem 0 0; padding: 0; display: grid; gap: .3rem; }
+.gida-mailak li { display: flex; align-items: center; gap: .45rem; font-family: var(--titulo); }
+.gida-mailak small { margin-left: auto; font: italic .9rem 'EB Garamond', serif; color: var(--tinta-suave); }
+@media (prefers-reduced-motion: no-preference) {
+  .gida-txartelak > li { transition: transform .15s steps(3); }
+  .gida-txartelak > li:hover { transform: translateY(-4px); }
+}

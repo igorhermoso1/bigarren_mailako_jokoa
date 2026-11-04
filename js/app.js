@@ -193,7 +193,8 @@
     el.style.position = 'fixed';
     const a = ancla.getBoundingClientRect(), anchoV = innerWidth, altoV = innerHeight;
     el.style.maxHeight = (altoV - 16) + 'px';
-    const p = el.getBoundingClientRect();
+    // Medidas de maquetación: getBoundingClientRect daría la ventana encogida por su animación de entrada.
+    const p = { width: el.offsetWidth, height: el.offsetHeight };
     let left = a.right + 14;
     if (left + p.width > anchoV - 8) left = a.left - p.width - 14;
     const top = Math.min(Math.max(8, a.top + a.height / 2 - p.height / 2), altoV - p.height - 8);
@@ -287,7 +288,7 @@
     const entrega = buscar(actual.entregas.entregas, c.entrega);
     const tipo = comun.config.tipos_casilla[c.tipo] || c.tipo;
     const cab = `<div class="em-cab-zona"><span class="medallon" aria-hidden="true">${c.tipo === 'meta' ? '⚑' : num}</span>
-      <div><h2 id="em-titulo">${esc(c.nombre)}</h2>${c.lugar ? `<p class="lema">${esc(c.lugar)}</p>` : ''}<p class="etiqueta">${esc(tipo)}</p></div></div>`;
+      <div><h2 id="em-titulo">${esc(c.nombre)}</h2>${c.lugar && c.lugar !== c.nombre ? `<p class="lema">${esc(c.lugar)}</p>` : ''}<p class="etiqueta">${esc(tipo)}</p></div></div>`;
 
     // Para cada grupo: si ha superado esta zona (cuándo y con qué motivo), si está aquí, y su valoración.
     const filas = gruposActivos().map(g => {
@@ -586,6 +587,7 @@
     } catch (err) { return mostrarError(err); }
 
     $('titulo').textContent = comun.config.titulo;
+    $('gida-mailak').innerHTML = comun.config.niveles.map((n, i) => `<li><span class="nivel-num">${i + 1}</span>${esc(n.titulo)} <small>${n.puntos} XP</small></li>`).join('');
     const aventuras = comun.config.aventuras.filter(a => a.activa);
     $('pestanas').innerHTML = aventuras.map(a =>
       `<a href="#${esc(a.id)}" style="--acento:${esc(a.color_acento)}">${esc(a.nombre)}</a>`).join('');
@@ -595,6 +597,7 @@
     document.addEventListener('click', cerrarEmergente);
     document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarEmergente(); });
     addEventListener('resize', () => emergente && colocar(emergente.el, emergente.ancla));
+    addEventListener('scroll', () => emergente && colocar(emergente.el, emergente.ancla), { passive: true });
     addEventListener('mapa-mugitu', () => emergente && colocar(emergente.el, emergente.ancla)); // la ventana sigue a lo pulsado al mover el mapa
 
     const irA = () => {

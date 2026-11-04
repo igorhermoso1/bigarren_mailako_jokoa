@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Lit Zerbitzuak RPG</title>
-  <link rel="stylesheet" href="css/web.css?v=20261103c">
+  <link rel="stylesheet" href="css/web.css?v=20261104b">
 </head>
 <body>
   <header class="cabecera">
@@ -50,11 +50,32 @@
     </aside>
   </main>
 
-  <script src="js/hasiera.js?v=20261103c"></script>
-  <script src="js/motor.js?v=20261103c"></script>
-  <script src="js/fx.js?v=20261103c"></script>
-  <script src="js/mapa.js?v=20261103c"></script>
-  <script src="js/app.js?v=20261103c"></script>
-  <script src="js/musika.js?v=20261103c"></script>
+  <!-- Qué puede ver y hacer el alumno en la web (debajo del mapa). -->
+  <section class="gida" aria-labelledby="gida-izenburua">
+    <div class="gida-arkua" aria-hidden="true"></div>
+    <h2 id="gida-izenburua">Zer aurkituko duzu hemen?</h2>
+    <ul class="gida-txartelak">
+      <li><img src="img/ui/pixel/pergamino-handia.png" alt="" width="58" height="71"><h3>Mapa</h3>
+        <p>Leku bakoitza ariketa bat da. Ariketak gainditu ahala, zure taldearen fitxak aurrera egiten du bidean. Sakatu leku bat: zer landu behar den eta talde bakoitzak nola egin duen.</p></li>
+      <li><img src="img/ui/pixel/eskularrua.png" alt="" width="63" height="72"><h3>Taldeak</h3>
+        <p>Sakatu fitxa bat taldearen maila, XPa, inbentarioa, egoerak eta lorpenak ikusteko. Kide bakoitzak bere fitxa du, eta «Historia» fitxan taldearen ibilbide osoa dago.</p></li>
+      <li><img src="img/ui/pixel/distira.png" alt="" width="51" height="57"><h3>Mailak eta XP</h3>
+        <p>Puntu bakoitza XP da. Nahikoa XP lortzean taldeak maila igotzen du:</p>
+        <ol id="gida-mailak" class="gida-mailak"></ol></li>
+      <li><img src="img/ui/pixel/zakua.png" alt="" width="57" height="66"><h3>Objektuak eta egoerak</h3>
+        <p>Objektuak inbentarioan gordetzen dira eta batzuk borroketan erabil daitezke. Egoerek (▲ onak, ▼ txarrak) entrega batzuetan irauten dute.</p></li>
+      <li><img src="img/ui/pixel/ezpata.png" alt="" width="39" height="75"><h3>Borrokak</h3>
+        <p>Gai bakoitzak bere etsaiak ditu: galdera bakoitza etsai bat da. Taldean erantzuten da, txandaka, eta emaitza taldearen «Borrokak» fitxan geratzen da.</p></li>
+      <li><img src="img/ui/pixel/liburua.png" alt="" width="57" height="63"><h3>Egunkaria eta Bitrina</h3>
+        <p>Egunkarian gertatutako guztia dago, taldeka eta motaka iragazita. Bitrinan lor daitezkeen lorpenak, mugarriak eta objektuak; ezkutukoak «???» dira.</p></li>
+    </ul>
+  </section>
+
+  <script src="js/hasiera.js?v=20261104b"></script>
+  <script src="js/motor.js?v=20261104b"></script>
+  <script src="js/fx.js?v=20261104b"></script>
+  <script src="js/mapa.js?v=20261104b"></script>
+  <script src="js/app.js?v=20261104b"></script>
+  <script src="js/musika.js?v=20261104b"></script>
 </body>
 </html>

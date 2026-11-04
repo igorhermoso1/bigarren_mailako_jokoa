@@ -1110,5 +1110,975 @@
     "referencia": null,
     "hash_anterior": "f80c2b4ef0bc1b12eca3628beda625138983ac4b4d4d8ebb0d26dc41570aa751",
     "hash": "06cf98b5622f34023ba5ac78cda972f35cdcf832dccd5dd32ce90e843ef6ba91"
+  },
+  {
+    "id": 27,
+    "fecha": "2026-11-04T12:22:28.088Z",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "mapa",
+      "aventura": "sareak",
+      "id": "sareak",
+      "cambio": "mapa",
+      "antes": {
+        "archivo": "img/mapa/sareak.svg",
+        "ancho": 1600,
+        "alto": 1000,
+        "dibujar_camino": true
+      },
+      "despues": {
+        "archivo": "img/mapa/sareak-20261104T122228.webp",
+        "ancho": 1672,
+        "alto": 941,
+        "dibujar_camino": false
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "06cf98b5622f34023ba5ac78cda972f35cdcf832dccd5dd32ce90e843ef6ba91",
+    "hash": "0efb973d6b390b8238853ee6cf3efae7ddaa83a5befc22e531cf9281eade8fa0"
+  },
+  {
+    "id": 28,
+    "fecha": "2026-11-04T12:22:28.095Z",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "entregas",
+      "aventura": "sareak",
+      "id": "s-e10",
+      "cambio": null,
+      "antes": null,
+      "despues": {
+        "id": "s-e10",
+        "fecha_limite": null,
+        "puntos_max": 10,
+        "activo": true,
+        "nombre": "10. gaia"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "0efb973d6b390b8238853ee6cf3efae7ddaa83a5befc22e531cf9281eade8fa0",
+    "hash": "ca00ce21f7fe1e20f62e412e0978c9f1285e6a8b15c0d01f95fea85646542413"
+  },
+  {
+    "id": 29,
+    "fecha": "2026-11-04T12:22:28.102Z",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "entregas",
+      "aventura": "sareak",
+      "id": "s-e11",
+      "cambio": null,
+      "antes": null,
+      "despues": {
+        "id": "s-e11",
+        "fecha_limite": null,
+        "puntos_max": 10,
+        "activo": true,
+        "nombre": "11. gaia"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "ca00ce21f7fe1e20f62e412e0978c9f1285e6a8b15c0d01f95fea85646542413",
+    "hash": "fde432abb3df66376bdd2180ae40e1aadca7cf934728373a0e90e54dd17ad71c"
+  },
+  {
+    "id": 30,
+    "fecha": "2026-11-04T12:22:28.108Z",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "entregas",
+      "aventura": "sareak",
+      "id": "s-e12",
+      "cambio": null,
+      "antes": null,
+      "despues": {
+        "id": "s-e12",
+        "fecha_limite": null,
+        "puntos_max": 10,
+        "activo": true,
+        "nombre": "12. gaia"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "fde432abb3df66376bdd2180ae40e1aadca7cf934728373a0e90e54dd17ad71c",
+    "hash": "d07fc1d9ee84e00033e3d59ae25f055a506b4286cd49b061a10f141836ed8456"
+  },
+  {
+    "id": 31,
+    "fecha": "2026-11-04T12:22:28.118Z",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "entregas",
+      "aventura": "sareak",
+      "id": "s-e13",
+      "cambio": null,
+      "antes": null,
+      "despues": {
+        "id": "s-e13",
+        "fecha_limite": null,
+        "puntos_max": 10,
+        "activo": true,
+        "nombre": "13. gaia"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "d07fc1d9ee84e00033e3d59ae25f055a506b4286cd49b061a10f141836ed8456",
+    "hash": "f7e69a0853f32b5225b4dbc435bac4c1356e8c25c5e138ed080c3e67148b3a89"
+  },
+  {
+    "id": 32,
+    "fecha": "2026-11-04T12:22:28.125Z",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "entregas",
+      "aventura": "sareak",
+      "id": "s-e14",
+      "cambio": null,
+      "antes": null,
+      "despues": {
+        "id": "s-e14",
+        "fecha_limite": null,
+        "puntos_max": 10,
+        "activo": true,
+        "nombre": "14. gaia"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "f7e69a0853f32b5225b4dbc435bac4c1356e8c25c5e138ed080c3e67148b3a89",
+    "hash": "f7d81bc5e3b1daa5b1ea97ad72edad03c85a159298087f91f9f2ec26a651e1b6"
+  },
+  {
+    "id": 33,
+    "fecha": "2026-11-04T12:22:28.140Z",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "sareak",
+      "id": "s-c11",
+      "cambio": null,
+      "antes": null,
+      "despues": {
+        "id": "s-c11",
+        "siguientes": [],
+        "activo": true,
+        "nombre": "Alkimista Itsuaren Laborategia",
+        "tipo": "normal",
+        "x": 62.98,
+        "y": 68.01
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "f7d81bc5e3b1daa5b1ea97ad72edad03c85a159298087f91f9f2ec26a651e1b6",
+    "hash": "e413a62b0d371c4e86c56d89866e1a159038d54a271d55640aed1ac864910ed3"
+  },
+  {
+    "id": 34,
+    "fecha": "2026-11-04T12:22:28.150Z",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "sareak",
+      "id": "s-c12",
+      "cambio": null,
+      "antes": null,
+      "despues": {
+        "id": "s-c12",
+        "siguientes": [],
+        "activo": true,
+        "nombre": "Sorgindutako Gatzaga",
+        "tipo": "normal",
+        "x": 78.35,
+        "y": 77.05
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "e413a62b0d371c4e86c56d89866e1a159038d54a271d55640aed1ac864910ed3",
+    "hash": "fa35f58e3f4151227fe81d5aa1de83721a52e801487d1810595865c37e85f4ec"
+  },
+  {
+    "id": 35,
+    "fecha": "2026-11-04T12:22:28.162Z",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "sareak",
+      "id": "s-c13",
+      "cambio": null,
+      "antes": null,
+      "despues": {
+        "id": "s-c13",
+        "siguientes": [],
+        "activo": true,
+        "nombre": "Erro Sakonen Gunea",
+        "tipo": "normal",
+        "x": 73.09,
+        "y": 26.35
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "fa35f58e3f4151227fe81d5aa1de83721a52e801487d1810595865c37e85f4ec",
+    "hash": "238ffcf08dd9ad71ad734a77a2eef0b4e6446169d3f08d21bfd5344312214006"
+  },
+  {
+    "id": 36,
+    "fecha": "2026-11-04T12:22:28.186Z",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "sareak",
+      "id": "s-c14",
+      "cambio": null,
+      "antes": null,
+      "despues": {
+        "id": "s-c14",
+        "siguientes": [],
+        "activo": true,
+        "nombre": "Burdinazko Guda-Zelaia",
+        "tipo": "normal",
+        "x": 86.6,
+        "y": 50.48
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "238ffcf08dd9ad71ad734a77a2eef0b4e6446169d3f08d21bfd5344312214006",
+    "hash": "4bca6137dbd0ddab5446d1c1d70048ebeefdd7fc4cc86a0bc92ad88582931cfd"
+  },
+  {
+    "id": 37,
+    "fecha": "2026-11-04T12:22:28.201Z",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "sareak",
+      "id": "s-c15",
+      "cambio": null,
+      "antes": null,
+      "despues": {
+        "id": "s-c15",
+        "siguientes": [],
+        "activo": true,
+        "nombre": "Hustasunaren Ateak",
+        "tipo": "normal",
+        "x": 92.4,
+        "y": 31.14
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "4bca6137dbd0ddab5446d1c1d70048ebeefdd7fc4cc86a0bc92ad88582931cfd",
+    "hash": "07b5add042dd37935b46b2532e0c80cc96d18708a07d80db636addc9c1084a88"
+  },
+  {
+    "id": 38,
+    "fecha": "2026-11-04T12:22:28.219Z",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "sareak",
+      "id": "s01",
+      "cambio": null,
+      "antes": {
+        "id": "s01",
+        "nombre": "1. gaia",
+        "tipo": "inicio",
+        "entrega": "s-e1",
+        "x": 8,
+        "y": 15,
+        "siguientes": [
+          "s02"
+        ]
+      },
+      "despues": {
+        "id": "s01",
+        "nombre": "Jadezko Mendiak",
+        "tipo": "inicio",
+        "entrega": "s-e1",
+        "x": 8.37,
+        "y": 23.91,
+        "siguientes": [
+          "s02"
+        ],
+        "lugar": "Jadezko Mendiak",
+        "estiloa": "meatzea"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "07b5add042dd37935b46b2532e0c80cc96d18708a07d80db636addc9c1084a88",
+    "hash": "46355891525bd2a9d34112e27305aee866bdffc0598358d991ee577f59f62130"
+  },
+  {
+    "id": 39,
+    "fecha": "2026-11-04T12:22:28.326Z",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "sareak",
+      "id": "s02",
+      "cambio": null,
+      "antes": {
+        "id": "s02",
+        "nombre": "2. gaia",
+        "tipo": "normal",
+        "entrega": "s-e2",
+        "x": 50,
+        "y": 15,
+        "siguientes": [
+          "s03"
+        ]
+      },
+      "despues": {
+        "id": "s02",
+        "nombre": "Kuartzito Hiribildua",
+        "tipo": "normal",
+        "entrega": "s-e2",
+        "x": 12.44,
+        "y": 40.17,
+        "siguientes": [
+          "s03"
+        ],
+        "lugar": "Kuartzito Hiribildua",
+        "estiloa": "hiria"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "46355891525bd2a9d34112e27305aee866bdffc0598358d991ee577f59f62130",
+    "hash": "26f6fa4ca743fa1c307e6310d82d2fbe3df13d26106eacd9da2932d329e4ab11"
+  },
+  {
+    "id": 40,
+    "fecha": "2026-11-04T12:22:28.339Z",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "sareak",
+      "id": "s03",
+      "cambio": null,
+      "antes": {
+        "id": "s03",
+        "nombre": "3. gaia",
+        "tipo": "normal",
+        "entrega": "s-e3",
+        "x": 92,
+        "y": 15,
+        "siguientes": [
+          "s04"
+        ]
+      },
+      "despues": {
+        "id": "s03",
+        "nombre": "Laguna Leorra",
+        "tipo": "normal",
+        "entrega": "s-e3",
+        "x": 18.24,
+        "y": 52.92,
+        "siguientes": [
+          "s04"
+        ],
+        "lugar": "Laguna Leorra",
+        "estiloa": "basamortua"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "26f6fa4ca743fa1c307e6310d82d2fbe3df13d26106eacd9da2932d329e4ab11",
+    "hash": "a5e073ae54097ea7aba5540caef4e85ba5e2deffe13af6b25b5285bb87a6759d"
+  },
+  {
+    "id": 41,
+    "fecha": "2026-11-04T12:22:28.353Z",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "sareak",
+      "id": "s04",
+      "cambio": null,
+      "antes": {
+        "id": "s04",
+        "nombre": "4. gaia",
+        "tipo": "normal",
+        "entrega": "s-e4",
+        "x": 92,
+        "y": 37,
+        "siguientes": [
+          "s05"
+        ]
+      },
+      "despues": {
+        "id": "s04",
+        "nombre": "Zuhaitz Distiratsu Suxurlatzaileak",
+        "tipo": "normal",
+        "entrega": "s-e4",
+        "x": 26.32,
+        "y": 30.82,
+        "siguientes": [
+          "s05"
+        ],
+        "lugar": "Zuhaitz Distiratsu Suxurlatzaileak",
+        "estiloa": "basoa"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "a5e073ae54097ea7aba5540caef4e85ba5e2deffe13af6b25b5285bb87a6759d",
+    "hash": "43d1668a63baad4b018d5bf784fb6cd001e6acdee2fb0ef71f44da59c71faa59"
+  },
+  {
+    "id": 42,
+    "fecha": "2026-11-04T12:22:28.363Z",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "sareak",
+      "id": "s05",
+      "cambio": null,
+      "antes": {
+        "id": "s05",
+        "nombre": "5. gaia",
+        "tipo": "normal",
+        "entrega": "s-e5",
+        "x": 50,
+        "y": 37,
+        "siguientes": [
+          "s06"
+        ]
+      },
+      "despues": {
+        "id": "s05",
+        "nombre": "Obsidianazko Basoak",
+        "tipo": "normal",
+        "entrega": "s-e5",
+        "x": 34.21,
+        "y": 45.91,
+        "siguientes": [
+          "s06"
+        ],
+        "lugar": "Obsidianazko Basoak",
+        "estiloa": "sumendia"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "43d1668a63baad4b018d5bf784fb6cd001e6acdee2fb0ef71f44da59c71faa59",
+    "hash": "8e7ac7ab210408a57b8f1f3bd1542889ecdd736debe726f8c164bc13cf8b2715"
+  },
+  {
+    "id": 43,
+    "fecha": "2026-11-04T12:22:28.380Z",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "sareak",
+      "id": "s06",
+      "cambio": null,
+      "antes": {
+        "id": "s06",
+        "nombre": "6. gaia",
+        "tipo": "normal",
+        "entrega": "s-e6",
+        "x": 8,
+        "y": 37,
+        "siguientes": [
+          "s07"
+        ]
+      },
+      "despues": {
+        "id": "s06",
+        "nombre": "Zutabe Zuriak",
+        "tipo": "normal",
+        "entrega": "s-e6",
+        "x": 40.07,
+        "y": 25.82,
+        "siguientes": [
+          "s07"
+        ],
+        "lugar": "Zutabe Zuriak",
+        "estiloa": "hiria"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "8e7ac7ab210408a57b8f1f3bd1542889ecdd736debe726f8c164bc13cf8b2715",
+    "hash": "c47e5cf14b2e799271b18afdcdd0d852a4ef4aa6a30752624caabdef3619c616"
+  },
+  {
+    "id": 44,
+    "fecha": "2026-11-04T12:22:28.396Z",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "sareak",
+      "id": "s07",
+      "cambio": null,
+      "antes": {
+        "id": "s07",
+        "nombre": "7. gaia",
+        "tipo": "normal",
+        "entrega": "s-e7",
+        "x": 8,
+        "y": 59,
+        "siguientes": [
+          "s08"
+        ]
+      },
+      "despues": {
+        "id": "s07",
+        "nombre": "Itzal Kutsatuen Harana",
+        "tipo": "normal",
+        "entrega": "s-e7",
+        "x": 40.07,
+        "y": 56.32,
+        "siguientes": [
+          "s08"
+        ],
+        "lugar": "Itzal Kutsatuen Harana",
+        "estiloa": "padura"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "c47e5cf14b2e799271b18afdcdd0d852a4ef4aa6a30752624caabdef3619c616",
+    "hash": "3c4ce6263205cae4135fa833f1e766a42eda6effcf705163aad7791d47ba8ce3"
+  },
+  {
+    "id": 45,
+    "fecha": "2026-11-04T12:22:28.408Z",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "sareak",
+      "id": "s08",
+      "cambio": null,
+      "antes": {
+        "id": "s08",
+        "nombre": "8. gaia",
+        "tipo": "normal",
+        "entrega": "s-e8",
+        "x": 50,
+        "y": 59,
+        "siguientes": [
+          "s09"
+        ]
+      },
+      "despues": {
+        "id": "s08",
+        "nombre": "Ipurdi-Argi Lezea",
+        "tipo": "normal",
+        "entrega": "s-e8",
+        "x": 49.52,
+        "y": 77.9,
+        "siguientes": [
+          "s09"
+        ],
+        "lugar": "Ipurdi-Argi Lezea"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "3c4ce6263205cae4135fa833f1e766a42eda6effcf705163aad7791d47ba8ce3",
+    "hash": "ce27ed2a4e146b9ac47fd6e6733d3a9f101c85b9049370a345cb0efcbca94260"
+  },
+  {
+    "id": 46,
+    "fecha": "2026-11-04T12:22:28.432Z",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "sareak",
+      "id": "s09",
+      "cambio": null,
+      "antes": {
+        "id": "s09",
+        "nombre": "9. gaia",
+        "tipo": "normal",
+        "entrega": "s-e9",
+        "x": 92,
+        "y": 59,
+        "siguientes": [
+          "s10"
+        ]
+      },
+      "despues": {
+        "id": "s09",
+        "nombre": "Kristal Gorrien Amildegia",
+        "tipo": "normal",
+        "entrega": "s-e9",
+        "x": 52.51,
+        "y": 33.48,
+        "siguientes": [
+          "s10"
+        ],
+        "lugar": "Kristal Gorrien Amildegia",
+        "estiloa": "sumendia"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "ce27ed2a4e146b9ac47fd6e6733d3a9f101c85b9049370a345cb0efcbca94260",
+    "hash": "5c0744c9d9247c2c67fdb560d8c6d32bc120c35fd8594c3be0b5bb8c15d34c00"
+  },
+  {
+    "id": 47,
+    "fecha": "2026-11-04T12:22:28.456Z",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "sareak",
+      "id": "s10",
+      "cambio": null,
+      "antes": {
+        "id": "s10",
+        "nombre": "Helmuga",
+        "tipo": "meta",
+        "x": 50,
+        "y": 81,
+        "siguientes": []
+      },
+      "despues": {
+        "id": "s10",
+        "nombre": "Hilerri Isila",
+        "tipo": "normal",
+        "x": 64.11,
+        "y": 45.7,
+        "siguientes": [
+          "s-c11"
+        ],
+        "lugar": "Hilerri Isila",
+        "estiloa": "misterioa",
+        "entrega": "s-e10"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "5c0744c9d9247c2c67fdb560d8c6d32bc120c35fd8594c3be0b5bb8c15d34c00",
+    "hash": "3bf365222c34994178d59c09c248d27a30f8140059e1be57e8d1b6c3c7a00f1b"
+  },
+  {
+    "id": 48,
+    "fecha": "2026-11-04T12:22:28.466Z",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "sareak",
+      "id": "s-c11",
+      "cambio": null,
+      "antes": {
+        "id": "s-c11",
+        "siguientes": [],
+        "activo": true,
+        "nombre": "Alkimista Itsuaren Laborategia",
+        "tipo": "normal",
+        "x": 62.98,
+        "y": 68.01
+      },
+      "despues": {
+        "id": "s-c11",
+        "siguientes": [
+          "s-c12"
+        ],
+        "activo": true,
+        "nombre": "Alkimista Itsuaren Laborategia",
+        "tipo": "normal",
+        "x": 62.98,
+        "y": 68.01,
+        "lugar": "Alkimista Itsuaren Laborategia",
+        "estiloa": "padura",
+        "entrega": "s-e11"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "3bf365222c34994178d59c09c248d27a30f8140059e1be57e8d1b6c3c7a00f1b",
+    "hash": "2e5b38c88b386fad182452bfd1418b8e8fc4176a218c6f852077bf76a13cda91"
+  },
+  {
+    "id": 49,
+    "fecha": "2026-11-04T12:22:28.487Z",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "sareak",
+      "id": "s-c12",
+      "cambio": null,
+      "antes": {
+        "id": "s-c12",
+        "siguientes": [],
+        "activo": true,
+        "nombre": "Sorgindutako Gatzaga",
+        "tipo": "normal",
+        "x": 78.35,
+        "y": 77.05
+      },
+      "despues": {
+        "id": "s-c12",
+        "siguientes": [
+          "s-c13"
+        ],
+        "activo": true,
+        "nombre": "Sorgindutako Gatzaga",
+        "tipo": "normal",
+        "x": 78.35,
+        "y": 77.05,
+        "lugar": "Sorgindutako Gatzaga",
+        "estiloa": "misterioa",
+        "entrega": "s-e12"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "2e5b38c88b386fad182452bfd1418b8e8fc4176a218c6f852077bf76a13cda91",
+    "hash": "7dc656d4dc879734c73235aaba47a68b9c4ec73a13ecdb1b958617dc4e22c320"
+  },
+  {
+    "id": 50,
+    "fecha": "2026-11-04T12:22:28.496Z",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "sareak",
+      "id": "s-c13",
+      "cambio": null,
+      "antes": {
+        "id": "s-c13",
+        "siguientes": [],
+        "activo": true,
+        "nombre": "Erro Sakonen Gunea",
+        "tipo": "normal",
+        "x": 73.09,
+        "y": 26.35
+      },
+      "despues": {
+        "id": "s-c13",
+        "siguientes": [
+          "s-c14"
+        ],
+        "activo": true,
+        "nombre": "Erro Sakonen Gunea",
+        "tipo": "normal",
+        "x": 73.09,
+        "y": 26.35,
+        "lugar": "Erro Sakonen Gunea",
+        "estiloa": "basoa",
+        "entrega": "s-e13"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "7dc656d4dc879734c73235aaba47a68b9c4ec73a13ecdb1b958617dc4e22c320",
+    "hash": "3a7d1e34d56b1bd8420e77bc716e27d7bc4f81e9f79f6316e6b14ae09b262d36"
+  },
+  {
+    "id": 51,
+    "fecha": "2026-11-04T12:22:28.506Z",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "sareak",
+      "id": "s-c14",
+      "cambio": null,
+      "antes": {
+        "id": "s-c14",
+        "siguientes": [],
+        "activo": true,
+        "nombre": "Burdinazko Guda-Zelaia",
+        "tipo": "normal",
+        "x": 86.6,
+        "y": 50.48
+      },
+      "despues": {
+        "id": "s-c14",
+        "siguientes": [
+          "s-c15"
+        ],
+        "activo": true,
+        "nombre": "Burdinazko Guda-Zelaia",
+        "tipo": "normal",
+        "x": 86.6,
+        "y": 50.48,
+        "lugar": "Burdinazko Guda-Zelaia",
+        "estiloa": "sumendia",
+        "entrega": "s-e14"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "3a7d1e34d56b1bd8420e77bc716e27d7bc4f81e9f79f6316e6b14ae09b262d36",
+    "hash": "1e0ad5682194672ac9327b07cf79e89ce1eff6116ab860eab5e7e3243233ccac"
+  },
+  {
+    "id": 52,
+    "fecha": "2026-11-04T12:22:28.517Z",
+    "autor": "profesor",
+    "aventura": "sareak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "sareak",
+      "id": "s-c15",
+      "cambio": null,
+      "antes": {
+        "id": "s-c15",
+        "siguientes": [],
+        "activo": true,
+        "nombre": "Hustasunaren Ateak",
+        "tipo": "normal",
+        "x": 92.4,
+        "y": 31.14
+      },
+      "despues": {
+        "id": "s-c15",
+        "siguientes": [],
+        "activo": true,
+        "nombre": "Hustasunaren Ateak",
+        "tipo": "meta",
+        "x": 92.4,
+        "y": 31.14,
+        "lugar": "Hustasunaren Ateak",
+        "estiloa": "helmuga"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "1e0ad5682194672ac9327b07cf79e89ce1eff6116ab860eab5e7e3243233ccac",
+    "hash": "3f470821b11edd03a387c5333f6785e64b8680ade6f2f0d44d11e79daf398e4b"
   }
 ]

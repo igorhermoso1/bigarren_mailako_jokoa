@@ -2,110 +2,199 @@
   "casillas": [
     {
       "id": "s01",
-      "nombre": "1. gaia",
+      "nombre": "Jadezko Mendiak",
       "tipo": "inicio",
       "entrega": "s-e1",
-      "x": 8,
-      "y": 15,
+      "x": 8.37,
+      "y": 23.91,
       "siguientes": [
         "s02"
-      ]
+      ],
+      "lugar": "Jadezko Mendiak",
+      "estiloa": "meatzea"
     },
     {
       "id": "s02",
-      "nombre": "2. gaia",
+      "nombre": "Kuartzito Hiribildua",
       "tipo": "normal",
       "entrega": "s-e2",
-      "x": 50,
-      "y": 15,
+      "x": 12.44,
+      "y": 40.17,
       "siguientes": [
         "s03"
-      ]
+      ],
+      "lugar": "Kuartzito Hiribildua",
+      "estiloa": "hiria"
     },
     {
       "id": "s03",
-      "nombre": "3. gaia",
+      "nombre": "Laguna Leorra",
       "tipo": "normal",
       "entrega": "s-e3",
-      "x": 92,
-      "y": 15,
+      "x": 18.24,
+      "y": 52.92,
       "siguientes": [
         "s04"
-      ]
+      ],
+      "lugar": "Laguna Leorra",
+      "estiloa": "basamortua"
     },
     {
       "id": "s04",
-      "nombre": "4. gaia",
+      "nombre": "Zuhaitz Distiratsu Suxurlatzaileak",
       "tipo": "normal",
       "entrega": "s-e4",
-      "x": 92,
-      "y": 37,
+      "x": 26.32,
+      "y": 30.82,
       "siguientes": [
         "s05"
-      ]
+      ],
+      "lugar": "Zuhaitz Distiratsu Suxurlatzaileak",
+      "estiloa": "basoa"
     },
     {
       "id": "s05",
-      "nombre": "5. gaia",
+      "nombre": "Obsidianazko Basoak",
       "tipo": "normal",
       "entrega": "s-e5",
-      "x": 50,
-      "y": 37,
+      "x": 34.21,
+      "y": 45.91,
       "siguientes": [
         "s06"
-      ]
+      ],
+      "lugar": "Obsidianazko Basoak",
+      "estiloa": "sumendia"
     },
     {
       "id": "s06",
-      "nombre": "6. gaia",
+      "nombre": "Zutabe Zuriak",
       "tipo": "normal",
       "entrega": "s-e6",
-      "x": 8,
-      "y": 37,
+      "x": 40.07,
+      "y": 25.82,
       "siguientes": [
         "s07"
-      ]
+      ],
+      "lugar": "Zutabe Zuriak",
+      "estiloa": "hiria"
     },
     {
       "id": "s07",
-      "nombre": "7. gaia",
+      "nombre": "Itzal Kutsatuen Harana",
       "tipo": "normal",
       "entrega": "s-e7",
-      "x": 8,
-      "y": 59,
+      "x": 40.07,
+      "y": 56.32,
       "siguientes": [
         "s08"
-      ]
+      ],
+      "lugar": "Itzal Kutsatuen Harana",
+      "estiloa": "padura"
     },
     {
       "id": "s08",
-      "nombre": "8. gaia",
+      "nombre": "Ipurdi-Argi Lezea",
       "tipo": "normal",
       "entrega": "s-e8",
-      "x": 50,
-      "y": 59,
+      "x": 49.52,
+      "y": 77.9,
       "siguientes": [
         "s09"
-      ]
+      ],
+      "lugar": "Ipurdi-Argi Lezea"
     },
     {
       "id": "s09",
-      "nombre": "9. gaia",
+      "nombre": "Kristal Gorrien Amildegia",
       "tipo": "normal",
       "entrega": "s-e9",
-      "x": 92,
-      "y": 59,
+      "x": 52.51,
+      "y": 33.48,
       "siguientes": [
         "s10"
-      ]
+      ],
+      "lugar": "Kristal Gorrien Amildegia",
+      "estiloa": "sumendia"
     },
     {
       "id": "s10",
-      "nombre": "Helmuga",
+      "nombre": "Hilerri Isila",
+      "tipo": "normal",
+      "x": 64.11,
+      "y": 45.7,
+      "siguientes": [
+        "s-c11"
+      ],
+      "lugar": "Hilerri Isila",
+      "estiloa": "misterioa",
+      "entrega": "s-e10"
+    },
+    {
+      "id": "s-c11",
+      "siguientes": [
+        "s-c12"
+      ],
+      "activo": true,
+      "nombre": "Alkimista Itsuaren Laborategia",
+      "tipo": "normal",
+      "x": 62.98,
+      "y": 68.01,
+      "lugar": "Alkimista Itsuaren Laborategia",
+      "estiloa": "padura",
+      "entrega": "s-e11"
+    },
+    {
+      "id": "s-c12",
+      "siguientes": [
+        "s-c13"
+      ],
+      "activo": true,
+      "nombre": "Sorgindutako Gatzaga",
+      "tipo": "normal",
+      "x": 78.35,
+      "y": 77.05,
+      "lugar": "Sorgindutako Gatzaga",
+      "estiloa": "misterioa",
+      "entrega": "s-e12"
+    },
+    {
+      "id": "s-c13",
+      "siguientes": [
+        "s-c14"
+      ],
+      "activo": true,
+      "nombre": "Erro Sakonen Gunea",
+      "tipo": "normal",
+      "x": 73.09,
+      "y": 26.35,
+      "lugar": "Erro Sakonen Gunea",
+      "estiloa": "basoa",
+      "entrega": "s-e13"
+    },
+    {
+      "id": "s-c14",
+      "siguientes": [
+        "s-c15"
+      ],
+      "activo": true,
+      "nombre": "Burdinazko Guda-Zelaia",
+      "tipo": "normal",
+      "x": 86.6,
+      "y": 50.48,
+      "lugar": "Burdinazko Guda-Zelaia",
+      "estiloa": "sumendia",
+      "entrega": "s-e14"
+    },
+    {
+      "id": "s-c15",
+      "siguientes": [],
+      "activo": true,
+      "nombre": "Hustasunaren Ateak",
       "tipo": "meta",
-      "x": 50,
-      "y": 81,
-      "siguientes": []
+      "x": 92.4,
+      "y": 31.14,
+      "lugar": "Hustasunaren Ateak",
+      "estiloa": "helmuga"
     }
   ]
 }
