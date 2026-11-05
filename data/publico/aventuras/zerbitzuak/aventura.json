@@ -2,9 +2,9 @@
   "id": "zerbitzuak",
   "nombre": "Zerbitzuak",
   "mapa": {
-    "archivo": "img/mapa/zerbitzuak-20261030T133209.webp",
-    "ancho": 1376,
-    "alto": 768,
+    "archivo": "img/mapa/zerbitzuak-20261105T134142.webp",
+    "ancho": 1671,
+    "alto": 941,
     "dibujar_camino": false
   }
 }

@@ -48,7 +48,7 @@
           <h2>② ${orden.indexOf(c) + 1}. ${esc(c.nombre)}: etsaiak</h2>
           <p class="vacio">Galdera bakoitza etsai bat da (4 erantzun, bat zuzena). Sakatu txartel bat aldatzeko. Galderak <b>pribatuak</b> dira: ez dira inoiz GitHub-era igotzen.</p>
           <div class="b-etsaiak">${(galderak[c.id] || []).map((q, i) => `<button type="button" class="b-etsaia${q.activo === false ? ' archivado' : ''}" data-q="${esc(q.id)}">
-              <span class="b-etsaia-buru">👹 ${i + 1}. etsaia${q.pista ? ' <span title="Pista du">💡</span>' : ''}${q.activo === false ? ' <small>(artxibatua)</small>' : ''}</span>
+              ${A.etsaiIrudia(q.etsaia)}<span class="b-etsaia-buru">👹 ${i + 1}. etsaia${q.pista ? ' <span title="Pista du">💡</span>' : ''}${q.activo === false ? ' <small>(artxibatua)</small>' : ''}</span>
               <span class="b-testua">${esc(q.testua)}</span>
               <span class="b-aukerak">${q.aukerak.map((o, j) => `<span class="${j === q.zuzena ? 'zuzena' : ''}"><b>${'ABCD'[j]}</b> ${esc(o)}</span>`).join('')}</span>
             </button>`).join('')}

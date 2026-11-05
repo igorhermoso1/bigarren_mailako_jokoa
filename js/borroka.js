@@ -66,6 +66,8 @@
     b.g = d.grupos.grupos.find(x => x.id === grupoId);
     if (!av || !casilla || !b.g) return fallo('Borroka ez da aurkitu (abentura, gaia edo taldea falta da).');
     const preguntas = (d.privado.galderak?.[avId]?.[casillaId] || []).filter(q => q.activo !== false).slice(0, 10);
+    // Aspecto de cada enemigo (catálogo img/etsaiak); si falla la carga, quedan los monstruos por defecto.
+    b.katalogoa = await fetch('img/etsaiak/katalogoa.json').then(r => r.json()).catch(() => []);
     if (!preguntas.length) return fallo('Gai honek ez du galderarik. Gehitu itzazu panelean (⚔️ Borrokak).');
     b.kideak = b.g.miembros.filter(m => m.activo !== false);
     if (!b.kideak.length) return fallo('Talde honek ez du kiderik. Gehitu itzazu panelean (🛡️ Taldeak eta fitxak).');
@@ -112,7 +114,10 @@
       el.style.top = y + '%';
       el.style.setProperty('--n', e.i);
       el.setAttribute('aria-label', `${e.i + 1}. etsaia`);
-      el.innerHTML = `<span class="itzala"></span><span class="e-sprite">${MONSTRUOAK[e.i % MONSTRUOAK.length]}</span><span class="e-zenbakia">${e.i + 1}</span>`;
+      const k = b.katalogoa.find(x => x.id === e.q.etsaia);
+      const irudia = k ? `<span class="etsai-irudia" style="--n:${k.fotogramak};--w:${k.zabalera};--h:${k.altuera};background-image:url(img/etsaiak/${esc(k.id)}.webp)"></span>`
+        : MONSTRUOAK[e.i % MONSTRUOAK.length];
+      el.innerHTML = `<span class="itzala"></span><span class="e-sprite">${irudia}</span><span class="e-zenbakia">${e.i + 1}</span>`;
       el.onclick = () => erasoa(e.i);
       cont.append(el);
     }

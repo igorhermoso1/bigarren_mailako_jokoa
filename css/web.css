@@ -1130,3 +1130,13 @@ button:disabled, [aria-disabled="true"] { cursor: not-allowed !important; }
 }
 .m-bolumena::-moz-range-thumb { width: 15px; height: 23px; border: 0; border-radius: 0; background: url(../img/ui/pixel/edabea.png) center / 15px 23px no-repeat; image-rendering: pixelated; }
 .m-bolumena:hover::-webkit-slider-thumb, .m-bolumena:active::-webkit-slider-thumb { transform: scale(1.15) rotate(-12deg); }
+
+/* ---------- Enemigos del catálogo (img/etsaiak): tira de fotogramas de idle ----------
+   --n fotogramas de --w x --h; con un solo fotograma, steps(1, jump-none) no vale y no se anima (correcto). */
+.etsai-irudia {
+  display: block; width: 100%; aspect-ratio: var(--w) / var(--h); background-repeat: no-repeat;
+  background-size: calc(var(--n) * 100%) 100%; background-position: 0 0;
+  animation: etsai-idle calc(var(--n) * .22s) steps(var(--n), jump-none) infinite alternate;
+}
+@keyframes etsai-idle { to { background-position: 100% 0; } }
+@media (prefers-reduced-motion: reduce) { .etsai-irudia { animation: none; } }

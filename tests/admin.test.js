@@ -278,3 +278,12 @@ test('combate: perder toda la vida termina el combate', () => {
   assert.strictEqual(evento.datos.emaitza, 'porrota');
   assert.strictEqual(evento.datos.bizitza, 0);
 });
+
+test('enemigo de una pregunta: solo ids del catálogo img/etsaiak; vacío lo quita', () => {
+  fs.mkdirSync(path.join(raiz, 'img', 'etsaiak'), { recursive: true });
+  fs.writeFileSync(path.join(raiz, 'img', 'etsaiak', 'katalogoa.json'), JSON.stringify([{ id: 'e001', fotogramak: 4, zabalera: 10, altuera: 10 }]));
+  const base = { coleccion: 'galderak', aventura: 'sareak', casilla: 's03' };
+  const id = guardarEntidad(raiz, { ...base, valor: { testua: 'Etsaiarekin?', aukerak: ['a', 'b', 'c', 'd'], zuzena: 0, etsaia: 'e001' } }).item.id;
+  assert.throws(() => guardarEntidad(raiz, { ...base, valor: { id, etsaia: '../../admin' } }), /Enemigo desconocido/);
+  assert.equal(guardarEntidad(raiz, { ...base, valor: { id, etsaia: '' } }).item.etsaia, undefined);
+});

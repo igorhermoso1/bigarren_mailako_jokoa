@@ -10,6 +10,14 @@
   const ambitos = () => [['todas', 'Abentura guztiak'], ...A.datos.config.aventuras.map(a => [a.id, a.nombre])];
   const rarezas = () => A.datos.catalogo.rarezas.map(r => [r.id, r.nombre]);
 
+  // Catálogo de enemigos (img/etsaiak): aspecto animado que se elige para cada pregunta de combate.
+  A.etsaiak = [];
+  fetch('img/etsaiak/katalogoa.json').then(r => r.json()).then(k => { A.etsaiak = k; if (A.datos) A.modulos.forEach(m => m.pintar()); }).catch(() => {});
+  A.etsaiIrudia = id => {
+    const e = buscar(A.etsaiak, id);
+    return e ? `<span class="etsai-irudia" style="--n:${e.fotogramak};--w:${e.zabalera};--h:${e.altuera};background-image:url(img/etsaiak/${esc(e.id)}.webp)"></span>` : '';
+  };
+
   const CAMPOS = {
     objetos: [
       { k: 'nombre', e: 'Izena' }, { k: 'icono', e: 'Ikonoa (emojia edo img/objetos/…)' },
@@ -41,6 +49,7 @@
       { k: 'aukerak.0', e: 'A erantzuna' }, { k: 'aukerak.1', e: 'B erantzuna' }, { k: 'aukerak.2', e: 'C erantzuna' }, { k: 'aukerak.3', e: 'D erantzuna' },
       { k: 'zuzena', e: 'Erantzun zuzena', t: 'select', o: () => [['0', 'A'], ['1', 'B'], ['2', 'C'], ['3', 'D']] },
       { k: 'pista', e: 'Pista (aukerakoa, «Pista» objektuarekin ikusten da)', t: 'textarea' },
+      { k: 'etsaia', e: 'Etsaiaren itxura', t: 'etsaia' },
     ],
     grupos: [{ k: 'nombre', e: 'Izena' }, { k: 'lema', e: 'Leloa' }, { k: 'color', e: 'Kolorea', t: 'color' }],
     miembros: () => [
@@ -58,6 +67,11 @@
     const nombre = `name="${esc(c.k)}"`;
     if (c.t === 'select') return `<label>${esc(c.e)}<select ${nombre}>${c.o().map(([val, txt]) =>
       `<option value="${esc(val)}"${String(v ?? '') === val ? ' selected' : ''}>${esc(txt)}</option>`).join('')}</select></label>`;
+    // Selector visual: una miniatura animada por enemigo del catálogo (radio, para que el formulario lo lea igual).
+    if (c.t === 'etsaia') return `<fieldset class="etsai-hautatzailea"><legend>${esc(c.e)}</legend>
+      <label class="etsai-aukera"><input type="radio" ${nombre} value=""${v ? '' : ' checked'}><span class="etsai-lehenetsia">👹</span><small>Lehenetsia</small></label>
+      ${A.etsaiak.map(e => `<label class="etsai-aukera" title="${esc(e.id)}"><input type="radio" ${nombre} value="${esc(e.id)}"${v === e.id ? ' checked' : ''}>${A.etsaiIrudia(e.id)}<small>${esc(e.id)}</small></label>`).join('')}
+    </fieldset>`;
     if (c.t === 'checkbox') return `<label class="check"><input type="checkbox" ${nombre}${v ? ' checked' : ''}> ${esc(c.e)}</label>`;
     if (c.t === 'textarea') return `<label>${esc(c.e)}<textarea ${nombre} rows="2" maxlength="500">${esc(v ?? '')}</textarea></label>`;
     const tipo = c.t || 'text';

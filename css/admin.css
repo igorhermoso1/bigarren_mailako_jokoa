@@ -396,3 +396,18 @@ input[type=checkbox], input[type=radio] { width: 1.1rem; height: 1.1rem; accent-
 }
 .boton-mal { border-radius: 0; box-shadow: 2px 2px 0 #0008; }
 .boton-sec { border-radius: 0; box-shadow: 2px 2px 0 #0008; font-family: var(--titulo); font-weight: 400; }
+
+/* ---------- Selector de enemigo (aspecto de cada pregunta de combate) ---------- */
+.etsai-hautatzailea { display: grid; grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); gap: var(--e2); max-height: 340px; overflow: auto;
+  margin: 0; padding: var(--e3); border: 2px solid var(--oro-osc); background: #2b1a0e22; }
+.etsai-hautatzailea legend { font-family: var(--titulo); padding: 0 var(--e2); }
+.etsai-aukera { position: relative; display: grid; justify-items: center; align-content: end; gap: 2px; min-height: 92px; padding: var(--e2);
+  border: 2px solid transparent; background: #ffffff30; }
+.etsai-aukera input { position: absolute; opacity: 0; }
+.etsai-aukera .etsai-irudia { width: calc(64px * min(1, var(--w) / var(--h))); animation-play-state: paused; }
+.etsai-aukera:hover .etsai-irudia, .etsai-aukera:has(input:checked) .etsai-irudia { animation-play-state: running; }
+.etsai-aukera:has(input:checked) { border-color: var(--acento); background: #ffffff70; box-shadow: 2px 2px 0 #0006; }
+.etsai-aukera:has(input:focus-visible) { outline: 3px solid var(--oro-claro); }
+.etsai-aukera small { font: .7rem var(--titulo); color: var(--tinta-suave); }
+.etsai-lehenetsia { font-size: 2.4rem; line-height: 64px; }
+.b-etsaia .etsai-irudia { width: calc(72px * min(1, var(--w) / var(--h))); justify-self: center; }

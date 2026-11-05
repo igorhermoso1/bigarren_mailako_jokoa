@@ -200,3 +200,6 @@ body.mina::after { content: ''; position: fixed; inset: 0; z-index: 28; pointer-
 }
 
 .aukera { position: relative; }
+
+/* Enemigos del catálogo: casi todos miran a la izquierda; se voltean para mirar al grupo (a la derecha). */
+.etsaia .etsai-irudia { scale: -1 1; }

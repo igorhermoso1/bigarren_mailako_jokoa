@@ -1,0 +1,968 @@
+[
+ {
+  "id": "e001",
+  "fotogramak": 4,
+  "zabalera": 143,
+  "altuera": 163,
+  "iturria": "eranskin/enemigos_fila1_animacion_9x4.png"
+ },
+ {
+  "id": "e002",
+  "fotogramak": 4,
+  "zabalera": 161,
+  "altuera": 152,
+  "iturria": "eranskin/enemigos_fila1_animacion_9x4.png"
+ },
+ {
+  "id": "e003",
+  "fotogramak": 4,
+  "zabalera": 155,
+  "altuera": 169,
+  "iturria": "eranskin/enemigos_fila1_animacion_9x4.png"
+ },
+ {
+  "id": "e004",
+  "fotogramak": 4,
+  "zabalera": 138,
+  "altuera": 155,
+  "iturria": "eranskin/enemigos_fila1_animacion_9x4.png"
+ },
+ {
+  "id": "e005",
+  "fotogramak": 4,
+  "zabalera": 149,
+  "altuera": 166,
+  "iturria": "eranskin/enemigos_fila1_animacion_9x4.png"
+ },
+ {
+  "id": "e006",
+  "fotogramak": 4,
+  "zabalera": 147,
+  "altuera": 158,
+  "iturria": "eranskin/enemigos_fila1_animacion_9x4.png"
+ },
+ {
+  "id": "e007",
+  "fotogramak": 4,
+  "zabalera": 145,
+  "altuera": 145,
+  "iturria": "eranskin/enemigos_fila1_animacion_9x4.png"
+ },
+ {
+  "id": "e008",
+  "fotogramak": 4,
+  "zabalera": 168,
+  "altuera": 126,
+  "iturria": "eranskin/enemigos_fila1_animacion_9x4.png"
+ },
+ {
+  "id": "e009",
+  "fotogramak": 4,
+  "zabalera": 136,
+  "altuera": 168,
+  "iturria": "eranskin/enemigos_fila1_animacion_9x4.png"
+ },
+ {
+  "id": "e010",
+  "fotogramak": 4,
+  "zabalera": 155,
+  "altuera": 160,
+  "iturria": "V_enemigos_cuarta_tanda_transparente_9x4.png"
+ },
+ {
+  "id": "e011",
+  "fotogramak": 4,
+  "zabalera": 163,
+  "altuera": 154,
+  "iturria": "V_enemigos_cuarta_tanda_transparente_9x4.png"
+ },
+ {
+  "id": "e012",
+  "fotogramak": 4,
+  "zabalera": 146,
+  "altuera": 157,
+  "iturria": "V_enemigos_cuarta_tanda_transparente_9x4.png"
+ },
+ {
+  "id": "e013",
+  "fotogramak": 4,
+  "zabalera": 148,
+  "altuera": 139,
+  "iturria": "V_enemigos_cuarta_tanda_transparente_9x4.png"
+ },
+ {
+  "id": "e014",
+  "fotogramak": 4,
+  "zabalera": 167,
+  "altuera": 141,
+  "iturria": "V_enemigos_cuarta_tanda_transparente_9x4.png"
+ },
+ {
+  "id": "e015",
+  "fotogramak": 4,
+  "zabalera": 181,
+  "altuera": 126,
+  "iturria": "V_enemigos_cuarta_tanda_transparente_9x4.png"
+ },
+ {
+  "id": "e016",
+  "fotogramak": 4,
+  "zabalera": 181,
+  "altuera": 168,
+  "iturria": "V_enemigos_cuarta_tanda_transparente_9x4.png"
+ },
+ {
+  "id": "e017",
+  "fotogramak": 4,
+  "zabalera": 158,
+  "altuera": 135,
+  "iturria": "V_enemigos_cuarta_tanda_transparente_9x4.png"
+ },
+ {
+  "id": "e018",
+  "fotogramak": 4,
+  "zabalera": 141,
+  "altuera": 161,
+  "iturria": "V_enemigos_cuarta_tanda_transparente_9x4.png"
+ },
+ {
+  "id": "e019",
+  "fotogramak": 4,
+  "zabalera": 192,
+  "altuera": 142,
+  "iturria": "enemigos_tercera_fila_animacion_9x4.png"
+ },
+ {
+  "id": "e020",
+  "fotogramak": 4,
+  "zabalera": 163,
+  "altuera": 151,
+  "iturria": "enemigos_tercera_fila_animacion_9x4.png"
+ },
+ {
+  "id": "e021",
+  "fotogramak": 4,
+  "zabalera": 154,
+  "altuera": 150,
+  "iturria": "enemigos_tercera_fila_animacion_9x4.png"
+ },
+ {
+  "id": "e022",
+  "fotogramak": 4,
+  "zabalera": 150,
+  "altuera": 149,
+  "iturria": "enemigos_tercera_fila_animacion_9x4.png"
+ },
+ {
+  "id": "e023",
+  "fotogramak": 4,
+  "zabalera": 182,
+  "altuera": 149,
+  "iturria": "enemigos_tercera_fila_animacion_9x4.png"
+ },
+ {
+  "id": "e024",
+  "fotogramak": 4,
+  "zabalera": 162,
+  "altuera": 145,
+  "iturria": "enemigos_tercera_fila_animacion_9x4.png"
+ },
+ {
+  "id": "e025",
+  "fotogramak": 4,
+  "zabalera": 177,
+  "altuera": 154,
+  "iturria": "enemigos_tercera_fila_animacion_9x4.png"
+ },
+ {
+  "id": "e026",
+  "fotogramak": 4,
+  "zabalera": 184,
+  "altuera": 130,
+  "iturria": "enemigos_tercera_fila_animacion_9x4.png"
+ },
+ {
+  "id": "e027",
+  "fotogramak": 4,
+  "zabalera": 139,
+  "altuera": 165,
+  "iturria": "enemigos_tercera_fila_animacion_9x4.png"
+ },
+ {
+  "id": "e028",
+  "fotogramak": 3,
+  "zabalera": 183,
+  "altuera": 171,
+  "iturria": "-QuintaHoja de sprites de enemigos fantásticos.png"
+ },
+ {
+  "id": "e029",
+  "fotogramak": 4,
+  "zabalera": 123,
+  "altuera": 170,
+  "iturria": "-QuintaHoja de sprites de enemigos fantásticos.png"
+ },
+ {
+  "id": "e030",
+  "fotogramak": 3,
+  "zabalera": 159,
+  "altuera": 190,
+  "iturria": "-QuintaHoja de sprites de enemigos fantásticos.png"
+ },
+ {
+  "id": "e031",
+  "fotogramak": 3,
+  "zabalera": 169,
+  "altuera": 169,
+  "iturria": "-QuintaHoja de sprites de enemigos fantásticos.png"
+ },
+ {
+  "id": "e032",
+  "fotogramak": 4,
+  "zabalera": 124,
+  "altuera": 128,
+  "iturria": "-QuintaHoja de sprites de enemigos fantásticos.png"
+ },
+ {
+  "id": "e033",
+  "fotogramak": 3,
+  "zabalera": 185,
+  "altuera": 156,
+  "iturria": "-QuintaHoja de sprites de enemigos fantásticos.png"
+ },
+ {
+  "id": "e034",
+  "fotogramak": 3,
+  "zabalera": 145,
+  "altuera": 158,
+  "iturria": "-QuintaHoja de sprites de enemigos fantásticos.png"
+ },
+ {
+  "id": "e035",
+  "fotogramak": 4,
+  "zabalera": 126,
+  "altuera": 186,
+  "iturria": "-QuintaHoja de sprites de enemigos fantásticos.png"
+ },
+ {
+  "id": "e036",
+  "fotogramak": 3,
+  "zabalera": 159,
+  "altuera": 175,
+  "iturria": "-QuintaHoja de sprites de enemigos fantásticos.png"
+ },
+ {
+  "id": "e037",
+  "fotogramak": 3,
+  "zabalera": 158,
+  "altuera": 128,
+  "iturria": "-QuintaHoja de sprites de enemigos fantásticos.png"
+ },
+ {
+  "id": "e038",
+  "fotogramak": 4,
+  "zabalera": 143,
+  "altuera": 163,
+  "iturria": "-QuintaHoja de sprites de enemigos fantásticos.png"
+ },
+ {
+  "id": "e039",
+  "fotogramak": 3,
+  "zabalera": 138,
+  "altuera": 182,
+  "iturria": "-QuintaHoja de sprites de enemigos fantásticos.png"
+ },
+ {
+  "id": "e040",
+  "fotogramak": 3,
+  "zabalera": 104,
+  "altuera": 144,
+  "iturria": "eranskin/Atlas de enemigos4 fila.png"
+ },
+ {
+  "id": "e041",
+  "fotogramak": 2,
+  "zabalera": 93,
+  "altuera": 160,
+  "iturria": "eranskin/Atlas de enemigos4 fila.png"
+ },
+ {
+  "id": "e042",
+  "fotogramak": 4,
+  "zabalera": 90,
+  "altuera": 143,
+  "iturria": "eranskin/Atlas de enemigos4 fila.png"
+ },
+ {
+  "id": "e043",
+  "fotogramak": 4,
+  "zabalera": 88,
+  "altuera": 152,
+  "iturria": "eranskin/Atlas de enemigos4 fila.png"
+ },
+ {
+  "id": "e044",
+  "fotogramak": 3,
+  "zabalera": 132,
+  "altuera": 153,
+  "iturria": "eranskin/Atlas de enemigos4 fila.png"
+ },
+ {
+  "id": "e045",
+  "fotogramak": 3,
+  "zabalera": 124,
+  "altuera": 121,
+  "iturria": "eranskin/Atlas de enemigos4 fila.png"
+ },
+ {
+  "id": "e046",
+  "fotogramak": 2,
+  "zabalera": 104,
+  "altuera": 142,
+  "iturria": "eranskin/Atlas de enemigos4 fila.png"
+ },
+ {
+  "id": "e047",
+  "fotogramak": 3,
+  "zabalera": 135,
+  "altuera": 149,
+  "iturria": "eranskin/Atlas de enemigos4 fila.png"
+ },
+ {
+  "id": "e048",
+  "fotogramak": 4,
+  "zabalera": 111,
+  "altuera": 155,
+  "iturria": "eranskin/Atlas de enemigos4 fila.png"
+ },
+ {
+  "id": "e049",
+  "fotogramak": 3,
+  "zabalera": 116,
+  "altuera": 151,
+  "iturria": "eranskin/Atlas de enemigos4 fila.png"
+ },
+ {
+  "id": "e050",
+  "fotogramak": 3,
+  "zabalera": 102,
+  "altuera": 155,
+  "iturria": "eranskin/Atlas de enemigos4 fila.png"
+ },
+ {
+  "id": "e051",
+  "fotogramak": 2,
+  "zabalera": 102,
+  "altuera": 146,
+  "iturria": "eranskin/Atlas de enemigos4 fila.png"
+ },
+ {
+  "id": "e052",
+  "fotogramak": 4,
+  "zabalera": 93,
+  "altuera": 136,
+  "iturria": "eranskin/Atlas de enemigos4 fila.png"
+ },
+ {
+  "id": "e053",
+  "fotogramak": 4,
+  "zabalera": 98,
+  "altuera": 161,
+  "iturria": "eranskin/Atlas de enemigos4 fila.png"
+ },
+ {
+  "id": "e054",
+  "fotogramak": 3,
+  "zabalera": 128,
+  "altuera": 157,
+  "iturria": "eranskin/Atlas de enemigos4 fila.png"
+ },
+ {
+  "id": "e055",
+  "fotogramak": 3,
+  "zabalera": 107,
+  "altuera": 158,
+  "iturria": "eranskin/Atlas de enemigos4 fila.png"
+ },
+ {
+  "id": "e056",
+  "fotogramak": 2,
+  "zabalera": 104,
+  "altuera": 169,
+  "iturria": "eranskin/Atlas de enemigos4 fila.png"
+ },
+ {
+  "id": "e057",
+  "fotogramak": 2,
+  "zabalera": 179,
+  "altuera": 153,
+  "iturria": "eranskin/Atlas de enemigos4 fila.png"
+ },
+ {
+  "id": "e058",
+  "fotogramak": 4,
+  "zabalera": 86,
+  "altuera": 166,
+  "iturria": "eranskin/Atlas de enemigos4 fila.png"
+ },
+ {
+  "id": "e059",
+  "fotogramak": 3,
+  "zabalera": 121,
+  "altuera": 162,
+  "iturria": "eranskin/Atlas de enemigos4 fila.png"
+ },
+ {
+  "id": "e060",
+  "fotogramak": 3,
+  "zabalera": 142,
+  "altuera": 169,
+  "iturria": "eranskin/Hoja de sprites de monstruos fantásticos_fila_2.png"
+ },
+ {
+  "id": "e061",
+  "fotogramak": 3,
+  "zabalera": 155,
+  "altuera": 152,
+  "iturria": "eranskin/Hoja de sprites de monstruos fantásticos_fila_2.png"
+ },
+ {
+  "id": "e062",
+  "fotogramak": 3,
+  "zabalera": 173,
+  "altuera": 176,
+  "iturria": "eranskin/Hoja de sprites de monstruos fantásticos_fila_2.png"
+ },
+ {
+  "id": "e063",
+  "fotogramak": 3,
+  "zabalera": 126,
+  "altuera": 144,
+  "iturria": "eranskin/Hoja de sprites de monstruos fantásticos_fila_2.png"
+ },
+ {
+  "id": "e064",
+  "fotogramak": 3,
+  "zabalera": 180,
+  "altuera": 144,
+  "iturria": "eranskin/Hoja de sprites de monstruos fantásticos_fila_2.png"
+ },
+ {
+  "id": "e065",
+  "fotogramak": 3,
+  "zabalera": 162,
+  "altuera": 158,
+  "iturria": "eranskin/Hoja de sprites de monstruos fantásticos_fila_2.png"
+ },
+ {
+  "id": "e066",
+  "fotogramak": 3,
+  "zabalera": 166,
+  "altuera": 167,
+  "iturria": "eranskin/Hoja de sprites de monstruos fantásticos_fila_2.png"
+ },
+ {
+  "id": "e067",
+  "fotogramak": 3,
+  "zabalera": 169,
+  "altuera": 138,
+  "iturria": "eranskin/Hoja de sprites de monstruos fantásticos_fila_2.png"
+ },
+ {
+  "id": "e068",
+  "fotogramak": 3,
+  "zabalera": 139,
+  "altuera": 170,
+  "iturria": "eranskin/Hoja de sprites de monstruos fantásticos_fila_2.png"
+ },
+ {
+  "id": "e069",
+  "fotogramak": 3,
+  "zabalera": 108,
+  "altuera": 123,
+  "iturria": "medieval enemis.png"
+ },
+ {
+  "id": "e070",
+  "fotogramak": 3,
+  "zabalera": 128,
+  "altuera": 126,
+  "iturria": "medieval enemis.png"
+ },
+ {
+  "id": "e071",
+  "fotogramak": 3,
+  "zabalera": 102,
+  "altuera": 122,
+  "iturria": "medieval enemis.png"
+ },
+ {
+  "id": "e072",
+  "fotogramak": 3,
+  "zabalera": 122,
+  "altuera": 134,
+  "iturria": "medieval enemis.png"
+ },
+ {
+  "id": "e073",
+  "fotogramak": 3,
+  "zabalera": 133,
+  "altuera": 125,
+  "iturria": "medieval enemis.png"
+ },
+ {
+  "id": "e074",
+  "fotogramak": 3,
+  "zabalera": 135,
+  "altuera": 129,
+  "iturria": "medieval enemis.png"
+ },
+ {
+  "id": "e075",
+  "fotogramak": 1,
+  "zabalera": 143,
+  "altuera": 161,
+  "iturria": "eranskin/Bestiario de Monstruos Pixel Art.png"
+ },
+ {
+  "id": "e076",
+  "fotogramak": 1,
+  "zabalera": 149,
+  "altuera": 146,
+  "iturria": "eranskin/Bestiario de Monstruos Pixel Art.png"
+ },
+ {
+  "id": "e077",
+  "fotogramak": 1,
+  "zabalera": 140,
+  "altuera": 165,
+  "iturria": "eranskin/Bestiario de Monstruos Pixel Art.png"
+ },
+ {
+  "id": "e078",
+  "fotogramak": 1,
+  "zabalera": 124,
+  "altuera": 152,
+  "iturria": "eranskin/Bestiario de Monstruos Pixel Art.png"
+ },
+ {
+  "id": "e079",
+  "fotogramak": 1,
+  "zabalera": 134,
+  "altuera": 151,
+  "iturria": "eranskin/Bestiario de Monstruos Pixel Art.png"
+ },
+ {
+  "id": "e080",
+  "fotogramak": 1,
+  "zabalera": 144,
+  "altuera": 165,
+  "iturria": "eranskin/Bestiario de Monstruos Pixel Art.png"
+ },
+ {
+  "id": "e081",
+  "fotogramak": 1,
+  "zabalera": 126,
+  "altuera": 175,
+  "iturria": "eranskin/Bestiario de Monstruos Pixel Art.png"
+ },
+ {
+  "id": "e082",
+  "fotogramak": 1,
+  "zabalera": 146,
+  "altuera": 154,
+  "iturria": "eranskin/Bestiario de Monstruos Pixel Art.png"
+ },
+ {
+  "id": "e083",
+  "fotogramak": 1,
+  "zabalera": 151,
+  "altuera": 152,
+  "iturria": "eranskin/Bestiario de Monstruos Pixel Art.png"
+ },
+ {
+  "id": "e084",
+  "fotogramak": 1,
+  "zabalera": 153,
+  "altuera": 170,
+  "iturria": "eranskin/Bestiario de Monstruos Pixel Art.png"
+ },
+ {
+  "id": "e085",
+  "fotogramak": 1,
+  "zabalera": 143,
+  "altuera": 168,
+  "iturria": "eranskin/Bestiario de Monstruos Pixel Art.png"
+ },
+ {
+  "id": "e086",
+  "fotogramak": 1,
+  "zabalera": 161,
+  "altuera": 170,
+  "iturria": "eranskin/Bestiario de Monstruos Pixel Art.png"
+ },
+ {
+  "id": "e087",
+  "fotogramak": 1,
+  "zabalera": 138,
+  "altuera": 159,
+  "iturria": "eranskin/Bestiario de Monstruos Pixel Art.png"
+ },
+ {
+  "id": "e088",
+  "fotogramak": 1,
+  "zabalera": 133,
+  "altuera": 170,
+  "iturria": "eranskin/Bestiario de Monstruos Pixel Art.png"
+ },
+ {
+  "id": "e089",
+  "fotogramak": 1,
+  "zabalera": 170,
+  "altuera": 169,
+  "iturria": "eranskin/Bestiario de Monstruos Pixel Art.png"
+ },
+ {
+  "id": "e090",
+  "fotogramak": 1,
+  "zabalera": 136,
+  "altuera": 171,
+  "iturria": "eranskin/Bestiario de Monstruos Pixel Art.png"
+ },
+ {
+  "id": "e091",
+  "fotogramak": 1,
+  "zabalera": 147,
+  "altuera": 168,
+  "iturria": "eranskin/Bestiario de Monstruos Pixel Art.png"
+ },
+ {
+  "id": "e092",
+  "fotogramak": 1,
+  "zabalera": 158,
+  "altuera": 169,
+  "iturria": "eranskin/Bestiario de Monstruos Pixel Art.png"
+ },
+ {
+  "id": "e093",
+  "fotogramak": 1,
+  "zabalera": 117,
+  "altuera": 138,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e094",
+  "fotogramak": 1,
+  "zabalera": 97,
+  "altuera": 169,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e095",
+  "fotogramak": 1,
+  "zabalera": 129,
+  "altuera": 145,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e096",
+  "fotogramak": 1,
+  "zabalera": 121,
+  "altuera": 169,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e097",
+  "fotogramak": 1,
+  "zabalera": 114,
+  "altuera": 137,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e098",
+  "fotogramak": 1,
+  "zabalera": 93,
+  "altuera": 169,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e099",
+  "fotogramak": 1,
+  "zabalera": 137,
+  "altuera": 138,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e100",
+  "fotogramak": 1,
+  "zabalera": 116,
+  "altuera": 131,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e101",
+  "fotogramak": 1,
+  "zabalera": 164,
+  "altuera": 156,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e102",
+  "fotogramak": 1,
+  "zabalera": 115,
+  "altuera": 136,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e103",
+  "fotogramak": 1,
+  "zabalera": 130,
+  "altuera": 140,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e104",
+  "fotogramak": 1,
+  "zabalera": 108,
+  "altuera": 132,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e105",
+  "fotogramak": 1,
+  "zabalera": 83,
+  "altuera": 164,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e106",
+  "fotogramak": 1,
+  "zabalera": 88,
+  "altuera": 147,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e107",
+  "fotogramak": 1,
+  "zabalera": 118,
+  "altuera": 117,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e108",
+  "fotogramak": 1,
+  "zabalera": 98,
+  "altuera": 133,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e109",
+  "fotogramak": 1,
+  "zabalera": 82,
+  "altuera": 117,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e110",
+  "fotogramak": 1,
+  "zabalera": 96,
+  "altuera": 138,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e111",
+  "fotogramak": 1,
+  "zabalera": 112,
+  "altuera": 128,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e112",
+  "fotogramak": 1,
+  "zabalera": 100,
+  "altuera": 117,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e113",
+  "fotogramak": 1,
+  "zabalera": 128,
+  "altuera": 117,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e114",
+  "fotogramak": 1,
+  "zabalera": 108,
+  "altuera": 111,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e115",
+  "fotogramak": 1,
+  "zabalera": 109,
+  "altuera": 118,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e116",
+  "fotogramak": 1,
+  "zabalera": 131,
+  "altuera": 112,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e117",
+  "fotogramak": 1,
+  "zabalera": 100,
+  "altuera": 115,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e118",
+  "fotogramak": 1,
+  "zabalera": 111,
+  "altuera": 109,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e119",
+  "fotogramak": 1,
+  "zabalera": 88,
+  "altuera": 124,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e120",
+  "fotogramak": 1,
+  "zabalera": 133,
+  "altuera": 125,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e121",
+  "fotogramak": 1,
+  "zabalera": 109,
+  "altuera": 103,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e122",
+  "fotogramak": 1,
+  "zabalera": 120,
+  "altuera": 112,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e123",
+  "fotogramak": 1,
+  "zabalera": 69,
+  "altuera": 110,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e124",
+  "fotogramak": 1,
+  "zabalera": 97,
+  "altuera": 114,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e125",
+  "fotogramak": 1,
+  "zabalera": 105,
+  "altuera": 118,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e126",
+  "fotogramak": 1,
+  "zabalera": 74,
+  "altuera": 109,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e127",
+  "fotogramak": 1,
+  "zabalera": 121,
+  "altuera": 117,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e128",
+  "fotogramak": 1,
+  "zabalera": 144,
+  "altuera": 137,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e129",
+  "fotogramak": 1,
+  "zabalera": 97,
+  "altuera": 137,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e130",
+  "fotogramak": 1,
+  "zabalera": 135,
+  "altuera": 137,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e131",
+  "fotogramak": 1,
+  "zabalera": 73,
+  "altuera": 136,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e132",
+  "fotogramak": 1,
+  "zabalera": 124,
+  "altuera": 129,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e133",
+  "fotogramak": 1,
+  "zabalera": 192,
+  "altuera": 137,
+  "iturria": "enemys.png"
+ },
+ {
+  "id": "e134",
+  "fotogramak": 1,
+  "zabalera": 114,
+  "altuera": 129,
+  "iturria": "domain_enemy/Idle/rotations/south-west.png"
+ },
+ {
+  "id": "e135",
+  "fotogramak": 1,
+  "zabalera": 111,
+  "altuera": 129,
+  "iturria": "virtuaboxenemy/Idle/rotations/south-west.png"
+ },
+ {
+  "id": "e136",
+  "fotogramak": 1,
+  "zabalera": 99,
+  "altuera": 135,
+  "iturria": "skull_knigth_con_cables_arrastrando/Idle/rotations/south-west.png"
+ },
+ {
+  "id": "e137",
+  "fotogramak": 1,
+  "zabalera": 66,
+  "altuera": 140,
+  "iturria": "moodle.png"
+ },
+ {
+  "id": "e138",
+  "fotogramak": 1,
+  "zabalera": 131,
+  "altuera": 161,
+  "iturria": "pixel.png"
+ }
+]

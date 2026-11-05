@@ -444,6 +444,13 @@ const ESQUEMAS = {
       },
       zuzena: v => { const z = numero(v, 'Respuesta correcta', 0, 3); if (!Number.isInteger(z)) throw new Error('Respuesta correcta no válida'); return z; },
       pista: V.texto(300), activo: V.bool(),
+      // Aspecto del enemigo: id del catálogo img/etsaiak/katalogoa.json; vacío = monstruo por defecto.
+      etsaia: (v, n, ctx) => {
+        if (v == null || v === '') return undefined;
+        const katalogoa = leer(path.join(ctx.raiz, 'img', 'etsaiak', 'katalogoa.json'), []);
+        if (!katalogoa.some(e => e.id === v)) throw new Error('Enemigo desconocido');
+        return v;
+      },
     },
     nuevo: () => ({ activo: true }),
   },

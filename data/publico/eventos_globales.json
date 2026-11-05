@@ -2113,5 +2113,951 @@
     "referencia": null,
     "hash_anterior": "3f470821b11edd03a387c5333f6785e64b8680ade6f2f0d44d11e79daf398e4b",
     "hash": "480c53c21e9fc67ddb5ae2f62404be5e402a0cb22700c78ff5c89e9d05226c0f"
+  },
+  {
+    "id": 54,
+    "fecha": "2026-11-05T08:15:20.591Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "zerbitzuak",
+      "id": "z14",
+      "cambio": null,
+      "antes": {
+        "id": "z14",
+        "nombre": "Moodle",
+        "lugar": "Forjaren irteera",
+        "tipo": "normal",
+        "entrega": "z-e14",
+        "x": 68.3,
+        "y": 34.9,
+        "siguientes": [
+          "z15"
+        ],
+        "estiloa": "sumendia"
+      },
+      "despues": {
+        "id": "z14",
+        "nombre": "Moodle",
+        "lugar": "Forjaren irteera",
+        "tipo": "normal",
+        "entrega": "z-e14",
+        "x": 68.2,
+        "y": 34.5,
+        "siguientes": [
+          "z15"
+        ],
+        "estiloa": "sumendia"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "480c53c21e9fc67ddb5ae2f62404be5e402a0cb22700c78ff5c89e9d05226c0f",
+    "hash": "e94f5981fbd02ab44cd5c30b49cd732bfe256689e1f6800754e647f6bbfd639f"
+  },
+  {
+    "id": 55,
+    "fecha": "2026-11-05T13:41:42.575Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "mapa",
+      "aventura": "zerbitzuak",
+      "id": "zerbitzuak",
+      "cambio": "mapa",
+      "antes": {
+        "archivo": "img/mapa/zerbitzuak-20261030T133209.webp",
+        "ancho": 1376,
+        "alto": 768,
+        "dibujar_camino": false
+      },
+      "despues": {
+        "archivo": "img/mapa/zerbitzuak-20261105T134142.webp",
+        "ancho": 1671,
+        "alto": 941,
+        "dibujar_camino": false
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "e94f5981fbd02ab44cd5c30b49cd732bfe256689e1f6800754e647f6bbfd639f",
+    "hash": "d51310e952fe72a0387a5cffc441d37322a04097e9d2437ef1f5bf0a0391ccef"
+  },
+  {
+    "id": 56,
+    "fecha": "2026-11-05T13:41:42.600Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "zerbitzuak",
+      "id": "z01",
+      "cambio": null,
+      "antes": {
+        "id": "z01",
+        "nombre": "Makina birtualen sorrera",
+        "lugar": "Script-aren Liburutegia",
+        "tipo": "inicio",
+        "entrega": "z-e1",
+        "x": 15.5,
+        "y": 49,
+        "siguientes": [
+          "z02"
+        ],
+        "estiloa": "basoa"
+      },
+      "despues": {
+        "id": "z01",
+        "nombre": "Makina birtualen sorrera",
+        "lugar": "Script-aren Liburutegia",
+        "tipo": "inicio",
+        "entrega": "z-e1",
+        "x": 15.89,
+        "y": 43.15,
+        "siguientes": [
+          "z02"
+        ],
+        "estiloa": "basoa"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "d51310e952fe72a0387a5cffc441d37322a04097e9d2437ef1f5bf0a0391ccef",
+    "hash": "28db6dc6b02bce4f09e37c596e0dd8d125b69d21c027ebd2d1ebc83281188b7c"
+  },
+  {
+    "id": 57,
+    "fecha": "2026-11-05T13:41:42.631Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "zerbitzuak",
+      "id": "z02",
+      "cambio": null,
+      "antes": {
+        "id": "z02",
+        "nombre": "DNS",
+        "lugar": "Basoen Erresuma",
+        "tipo": "normal",
+        "entrega": "z-e2",
+        "x": 21.5,
+        "y": 42.4,
+        "siguientes": [
+          "z03"
+        ],
+        "estiloa": "basoa"
+      },
+      "despues": {
+        "id": "z02",
+        "nombre": "DNS",
+        "lugar": "Basoen Erresuma",
+        "tipo": "normal",
+        "entrega": "z-e2",
+        "x": 21.84,
+        "y": 36.18,
+        "siguientes": [
+          "z03"
+        ],
+        "estiloa": "basoa"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "28db6dc6b02bce4f09e37c596e0dd8d125b69d21c027ebd2d1ebc83281188b7c",
+    "hash": "662a0fcceb6b9e07171044bb277a0653ca0f219c231d849a8c59d8027a15d423"
+  },
+  {
+    "id": 58,
+    "fecha": "2026-11-05T13:41:42.668Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "zerbitzuak",
+      "id": "z03",
+      "cambio": null,
+      "antes": {
+        "id": "z03",
+        "nombre": "DHCP",
+        "lugar": "Elfoen Hondakinak",
+        "tipo": "normal",
+        "entrega": "z-e3",
+        "x": 28.8,
+        "y": 46.6,
+        "siguientes": [
+          "z04"
+        ],
+        "estiloa": "basoa"
+      },
+      "despues": {
+        "id": "z03",
+        "nombre": "DHCP",
+        "lugar": "Elfoen Hondakinak",
+        "tipo": "normal",
+        "entrega": "z-e3",
+        "x": 29.62,
+        "y": 40.17,
+        "siguientes": [
+          "z04"
+        ],
+        "estiloa": "basoa"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "662a0fcceb6b9e07171044bb277a0653ca0f219c231d849a8c59d8027a15d423",
+    "hash": "274d89b559baefddae9c5c73971cdaf0078ebf8726eca3fb53c7ee91f0e4775b"
+  },
+  {
+    "id": 59,
+    "fecha": "2026-11-05T13:41:42.704Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "zerbitzuak",
+      "id": "z04",
+      "cambio": null,
+      "antes": {
+        "id": "z04",
+        "nombre": "SSH urruneko saioa",
+        "lugar": "Aldagaien Ibarra",
+        "tipo": "normal",
+        "entrega": "z-e4",
+        "x": 27.4,
+        "y": 56.6,
+        "siguientes": [
+          "z05"
+        ],
+        "estiloa": "basoa"
+      },
+      "despues": {
+        "id": "z04",
+        "nombre": "SSH urruneko saioa",
+        "lugar": "Aldagaien Ibarra",
+        "tipo": "normal",
+        "entrega": "z-e4",
+        "x": 26.63,
+        "y": 51.28,
+        "siguientes": [
+          "z05"
+        ],
+        "estiloa": "basoa"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "274d89b559baefddae9c5c73971cdaf0078ebf8726eca3fb53c7ee91f0e4775b",
+    "hash": "c14e23742dd2a3fbfd5d196a1918464d2cedefa9a70669030f192d9a32cf3dd5"
+  },
+  {
+    "id": 60,
+    "fecha": "2026-11-05T13:41:42.741Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "zerbitzuak",
+      "id": "z05",
+      "cambio": null,
+      "antes": {
+        "id": "z05",
+        "nombre": "SSH - OpenSSH",
+        "lugar": "Padura Eremua",
+        "tipo": "normal",
+        "entrega": "z-e5",
+        "x": 24.9,
+        "y": 70.3,
+        "siguientes": [
+          "z06"
+        ],
+        "estiloa": "padura"
+      },
+      "despues": {
+        "id": "z05",
+        "nombre": "SSH - OpenSSH",
+        "lugar": "Padura Eremua",
+        "tipo": "normal",
+        "entrega": "z-e5",
+        "x": 24.24,
+        "y": 63.97,
+        "siguientes": [
+          "z06"
+        ],
+        "estiloa": "padura"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "c14e23742dd2a3fbfd5d196a1918464d2cedefa9a70669030f192d9a32cf3dd5",
+    "hash": "f9aaf1418b0a0cc34c92d69519fc52d4a8566b135c5d955ef5d22773642b8551"
+  },
+  {
+    "id": 61,
+    "fecha": "2026-11-05T13:41:42.777Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "zerbitzuak",
+      "id": "z06",
+      "cambio": null,
+      "antes": {
+        "id": "z06",
+        "nombre": "SSH - Webmin - VNC",
+        "lugar": "Bug Zingira",
+        "tipo": "normal",
+        "entrega": "z-e6",
+        "x": 30,
+        "y": 79.4,
+        "siguientes": [
+          "z07"
+        ],
+        "estiloa": "padura"
+      },
+      "despues": {
+        "id": "z06",
+        "nombre": "SSH - Webmin - VNC",
+        "lugar": "Bug Zingira",
+        "tipo": "normal",
+        "entrega": "z-e6",
+        "x": 29.86,
+        "y": 70.3,
+        "siguientes": [
+          "z07"
+        ],
+        "estiloa": "padura"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "f9aaf1418b0a0cc34c92d69519fc52d4a8566b135c5d955ef5d22773642b8551",
+    "hash": "325ed47c00b1db4abd4e1e7e9ade07f4bc7507640b4292cb502a5f18baa833fd"
+  },
+  {
+    "id": 62,
+    "fecha": "2026-11-05T13:41:42.805Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "zerbitzuak",
+      "id": "z07",
+      "cambio": null,
+      "antes": {
+        "id": "z07",
+        "nombre": "AnyDesk",
+        "lugar": "Log-aren Padura",
+        "tipo": "normal",
+        "entrega": "z-e7",
+        "x": 34.2,
+        "y": 67.7,
+        "siguientes": [
+          "z08"
+        ],
+        "estiloa": "padura"
+      },
+      "despues": {
+        "id": "z07",
+        "nombre": "AnyDesk",
+        "lugar": "Log-aren Padura",
+        "tipo": "normal",
+        "entrega": "z-e7",
+        "x": 35.76,
+        "y": 60.89,
+        "siguientes": [
+          "z08"
+        ],
+        "estiloa": "padura"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "325ed47c00b1db4abd4e1e7e9ade07f4bc7507640b4292cb502a5f18baa833fd",
+    "hash": "734963ed073c52ee3a614443cc09601d19e9e95cd438a7ca830a305de50b1305"
+  },
+  {
+    "id": 63,
+    "fecha": "2026-11-05T13:41:42.830Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "zerbitzuak",
+      "id": "z08",
+      "cambio": null,
+      "antes": {
+        "id": "z08",
+        "nombre": "Webmin eta Samba",
+        "lugar": "Nekropoli Loretsua",
+        "tipo": "normal",
+        "entrega": "z-e8",
+        "x": 39.6,
+        "y": 70.1,
+        "siguientes": [
+          "z09"
+        ],
+        "estiloa": "misterioa"
+      },
+      "despues": {
+        "id": "z08",
+        "nombre": "Webmin eta Samba",
+        "lugar": "Nekropoli Loretsua",
+        "tipo": "normal",
+        "entrega": "z-e8",
+        "x": 42.19,
+        "y": 58.98,
+        "siguientes": [
+          "z09"
+        ],
+        "estiloa": "misterioa"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "734963ed073c52ee3a614443cc09601d19e9e95cd438a7ca830a305de50b1305",
+    "hash": "5741b93dc64aeeab7937f734db643576119f2f067d6660a671655a7255ace092"
+  },
+  {
+    "id": 64,
+    "fecha": "2026-11-05T13:41:42.853Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "zerbitzuak",
+      "id": "z09",
+      "cambio": null,
+      "antes": {
+        "id": "z09",
+        "nombre": "Proxy-cache Squid",
+        "lugar": "Hiri Grisaren atea",
+        "tipo": "normal",
+        "entrega": "z-e9",
+        "x": 49.9,
+        "y": 63.4,
+        "siguientes": [
+          "z10"
+        ],
+        "estiloa": "hiria"
+      },
+      "despues": {
+        "id": "z09",
+        "nombre": "Proxy-cache Squid",
+        "lugar": "Hiri Grisaren atea",
+        "tipo": "normal",
+        "entrega": "z-e9",
+        "x": 50.99,
+        "y": 56.48,
+        "siguientes": [
+          "z10"
+        ],
+        "estiloa": "hiria"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "5741b93dc64aeeab7937f734db643576119f2f067d6660a671655a7255ace092",
+    "hash": "bf003d01e696f14e95ad8b7e9da0e99e8d1671d851e8a5344981699d7833568a"
+  },
+  {
+    "id": 65,
+    "fecha": "2026-11-05T13:41:42.885Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "zerbitzuak",
+      "id": "z10",
+      "cambio": null,
+      "antes": {
+        "id": "z10",
+        "nombre": "FTP",
+        "lugar": "Hiri Grisa",
+        "tipo": "normal",
+        "entrega": "z-e10",
+        "x": 45.2,
+        "y": 56,
+        "siguientes": [
+          "z11"
+        ],
+        "estiloa": "hiria"
+      },
+      "despues": {
+        "id": "z10",
+        "nombre": "FTP",
+        "lugar": "Hiri Grisa",
+        "tipo": "normal",
+        "entrega": "z-e10",
+        "x": 45.18,
+        "y": 49.89,
+        "siguientes": [
+          "z11"
+        ],
+        "estiloa": "hiria"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "bf003d01e696f14e95ad8b7e9da0e99e8d1671d851e8a5344981699d7833568a",
+    "hash": "c731bf5a06827cf238e2ae047f94e5fa6cf45511ca7e688fc51a0ee4aecc2386"
+  },
+  {
+    "id": 66,
+    "fecha": "2026-11-05T13:41:42.901Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "zerbitzuak",
+      "id": "z11",
+      "cambio": null,
+      "antes": {
+        "id": "z11",
+        "nombre": "FTP sarbidea kontrolatzea",
+        "lugar": "Aldagaien Harana",
+        "tipo": "normal",
+        "entrega": "z-e11",
+        "x": 41.8,
+        "y": 48.4,
+        "siguientes": [
+          "z12"
+        ],
+        "estiloa": "hiria"
+      },
+      "despues": {
+        "id": "z11",
+        "nombre": "FTP sarbidea kontrolatzea",
+        "lugar": "Aldagaien Harana",
+        "tipo": "normal",
+        "entrega": "z-e11",
+        "x": 42.55,
+        "y": 42.77,
+        "siguientes": [
+          "z12"
+        ],
+        "estiloa": "hiria"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "c731bf5a06827cf238e2ae047f94e5fa6cf45511ca7e688fc51a0ee4aecc2386",
+    "hash": "08731d7c4ba573b592ce502a6ccfba1e1890f00e93c225acf38703838341ae2f"
+  },
+  {
+    "id": 67,
+    "fecha": "2026-11-05T13:41:42.915Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "zerbitzuak",
+      "id": "z12",
+      "cambio": null,
+      "antes": {
+        "id": "z12",
+        "nombre": "Posta sistema - Thunderbird",
+        "lugar": "Mendi-oinetako bidea",
+        "tipo": "normal",
+        "entrega": "z-e12",
+        "x": 50.8,
+        "y": 38.6,
+        "siguientes": [
+          "z13"
+        ],
+        "estiloa": "sumendia"
+      },
+      "despues": {
+        "id": "z12",
+        "nombre": "Posta sistema - Thunderbird",
+        "lugar": "Mendi-oinetako bidea",
+        "tipo": "normal",
+        "entrega": "z-e12",
+        "x": 52.78,
+        "y": 31.08,
+        "siguientes": [
+          "z13"
+        ],
+        "estiloa": "sumendia"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "08731d7c4ba573b592ce502a6ccfba1e1890f00e93c225acf38703838341ae2f",
+    "hash": "64ec605071f56f9547120e34429ecedbf9f1951f006a25f50ae70d97c399426b"
+  },
+  {
+    "id": 68,
+    "fecha": "2026-11-05T13:41:42.929Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "zerbitzuak",
+      "id": "z13",
+      "cambio": null,
+      "antes": {
+        "id": "z13",
+        "nombre": "Web zerbitzaria - Apache HTTP",
+        "lugar": "Konpilatzailearen Forja",
+        "tipo": "normal",
+        "entrega": "z-e13",
+        "x": 57.3,
+        "y": 32.2,
+        "siguientes": [
+          "z14"
+        ],
+        "estiloa": "sumendia"
+      },
+      "despues": {
+        "id": "z13",
+        "nombre": "Web zerbitzaria - Apache HTTP",
+        "lugar": "Konpilatzailearen Forja",
+        "tipo": "normal",
+        "entrega": "z-e13",
+        "x": 56.97,
+        "y": 29.44,
+        "siguientes": [
+          "z14"
+        ],
+        "estiloa": "sumendia"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "64ec605071f56f9547120e34429ecedbf9f1951f006a25f50ae70d97c399426b",
+    "hash": "5886b81cfb0135f764c931549e306b55b9f60f8d92fa57865533896ee04e6d30"
+  },
+  {
+    "id": 69,
+    "fecha": "2026-11-05T13:41:42.940Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "zerbitzuak",
+      "id": "z14",
+      "cambio": null,
+      "antes": {
+        "id": "z14",
+        "nombre": "Moodle",
+        "lugar": "Forjaren irteera",
+        "tipo": "normal",
+        "entrega": "z-e14",
+        "x": 68.2,
+        "y": 34.5,
+        "siguientes": [
+          "z15"
+        ],
+        "estiloa": "sumendia"
+      },
+      "despues": {
+        "id": "z14",
+        "nombre": "Moodle",
+        "lugar": "Forjaren irteera",
+        "tipo": "normal",
+        "entrega": "z-e14",
+        "x": 69.09,
+        "y": 29.91,
+        "siguientes": [
+          "z15"
+        ],
+        "estiloa": "sumendia"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "5886b81cfb0135f764c931549e306b55b9f60f8d92fa57865533896ee04e6d30",
+    "hash": "4338038ace9ba351f0be49c7c22ed43034a95b1c5c3811cc78fbad91cd31a8d9"
+  },
+  {
+    "id": 70,
+    "fecha": "2026-11-05T13:41:42.968Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "zerbitzuak",
+      "id": "z15",
+      "cambio": null,
+      "antes": {
+        "id": "z15",
+        "nombre": "WordPress",
+        "lugar": "Kosta Etsi-etsia",
+        "tipo": "normal",
+        "entrega": "z-e15",
+        "x": 73.4,
+        "y": 48.6,
+        "siguientes": [
+          "z16"
+        ],
+        "estiloa": "itsasoa"
+      },
+      "despues": {
+        "id": "z15",
+        "nombre": "WordPress",
+        "lugar": "Kosta Etsi-etsia",
+        "tipo": "normal",
+        "entrega": "z-e15",
+        "x": 73.85,
+        "y": 42.61,
+        "siguientes": [
+          "z16"
+        ],
+        "estiloa": "itsasoa"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "4338038ace9ba351f0be49c7c22ed43034a95b1c5c3811cc78fbad91cd31a8d9",
+    "hash": "ec51a81a5663c4ca36d6c039a9ec41e481c53324d5ffe53c1e545f5f11ff6807"
+  },
+  {
+    "id": 71,
+    "fecha": "2026-11-05T13:41:43.001Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "zerbitzuak",
+      "id": "z16",
+      "cambio": null,
+      "antes": {
+        "id": "z16",
+        "nombre": "OpenLDAP",
+        "lugar": "Baldintzen Labirintoa",
+        "tipo": "normal",
+        "entrega": "z-e16",
+        "x": 59.1,
+        "y": 50.5,
+        "siguientes": [
+          "z17"
+        ],
+        "estiloa": "misterioa"
+      },
+      "despues": {
+        "id": "z16",
+        "nombre": "OpenLDAP",
+        "lugar": "Baldintzen Labirintoa",
+        "tipo": "normal",
+        "entrega": "z-e16",
+        "x": 59.63,
+        "y": 45.11,
+        "siguientes": [
+          "z17"
+        ],
+        "estiloa": "misterioa"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "ec51a81a5663c4ca36d6c039a9ec41e481c53324d5ffe53c1e545f5f11ff6807",
+    "hash": "d0faf9564960632bd9c59ebc63247dfd1e05785f44ccaa750290b5611c413cd8"
+  },
+  {
+    "id": 72,
+    "fecha": "2026-11-05T13:41:43.033Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "zerbitzuak",
+      "id": "z17",
+      "cambio": null,
+      "antes": {
+        "id": "z17",
+        "nombre": "Segurtasun-kopiak",
+        "lugar": "Begizten Basamortua",
+        "tipo": "normal",
+        "entrega": "z-e17",
+        "x": 64.9,
+        "y": 68.6,
+        "siguientes": [
+          "z18"
+        ],
+        "estiloa": "basamortua"
+      },
+      "despues": {
+        "id": "z17",
+        "nombre": "Segurtasun-kopiak",
+        "lugar": "Begizten Basamortua",
+        "tipo": "normal",
+        "entrega": "z-e17",
+        "x": 65.65,
+        "y": 61.32,
+        "siguientes": [
+          "z18"
+        ],
+        "estiloa": "basamortua"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "d0faf9564960632bd9c59ebc63247dfd1e05785f44ccaa750290b5611c413cd8",
+    "hash": "e89cb5178cbbaf0d65f2fc54a85fdb491b54b9c608bdfb99e5b1a64026ce8243"
+  },
+  {
+    "id": 73,
+    "fecha": "2026-11-05T13:41:43.063Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "zerbitzuak",
+      "id": "z18",
+      "cambio": null,
+      "antes": {
+        "id": "z18",
+        "nombre": "Babeskopiak - Déjà Dup",
+        "lugar": "Commit-en Meategiak",
+        "tipo": "normal",
+        "entrega": "z-e18",
+        "x": 75.9,
+        "y": 66.8,
+        "siguientes": [
+          "z19"
+        ],
+        "estiloa": "meatzea"
+      },
+      "despues": {
+        "id": "z18",
+        "nombre": "Babeskopiak - Déjà Dup",
+        "lugar": "Commit-en Meategiak",
+        "tipo": "normal",
+        "entrega": "z-e18",
+        "x": 76.33,
+        "y": 59.94,
+        "siguientes": [
+          "z19"
+        ],
+        "estiloa": "meatzea"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "e89cb5178cbbaf0d65f2fc54a85fdb491b54b9c608bdfb99e5b1a64026ce8243",
+    "hash": "3f757b0b3db6d55bc532fdffaac43c618aba790aff7f44c858120976036851c2"
+  },
+  {
+    "id": 74,
+    "fecha": "2026-11-05T13:41:43.101Z",
+    "autor": "profesor",
+    "aventura": "zerbitzuak",
+    "grupo": null,
+    "miembro": null,
+    "tipo": "auditoria",
+    "datos": {
+      "coleccion": "casillas",
+      "aventura": "zerbitzuak",
+      "id": "z19",
+      "cambio": null,
+      "antes": {
+        "id": "z19",
+        "nombre": "Helmuga",
+        "lugar": "Zabor-eskualdea",
+        "tipo": "meta",
+        "x": 81,
+        "y": 58.9,
+        "siguientes": [],
+        "estiloa": "helmuga"
+      },
+      "despues": {
+        "id": "z19",
+        "nombre": "Helmuga",
+        "lugar": "Zabor-eskualdea",
+        "tipo": "meta",
+        "x": 81.39,
+        "y": 52.28,
+        "siguientes": [],
+        "estiloa": "helmuga"
+      }
+    },
+    "puntos": 0,
+    "visible_publico": false,
+    "referencia": null,
+    "hash_anterior": "3f757b0b3db6d55bc532fdffaac43c618aba790aff7f44c858120976036851c2",
+    "hash": "f2b102a696938b88267b690642f36c3da5bc50106dff415526c30dcb4cc627bc"
   }
 ]
