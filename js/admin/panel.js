@@ -124,8 +124,8 @@
     $('pestanas').innerHTML = datos.config.aventuras.filter(a => a.activa).map(a =>
       `<a href="#${esc(a.id)}" style="--acento:${esc(a.color_acento)}"${a.id === avId ? ' aria-current="page"' : ''}>${esc(a.nombre)}</a>`).join('');
     $('registrando').innerHTML = `Erregistratzen: <strong>${esc(info.nombre)}</strong>`;
-    $('f-ambito-nombre').textContent = `${info.nombre}-n bakarrik`;
-    $('f-enviar').textContent = `Erregistratu ${info.nombre}-n`;
+    $('f-ambito-nombre').textContent = `${info.nombre} abenturan bakarrik`;
+    $('f-enviar').textContent = `Erregistratu ${info.nombre} abenturan`;
   }
 
   function pintarControl() {
@@ -299,7 +299,7 @@
 
   async function enviar() {
     const entrada = leerFormulario();
-    const titulo = entrada.ambito === 'global' ? 'Bi abenturetan erregistratu?' : `${nombreAv()}-n erregistratu?`;
+    const titulo = entrada.ambito === 'global' ? 'Bi abenturetan erregistratu?' : `${nombreAv()} abenturan erregistratu?`;
     if (!await confirmar(titulo, resumenFormulario())) return;
     try {
       const r = await api('/api/evento', entrada);

@@ -70,7 +70,7 @@
         <label>Nota <input type="number" name="nota" min="0" max="10" step="0.25" required></label>
         <label class="crece">Iruzkina <input type="text" name="comentario" maxlength="1000"></label>
         <label class="check"><input type="checkbox" name="publico" checked> Publikoa</label>
-        <button type="submit" class="boton-pri">Baloratu ${esc(A.nombreAv())}-n</button>
+        <button type="submit" class="boton-pri">Baloratu ${esc(A.nombreAv())} abenturan</button>
       </form>
       <table class="tabla"><thead><tr><th>Data</th>${soloEsta ? '' : '<th>Abentura</th>'}<th>Entrega</th><th>Nota</th><th>Iruzkina</th><th>Ikusgai</th><th>Egoera</th><th></th></tr></thead>
         <tbody>${filas || '<tr><td colspan="8" class="vacio">Baloraziorik ez.</td></tr>'}</tbody></table>
@@ -160,7 +160,7 @@
       e.preventDefault();
       const f = fNota.elements;
       const ent = f.entrega.selectedOptions[0]?.textContent;
-      if (!await A.confirmar(`${A.nombreAv()}-n baloratu?`, `<dl class="resumen"><dt>Abentura</dt><dd>${esc(A.nombreAv())}</dd><dt>Taldea</dt><dd>${esc(g.nombre)}</dd>
+      if (!await A.confirmar(`${A.nombreAv()} abenturan baloratu?`, `<dl class="resumen"><dt>Abentura</dt><dd>${esc(A.nombreAv())}</dd><dt>Taldea</dt><dd>${esc(g.nombre)}</dd>
         <dt>Entrega</dt><dd>${esc(ent)}</dd><dt>Nota</dt><dd>${esc(f.nota.value)}</dd><dt>Ikusgai</dt><dd>${f.publico.checked ? 'Publikoa' : '🔒 Pribatua'}</dd></dl>`)) return;
       if (await registrar({ aventura: A.avId, tipo: 'nota_grupo', grupo: g.id, visible_publico: f.publico.checked,
         datos: { entrega: f.entrega.value, nota: f.nota.value, comentario: f.comentario.value } })) { A.avisar('✔ Balorazioa gordeta'); A.recargar(); }

@@ -411,3 +411,14 @@ input[type=checkbox], input[type=radio] { width: 1.1rem; height: 1.1rem; accent-
 .etsai-aukera small { font: .7rem var(--titulo); color: var(--tinta-suave); }
 .etsai-lehenetsia { font-size: 2.4rem; line-height: 64px; }
 .b-etsaia .etsai-irudia { width: calc(72px * min(1, var(--w) / var(--h))); justify-self: center; }
+/* Iconos de objeto (props pixel art) */
+.irudi-hautatzailea { grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); max-height: 260px; }
+.irudi-hautatzailea .etsai-aukera { min-height: 64px; align-content: center; }
+.irudi-hautatzailea img { width: 40px; height: 40px; object-fit: contain; image-rendering: pixelated; }
+.irudi-hautatzailea .etsai-lehenetsia { font-size: 1.8rem; line-height: 40px; }
+/* Legibilidad (06/11): título del panel en oro liso y contador fuera del texto de Argitaratu */
+.admin .titulo { background: none; color: var(--oro-claro); animation: none; }
+#publicar[data-zain]:not([data-zain=""])::after { top: -22px; right: -24px; }
+/* Grupo sin miembros: atenuado, pero el motivo («Kiderik ez…») se tiene que poder leer */
+.b-taldea:disabled { opacity: .85; filter: grayscale(.6); }
+.b-taldea small { color: #f6e2b8; opacity: 1; }

@@ -268,7 +268,7 @@
             <h3>${esc(m.alias)}</h3>
             ${m.clase ? `<p class="clase"><span aria-hidden="true">${clase ? esc(clase.icono) : '⚜️'}</span> ${esc(m.clase)}</p>` : ''}
           </div>
-          <dl class="stats"><div><dt>Zeregina ${esc(actual.aventura.nombre)}-n</dt><dd>${esc(m.cometido?.[actual.aventura.id] || '—')}</dd></div></dl>
+          <dl class="stats"><div><dt>Zeregina ${esc(actual.aventura.nombre)} abenturan</dt><dd>${esc(m.cometido?.[actual.aventura.id] || '—')}</dd></div></dl>
           ${borrokaKidea(e, m)}
           <h3>Lana</h3>${cronica(e.historial.filter(ev => publico(ev) && ev.miembro === m.id).reverse())}`,
       };
@@ -463,7 +463,7 @@
         .filter(x => x.n.numero > x.a.numero);
     }
     const lista = nuevos.length ? nuevos : visibles;
-    const subtitulo = nuevos.length ? `Azken bisitatik ${esc(actual.aventura.nombre)}-n` : `Azken gertaerak ${esc(actual.aventura.nombre)}-n`;
+    const subtitulo = nuevos.length ? `Azken bisitatik, ${esc(actual.aventura.nombre)} abenturan` : `Azken gertaerak ${esc(actual.aventura.nombre)} abenturan`;
 
     const MAX = 8;
     const caja = document.createElement('div');

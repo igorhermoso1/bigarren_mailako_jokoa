@@ -65,7 +65,7 @@
             const bk = azkena(g, c.id);
             return `<button type="button" class="b-taldea" data-g="${esc(g.id)}" style="--color:${esc(g.color)}" ${n && kideak ? '' : 'disabled'}>
               <span class="b-fitxa" data-ficha="${esc(g.id)}"></span>
-              <span><b>${esc(g.nombre)}</b><br><small>${kideak ? `${kideak} kide` : 'Kiderik ez (gehitu Taldeak-en)'}</small><br>
+              <span><b>${esc(g.nombre)}</b><br><small>${kideak ? `${kideak} kide` : 'Kiderik ez (gehitu «Taldeak eta fitxak» atalean)'}</small><br>
               <small>${bk ? `Azkena: ${EMAITZA[bk.datos.emaitza]} ${bk.datos.asmatuak}/${bk.datos.guztira}` : 'Oraindik borrokarik ez'}</small></span>
               <span class="b-ezpata" aria-hidden="true">⚔</span></button>`;
           }).join('')}</div>

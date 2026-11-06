@@ -928,7 +928,7 @@ a, button, select, summary, label, [role="tab"], [role="button"], input[type="ra
   cursor: image-set(url(../img/ui/pixel/kurtsoreak/eskularrua.png) 1x, url(../img/ui/pixel/kurtsoreak/eskularrua@2x.png) 2x) 1 2, pointer !important;
 }
 /* Zonas del mapa y enemigos del combate: espada */
-.casilla, .etsaia, .aukera {
+.casilla, .etsaia, .aukera, .b-etsaia, .etsai-hautatzailea:not(.irudi-hautatzailea) .etsai-aukera {
   cursor: url(../img/ui/pixel/kurtsoreak/ezpata.png) 1 1, pointer !important;
   cursor: image-set(url(../img/ui/pixel/kurtsoreak/ezpata.png) 1x, url(../img/ui/pixel/kurtsoreak/ezpata@2x.png) 2x) 1 1, pointer !important;
 }
@@ -1140,3 +1140,5 @@ button:disabled, [aria-disabled="true"] { cursor: not-allowed !important; }
 }
 @keyframes etsai-idle { to { background-position: 100% 0; } }
 @media (prefers-reduced-motion: reduce) { .etsai-irudia { animation: none; } }
+/* Props de objeto: pixel art, siempre nítidos (la regla «.pergamino *» los suavizaría) */
+img[src^="img/objetos/"] { image-rendering: pixelated !important; }

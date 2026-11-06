@@ -13,6 +13,7 @@
   // Catálogo de enemigos (img/etsaiak): aspecto animado que se elige para cada pregunta de combate.
   A.etsaiak = [];
   fetch('img/etsaiak/katalogoa.json').then(r => r.json()).then(k => { A.etsaiak = k; if (A.datos) A.modulos.forEach(m => m.pintar()); }).catch(() => {});
+  fetch('img/objetos/katalogoa.json').then(r => r.json()).then(k => { A.propak = k; if (A.datos) A.modulos.forEach(m => m.pintar()); }).catch(() => {});
   A.etsaiIrudia = id => {
     const e = buscar(A.etsaiak, id);
     return e ? `<span class="etsai-irudia" style="--n:${e.fotogramak};--w:${e.zabalera};--h:${e.altuera};background-image:url(img/etsaiak/${esc(e.id)}.webp)"></span>` : '';
@@ -20,7 +21,7 @@
 
   const CAMPOS = {
     objetos: [
-      { k: 'nombre', e: 'Izena' }, { k: 'icono', e: 'Ikonoa (emojia edo img/objetos/…)' },
+      { k: 'nombre', e: 'Izena' }, { k: 'icono', e: 'Ikonoa', t: 'irudia' },
       { k: 'rareza', e: 'Arraritasuna', t: 'select', o: rarezas }, { k: 'tipo', e: 'Mota', t: 'select', o: () => TIPOS_OBJETO },
       { k: 'ambito', e: 'Esparrua', t: 'select', o: ambitos }, { k: 'descripcion', e: 'Deskribapena', t: 'textarea' },
       { k: 'consumible', e: 'Kontsumigarria (behin erabiltzekoa)', t: 'checkbox' },
@@ -72,6 +73,16 @@
       <label class="etsai-aukera"><input type="radio" ${nombre} value=""${v ? '' : ' checked'}><span class="etsai-lehenetsia">👹</span><small>Lehenetsia</small></label>
       ${A.etsaiak.map(e => `<label class="etsai-aukera" title="${esc(e.id)}"><input type="radio" ${nombre} value="${esc(e.id)}"${v === e.id ? ' checked' : ''}>${A.etsaiIrudia(e.id)}<small>${esc(e.id)}</small></label>`).join('')}
     </fieldset>`;
+    // Iconos de objeto: los props de img/objetos (un icono anterior que no sea de la lista se conserva como opción).
+    if (c.t === 'irudia') {
+      const propak = A.propak || [];
+      const aukera = (val, html, txt) => `<label class="etsai-aukera" title="${esc(txt)}"><input type="radio" ${nombre} value="${esc(val)}"${(v || '') === val ? ' checked' : ''}>${html}</label>`;
+      return `<fieldset class="etsai-hautatzailea irudi-hautatzailea"><legend>${esc(c.e)}</legend>
+        ${aukera('', '<span class="etsai-lehenetsia">❔</span><small>Motaren arabera</small>', 'Motaren ikono lehenetsia')}
+        ${v && !propak.includes(v) ? aukera(v, /[./]/.test(v) ? `<img src="${esc(v)}" alt="">` : `<span class="etsai-lehenetsia">${esc(v)}</span>`, 'Oraingo ikonoa') : ''}
+        ${propak.map(r => aukera(r, `<img src="${esc(r)}" alt="">`, r.split('/').pop())).join('')}
+      </fieldset>`;
+    }
     if (c.t === 'checkbox') return `<label class="check"><input type="checkbox" ${nombre}${v ? ' checked' : ''}> ${esc(c.e)}</label>`;
     if (c.t === 'textarea') return `<label>${esc(c.e)}<textarea ${nombre} rows="2" maxlength="500">${esc(v ?? '')}</textarea></label>`;
     const tipo = c.t || 'text';

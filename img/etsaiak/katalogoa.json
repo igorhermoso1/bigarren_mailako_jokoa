@@ -2,22 +2,22 @@
  {
   "id": "e001",
   "fotogramak": 4,
-  "zabalera": 143,
-  "altuera": 163,
+  "zabalera": 139,
+  "altuera": 168,
   "iturria": "eranskin/enemigos_fila1_animacion_9x4.png"
  },
  {
   "id": "e002",
   "fotogramak": 4,
-  "zabalera": 161,
+  "zabalera": 153,
   "altuera": 152,
   "iturria": "eranskin/enemigos_fila1_animacion_9x4.png"
  },
  {
   "id": "e003",
   "fotogramak": 4,
-  "zabalera": 155,
-  "altuera": 169,
+  "zabalera": 149,
+  "altuera": 173,
   "iturria": "eranskin/enemigos_fila1_animacion_9x4.png"
  },
  {
@@ -30,8 +30,8 @@
  {
   "id": "e005",
   "fotogramak": 4,
-  "zabalera": 149,
-  "altuera": 166,
+  "zabalera": 136,
+  "altuera": 173,
   "iturria": "eranskin/enemigos_fila1_animacion_9x4.png"
  },
  {
@@ -44,14 +44,14 @@
  {
   "id": "e007",
   "fotogramak": 4,
-  "zabalera": 145,
+  "zabalera": 146,
   "altuera": 145,
   "iturria": "eranskin/enemigos_fila1_animacion_9x4.png"
  },
  {
   "id": "e008",
   "fotogramak": 4,
-  "zabalera": 168,
+  "zabalera": 164,
   "altuera": 126,
   "iturria": "eranskin/enemigos_fila1_animacion_9x4.png"
  },
@@ -59,27 +59,27 @@
   "id": "e009",
   "fotogramak": 4,
   "zabalera": 136,
-  "altuera": 168,
+  "altuera": 170,
   "iturria": "eranskin/enemigos_fila1_animacion_9x4.png"
  },
  {
   "id": "e010",
   "fotogramak": 4,
-  "zabalera": 155,
-  "altuera": 160,
+  "zabalera": 156,
+  "altuera": 168,
   "iturria": "V_enemigos_cuarta_tanda_transparente_9x4.png"
  },
  {
   "id": "e011",
   "fotogramak": 4,
-  "zabalera": 163,
-  "altuera": 154,
+  "zabalera": 161,
+  "altuera": 165,
   "iturria": "V_enemigos_cuarta_tanda_transparente_9x4.png"
  },
  {
   "id": "e012",
   "fotogramak": 4,
-  "zabalera": 146,
+  "zabalera": 144,
   "altuera": 157,
   "iturria": "V_enemigos_cuarta_tanda_transparente_9x4.png"
  },
@@ -87,35 +87,35 @@
   "id": "e013",
   "fotogramak": 4,
   "zabalera": 148,
-  "altuera": 139,
+  "altuera": 145,
   "iturria": "V_enemigos_cuarta_tanda_transparente_9x4.png"
  },
  {
   "id": "e014",
   "fotogramak": 4,
-  "zabalera": 167,
-  "altuera": 141,
+  "zabalera": 152,
+  "altuera": 153,
   "iturria": "V_enemigos_cuarta_tanda_transparente_9x4.png"
  },
  {
   "id": "e015",
   "fotogramak": 4,
-  "zabalera": 181,
-  "altuera": 126,
+  "zabalera": 178,
+  "altuera": 130,
   "iturria": "V_enemigos_cuarta_tanda_transparente_9x4.png"
  },
  {
   "id": "e016",
   "fotogramak": 4,
-  "zabalera": 181,
-  "altuera": 168,
+  "zabalera": 165,
+  "altuera": 171,
   "iturria": "V_enemigos_cuarta_tanda_transparente_9x4.png"
  },
  {
   "id": "e017",
   "fotogramak": 4,
-  "zabalera": 158,
-  "altuera": 135,
+  "zabalera": 152,
+  "altuera": 142,
   "iturria": "V_enemigos_cuarta_tanda_transparente_9x4.png"
  },
  {
@@ -128,91 +128,91 @@
  {
   "id": "e019",
   "fotogramak": 4,
-  "zabalera": 192,
-  "altuera": 142,
+  "zabalera": 157,
+  "altuera": 148,
   "iturria": "enemigos_tercera_fila_animacion_9x4.png"
  },
  {
   "id": "e020",
   "fotogramak": 4,
-  "zabalera": 163,
+  "zabalera": 155,
   "altuera": 151,
   "iturria": "enemigos_tercera_fila_animacion_9x4.png"
  },
  {
   "id": "e021",
   "fotogramak": 4,
-  "zabalera": 154,
+  "zabalera": 141,
   "altuera": 150,
   "iturria": "enemigos_tercera_fila_animacion_9x4.png"
  },
  {
   "id": "e022",
   "fotogramak": 4,
-  "zabalera": 150,
-  "altuera": 149,
+  "zabalera": 142,
+  "altuera": 151,
   "iturria": "enemigos_tercera_fila_animacion_9x4.png"
  },
  {
   "id": "e023",
   "fotogramak": 4,
-  "zabalera": 182,
-  "altuera": 149,
+  "zabalera": 162,
+  "altuera": 156,
   "iturria": "enemigos_tercera_fila_animacion_9x4.png"
  },
  {
   "id": "e024",
   "fotogramak": 4,
-  "zabalera": 162,
+  "zabalera": 165,
   "altuera": 145,
   "iturria": "enemigos_tercera_fila_animacion_9x4.png"
  },
  {
   "id": "e025",
   "fotogramak": 4,
-  "zabalera": 177,
-  "altuera": 154,
+  "zabalera": 164,
+  "altuera": 164,
   "iturria": "enemigos_tercera_fila_animacion_9x4.png"
  },
  {
   "id": "e026",
   "fotogramak": 4,
-  "zabalera": 184,
-  "altuera": 130,
+  "zabalera": 174,
+  "altuera": 135,
   "iturria": "enemigos_tercera_fila_animacion_9x4.png"
  },
  {
   "id": "e027",
   "fotogramak": 4,
-  "zabalera": 139,
-  "altuera": 165,
+  "zabalera": 138,
+  "altuera": 168,
   "iturria": "enemigos_tercera_fila_animacion_9x4.png"
  },
  {
   "id": "e028",
   "fotogramak": 3,
-  "zabalera": 183,
-  "altuera": 171,
+  "zabalera": 156,
+  "altuera": 175,
   "iturria": "-QuintaHoja de sprites de enemigos fantásticos.png"
  },
  {
   "id": "e029",
   "fotogramak": 4,
   "zabalera": 123,
-  "altuera": 170,
+  "altuera": 172,
   "iturria": "-QuintaHoja de sprites de enemigos fantásticos.png"
  },
  {
   "id": "e030",
   "fotogramak": 3,
-  "zabalera": 159,
-  "altuera": 190,
+  "zabalera": 146,
+  "altuera": 194,
   "iturria": "-QuintaHoja de sprites de enemigos fantásticos.png"
  },
  {
   "id": "e031",
   "fotogramak": 3,
-  "zabalera": 169,
+  "zabalera": 159,
   "altuera": 169,
   "iturria": "-QuintaHoja de sprites de enemigos fantásticos.png"
  },
@@ -220,84 +220,84 @@
   "id": "e032",
   "fotogramak": 4,
   "zabalera": 124,
-  "altuera": 128,
+  "altuera": 130,
   "iturria": "-QuintaHoja de sprites de enemigos fantásticos.png"
  },
  {
   "id": "e033",
   "fotogramak": 3,
-  "zabalera": 185,
-  "altuera": 156,
+  "zabalera": 164,
+  "altuera": 161,
   "iturria": "-QuintaHoja de sprites de enemigos fantásticos.png"
  },
  {
   "id": "e034",
   "fotogramak": 3,
-  "zabalera": 145,
-  "altuera": 158,
+  "zabalera": 142,
+  "altuera": 161,
   "iturria": "-QuintaHoja de sprites de enemigos fantásticos.png"
  },
  {
   "id": "e035",
   "fotogramak": 4,
-  "zabalera": 126,
-  "altuera": 186,
+  "zabalera": 124,
+  "altuera": 188,
   "iturria": "-QuintaHoja de sprites de enemigos fantásticos.png"
  },
  {
   "id": "e036",
   "fotogramak": 3,
-  "zabalera": 159,
-  "altuera": 175,
+  "zabalera": 160,
+  "altuera": 178,
   "iturria": "-QuintaHoja de sprites de enemigos fantásticos.png"
  },
  {
   "id": "e037",
   "fotogramak": 3,
   "zabalera": 158,
-  "altuera": 128,
+  "altuera": 131,
   "iturria": "-QuintaHoja de sprites de enemigos fantásticos.png"
  },
  {
   "id": "e038",
   "fotogramak": 4,
-  "zabalera": 143,
-  "altuera": 163,
+  "zabalera": 129,
+  "altuera": 167,
   "iturria": "-QuintaHoja de sprites de enemigos fantásticos.png"
  },
  {
   "id": "e039",
   "fotogramak": 3,
   "zabalera": 138,
-  "altuera": 182,
+  "altuera": 184,
   "iturria": "-QuintaHoja de sprites de enemigos fantásticos.png"
  },
  {
   "id": "e040",
   "fotogramak": 3,
-  "zabalera": 104,
-  "altuera": 144,
+  "zabalera": 102,
+  "altuera": 146,
   "iturria": "eranskin/Atlas de enemigos4 fila.png"
  },
  {
   "id": "e041",
   "fotogramak": 2,
-  "zabalera": 93,
+  "zabalera": 89,
   "altuera": 160,
   "iturria": "eranskin/Atlas de enemigos4 fila.png"
  },
  {
   "id": "e042",
   "fotogramak": 4,
-  "zabalera": 90,
-  "altuera": 143,
+  "zabalera": 93,
+  "altuera": 145,
   "iturria": "eranskin/Atlas de enemigos4 fila.png"
  },
  {
   "id": "e043",
   "fotogramak": 4,
-  "zabalera": 88,
-  "altuera": 152,
+  "zabalera": 87,
+  "altuera": 159,
   "iturria": "eranskin/Atlas de enemigos4 fila.png"
  },
  {
@@ -310,14 +310,14 @@
  {
   "id": "e045",
   "fotogramak": 3,
-  "zabalera": 124,
-  "altuera": 121,
+  "zabalera": 113,
+  "altuera": 122,
   "iturria": "eranskin/Atlas de enemigos4 fila.png"
  },
  {
   "id": "e046",
   "fotogramak": 2,
-  "zabalera": 104,
+  "zabalera": 105,
   "altuera": 142,
   "iturria": "eranskin/Atlas de enemigos4 fila.png"
  },
@@ -331,7 +331,7 @@
  {
   "id": "e048",
   "fotogramak": 4,
-  "zabalera": 111,
+  "zabalera": 99,
   "altuera": 155,
   "iturria": "eranskin/Atlas de enemigos4 fila.png"
  },
@@ -339,62 +339,62 @@
   "id": "e049",
   "fotogramak": 3,
   "zabalera": 116,
-  "altuera": 151,
+  "altuera": 160,
   "iturria": "eranskin/Atlas de enemigos4 fila.png"
  },
  {
   "id": "e050",
   "fotogramak": 3,
-  "zabalera": 102,
-  "altuera": 155,
+  "zabalera": 99,
+  "altuera": 156,
   "iturria": "eranskin/Atlas de enemigos4 fila.png"
  },
  {
   "id": "e051",
   "fotogramak": 2,
   "zabalera": 102,
-  "altuera": 146,
+  "altuera": 147,
   "iturria": "eranskin/Atlas de enemigos4 fila.png"
  },
  {
   "id": "e052",
   "fotogramak": 4,
-  "zabalera": 93,
-  "altuera": 136,
+  "zabalera": 90,
+  "altuera": 139,
   "iturria": "eranskin/Atlas de enemigos4 fila.png"
  },
  {
   "id": "e053",
   "fotogramak": 4,
-  "zabalera": 98,
-  "altuera": 161,
+  "zabalera": 99,
+  "altuera": 164,
   "iturria": "eranskin/Atlas de enemigos4 fila.png"
  },
  {
   "id": "e054",
   "fotogramak": 3,
   "zabalera": 128,
-  "altuera": 157,
+  "altuera": 159,
   "iturria": "eranskin/Atlas de enemigos4 fila.png"
  },
  {
   "id": "e055",
   "fotogramak": 3,
-  "zabalera": 107,
+  "zabalera": 106,
   "altuera": 158,
   "iturria": "eranskin/Atlas de enemigos4 fila.png"
  },
  {
   "id": "e056",
   "fotogramak": 2,
-  "zabalera": 104,
-  "altuera": 169,
+  "zabalera": 109,
+  "altuera": 178,
   "iturria": "eranskin/Atlas de enemigos4 fila.png"
  },
  {
   "id": "e057",
   "fotogramak": 2,
-  "zabalera": 179,
+  "zabalera": 176,
   "altuera": 153,
   "iturria": "eranskin/Atlas de enemigos4 fila.png"
  },
@@ -402,111 +402,111 @@
   "id": "e058",
   "fotogramak": 4,
   "zabalera": 86,
-  "altuera": 166,
+  "altuera": 170,
   "iturria": "eranskin/Atlas de enemigos4 fila.png"
  },
  {
   "id": "e059",
   "fotogramak": 3,
-  "zabalera": 121,
-  "altuera": 162,
+  "zabalera": 107,
+  "altuera": 169,
   "iturria": "eranskin/Atlas de enemigos4 fila.png"
  },
  {
   "id": "e060",
   "fotogramak": 3,
-  "zabalera": 142,
-  "altuera": 169,
+  "zabalera": 145,
+  "altuera": 170,
   "iturria": "eranskin/Hoja de sprites de monstruos fantásticos_fila_2.png"
  },
  {
   "id": "e061",
   "fotogramak": 3,
   "zabalera": 155,
-  "altuera": 152,
+  "altuera": 162,
   "iturria": "eranskin/Hoja de sprites de monstruos fantásticos_fila_2.png"
  },
  {
   "id": "e062",
   "fotogramak": 3,
-  "zabalera": 173,
-  "altuera": 176,
+  "zabalera": 161,
+  "altuera": 179,
   "iturria": "eranskin/Hoja de sprites de monstruos fantásticos_fila_2.png"
  },
  {
   "id": "e063",
   "fotogramak": 3,
-  "zabalera": 126,
+  "zabalera": 137,
   "altuera": 144,
   "iturria": "eranskin/Hoja de sprites de monstruos fantásticos_fila_2.png"
  },
  {
   "id": "e064",
   "fotogramak": 3,
-  "zabalera": 180,
-  "altuera": 144,
+  "zabalera": 169,
+  "altuera": 145,
   "iturria": "eranskin/Hoja de sprites de monstruos fantásticos_fila_2.png"
  },
  {
   "id": "e065",
   "fotogramak": 3,
-  "zabalera": 162,
-  "altuera": 158,
+  "zabalera": 158,
+  "altuera": 163,
   "iturria": "eranskin/Hoja de sprites de monstruos fantásticos_fila_2.png"
  },
  {
   "id": "e066",
   "fotogramak": 3,
-  "zabalera": 166,
-  "altuera": 167,
+  "zabalera": 157,
+  "altuera": 168,
   "iturria": "eranskin/Hoja de sprites de monstruos fantásticos_fila_2.png"
  },
  {
   "id": "e067",
   "fotogramak": 3,
   "zabalera": 169,
-  "altuera": 138,
+  "altuera": 147,
   "iturria": "eranskin/Hoja de sprites de monstruos fantásticos_fila_2.png"
  },
  {
   "id": "e068",
   "fotogramak": 3,
-  "zabalera": 139,
-  "altuera": 170,
+  "zabalera": 134,
+  "altuera": 171,
   "iturria": "eranskin/Hoja de sprites de monstruos fantásticos_fila_2.png"
  },
  {
   "id": "e069",
   "fotogramak": 3,
-  "zabalera": 108,
+  "zabalera": 105,
   "altuera": 123,
   "iturria": "medieval enemis.png"
  },
  {
   "id": "e070",
   "fotogramak": 3,
-  "zabalera": 128,
+  "zabalera": 127,
   "altuera": 126,
   "iturria": "medieval enemis.png"
  },
  {
   "id": "e071",
   "fotogramak": 3,
-  "zabalera": 102,
+  "zabalera": 104,
   "altuera": 122,
   "iturria": "medieval enemis.png"
  },
  {
   "id": "e072",
   "fotogramak": 3,
-  "zabalera": 122,
-  "altuera": 134,
+  "zabalera": 123,
+  "altuera": 135,
   "iturria": "medieval enemis.png"
  },
  {
   "id": "e073",
   "fotogramak": 3,
-  "zabalera": 133,
+  "zabalera": 128,
   "altuera": 125,
   "iturria": "medieval enemis.png"
  },
@@ -645,23 +645,16 @@
  },
  {
   "id": "e093",
-  "fotogramak": 1,
-  "zabalera": 117,
-  "altuera": 138,
+  "fotogramak": 3,
+  "zabalera": 131,
+  "altuera": 145,
   "iturria": "enemys.png"
  },
  {
   "id": "e094",
-  "fotogramak": 1,
+  "fotogramak": 2,
   "zabalera": 97,
   "altuera": 169,
-  "iturria": "enemys.png"
- },
- {
-  "id": "e095",
-  "fotogramak": 1,
-  "zabalera": 129,
-  "altuera": 145,
   "iturria": "enemys.png"
  },
  {
@@ -721,24 +714,10 @@
   "iturria": "enemys.png"
  },
  {
-  "id": "e104",
-  "fotogramak": 1,
-  "zabalera": 108,
-  "altuera": 132,
-  "iturria": "enemys.png"
- },
- {
   "id": "e105",
   "fotogramak": 1,
   "zabalera": 83,
   "altuera": 164,
-  "iturria": "enemys.png"
- },
- {
-  "id": "e106",
-  "fotogramak": 1,
-  "zabalera": 88,
-  "altuera": 147,
   "iturria": "enemys.png"
  },
  {
@@ -964,5 +943,124 @@
   "zabalera": 131,
   "altuera": 161,
   "iturria": "pixel.png"
+ },
+ {
+  "id": "e139",
+  "fotogramak": 2,
+  "zabalera": 41,
+  "altuera": 96,
+  "iturria": "caballeros_esqueleto.png"
+ },
+ {
+  "id": "e140",
+  "fotogramak": 2,
+  "zabalera": 42,
+  "altuera": 96,
+  "iturria": "caballeros_esqueleto.png"
+ },
+ {
+  "id": "e141",
+  "fotogramak": 2,
+  "zabalera": 42,
+  "altuera": 112,
+  "iturria": "caballeros_esqueleto.png"
+ },
+ {
+  "id": "e142",
+  "fotogramak": 2,
+  "zabalera": 56,
+  "altuera": 99,
+  "iturria": "caballeros_esqueleto.png"
+ },
+ {
+  "id": "e143",
+  "fotogramak": 2,
+  "zabalera": 44,
+  "altuera": 99,
+  "iturria": "caballeros_esqueleto.png"
+ },
+ {
+  "id": "e144",
+  "fotogramak": 3,
+  "zabalera": 127,
+  "altuera": 146,
+  "iturria": "enemigos_nuevos.png"
+ },
+ {
+  "id": "e145",
+  "fotogramak": 3,
+  "zabalera": 122,
+  "altuera": 138,
+  "iturria": "enemigos_nuevos.png"
+ },
+ {
+  "id": "e146",
+  "fotogramak": 2,
+  "zabalera": 138,
+  "altuera": 181,
+  "iturria": "enemigos_nuevos.png"
+ },
+ {
+  "id": "e147",
+  "fotogramak": 2,
+  "zabalera": 77,
+  "altuera": 122,
+  "iturria": "enemigos_nuevos.png"
+ },
+ {
+  "id": "e148",
+  "fotogramak": 3,
+  "zabalera": 142,
+  "altuera": 139,
+  "iturria": "enemigos_nuevos.png"
+ },
+ {
+  "id": "e149",
+  "fotogramak": 4,
+  "zabalera": 174,
+  "altuera": 140,
+  "iturria": "Caballeros pixel art de herramientas IT.png"
+ },
+ {
+  "id": "e150",
+  "fotogramak": 4,
+  "zabalera": 169,
+  "altuera": 138,
+  "iturria": "Caballeros pixel art de herramientas IT.png"
+ },
+ {
+  "id": "e151",
+  "fotogramak": 4,
+  "zabalera": 156,
+  "altuera": 135,
+  "iturria": "Caballeros pixel art de herramientas IT.png"
+ },
+ {
+  "id": "e152",
+  "fotogramak": 4,
+  "zabalera": 205,
+  "altuera": 129,
+  "iturria": "Caballeros pixel art de herramientas IT.png"
+ },
+ {
+  "id": "e153",
+  "fotogramak": 4,
+  "zabalera": 188,
+  "altuera": 134,
+  "iturria": "Caballeros pixel art de herramientas IT.png"
+ },
+ {
+  "id": "e154",
+  "fotogramak": 4,
+  "zabalera": 181,
+  "altuera": 135,
+  "iturria": "Caballeros pixel art de herramientas IT.png"
+ },
+ {
+  "id": "e155",
+  "fotogramak": 4,
+  "zabalera": 200,
+  "altuera": 149,
+  "iturria": "Caballeros pixel art de herramientas IT.png"
  }
 ]
